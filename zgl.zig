@@ -821,3 +821,19 @@ pub fn disableI(cap: Capabilities, index: u32) !void {
     c.glDisablei(@enumToInt(cap), index);
     try checkError();
 }
+
+pub const DepthFunc = enum(c.GLenum) {
+    never = c.GL_NEVER,
+    less = c.GL_LESS,
+    equal = c.GL_EQUAL,
+    less_or_equal = c.GL_LEQUAL,
+    greater = c.GL_GREATER,
+    not_equal = c.GL_NOTEQUAL,
+    greator_or_equal = c.GL_GEQUAL,
+    always = c.GL_ALWAYS,
+};
+
+pub fn depthFunc(func: DepthFunc) !void {
+    c.glDepthFunc(@enumToInt(func));
+    try checkError();
+}
