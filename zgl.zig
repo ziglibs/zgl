@@ -668,7 +668,7 @@ pub fn attachShader(program: Program, shader: Shader) !void {
 }
 
 pub fn detachShader(program: Program, shader: Shader) void {
-    c.glAttachShader(@enumToInt(program), @enumToInt(shader));
+    c.glDetachShader(@enumToInt(program), @enumToInt(shader));
     checkError() catch {};
 }
 
@@ -732,6 +732,11 @@ pub fn getUniformLocation(program: Program, name: [:0]const u8) !?u32 {
 
 ///////////////////////////////////////////////////////////////////////////////
 // Uniforms
+
+pub fn programUniform1f(program: Program, location: u32, value: f32) !void {
+    c.glProgramUniform1f(@enumToInt(program), @intCast(c.GLint, location), value);
+    try checkError();
+}
 
 pub fn programUniformMatrix4(program: Program, location: u32, transpose: bool, items: []const [4][4]f32) !void {
     c.glProgramUniformMatrix4fv(
