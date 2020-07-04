@@ -847,3 +847,8 @@ pub fn polygonOffset(factor: f32, units: f32) !void {
     c.glPolygonOffset(factor, units);
     try checkError();
 }
+
+pub fn pointSize(size: f32) !void {
+    c.glPointSize(size);
+    try checkError();
+}
