@@ -653,7 +653,7 @@ pub fn createProgram() !Program {
 }
 
 pub fn deleteProgram(program: Program) void {
-    c.glDeleteShader(@enumToInt(program));
+    c.glDeleteProgram(@enumToInt(program));
     checkError() catch {};
 }
 
@@ -835,5 +835,10 @@ pub const DepthFunc = enum(c.GLenum) {
 
 pub fn depthFunc(func: DepthFunc) !void {
     c.glDepthFunc(@enumToInt(func));
+    try checkError();
+}
+
+pub fn polygonOffset(factor: f32, units: f32) !void {
+    c.glPolygonOffset(factor, units);
     try checkError();
 }
