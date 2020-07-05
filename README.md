@@ -6,11 +6,11 @@ This library provides a thin, type safe binding for OpenGL functions on top of `
 
 ```zig
 // Use classic OpenGL flavour
-var vao = try gl.createVertexArray();
+var vao = gl.createVertexArray();
 defer gl.deleteVertexArray(vao);
 
 // Use object oriented flavour
-var vertex_buffer = try gl.createBuffer();
+var vertex_buffer = gl.Buffer.create();
 defer vertex_buffer.delete();
 ```
 
