@@ -872,6 +872,11 @@ pub fn disableI(cap: Capabilities, index: u32) void {
     checkError();
 }
 
+pub fn depthMask(enabled: bool) void {
+    c.glDepthMask(if (enabled) c.GL_TRUE else c.GL_FALSE);
+    checkError();
+}
+
 pub const DepthFunc = enum(c.GLenum) {
     never = c.GL_NEVER,
     less = c.GL_LESS,
