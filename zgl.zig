@@ -751,6 +751,11 @@ pub fn programUniform1f(program: Program, location: u32, value: f32) void {
     checkError();
 }
 
+pub fn programUniform3f(program: Program, location: u32, x: f32, y: f32, z: f32) void {
+    c.glProgramUniform3f(@enumToInt(program), @intCast(c.GLint, location), x, y, z);
+    checkError();
+}
+
 pub fn programUniformMatrix4(program: Program, location: u32, transpose: bool, items: []const [4][4]f32) void {
     c.glProgramUniformMatrix4fv(
         @enumToInt(program),
@@ -798,6 +803,17 @@ pub fn drawElements(primitiveType: PrimitiveType, count: usize, element_type: El
         cs2gl(count),
         @enumToInt(element_type),
         indices,
+    );
+    checkError();
+}
+
+pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: ?*const c_void, instance_count: usize) void {
+    c.glDrawElementsInstanced(
+        @enumToInt(primitiveType),
+        cs2gl(count),
+        @enumToInt(element_type),
+        indices,
+        cs2gl(instance_count),
     );
     checkError();
 }
