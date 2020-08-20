@@ -10,7 +10,6 @@ comptime {
 
 pub const VertexArray = enum(c.GLuint) {
     invalid = 0,
-    one = 1, // bugfix: #5314,
     _,
 
     pub const create = createVertexArray;
@@ -25,12 +24,12 @@ pub const VertexArray = enum(c.GLuint) {
 
     pub const attribBinding = vertexArrayAttribBinding;
 
-    pub const vertexBuffer = glVertexArrayVertexBuffer;
+    pub const vertexBuffer = vertexArrayVertexBuffer;
+    pub const elementBuffer = vertexArrayElementBuffer;
 };
 
 pub const Buffer = enum(c.GLuint) {
     invalid = 0,
-    one = 1, // bugfix: #5314,
     _,
 
     pub const create = createBuffer;
@@ -41,7 +40,6 @@ pub const Buffer = enum(c.GLuint) {
 
 pub const Shader = enum(c.GLuint) {
     invalid = 0,
-    one = 1, // bugfix: #5314,
     _,
 
     pub const create = createShader;
@@ -55,7 +53,6 @@ pub const Shader = enum(c.GLuint) {
 };
 pub const Program = enum(c.GLuint) {
     invalid = 0,
-    one = 1, // bugfix: #5314,
     _,
 
     pub const create = createProgram;
@@ -71,6 +68,24 @@ pub const Program = enum(c.GLuint) {
     pub const get = getProgram;
     pub const getCompileLog = getProgramInfoLog;
     pub const uniformLocation = getUniformLocation;
+};
+
+pub const Texture = enum(c.GLuint) {
+    invalid = 0,
+    _,
+
+    pub const create = createTexture;
+    pub const delete = deleteTexture;
+
+    pub const bindTo = bindTextureUnit;
+
+    pub const parameter = textureParameter;
+
+    pub const storage2D = textureStorage2D;
+    pub const storage3D = textureStorage3D;
+
+    pub const subImage2D = textureSubImage2D;
+    pub const subImage3D = textureSubImage3D;
 };
 
 pub const ErrorHandling = enum {
@@ -119,8 +134,9 @@ fn checkError() void {
             else => "unknown error",
         };
 
+        std.log.scoped(.OpenGL).err("OpenGL failure: {}\n", .{name});
         switch (error_handling) {
-            .log => std.log.err(.OpenGL, "OpenGL failure: {}\n", .{err}),
+            .log => {},
             .assert => @panic("OpenGL error"),
             .none => unreachable,
         }
@@ -177,7 +193,7 @@ fn DebugMessageCallbackHandler(comptime Context: type) type {
 
 /// Sets the OpenGL debug callback handler in zig style.
 /// `context` may be a pointer or `{}`.
-pub fn debugMessageCallback(context: var, comptime handler: DebugMessageCallbackHandler(@TypeOf(context))) void {
+pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCallbackHandler(@TypeOf(context))) void {
     const is_void = (@TypeOf(context) == void);
 
     const H = struct {
@@ -392,7 +408,14 @@ pub fn vertexAttribLFormat(attribindex: u32, size: u32, attribute_type: Type, re
     checkError();
 }
 
-pub fn vertexArrayAttribFormat(vertexArray: VertexArray, attribindex: u32, size: u32, attribute_type: Type, normalized: bool, relativeoffset: usize) void {
+pub fn vertexArrayAttribFormat(
+    vertexArray: VertexArray,
+    attribindex: u32,
+    size: u32,
+    attribute_type: Type,
+    normalized: bool,
+    relativeoffset: usize,
+) void {
     c.glVertexArrayAttribFormat(
         @enumToInt(vertexArray),
         attribindex,
@@ -448,13 +471,18 @@ pub fn vertexArrayAttribBinding(vertexArray: VertexArray, attribindex: u32, bind
     checkError();
 }
 
-pub fn glBindVertexBuffer(bindingindex: u32, buffer: Buffer, offset: usize, stride: usize) void {
+pub fn bindVertexBuffer(bindingindex: u32, buffer: Buffer, offset: usize, stride: usize) void {
     c.glBindVertexBuffer(bindingindex, @enumToInt(buffer), cs2gl(offset), cs2gl(stride));
     checkError();
 }
 
-pub fn glVertexArrayVertexBuffer(vertexArray: VertexArray, bindingindex: u32, buffer: Buffer, offset: usize, stride: usize) void {
+pub fn vertexArrayVertexBuffer(vertexArray: VertexArray, bindingindex: u32, buffer: Buffer, offset: usize, stride: usize) void {
     c.glVertexArrayVertexBuffer(@enumToInt(vertexArray), bindingindex, @enumToInt(buffer), cs2gl(offset), cs2gl(stride));
+    checkError();
+}
+
+pub fn vertexArrayElementBuffer(vertexArray: VertexArray, buffer: Buffer) void {
+    c.glVertexArrayElementBuffer(@enumToInt(vertexArray), @enumToInt(buffer));
     checkError();
 }
 
@@ -708,6 +736,16 @@ pub fn getUniformLocation(program: Program, name: [:0]const u8) ?u32 {
 ///////////////////////////////////////////////////////////////////////////////
 // Uniforms
 
+pub fn programUniform1u(program: Program, location: u32, value: u32) void {
+    c.glProgramUniform1u(@enumToInt(program), @intCast(c.GLint, location), value);
+    checkError();
+}
+
+pub fn programUniform1i(program: Program, location: u32, value: i32) void {
+    c.glProgramUniform1i(@enumToInt(program), @intCast(c.GLint, location), value);
+    checkError();
+}
+
 pub fn programUniform1f(program: Program, location: u32, value: f32) void {
     c.glProgramUniform1f(@enumToInt(program), @intCast(c.GLint, location), value);
     checkError();
@@ -745,6 +783,22 @@ pub const PrimitiveType = enum(c.GLenum) {
 
 pub fn drawArrays(primitiveType: PrimitiveType, first: usize, count: usize) void {
     c.glDrawArrays(@enumToInt(primitiveType), cs2gl(first), cs2gl(count));
+    checkError();
+}
+
+const ElementType = enum(c.GLenum) {
+    u8 = c.GL_UNSIGNED_BYTE,
+    u16 = c.GL_UNSIGNED_SHORT,
+    u32 = c.GL_UNSIGNED_INT,
+};
+
+pub fn drawElements(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: ?*const c_void) void {
+    c.glDrawElements(
+        @enumToInt(primitiveType),
+        cs2gl(count),
+        @enumToInt(element_type),
+        indices,
+    );
     checkError();
 }
 
@@ -830,5 +884,303 @@ pub fn pointSize(size: f32) void {
 
 pub fn lineWidth(size: f32) void {
     c.glLineWidth(size);
+    checkError();
+}
+
+pub const TextureTarget = enum(c.GLenum) {
+    @"1d" = c.GL_TEXTURE_1D,
+    @"2d" = c.GL_TEXTURE_2D,
+    @"3d" = c.GL_TEXTURE_3D,
+    @"1d_array" = c.GL_TEXTURE_1D_ARRAY,
+    @"2d_array" = c.GL_TEXTURE_2D_ARRAY,
+    rectangle = c.GL_TEXTURE_RECTANGLE,
+    cube_map = c.GL_TEXTURE_CUBE_MAP,
+    cube_map_array = c.GL_TEXTURE_CUBE_MAP_ARRAY,
+    buffer = c.GL_TEXTURE_BUFFER,
+    @"2d_multisample" = c.GL_TEXTURE_2D_MULTISAMPLE,
+    @"2d_multisample_array" = c.GL_TEXTURE_2D_MULTISAMPLE_ARRAY,
+};
+
+pub fn createTexture(texture_target: TextureTarget) Texture {
+    var tex_name: c.GLuint = undefined;
+
+    c.glCreateTextures(@enumToInt(texture_target), 1, &tex_name);
+    checkError();
+
+    const texture = @intToEnum(Texture, tex_name);
+    if (texture == .invalid) {
+        checkError();
+        unreachable;
+    }
+    return texture;
+}
+
+pub fn deleteTexture(texture: Texture) void {
+    var id = @enumToInt(texture);
+    c.glDeleteTextures(1, &id);
+}
+
+pub fn bindTextureUnit(texture: Texture, unit: u32) void {
+    c.glBindTextureUnit(unit, @enumToInt(texture));
+    checkError();
+}
+
+pub const TextureParameter = enum(c.GLenum) {
+    depth_stencil_texture_mode = c.GL_DEPTH_STENCIL_TEXTURE_MODE,
+    base_level = c.GL_TEXTURE_BASE_LEVEL,
+    compare_func = c.GL_TEXTURE_COMPARE_FUNC,
+    compare_mode = c.GL_TEXTURE_COMPARE_MODE,
+    lod_bias = c.GL_TEXTURE_LOD_BIAS,
+    min_filter = c.GL_TEXTURE_MIN_FILTER,
+    mag_filter = c.GL_TEXTURE_MAG_FILTER,
+    min_lod = c.GL_TEXTURE_MIN_LOD,
+    max_lod = c.GL_TEXTURE_MAX_LOD,
+    max_level = c.GL_TEXTURE_MAX_LEVEL,
+    swizzle_r = c.GL_TEXTURE_SWIZZLE_R,
+    swizzle_g = c.GL_TEXTURE_SWIZZLE_G,
+    swizzle_b = c.GL_TEXTURE_SWIZZLE_B,
+    swizzle_a = c.GL_TEXTURE_SWIZZLE_A,
+    wrap_s = c.GL_TEXTURE_WRAP_S,
+    wrap_t = c.GL_TEXTURE_WRAP_T,
+    wrap_r = c.GL_TEXTURE_WRAP_R,
+};
+
+fn TextureParameterType(comptime param: TextureParameter) type {
+    // see https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexParameter.xhtml
+    return switch (param) {
+        .wrap_s, .wrap_t, .wrap_r => enum(c.GLint) {
+            clamp_to_edge = c.GL_CLAMP_TO_EDGE,
+            clamp_to_border = c.GL_CLAMP_TO_BORDER,
+            mirrored_repeat = c.GL_MIRRORED_REPEAT,
+            repeat = c.GL_REPEAT,
+            mirror_clamp_to_edge = c.GL_MIRROR_CLAMP_TO_EDGE,
+        },
+        .mag_filter => enum(c.GLint) {
+            nearest = c.GL_NEAREST,
+            linear = c.GL_LINEAR,
+        },
+        .min_filter => enum(c.GLint) {
+            nearest = c.GL_NEAREST,
+            linear = c.GL_LINEAR,
+            nearest_mipmap_nearest = c.GL_NEAREST_MIPMAP_NEAREST,
+            linear_mipmap_nearest = c.GL_LINEAR_MIPMAP_NEAREST,
+            nearest_mipmap_linear = c.GL_NEAREST_MIPMAP_LINEAR,
+            linear_mipmap_linear = c.GL_LINEAR_MIPMAP_LINEAR,
+        },
+        else => @compileError("textureParameter not implemented yet for " ++ @tagName(param)),
+    };
+}
+
+pub fn textureParameter(texture: Texture, comptime parameter: TextureParameter, value: TextureParameterType(parameter)) void {
+    const T = TextureParameterType(parameter);
+    const info = @typeInfo(T);
+
+    if (info == .Enum) {
+        c.glTextureParameteri(@enumToInt(texture), @enumToInt(parameter), @enumToInt(value));
+    } else {
+        @compileError(@tagName(info) ++ " is not supported yet by textureParameter");
+    }
+    checkError();
+}
+
+pub const TextureInternalFormat = enum(c.GLenum) {
+    r8 = c.GL_R8,
+    r8_snorm = c.GL_R8_SNORM,
+    r16 = c.GL_R16,
+    r16_snorm = c.GL_R16_SNORM,
+    rg8 = c.GL_RG8,
+    rg8_snorm = c.GL_RG8_SNORM,
+    rg16 = c.GL_RG16,
+    rg16_snorm = c.GL_RG16_SNORM,
+    r3_g3_b2 = c.GL_R3_G3_B2,
+    rgb4 = c.GL_RGB4,
+    rgb5 = c.GL_RGB5,
+    rgb8 = c.GL_RGB8,
+    rgb8_snorm = c.GL_RGB8_SNORM,
+    rgb10 = c.GL_RGB10,
+    rgb12 = c.GL_RGB12,
+    rgb16_snorm = c.GL_RGB16_SNORM,
+    rgba2 = c.GL_RGBA2,
+    rgba4 = c.GL_RGBA4,
+    rgb5_a1 = c.GL_RGB5_A1,
+    rgba8 = c.GL_RGBA8,
+    rgba8_snorm = c.GL_RGBA8_SNORM,
+    rgb10_a2 = c.GL_RGB10_A2,
+    rgb10_a2ui = c.GL_RGB10_A2UI,
+    rgba12 = c.GL_RGBA12,
+    rgba16 = c.GL_RGBA16,
+    srgb8 = c.GL_SRGB8,
+    srgb8_alpha8 = c.GL_SRGB8_ALPHA8,
+    r16f = c.GL_R16F,
+    rg16f = c.GL_RG16F,
+    rgb16f = c.GL_RGB16F,
+    rgba16f = c.GL_RGBA16F,
+    r32f = c.GL_R32F,
+    rg32f = c.GL_RG32F,
+    rgb32f = c.GL_RGB32F,
+    rgba32f = c.GL_RGBA32F,
+    r11f_g11f_b10f = c.GL_R11F_G11F_B10F,
+    rgb9_e5 = c.GL_RGB9_E5,
+    r8i = c.GL_R8I,
+    r8ui = c.GL_R8UI,
+    r16i = c.GL_R16I,
+    r16ui = c.GL_R16UI,
+    r32i = c.GL_R32I,
+    r32ui = c.GL_R32UI,
+    rg8i = c.GL_RG8I,
+    rg8ui = c.GL_RG8UI,
+    rg16i = c.GL_RG16I,
+    rg16ui = c.GL_RG16UI,
+    rg32i = c.GL_RG32I,
+    rg32ui = c.GL_RG32UI,
+    rgb8i = c.GL_RGB8I,
+    rgb8ui = c.GL_RGB8UI,
+    rgb16i = c.GL_RGB16I,
+    rgb16ui = c.GL_RGB16UI,
+    rgb32i = c.GL_RGB32I,
+    rgb32ui = c.GL_RGB32UI,
+    rgba8i = c.GL_RGBA8I,
+    rgba8ui = c.GL_RGBA8UI,
+    rgba16i = c.GL_RGBA16I,
+    rgba16ui = c.GL_RGBA16UI,
+    rgba32i = c.GL_RGBA32I,
+    rgba32ui = c.GL_RGBA32UI,
+};
+
+pub fn textureStorage2D(
+    texture: Texture,
+    levels: usize,
+    internalformat: TextureInternalFormat,
+    width: usize,
+    height: usize,
+) void {
+    c.glTextureStorage2D(
+        @enumToInt(texture),
+        @intCast(c.GLsizei, levels),
+        @enumToInt(internalformat),
+        @intCast(c.GLsizei, width),
+        @intCast(c.GLsizei, height),
+    );
+    checkError();
+}
+
+pub fn textureStorage3D(
+    texture: Texture,
+    levels: usize,
+    internalformat: TextureInternalFormat,
+    width: usize,
+    height: usize,
+    depth: usize,
+) void {
+    c.glTextureStorage3D(
+        @enumToInt(texture),
+        @intCast(c.GLsizei, levels),
+        @enumToInt(internalformat),
+        @intCast(c.GLsizei, width),
+        @intCast(c.GLsizei, height),
+        @intCast(c.GLsizei, depth),
+    );
+    checkError();
+}
+
+pub const PixelFormat = enum(c.GLenum) {
+    red = c.GL_RED,
+    rg = c.GL_RG,
+    rgb = c.GL_RGB,
+    bgr = c.GL_BGR,
+    rgba = c.GL_RGBA,
+    bgra = c.GL_BGRA,
+    depth_component = c.GL_DEPTH_COMPONENT,
+    stencil_index = c.GL_STENCIL_INDEX,
+};
+
+pub const PixelType = enum(c.GLenum) {
+    unsigned_byte = c.GL_UNSIGNED_BYTE,
+    byte = c.GL_BYTE,
+    unsigned_short = c.GL_UNSIGNED_SHORT,
+    short = c.GL_SHORT,
+    unsigned_int = c.GL_UNSIGNED_INT,
+    int = c.GL_INT,
+    float = c.GL_FLOAT,
+    unsigned_byte_3_3_2 = c.GL_UNSIGNED_BYTE_3_3_2,
+    unsigned_byte_2_3_3_rev = c.GL_UNSIGNED_BYTE_2_3_3_REV,
+    unsigned_short_5_6_5 = c.GL_UNSIGNED_SHORT_5_6_5,
+    unsigned_short_5_6_5_rev = c.GL_UNSIGNED_SHORT_5_6_5_REV,
+    unsigned_short_4_4_4_4 = c.GL_UNSIGNED_SHORT_4_4_4_4,
+    unsigned_short_4_4_4_4_rev = c.GL_UNSIGNED_SHORT_4_4_4_4_REV,
+    unsigned_short_5_5_5_1 = c.GL_UNSIGNED_SHORT_5_5_5_1,
+    unsigned_short_1_5_5_5_rev = c.GL_UNSIGNED_SHORT_1_5_5_5_REV,
+    unsigned_int_8_8_8_8 = c.GL_UNSIGNED_INT_8_8_8_8,
+    unsigned_int_8_8_8_8_rev = c.GL_UNSIGNED_INT_8_8_8_8_REV,
+    unsigned_int_10_10_10_2 = c.GL_UNSIGNED_INT_10_10_10_2,
+    unsigned_int_2_10_10_10_rev = c.GL_UNSIGNED_INT_2_10_10_10_REV,
+};
+
+pub fn textureSubImage2D(
+    texture: Texture,
+    level: GLint,
+    xoffset: usize,
+    yoffset: usize,
+    width: usize,
+    height: usize,
+    pixel_format: GLenum,
+    pixel_type: GLenum,
+    data: [*]const u8,
+) void {
+    unreachable;
+    checkError();
+}
+
+pub fn textureSubImage3D(
+    texture: Texture,
+    level: usize,
+    xoffset: usize,
+    yoffset: usize,
+    zoffset: usize,
+    width: usize,
+    height: usize,
+    depth: usize,
+    pixel_format: PixelFormat,
+    pixel_type: PixelType,
+    pixels: [*]const u8,
+) void {
+    c.glTextureSubImage3D(
+        @enumToInt(texture),
+        @intCast(c.GLint, level),
+        @intCast(c.GLint, xoffset),
+        @intCast(c.GLint, yoffset),
+        @intCast(c.GLint, zoffset),
+        @intCast(c.GLsizei, width),
+        @intCast(c.GLsizei, height),
+        @intCast(c.GLsizei, depth),
+        @enumToInt(pixel_format),
+        @enumToInt(pixel_type),
+        pixels,
+    );
+    checkError();
+}
+
+pub const PixelStoreParameter = enum(c.GLenum) {
+    pack_swap_bytes = c.GL_PACK_SWAP_BYTES,
+    pack_lsb_first = c.GL_PACK_LSB_FIRST,
+    pack_row_length = c.GL_PACK_ROW_LENGTH,
+    pack_image_height = c.GL_PACK_IMAGE_HEIGHT,
+    pack_skip_pixels = c.GL_PACK_SKIP_PIXELS,
+    pack_skip_rows = c.GL_PACK_SKIP_ROWS,
+    pack_skip_images = c.GL_PACK_SKIP_IMAGES,
+    pack_alignment = c.GL_PACK_ALIGNMENT,
+
+    unpack_swap_bytes = c.GL_UNPACK_SWAP_BYTES,
+    unpack_lsb_first = c.GL_UNPACK_LSB_FIRST,
+    unpack_row_length = c.GL_UNPACK_ROW_LENGTH,
+    unpack_image_height = c.GL_UNPACK_IMAGE_HEIGHT,
+    unpack_skip_pixels = c.GL_UNPACK_SKIP_PIXELS,
+    unpack_skip_rows = c.GL_UNPACK_SKIP_ROWS,
+    unpack_skip_images = c.GL_UNPACK_SKIP_IMAGES,
+    unpack_alignment = c.GL_UNPACK_ALIGNMENT,
+};
+
+pub fn pixelStore(param: PixelStoreParameter, value: usize) void {
+    c.glPixelStorei(@enumToInt(param), @intCast(c.GLint, value));
     checkError();
 }
