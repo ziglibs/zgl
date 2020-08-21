@@ -736,36 +736,46 @@ pub fn getUniformLocation(program: Program, name: [:0]const u8) ?u32 {
 ///////////////////////////////////////////////////////////////////////////////
 // Uniforms
 
-pub fn programUniform1u(program: Program, location: u32, value: u32) void {
-    c.glProgramUniform1u(@enumToInt(program), @intCast(c.GLint, location), value);
-    checkError();
+pub fn programUniform1u(program: Program, location: ?u32, value: u32) void {
+    if (location) |loc| {
+        c.glProgramUniform1u(@enumToInt(program), @intCast(c.GLint, loc), value);
+        checkError();
+    }
 }
 
-pub fn programUniform1i(program: Program, location: u32, value: i32) void {
-    c.glProgramUniform1i(@enumToInt(program), @intCast(c.GLint, location), value);
-    checkError();
+pub fn programUniform1i(program: Program, location: ?u32, value: i32) void {
+    if (location) |loc| {
+        c.glProgramUniform1i(@enumToInt(program), @intCast(c.GLint, loc), value);
+        checkError();
+    }
 }
 
-pub fn programUniform1f(program: Program, location: u32, value: f32) void {
-    c.glProgramUniform1f(@enumToInt(program), @intCast(c.GLint, location), value);
-    checkError();
+pub fn programUniform1f(program: Program, location: ?u32, value: f32) void {
+    if (location) |loc| {
+        c.glProgramUniform1f(@enumToInt(program), @intCast(c.GLint, loc), value);
+        checkError();
+    }
 }
 
-pub fn programUniform3f(program: Program, location: u32, x: f32, y: f32, z: f32) void {
-    c.glProgramUniform3f(@enumToInt(program), @intCast(c.GLint, location), x, y, z);
-    checkError();
+pub fn programUniform3f(program: Program, location: ?u32, x: f32, y: f32, z: f32) void {
+    if (location) |loc| {
+        c.glProgramUniform3f(@enumToInt(program), @intCast(c.GLint, loc), x, y, z);
+        checkError();
+    }
 }
 
-pub fn programUniformMatrix4(program: Program, location: u32, transpose: bool, items: []const [4][4]f32) void {
-    c.glProgramUniformMatrix4fv(
-        @enumToInt(program),
-        @intCast(c.GLint, location),
-        cs2gl(items.len),
-        b2gl(transpose),
+pub fn programUniformMatrix4(program: Program, location: ?u32, transpose: bool, items: []const [4][4]f32) void {
+    if (location) |loc| {
+        c.glProgramUniformMatrix4fv(
+            @enumToInt(program),
+            @intCast(c.GLint, loc),
+            cs2gl(items.len),
+            b2gl(transpose),
 
-        @ptrCast(*const f32, items.ptr),
-    );
-    checkError();
+            @ptrCast(*const f32, items.ptr),
+        );
+        checkError();
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
