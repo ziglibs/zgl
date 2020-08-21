@@ -556,7 +556,8 @@ pub const BufferUsage = enum(c.GLenum) {
     dynamic_copy = c.GL_DYNAMIC_COPY,
 };
 
-pub fn namedBufferData(buf: Buffer, comptime T: type, items: []const T, usage: BufferUsage) void {
+// using align(1) as we are not required to have aligned data here
+pub fn namedBufferData(buf: Buffer, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
     c.glNamedBufferData(
         @enumToInt(buf),
         cs2gl(@sizeOf(T) * items.len),
