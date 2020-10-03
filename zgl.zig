@@ -802,7 +802,7 @@ pub fn drawArrays(primitiveType: PrimitiveType, first: usize, count: usize) void
     checkError();
 }
 
-const ElementType = enum(c.GLenum) {
+pub const ElementType = enum(c.GLenum) {
     u8 = c.GL_UNSIGNED_BYTE,
     u16 = c.GL_UNSIGNED_SHORT,
     u32 = c.GL_UNSIGNED_INT,
