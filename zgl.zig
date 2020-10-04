@@ -14,6 +14,7 @@ pub const VertexArray = enum(c.GLuint) {
 
     pub const create = createVertexArray;
     pub const delete = deleteVertexArray;
+    pub const gen = genVertexArray;
     pub const bind = bindVertexArray;
     pub const enableVertexAttribute = enableVertexArrayAttrib;
     pub const disableVertexAttribute = disableVertexArrayAttrib;
@@ -33,6 +34,7 @@ pub const Buffer = enum(c.GLuint) {
     _,
 
     pub const create = createBuffer;
+    pub const gen = genBuffer;
     pub const bind = bindBuffer;
     pub const delete = deleteBuffer;
     pub const data = namedBufferData;
@@ -328,6 +330,17 @@ pub fn createVertexArray() VertexArray {
     return vao;
 }
 
+pub fn genVertexArrays(items: []VertexArray) void {
+    c.glGenVertexArrays(cs2gl(items.len), @ptrCast([*]c.GLuint, items.ptr));
+    checkError();
+}
+
+pub fn genVertexArray() VertexArray {
+    var vao: VertexArray = undefined;
+    genVertexArrays(@ptrCast([*]VertexArray, &vao)[0..1]);
+    return vao;
+}
+
 pub fn bindVertexArray(vao: VertexArray) void {
     c.glBindVertexArray(@enumToInt(vao));
     checkError();
@@ -404,6 +417,18 @@ pub fn vertexAttribLFormat(attribindex: u32, size: u32, attribute_type: Type, re
         @intCast(c.GLint, size),
         @enumToInt(attribute_type),
         ui2gl(relativeoffset),
+    );
+    checkError();
+}
+
+pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, stride: usize, relativeoffset: ?usize) void {
+    c.glVertexAttribPointer(
+        attribindex,
+        @intCast(c.GLint, size),
+        @enumToInt(attribute_type),
+        b2gl(normalized),
+        @intCast(c.GLint, stride),
+        if (relativeoffset != null) @intToPtr(*c_void, relativeoffset.?) else null,
     );
     checkError();
 }
@@ -531,8 +556,19 @@ pub fn createBuffer() Buffer {
     return buf;
 }
 
+pub fn genBuffers(items: []Buffer) void {
+    c.glGenBuffers(cs2gl(items.len), @ptrCast([*]c.GLuint, items.ptr));
+    checkError();
+}
+
+pub fn genBuffer() Buffer {
+    var buf: Buffer = undefined;
+    genBuffers(@ptrCast([*]Buffer, &buf)[0..1]);
+    return buf;
+}
+
 pub fn bindBuffer(buf: Buffer, target: BufferTarget) void {
-    c.glBindBuffer(@enumToInt(target), @enumToInt(vao));
+    c.glBindBuffer(@enumToInt(target), @enumToInt(buf));
     checkError();
 }
 
@@ -560,6 +596,16 @@ pub const BufferUsage = enum(c.GLenum) {
 pub fn namedBufferData(buf: Buffer, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
     c.glNamedBufferData(
         @enumToInt(buf),
+        cs2gl(@sizeOf(T) * items.len),
+        items.ptr,
+        @enumToInt(usage),
+    );
+    checkError();
+}
+
+pub fn bufferData(target: BufferTarget, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
+    c.glBufferData(
+        @enumToInt(target),
         cs2gl(@sizeOf(T) * items.len),
         items.ptr,
         @enumToInt(usage),
