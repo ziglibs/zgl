@@ -5,7 +5,7 @@ const c = @cImport({
 });
 
 comptime {
-    std.meta.refAllDecls(@This());
+    std.testing.refAllDecls(@This());
 }
 
 pub const VertexArray = enum(c.GLuint) {
