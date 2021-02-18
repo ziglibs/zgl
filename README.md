@@ -1,6 +1,6 @@
 # ZGL – Zig OpenGL Bindings
 
-This library provides a thin, type safe binding for OpenGL functions on top of `libepoxy`.
+This library provides a thin, type-safe binding for OpenGL on top of `libepoxy`.
 
 ## Example
 
@@ -16,6 +16,6 @@ defer vertex_buffer.delete();
 
 ## Development Philosophy
 
-This libary is developed incremental. This means that functions will be included on-demand and not just for the sake of completeness.
+This library is developed incrementally. That means that functions and other things will be included on-demand and not just for the sake of completeness.
 
 If you think a function is missing, fork the library, implement the missing function similar to the other functions and make a pull request. Issues that request implementation of missing functions will be closed immediatly.
