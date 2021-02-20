@@ -136,7 +136,7 @@ fn checkError() void {
             else => "unknown error",
         };
 
-        std.log.scoped(.OpenGL).err("OpenGL failure: {}\n", .{name});
+        std.log.scoped(.OpenGL).err("OpenGL failure: {s}\n", .{name});
         switch (error_handling) {
             .log => {},
             .assert => @panic("OpenGL error"),
@@ -428,7 +428,7 @@ pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, no
         @enumToInt(attribute_type),
         b2gl(normalized),
         @intCast(c.GLint, stride),
-        if (relativeoffset != null) @intToPtr(*c_void, relativeoffset.?) else null,
+        if (relativeoffset != null) @intToPtr(?*c_void, relativeoffset.?) else null,
     );
     checkError();
 }
@@ -811,6 +811,13 @@ pub fn programUniform3f(program: Program, location: ?u32, x: f32, y: f32, z: f32
     }
 }
 
+pub fn programUniform4f(program: Program, location: ?u32, x: f32, y: f32, z: f32, w: f32) void {
+    if (location) |loc| {
+        c.glProgramUniform4f(@enumToInt(program), @intCast(c.GLint, loc), x, y, z, w);
+        checkError();
+    }
+}
+
 pub fn programUniformMatrix4(program: Program, location: ?u32, transpose: bool, items: []const [4][4]f32) void {
     if (location) |loc| {
         c.glProgramUniformMatrix4fv(
@@ -821,6 +828,13 @@ pub fn programUniformMatrix4(program: Program, location: ?u32, transpose: bool, 
 
             @ptrCast(*const f32, items.ptr),
         );
+        checkError();
+    }
+}
+
+pub fn uniform1i(location: ?u32, value: i32) void {
+    if (location) |loc| {
+        c.glUniform1i(@intCast(c.GLint, loc), value);
         checkError();
     }
 }
@@ -1003,6 +1017,22 @@ pub fn bindTextureUnit(texture: Texture, unit: u32) void {
     checkError();
 }
 
+pub fn bindTexture(texture: Texture, target: TextureTarget) void {
+    c.glBindTexture(@enumToInt(target), @enumToInt(texture));
+    checkError();
+}
+
+pub fn activeTexture(texture_unit: TextureUnit) void {
+    c.glActiveTexture(@enumToInt(texture_unit));
+    checkError();
+}
+
+pub const TextureUnit = enum(c.GLenum) {
+    texture_0 = c.GL_TEXTURE0,
+    texture_1 = c.GL_TEXTURE1,
+    texture_2 = c.GL_TEXTURE2,
+};
+
 pub const TextureParameter = enum(c.GLenum) {
     depth_stencil_texture_mode = c.GL_DEPTH_STENCIL_TEXTURE_MODE,
     base_level = c.GL_TEXTURE_BASE_LEVEL,
@@ -1023,7 +1053,7 @@ pub const TextureParameter = enum(c.GLenum) {
     wrap_r = c.GL_TEXTURE_WRAP_R,
 };
 
-fn TextureParameterType(comptime param: TextureParameter) type {
+pub fn TextureParameterType(comptime param: TextureParameter) type {
     // see https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexParameter.xhtml
     return switch (param) {
         .wrap_s, .wrap_t, .wrap_r => enum(c.GLint) {
@@ -1194,18 +1224,52 @@ pub const PixelType = enum(c.GLenum) {
     unsigned_int_2_10_10_10_rev = c.GL_UNSIGNED_INT_2_10_10_10_REV,
 };
 
+pub fn textureImage2D(
+    texture: TextureTarget,
+    level: usize,
+    pixel_internal_format: PixelFormat,
+    width: usize,
+    height: usize,
+    pixel_format: PixelFormat,
+    pixel_type: PixelType,
+    data: [*]const u8,
+) void {
+    c.glTexImage2D(
+        @enumToInt(texture),
+        @intCast(c.GLint, level),
+        @intCast(c.GLint, @enumToInt(pixel_internal_format)),
+        @intCast(c.GLsizei, width),
+        @intCast(c.GLsizei, height),
+        0,
+        @enumToInt(pixel_format),
+        @enumToInt(pixel_type),
+        data,
+    );
+    checkError();
+}
+
 pub fn textureSubImage2D(
     texture: Texture,
-    level: GLint,
+    level: usize,
     xoffset: usize,
     yoffset: usize,
     width: usize,
     height: usize,
-    pixel_format: GLenum,
-    pixel_type: GLenum,
+    pixel_format: PixelFormat,
+    pixel_type: PixelType,
     data: [*]const u8,
 ) void {
-    unreachable;
+    c.glTextureSubImage2D(
+        @enumToInt(texture),
+        @intCast(c.GLint, level),
+        @intCast(c.GLint, xoffset),
+        @intCast(c.GLint, yoffset),
+        @intCast(c.GLsizei, width),
+        @intCast(c.GLsizei, height),
+        @enumToInt(pixel_format),
+        @enumToInt(pixel_type),
+        data,
+    );
     checkError();
 }
 
@@ -1260,5 +1324,10 @@ pub const PixelStoreParameter = enum(c.GLenum) {
 
 pub fn pixelStore(param: PixelStoreParameter, value: usize) void {
     c.glPixelStorei(@enumToInt(param), @intCast(c.GLint, value));
+    checkError();
+}
+
+pub fn viewport(x: i32, y: i32, w: i32, h: i32) void {
+    c.glViewport(x,y,w,h);
     checkError();
 }
