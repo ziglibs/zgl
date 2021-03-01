@@ -1345,10 +1345,7 @@ pub fn viewport(x: i32, y: i32, width: usize, height: usize) void {
 }
 
 pub const FramebufferTarget = enum(c.GLenum) {
-    /// Vertex attributes
     buffer = c.GL_FRAMEBUFFER,
-    // write = c.GL_WRITE_FRAMEBUFFER,
-    // draw = c.GL_DRAW_FRAMEBUFFER,
 };
 
 pub const Framebuffer = enum(c.GLuint) {
