@@ -1339,7 +1339,6 @@ pub fn pixelStore(param: PixelStoreParameter, value: usize) void {
     checkError();
 }
 
-
 pub fn viewport(x: i32, y: i32, width: usize, height: usize) void {
     c.glViewport(@intCast(c.GLint, x), @intCast(c.GLint, y), @intCast(c.GLsizei, width), @intCast(c.GLsizei, height));
     checkError();
@@ -1400,7 +1399,6 @@ pub fn framebufferTexture(buffer: Framebuffer, target: FramebufferTarget, attach
     checkError();
 }
 
-
 const FramebufferStatus = enum(c.GLuint) {
     complete = c.GL_FRAMEBUFFER_COMPLETE,
 };
@@ -1410,6 +1408,6 @@ pub fn checkFramebufferStatus(target: FramebufferTarget) FramebufferStatus {
     return status;
 }
 
-pub fn drawBuffers(bufs: [] const FramebufferAttachment) void {
+pub fn drawBuffers(bufs: []const FramebufferAttachment) void {
     c.glDrawBuffers(cs2gl(bufs.len), @ptrCast([*]const c.GLuint, bufs.ptr));
 }
