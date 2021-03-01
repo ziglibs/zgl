@@ -53,6 +53,7 @@ pub const Shader = enum(c.GLuint) {
     pub const get = getShader;
     pub const getCompileLog = getShaderInfoLog;
 };
+
 pub const Program = enum(c.GLuint) {
     invalid = 0,
     _,
@@ -66,6 +67,13 @@ pub const Program = enum(c.GLuint) {
     pub const link = linkProgram;
 
     pub const use = useProgram;
+
+    pub const uniform1u = programUniform1u;
+    pub const uniform1i = programUniform1i;
+    pub const uniform1f = programUniform1f;
+    pub const uniform3f = programUniform3f;
+    pub const uniform4f = programUniform4f;
+    pub const uniformMatrix4 = programUniformMatrix4;
 
     pub const get = getProgram;
     pub const getCompileLog = getProgramInfoLog;
@@ -1075,6 +1083,9 @@ pub fn TextureParameterType(comptime param: TextureParameter) type {
             nearest_mipmap_linear = c.GL_NEAREST_MIPMAP_LINEAR,
             linear_mipmap_linear = c.GL_LINEAR_MIPMAP_LINEAR,
         },
+        .compare_mode => enum(c.GLint) {
+            none = c.GL_NONE,
+        },
         else => @compileError("textureParameter not implemented yet for " ++ @tagName(param)),
     };
 }
@@ -1153,6 +1164,7 @@ pub const TextureInternalFormat = enum(c.GLenum) {
     rgba16ui = c.GL_RGBA16UI,
     rgba32i = c.GL_RGBA32I,
     rgba32ui = c.GL_RGBA32UI,
+    depth_component16 = c.GL_DEPTH_COMPONENT16,
 };
 
 pub fn textureStorage2D(
@@ -1327,7 +1339,77 @@ pub fn pixelStore(param: PixelStoreParameter, value: usize) void {
     checkError();
 }
 
-pub fn viewport(x: i32, y: i32, w: i32, h: i32) void {
-    c.glViewport(x,y,w,h);
+
+pub fn viewport(x: i32, y: i32, width: usize, height: usize) void {
+    c.glViewport(@intCast(c.GLint, x), @intCast(c.GLint, y), @intCast(c.GLsizei, width), @intCast(c.GLsizei, height));
     checkError();
+}
+
+pub const FramebufferTarget = enum(c.GLenum) {
+    /// Vertex attributes
+    buffer = c.GL_FRAMEBUFFER,
+    // write = c.GL_WRITE_FRAMEBUFFER,
+    // draw = c.GL_DRAW_FRAMEBUFFER,
+};
+
+pub const Framebuffer = enum(c.GLuint) {
+    invalid = 0,
+    _,
+
+    pub const create = createFramebuffer;
+    pub const bind = bindFrameBuffer;
+    pub const texture = framebufferTexture;
+    pub const checkStatus = checkFramebufferStatus;
+};
+
+pub fn createFramebuffer() Framebuffer {
+    var fb_name: c.GLuint = undefined;
+    c.glCreateFramebuffers(1, &fb_name);
+    checkError();
+    const framebuffer = @intToEnum(Framebuffer, fb_name);
+    if (framebuffer == .invalid) {
+        checkError();
+        unreachable;
+    }
+    return framebuffer;
+}
+
+pub fn bindFrameBuffer(buf: Framebuffer, target: FramebufferTarget) void {
+    c.glBindFramebuffer(@enumToInt(target), @enumToInt(buf));
+    checkError();
+}
+
+const FramebufferAttachment = enum(c.GLenum) {
+    color0 = c.GL_COLOR_ATTACHMENT0,
+    color1 = c.GL_COLOR_ATTACHMENT1,
+    color2 = c.GL_COLOR_ATTACHMENT2,
+    color3 = c.GL_COLOR_ATTACHMENT3,
+    color4 = c.GL_COLOR_ATTACHMENT4,
+    color5 = c.GL_COLOR_ATTACHMENT5,
+    color6 = c.GL_COLOR_ATTACHMENT6,
+    color7 = c.GL_COLOR_ATTACHMENT7,
+    depth = c.GL_DEPTH_ATTACHMENT,
+    stencil = c.GL_STENCIL_ATTACHMENT,
+    depth_stencil = c.GL_DEPTH_STENCIL_ATTACHMENT,
+    max_color = c.GL_MAX_COLOR_ATTACHMENTS,
+};
+
+pub fn framebufferTexture(buffer: Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, texture: Texture, level: i32) void {
+    buffer.bind(.buffer);
+    c.glFramebufferTexture(@enumToInt(target), @enumToInt(attachment), @intCast(c.GLuint, @enumToInt(texture)), @intCast(c.GLint, level));
+    checkError();
+}
+
+
+const FramebufferStatus = enum(c.GLuint) {
+    complete = c.GL_FRAMEBUFFER_COMPLETE,
+};
+
+pub fn checkFramebufferStatus(target: FramebufferTarget) FramebufferStatus {
+    const status = @intToEnum(FramebufferStatus, c.glCheckFramebufferStatus(@enumToInt(target)));
+    return status;
+}
+
+pub fn drawBuffers(bufs: [] const FramebufferAttachment) void {
+    c.glDrawBuffers(cs2gl(bufs.len), @ptrCast([*]const c.GLuint, bufs.ptr));
 }
