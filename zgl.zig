@@ -972,6 +972,28 @@ pub fn depthFunc(func: DepthFunc) void {
     checkError();
 }
 
+pub const BlendFactor = enum(c.GLenum) {
+    zero = c.GL_ZERO,
+    one = c.GL_ONE,
+    src_color = c.GL_SRC_COLOR,
+    one_minus_src_color = c.GL_ONE_MINUS_SRC_COLOR,
+    dst_color = c.GL_DST_COLOR,
+    one_minus_dst_color = c.GL_ONE_MINUS_DST_COLOR,
+    src_alpha = c.GL_SRC_ALPHA,
+    one_minus_src_alpha = c.GL_ONE_MINUS_SRC_ALPHA,
+    dst_alpha = c.GL_DST_ALPHA,
+    one_minus_dst_alpha = c.GL_ONE_MINUS_DST_ALPHA,
+    constant_color = c.GL_CONSTANT_COLOR,
+    one_minus_constant_color = c.GL_ONE_MINUS_CONSTANT_COLOR,
+    constant_alpha = c.GL_CONSTANT_ALPHA,
+    one_minus_constant_alpha = c.GL_ONE_MINUS_CONSTANT_ALPHA
+};
+
+pub fn blendFunc(sfactor: BlendFactor, dfactor: BlendFactor) void {
+    c.glBlendFunc(@enumToInt(sfactor), @enumToInt(dfactor));
+    checkError();
+}
+
 pub fn polygonOffset(factor: f32, units: f32) void {
     c.glPolygonOffset(factor, units);
     checkError();
