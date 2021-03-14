@@ -788,6 +788,12 @@ pub fn getUniformLocation(program: Program, name: [:0]const u8) ?u32 {
     return @intCast(u32, loc);
 }
 
+pub fn validateProgram(program: Program) void{
+    c.glLinkProgram(@enumToInt(program));
+    checkError();
+
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Uniforms
 
