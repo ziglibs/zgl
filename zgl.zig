@@ -435,7 +435,7 @@ pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, no
         @intCast(c.GLint, size),
         @enumToInt(attribute_type),
         b2gl(normalized),
-        @intCast(c.GLint, stride),
+        cs2gl(stride),
         if (relativeoffset != null) @intToPtr(?*c_void, relativeoffset.?) else null,
     );
     checkError();
