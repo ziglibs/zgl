@@ -75,8 +75,11 @@ pub const Program = enum(c.GLuint) {
     pub const uniform4f = programUniform4f;
     pub const uniformMatrix4 = programUniformMatrix4;
 
+    pub const bindAttribLocation = bindAttribLocation;
+
     pub const get = getProgram;
     pub const getCompileLog = getProgramInfoLog;
+    pub const validate = validateProgram;
     pub const uniformLocation = getUniformLocation;
 };
 
@@ -758,6 +761,11 @@ pub const ProgramParameter = enum(c.GLenum) {
     geometry_output_type = c.GL_GEOMETRY_OUTPUT_TYPE,
 };
 
+pub fn validateProgram(program: Program) bool {
+    c.glValidateProgram(@enumTOInt(program));
+    return getProgram(program, .validate_status) == 1;
+}
+
 pub fn getProgram(program: Program, parameter: ProgramParameter) c.GLint {
     var value: c.GLint = undefined;
     c.glGetProgramiv(@enumToInt(program), @enumToInt(parameter), &value);
@@ -845,6 +853,13 @@ pub fn uniform1i(location: ?u32, value: i32) void {
         c.glUniform1i(@intCast(c.GLint, loc), value);
         checkError();
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Attributes
+
+pub fn bindAttribLocation(program: Program, index: u32, name: [:0]const u8) {
+    c.glBindAttribLocation(@enumToInt(program), index, &name);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
