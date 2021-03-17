@@ -1,0 +1,11 @@
+pkgs:
+  zgl:
+    version: 1.0.0
+    description: "Zig OpenGL Wrapper"
+    license: MIT
+    source_url: "https://github.com/ziglibs/zgl"
+
+    root: zgl.zig
+    files:
+      README.md
+      LICENSE
