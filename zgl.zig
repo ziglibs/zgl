@@ -316,11 +316,9 @@ pub fn clearDepth(depth: f32) void {
 }
 
 pub fn clear(mask: struct { color: bool = false, depth: bool = false, stencil: bool = false }) void {
-    c.glClear(
-        (if (mask.color) c.GL_COLOR_BUFFER_BIT else @as(c.GLenum, 0)) |
-            (if (mask.depth) c.GL_DEPTH_BUFFER_BIT else @as(c.GLenum, 0)) |
-            (if (mask.stencil) c.GL_STENCIL_BUFFER_BIT else @as(c.GLenum, 0)),
-    );
+    c.glClear(@as(c.GLbitfield, if (mask.color) c.GL_COLOR_BUFFER_BIT else 0) |
+        @as(c.GLbitfield, if (mask.depth) c.GL_DEPTH_BUFFER_BIT else 0) |
+        @as(c.GLbitfield, if (mask.stencil) c.GL_STENCIL_BUFFER_BIT else 0));
     checkError();
 }
 
