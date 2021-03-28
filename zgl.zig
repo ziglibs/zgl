@@ -898,6 +898,265 @@ pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// Get
+
+pub const GetParameter = enum(c.GLenum) {
+    active_texture = c.GL_ACTIVE_TEXTURE,
+    aliased_line_width_range = c.GL_ALIASED_LINE_WIDTH_RANGE,
+    array_buffer_binding = c.GL_ARRAY_BUFFER_BINDING,
+    blend = c.GL_BLEND,
+    blend_color = c.GL_BLEND_COLOR,
+    blend_dst_alpha = c.GL_BLEND_DST_ALPHA,
+    blend_dst_rgb = c.GL_BLEND_DST_RGB,
+    blend_equation_rgb = c.GL_BLEND_EQUATION_RGB,
+    blend_equation_alpha = c.GL_BLEND_EQUATION_ALPHA,
+    blend_src_alpha = c.GL_BLEND_SRC_ALPHA,
+    blend_src_rgb = c.GL_BLEND_SRC_RGB,
+    color_clear_value = c.GL_COLOR_CLEAR_VALUE,
+    depth_test = c.GL_DEPTH_TEST,
+    depth_writemask = c.GL_DEPTH_WRITEMASK,
+    dither = c.GL_DITHER,
+    doublebuffer = c.GL_DOUBLEBUFFER,
+    draw_buffer = c.GL_DRAW_BUFFER,
+    draw_buffer i = c.GL_DRAW_BUFFER i,
+    draw_framebuffer_binding = c.GL_DRAW_FRAMEBUFFER_BINDING,
+    read_framebuffer_binding = c.GL_READ_FRAMEBUFFER_BINDING,
+    element_array_buffer_binding = c.GL_ELEMENT_ARRAY_BUFFER_BINDING,
+    fragment_shader_derivative_hint = c.GL_FRAGMENT_SHADER_DERIVATIVE_HINT,
+    implementation_color_read_format = c.GL_IMPLEMENTATION_COLOR_READ_FORMAT,
+    implementation_color_read_type = c.GL_IMPLEMENTATION_COLOR_READ_TYPE,
+    line_smooth = c.GL_LINE_SMOOTH,
+    line_smooth_hint = c.GL_LINE_SMOOTH_HINT,
+    line_width = c.GL_LINE_WIDTH,
+    layer_provoking_vertex = c.GL_LAYER_PROVOKING_VERTEX,
+    logic_op_mode = c.GL_LOGIC_OP_MODE,
+    major_version = c.GL_MAJOR_VERSION,
+    max_3d_texture_size = c.GL_MAX_3D_TEXTURE_SIZE,
+    max_array_texture_layers = c.GL_MAX_ARRAY_TEXTURE_LAYERS,
+    max_clip_distances = c.GL_MAX_CLIP_DISTANCES,
+    max_color_texture_samples = c.GL_MAX_COLOR_TEXTURE_SAMPLES,
+    max_combined_atomic_counters = c.GL_MAX_COMBINED_ATOMIC_COUNTERS,
+    max_combined_fragment_uniform_components = c.GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS,
+    max_combined_geometry_uniform_components = c.GL_MAX_COMBINED_GEOMETRY_UNIFORM_COMPONENTS,
+    max_combined_texture_image_units = c.GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS,
+    max_combined_uniform_blocks = c.GL_MAX_COMBINED_UNIFORM_BLOCKS,
+    max_combined_vertex_uniform_components = c.GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS,
+    max_cube_map_texture_size = c.GL_MAX_CUBE_MAP_TEXTURE_SIZE,
+    max_depth_texture_samples = c.GL_MAX_DEPTH_TEXTURE_SAMPLES,
+    max_draw_buffers = c.GL_MAX_DRAW_BUFFERS,
+    max_dual_source_draw_buffers = c.GL_MAX_DUAL_SOURCE_DRAW_BUFFERS,
+    max_elements_indices = c.GL_MAX_ELEMENTS_INDICES,
+    max_elements_vertices = c.GL_MAX_ELEMENTS_VERTICES,
+    max_fragment_atomic_counters = c.GL_MAX_FRAGMENT_ATOMIC_COUNTERS,
+    max_fragment_shader_storage_blocks = c.GL_MAX_FRAGMENT_SHADER_STORAGE_BLOCKS,
+    max_fragment_input_components = c.GL_MAX_FRAGMENT_INPUT_COMPONENTS,
+    max_fragment_uniform_components = c.GL_MAX_FRAGMENT_UNIFORM_COMPONENTS,
+    max_fragment_uniform_vectors = c.GL_MAX_FRAGMENT_UNIFORM_VECTORS,
+    max_fragment_uniform_blocks = c.GL_MAX_FRAGMENT_UNIFORM_BLOCKS,
+    max_framebuffer_width = c.GL_MAX_FRAMEBUFFER_WIDTH,
+    max_framebuffer_height = c.GL_MAX_FRAMEBUFFER_HEIGHT,
+    max_framebuffer_layers = c.GL_MAX_FRAMEBUFFER_LAYERS,
+    max_framebuffer_samples = c.GL_MAX_FRAMEBUFFER_SAMPLES,
+    max_geometry_atomic_counters = c.GL_MAX_GEOMETRY_ATOMIC_COUNTERS,
+    max_geometry_shader_storage_blocks = c.GL_MAX_GEOMETRY_SHADER_STORAGE_BLOCKS,
+    max_geometry_input_components = c.GL_MAX_GEOMETRY_INPUT_COMPONENTS,
+    max_geometry_output_components = c.GL_MAX_GEOMETRY_OUTPUT_COMPONENTS,
+    max_geometry_texture_image_units = c.GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS,
+    max_geometry_uniform_blocks = c.GL_MAX_GEOMETRY_UNIFORM_BLOCKS,
+    max_geometry_uniform_components = c.GL_MAX_GEOMETRY_UNIFORM_COMPONENTS,
+    max_integer_samples = c.GL_MAX_INTEGER_SAMPLES,
+    min_map_buffer_alignment = c.GL_MIN_MAP_BUFFER_ALIGNMENT,
+    max_label_length = c.GL_MAX_LABEL_LENGTH,
+    max_program_texel_offset = c.GL_MAX_PROGRAM_TEXEL_OFFSET,
+    min_program_texel_offset = c.GL_MIN_PROGRAM_TEXEL_OFFSET,
+    max_rectangle_texture_size = c.GL_MAX_RECTANGLE_TEXTURE_SIZE,
+    max_renderbuffer_size = c.GL_MAX_RENDERBUFFER_SIZE,
+    max_sample_mask_words = c.GL_MAX_SAMPLE_MASK_WORDS,
+    max_server_wait_timeout = c.GL_MAX_SERVER_WAIT_TIMEOUT,
+    max_shader_storage_buffer_bindings = c.GL_MAX_SHADER_STORAGE_BUFFER_BINDINGS,
+    max_tess_control_atomic_counters = c.GL_MAX_TESS_CONTROL_ATOMIC_COUNTERS,
+    max_tess_evaluation_atomic_counters = c.GL_MAX_TESS_EVALUATION_ATOMIC_COUNTERS,
+    max_tess_control_shader_storage_blocks = c.GL_MAX_TESS_CONTROL_SHADER_STORAGE_BLOCKS,
+    max_tess_evaluation_shader_storage_blocks = c.GL_MAX_TESS_EVALUATION_SHADER_STORAGE_BLOCKS,
+    max_texture_buffer_size = c.GL_MAX_TEXTURE_BUFFER_SIZE,
+    max_texture_image_units = c.GL_MAX_TEXTURE_IMAGE_UNITS,
+    max_texture_lod_bias = c.GL_MAX_TEXTURE_LOD_BIAS,
+    max_texture_size = c.GL_MAX_TEXTURE_SIZE,
+    max_uniform_buffer_bindings = c.GL_MAX_UNIFORM_BUFFER_BINDINGS,
+    max_uniform_block_size = c.GL_MAX_UNIFORM_BLOCK_SIZE,
+    max_uniform_locations = c.GL_MAX_UNIFORM_LOCATIONS,
+    max_varying_components = c.GL_MAX_VARYING_COMPONENTS,
+    max_varying_vectors = c.GL_MAX_VARYING_VECTORS,
+    max_varying_floats = c.GL_MAX_VARYING_FLOATS,
+    max_vertex_atomic_counters = c.GL_MAX_VERTEX_ATOMIC_COUNTERS,
+    max_vertex_attribs = c.GL_MAX_VERTEX_ATTRIBS,
+    max_vertex_shader_storage_blocks = c.GL_MAX_VERTEX_SHADER_STORAGE_BLOCKS,
+    max_vertex_texture_image_units = c.GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS,
+    max_vertex_uniform_components = c.GL_MAX_VERTEX_UNIFORM_COMPONENTS,
+    max_vertex_uniform_vectors = c.GL_MAX_VERTEX_UNIFORM_VECTORS,
+    max_vertex_output_components = c.GL_MAX_VERTEX_OUTPUT_COMPONENTS,
+    max_vertex_uniform_blocks = c.GL_MAX_VERTEX_UNIFORM_BLOCKS,
+    max_viewport_dims = c.GL_MAX_VIEWPORT_DIMS,
+    max_viewports = c.GL_MAX_VIEWPORTS,
+    minor_version = c.GL_MINOR_VERSION,
+    num_compressed_texture_formats = c.GL_NUM_COMPRESSED_TEXTURE_FORMATS,
+    num_extensions = c.GL_NUM_EXTENSIONS,
+    num_program_binary_formats = c.GL_NUM_PROGRAM_BINARY_FORMATS,
+    num_shader_binary_formats = c.GL_NUM_SHADER_BINARY_FORMATS,
+    pack_alignment = c.GL_PACK_ALIGNMENT,
+    pack_image_height = c.GL_PACK_IMAGE_HEIGHT,
+    pack_lsb_first = c.GL_PACK_LSB_FIRST,
+    pack_row_length = c.GL_PACK_ROW_LENGTH,
+    pack_skip_images = c.GL_PACK_SKIP_IMAGES,
+    pack_skip_pixels = c.GL_PACK_SKIP_PIXELS,
+    pack_skip_rows = c.GL_PACK_SKIP_ROWS,
+    pack_swap_bytes = c.GL_PACK_SWAP_BYTES,
+    pixel_pack_buffer_binding = c.GL_PIXEL_PACK_BUFFER_BINDING,
+    pixel_unpack_buffer_binding = c.GL_PIXEL_UNPACK_BUFFER_BINDING,
+    point_fade_threshold_size = c.GL_POINT_FADE_THRESHOLD_SIZE,
+    primitive_restart_index = c.GL_PRIMITIVE_RESTART_INDEX,
+    program_binary_formats = c.GL_PROGRAM_BINARY_FORMATS,
+    program_pipeline_binding = c.GL_PROGRAM_PIPELINE_BINDING,
+    program_point_size = c.GL_PROGRAM_POINT_SIZE,
+    provoking_vertex = c.GL_PROVOKING_VERTEX,
+    point_size = c.GL_POINT_SIZE,
+    point_size_granularity = c.GL_POINT_SIZE_GRANULARITY,
+    point_size_range = c.GL_POINT_SIZE_RANGE,
+    polygon_offset_factor = c.GL_POLYGON_OFFSET_FACTOR,
+    polygon_offset_units = c.GL_POLYGON_OFFSET_UNITS,
+    polygon_offset_fill = c.GL_POLYGON_OFFSET_FILL,
+    polygon_offset_line = c.GL_POLYGON_OFFSET_LINE,
+    polygon_offset_point = c.GL_POLYGON_OFFSET_POINT,
+    polygon_smooth = c.GL_POLYGON_SMOOTH,
+    polygon_smooth_hint = c.GL_POLYGON_SMOOTH_HINT,
+    read_buffer = c.GL_READ_BUFFER,
+    renderbuffer_binding = c.GL_RENDERBUFFER_BINDING,
+    sample_buffers = c.GL_SAMPLE_BUFFERS,
+    sample_coverage_value = c.GL_SAMPLE_COVERAGE_VALUE,
+    sample_coverage_invert = c.GL_SAMPLE_COVERAGE_INVERT,
+    sampler_binding = c.GL_SAMPLER_BINDING,
+    samples = c.GL_SAMPLES,
+    scissor_box = c.GL_SCISSOR_BOX,
+    scissor_test = c.GL_SCISSOR_TEST,
+    shader_compiler = c.GL_SHADER_COMPILER,
+    shader_storage_buffer_binding = c.GL_SHADER_STORAGE_BUFFER_BINDING,
+    shader_storage_buffer_offset_alignment = c.GL_SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT,
+    shader_storage_buffer_start = c.GL_SHADER_STORAGE_BUFFER_START,
+    shader_storage_buffer_size = c.GL_SHADER_STORAGE_BUFFER_SIZE,
+    smooth_line_width_range = c.GL_SMOOTH_LINE_WIDTH_RANGE,
+    smooth_line_width_granularity = c.GL_SMOOTH_LINE_WIDTH_GRANULARITY,
+    stencil_back_fail = c.GL_STENCIL_BACK_FAIL,
+    stencil_back_func = c.GL_STENCIL_BACK_FUNC,
+    stencil_back_pass_depth_fail = c.GL_STENCIL_BACK_PASS_DEPTH_FAIL,
+    stencil_back_pass_depth_pass = c.GL_STENCIL_BACK_PASS_DEPTH_PASS,
+    stencil_back_ref = c.GL_STENCIL_BACK_REF,
+    stencil_back_value_mask = c.GL_STENCIL_BACK_VALUE_MASK,
+    stencil_back_writemask = c.GL_STENCIL_BACK_WRITEMASK,
+    stencil_clear_value = c.GL_STENCIL_CLEAR_VALUE,
+    stencil_fail = c.GL_STENCIL_FAIL,
+    stencil_func = c.GL_STENCIL_FUNC,
+    stencil_pass_depth_fail = c.GL_STENCIL_PASS_DEPTH_FAIL,
+    stencil_pass_depth_pass = c.GL_STENCIL_PASS_DEPTH_PASS,
+    stencil_ref = c.GL_STENCIL_REF,
+    stencil_test = c.GL_STENCIL_TEST,
+    stencil_value_mask = c.GL_STENCIL_VALUE_MASK,
+    stencil_writemask = c.GL_STENCIL_WRITEMASK,
+    stereo = c.GL_STEREO,
+    subpixel_bits = c.GL_SUBPIXEL_BITS,
+    texture_binding_1d = c.GL_TEXTURE_BINDING_1D,
+    texture_binding_1d_array = c.GL_TEXTURE_BINDING_1D_ARRAY,
+    texture_binding_2d = c.GL_TEXTURE_BINDING_2D,
+    texture_binding_2d_array = c.GL_TEXTURE_BINDING_2D_ARRAY,
+    texture_binding_2d_multisample = c.GL_TEXTURE_BINDING_2D_MULTISAMPLE,
+    texture_binding_2d_multisample_array = c.GL_TEXTURE_BINDING_2D_MULTISAMPLE_ARRAY,
+    texture_binding_3d = c.GL_TEXTURE_BINDING_3D,
+    texture_binding_buffer = c.GL_TEXTURE_BINDING_BUFFER,
+    texture_binding_cube_map = c.GL_TEXTURE_BINDING_CUBE_MAP,
+    texture_binding_rectangle = c.GL_TEXTURE_BINDING_RECTANGLE,
+    texture_compression_hint = c.GL_TEXTURE_COMPRESSION_HINT,
+    texture_binding_buffer = c.GL_TEXTURE_BINDING_BUFFER,
+    texture_buffer_offset_alignment = c.GL_TEXTURE_BUFFER_OFFSET_ALIGNMENT,
+    timestamp = c.GL_TIMESTAMP,
+    transform_feedback_buffer_binding = c.GL_TRANSFORM_FEEDBACK_BUFFER_BINDING,
+    transform_feedback_buffer_start = c.GL_TRANSFORM_FEEDBACK_BUFFER_START,
+    transform_feedback_buffer_size = c.GL_TRANSFORM_FEEDBACK_BUFFER_SIZE,
+    uniform_buffer_binding = c.GL_UNIFORM_BUFFER_BINDING,
+    uniform_buffer_offset_alignment = c.GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT,
+    uniform_buffer_size = c.GL_UNIFORM_BUFFER_SIZE,
+    uniform_buffer_start = c.GL_UNIFORM_BUFFER_START,
+    unpack_alignment = c.GL_UNPACK_ALIGNMENT,
+    unpack_image_height = c.GL_UNPACK_IMAGE_HEIGHT,
+    unpack_lsb_first = c.GL_UNPACK_LSB_FIRST,
+    unpack_row_length = c.GL_UNPACK_ROW_LENGTH,
+    unpack_skip_images = c.GL_UNPACK_SKIP_IMAGES,
+    unpack_skip_pixels = c.GL_UNPACK_SKIP_PIXELS,
+    unpack_skip_rows = c.GL_UNPACK_SKIP_ROWS,
+    unpack_swap_bytes = c.GL_UNPACK_SWAP_BYTES,
+    vertex_array_binding = c.GL_VERTEX_ARRAY_BINDING,
+    vertex_binding_divisor = c.GL_VERTEX_BINDING_DIVISOR,
+    vertex_binding_offset = c.GL_VERTEX_BINDING_OFFSET,
+    vertex_binding_stride = c.GL_VERTEX_BINDING_STRIDE,
+    vertex_binding_buffer = c.GL_VERTEX_BINDING_BUFFER,
+    max_vertex_attrib_relative_offset = c.GL_MAX_VERTEX_ATTRIB_RELATIVE_OFFSET,
+    max_vertex_attrib_bindings = c.GL_MAX_VERTEX_ATTRIB_BINDINGS,
+    viewport = c.GL_VIEWPORT,
+};
+
+pub fn getBoolean(pname: GetParameter, result: *[]bool) void {
+    var gbresult: *[]c.GLboolean = @ptrCast(*[]c.GLboolean, result);
+    c.glGetBooleanv(@enumToInt(pname), &(gbresult.*));
+    for(gbresult) |_, i| {
+        result.*[i] = gbresult.*[i] == GL_TRUE;
+    }
+}
+
+pub fn getDouble(pname: GetParameter, result: *[]f64) void {
+    c.glGetDoublev(@enumToInt(pname), &(result.*));
+}
+
+pub fn getFloat(pname: GetParameter, result: *[]f32) void {
+    c.glGetFloatv(@enumToInt(pname), &(result.*));
+}
+
+pub fn getInteger(pname: GetParameter, result: *[]i32) void {
+    c.glGetIntegerv(@enumToInt(pname), &(result.*));
+}
+
+pub fn getInteger64(pname: GetParameter, result: *[]i64) void {
+    c.glGetInteger64v(@enumToInt(pname), &(result.*));
+}
+
+pub fn getBooleani(pname: GetParameter, index: u32) bool {
+    var result: c.GLboolean = undefined;
+    c.glGetBooleani_v(@enumToInt(pname), &result);
+    return result == c.GL_TRUE;
+}
+
+pub fn getIntegeri(pname: GetParameter, index: u32) i32 {
+    var result: i32 = undefined;
+    c.glGetIntegeri_v(@enumToInt(pname), &result);
+    return result;
+}
+
+pub fn getFloati(pname: GetParameter, index: u32) f32 {
+    var result: f32 = undefined;
+    c.glGetFloati_v(@enumToInt(pname), &result);
+    return result;
+}
+
+pub fn getDoublei(pname: GetParameter, index: u32) f64 {
+    var result: f64 = undefined;
+    c.glGetDoublei_v(@enumToInt(pname), &result);
+    return result;
+}
+
+pub fn getInteger64i(pname: GetParameter, index: u32) i64 {
+    var result: i64 = undefined;
+    c.glGetInteger64i_v(@enumToInt(pname), &result);
+    return result;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // Status Control
 
 pub const Capabilities = enum(c.GLenum) {
