@@ -68,7 +68,7 @@ pub const Program = enum(c.GLuint) {
 
     pub const use = useProgram;
 
-    pub const uniform1u = programUniform1u;
+    pub const uniform1ui = programUniform1ui;
     pub const uniform1i = programUniform1i;
     pub const uniform1f = programUniform1f;
     pub const uniform3f = programUniform3f;
@@ -789,9 +789,9 @@ pub fn getUniformLocation(program: Program, name: [:0]const u8) ?u32 {
 ///////////////////////////////////////////////////////////////////////////////
 // Uniforms
 
-pub fn programUniform1u(program: Program, location: ?u32, value: u32) void {
+pub fn programUniform1ui(program: Program, location: ?u32, value: u32) void {
     if (location) |loc| {
-        c.glProgramUniform1u(@enumToInt(program), @intCast(c.GLint, loc), value);
+        c.glProgramUniform1ui(@enumToInt(program), @intCast(c.GLint, loc), value);
         checkError();
     }
 }
