@@ -750,9 +750,30 @@ pub fn programUniformMatrix4(program: Program, location: ?u32, transpose: bool, 
     }
 }
 
+pub fn uniform2ui(location: ?u32, x: u32, y: u32) void {
+    if (location) |loc| {
+        c.glUniform2ui(@intCast(c.GLint, loc), x, y);
+        checkError();
+    }
+}
+
 pub fn uniform1i(location: ?u32, value: i32) void {
     if (location) |loc| {
         c.glUniform1i(@intCast(c.GLint, loc), value);
+        checkError();
+    }
+}
+
+pub fn uniform2i(location: ?u32, x: i32, y: i32) void {
+    if (location) |loc| {
+        c.glUniform2i(@intCast(c.GLint, loc), x, y);
+        checkError();
+    }
+}
+
+pub fn uniform3f(location: ?u32, x: f32, y: f32, z: f32) void {
+    if (location) |loc| {
+        c.glUniform3f(@intCast(c.GLint, loc), x, y, z);
         checkError();
     }
 }
