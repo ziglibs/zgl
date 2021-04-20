@@ -778,6 +778,13 @@ pub fn uniform3f(location: ?u32, x: f32, y: f32, z: f32) void {
     }
 }
 
+pub fn uniform1i64(location: ?u32, value: i64) void {
+    if (location) |loc| {
+        c.glUniform1i64ARB(@intCast(c.GLint, loc), value);
+        checkError();
+    }
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Draw Calls
 
