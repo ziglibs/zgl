@@ -984,7 +984,7 @@ pub const BlendFactor = enum(c.GLenum) {
     constant_color = c.GL_CONSTANT_COLOR,
     one_minus_constant_color = c.GL_ONE_MINUS_CONSTANT_COLOR,
     constant_alpha = c.GL_CONSTANT_ALPHA,
-    one_minus_constant_alpha = c.GL_ONE_MINUS_CONSTANT_ALPHA
+    one_minus_constant_alpha = c.GL_ONE_MINUS_CONSTANT_ALPHA,
 };
 
 pub fn blendFunc(sfactor: BlendFactor, dfactor: BlendFactor) void {
@@ -1361,6 +1361,11 @@ pub fn pixelStore(param: PixelStoreParameter, value: usize) void {
 
 pub fn viewport(x: i32, y: i32, width: usize, height: usize) void {
     c.glViewport(@intCast(c.GLint, x), @intCast(c.GLint, y), @intCast(c.GLsizei, width), @intCast(c.GLsizei, height));
+    checkError();
+}
+
+pub fn scissor(x: i32, y: i32, width: usize, height: usize) void {
+    c.glScissor(@intCast(c.GLint, x), @intCast(c.GLint, y), @intCast(c.GLsizei, width), @intCast(c.GLsizei, height));
     checkError();
 }
 
