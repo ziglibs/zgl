@@ -1433,3 +1433,7 @@ pub fn checkFramebufferStatus(target: FramebufferTarget) FramebufferStatus {
 pub fn drawBuffers(bufs: []const FramebufferAttachment) void {
     c.glDrawBuffers(cs2gl(bufs.len), @ptrCast([*]const c.GLuint, bufs.ptr));
 }
+
+pub fn hasExtension(extension: [:0]const u8) bool {
+    return c.epoxy_has_gl_extension(extension);
+}
