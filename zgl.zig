@@ -698,6 +698,14 @@ pub fn getUniformLocation(program: Program, name: [:0]const u8) ?u32 {
     return @intCast(u32, loc);
 }
 
+pub fn getAttribLocation(program: Program, name: [:0]const u8) ?u32 {
+    const loc = c.glGetAttribLocation(@enumToInt(program), name.ptr);
+    checkError();
+    if (loc < 0)
+        return null;
+    return @intCast(u32, loc);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Uniforms
 
@@ -750,37 +758,198 @@ pub fn programUniformMatrix4(program: Program, location: ?u32, transpose: bool, 
     }
 }
 
-pub fn uniform2ui(location: ?u32, x: u32, y: u32) void {
+pub fn uniform1f(location: ?u32, v0: f32) void {
     if (location) |loc| {
-        c.glUniform2ui(@intCast(c.GLint, loc), x, y);
+        c.glUniform1f(@intCast(c.GLint, loc), v0);
         checkError();
     }
 }
 
-pub fn uniform1i(location: ?u32, value: i32) void {
+pub fn uniform2f(location: ?u32, v0: f32, v1: f32) void {
     if (location) |loc| {
-        c.glUniform1i(@intCast(c.GLint, loc), value);
+        c.glUniform2f(@intCast(c.GLint, loc), v0, v1);
         checkError();
     }
 }
 
-pub fn uniform2i(location: ?u32, x: i32, y: i32) void {
+pub fn uniform3f(location: ?u32, v0: f32, v1: f32, v2: f32) void {
     if (location) |loc| {
-        c.glUniform2i(@intCast(c.GLint, loc), x, y);
+        c.glUniform3f(@intCast(c.GLint, loc), v0, v1, v2);
         checkError();
     }
 }
 
-pub fn uniform3f(location: ?u32, x: f32, y: f32, z: f32) void {
+pub fn uniform4f(location: ?u32, v0: f32, v1: f32, v2: f32, v3: f32) void {
     if (location) |loc| {
-        c.glUniform3f(@intCast(c.GLint, loc), x, y, z);
+        c.glUniform4f(@intCast(c.GLint, loc), v0, v1, v2, v3);
         checkError();
     }
 }
 
-pub fn uniform1i64(location: ?u32, value: i64) void {
+pub fn uniform1i(location: ?u32, v0: i32) void {
+    if (location) |loc| {
+        c.glUniform1i(@intCast(c.GLint, loc), v0);
+        checkError();
+    }
+}
+
+pub fn uniform2i(location: ?u32, v0: i32, v1: i32) void {
+    if (location) |loc| {
+        c.glUniform2i(@intCast(c.GLint, loc), v0, v1);
+        checkError();
+    }
+}
+
+pub fn uniform3i(location: ?u32, v0: i32, v1: i32, v2: i32) void {
+    if (location) |loc| {
+        c.glUniform3i(@intCast(c.GLint, loc), v0, v1, v2);
+        checkError();
+    }
+}
+
+pub fn uniform4i(location: ?u32, v0: i32, v1: i32, v2: i32, v3: i32) void {
+    if (location) |loc| {
+        c.glUniform4i(@intCast(c.GLint, loc), v0, v1, v2, v3);
+        checkError();
+    }
+}
+
+pub fn uniform1ui(location: ?u32, v0: u32) void {
+    if (location) |loc| {
+        c.glUniform1ui(@intCast(c.GLint, loc), v0);
+        checkError();
+    }
+}
+
+pub fn uniform2ui(location: ?u32, v0: u32, v1: u32) void {
+    if (location) |loc| {
+        c.glUniform2ui(@intCast(c.GLint, loc), v0, v1);
+        checkError();
+    }
+}
+
+pub fn uniform3ui(location: ?u32, v0: u32, v1: u32, v2: u32) void {
+    if (location) |loc| {
+        c.glUniform3ui(@intCast(c.GLint, loc), v0, v1, v2);
+        checkError();
+    }
+}
+
+pub fn uniform4ui(location: ?u32, v0: u32, v1: u32, v2: u32, v3: u32) void {
+    if (location) |loc| {
+        c.glUniform4ui(@intCast(c.GLint, loc), v0, v1, v2, v3);
+        checkError();
+    }
+}
+
+pub fn uniform1fv(location: ?u32, items: []const f32) void {
+    if (location) |loc| {
+        c.glUniform1fv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform2fv(location: ?u32, items: []const [2]f32) void {
+    if (location) |loc| {
+        c.glUniform2fv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform3fv(location: ?u32, items: []const [3]f32) void {
+    if (location) |loc| {
+        c.glUniform3fv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform4fv(location: ?u32, items: []const [4]f32) void {
+    if (location) |loc| {
+        c.glUniform4fv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform1iv(location: ?u32, items: []const i32) void {
+    if (location) |loc| {
+        c.glUniform1iv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform2iv(location: ?u32, items: []const [2]i32) void {
+    if (location) |loc| {
+        c.glUniform2iv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform3iv(location: ?u32, items: []const [3]i32) void {
+    if (location) |loc| {
+        c.glUniform3iv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform4iv(location: ?u32, items: []const [4]i32) void {
+    if (location) |loc| {
+        c.glUniform4iv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform1uiv(location: ?u32, items: []const u32) void {
+    if (location) |loc| {
+        c.glUniform1uiv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform2uiv(location: ?u32, items: []const [2]u32) void {
+    if (location) |loc| {
+        c.glUniform2uiv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform3uiv(location: ?u32, items: []const [3]u32) void {
+    if (location) |loc| {
+        c.glUniform3uiv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform4uiv(location: ?u32, items: []const [4]u32) void {
+    if (location) |loc| {
+        c.glUniform4uiv(@intCast(c.GLint, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        checkError();
+    }
+}
+
+pub fn uniform1i64(location: ?u32, v0: i64) void {
     if (location) |loc| {
         c.glUniform1i64ARB(@intCast(c.GLint, loc), value);
+        checkError();
+    }
+}
+
+pub fn uniform2i64(location: ?u32, v0: i64, v1: i64) void {
+    if (location) |loc| {
+        c.glUniform2i64ARB(@intCast(c.GLint, loc), v0, v1);
+        checkError();
+    }
+}
+
+pub fn uniform3i64(location: ?u32, v0: i64, v1: i64, v2: i64) void {
+    if (location) |loc| {
+        c.glUniform3i64ARB(@intCast(c.GLint, loc), v0, v1, v2);
+        checkError();
+    }
+}
+
+pub fn uniform4i64(location: ?u32, v0: i64, v1: i64, v2: i64, v3: i64) void {
+    if (location) |loc| {
+        c.glUniform4i64ARB(@intCast(c.GLint, loc), v0, v1, v2, v3);
         checkError();
     }
 }
@@ -929,6 +1098,11 @@ pub const BlendFactor = enum(c.GLenum) {
 
 pub fn blendFunc(sfactor: BlendFactor, dfactor: BlendFactor) void {
     c.glBlendFunc(@enumToInt(sfactor), @enumToInt(dfactor));
+    checkError();
+}
+
+pub fn blendFuncSeparate(srcRGB: BlendFactor, dstRGB: BlendFactor, srcAlpha: BlendFactor, dstAlpha: BlendFactor) void {
+    c.glBlendFuncSeparate(@enumToInt(srcRGB), @enumToInt(dstRGB), @enumToInt(srcAlpha), @enumToInt(dstAlpha));
     checkError();
 }
 
