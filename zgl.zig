@@ -1135,6 +1135,13 @@ pub const TextureTarget = enum(c.GLenum) {
     @"2d_multisample_array" = c.GL_TEXTURE_2D_MULTISAMPLE_ARRAY,
 };
 
+pub fn genTexture() Texture {
+    var tex_name: c.GLuint = undefined;
+    c.glGenTextures(1, &tex_name);
+    checkError();
+    return @intToEnum(Texture, tex_name);
+}
+
 pub fn createTexture(texture_target: TextureTarget) Texture {
     var tex_name: c.GLuint = undefined;
 
@@ -1222,6 +1229,17 @@ pub fn TextureParameterType(comptime param: TextureParameter) type {
         },
         else => @compileError("textureParameter not implemented yet for " ++ @tagName(param)),
     };
+}
+
+pub fn texParameter(target: TextureTarget, comptime parameter: TextureParameter, value: TextureParameterType(parameter)) void {
+    const T = TextureParameterType(parameter);
+    const info = @typeInfo(T);
+    if (info == .Enum) {
+        c.glTexParameteri(@enumToInt(target), @enumToInt(parameter), @enumToInt(value));
+    } else {
+        @compileError(@tagName(info) ++ " is not supported yet by texParameter");
+    }
+    checkError();
 }
 
 pub fn textureParameter(texture: Texture, comptime parameter: TextureParameter, value: TextureParameterType(parameter)) void {
