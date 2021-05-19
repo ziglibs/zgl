@@ -117,6 +117,7 @@ fn DebugMessageCallbackHandler(comptime Context: type) type {
 /// `context` may be a pointer or `{}`.
 pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCallbackHandler(@TypeOf(context))) void {
     const is_void = (@TypeOf(context) == void);
+    const Context = @TypeOf(context);
 
     const H = struct {
         fn translateSource(source: c.GLuint) DebugSource {
@@ -205,7 +206,7 @@ pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCall
             if (is_void) {
                 handler(debug_source, msg_type, id, severity, message);
             } else {
-                handler(@ptrCast(@TypeOf(context), userParam), debug_source, msg_type, id, severity, message);
+                handler(@intToPtr(Context, @ptrToInt(userParam)), debug_source, msg_type, id, severity, message);
             }
         }
     };
@@ -1364,6 +1365,7 @@ pub const PixelFormat = enum(c.GLenum) {
     bgra = c.GL_BGRA,
     depth_component = c.GL_DEPTH_COMPONENT,
     stencil_index = c.GL_STENCIL_INDEX,
+    luminance = c.GL_LUMINANCE,
 };
 
 pub const PixelType = enum(c.GLenum) {
@@ -1396,7 +1398,7 @@ pub fn textureImage2D(
     height: usize,
     pixel_format: PixelFormat,
     pixel_type: PixelType,
-    data: [*]const u8,
+    data: ?[*]const u8,
 ) void {
     c.glTexImage2D(
         @enumToInt(texture),
@@ -1421,7 +1423,7 @@ pub fn textureSubImage2D(
     height: usize,
     pixel_format: PixelFormat,
     pixel_type: PixelType,
-    data: [*]const u8,
+    data: ?[*]const u8,
 ) void {
     c.glTextureSubImage2D(
         @enumToInt(texture),
@@ -1448,7 +1450,7 @@ pub fn textureSubImage3D(
     depth: usize,
     pixel_format: PixelFormat,
     pixel_type: PixelType,
-    pixels: [*]const u8,
+    pixels: ?[*]const u8,
 ) void {
     c.glTextureSubImage3D(
         @enumToInt(texture),
@@ -1509,9 +1511,12 @@ pub const Framebuffer = enum(c.GLuint) {
     invalid = 0,
     _,
 
+    pub const gen = genFramebuffer;
     pub const create = createFramebuffer;
+    pub const delete = deleteFramebuffer;
     pub const bind = bindFrameBuffer;
     pub const texture = framebufferTexture;
+    pub const texture2D = framebufferTexture2D;
     pub const checkStatus = checkFramebufferStatus;
 };
 
@@ -1527,12 +1532,26 @@ pub fn createFramebuffer() Framebuffer {
     return framebuffer;
 }
 
+pub fn genFramebuffer() Framebuffer {
+    var fb_name: c.GLuint = undefined;
+    c.glGenFramebuffers(1, &fb_name);
+    checkError();
+    const framebuffer = @intToEnum(Framebuffer, fb_name);
+    if (framebuffer == .invalid) unreachable;
+    return framebuffer;
+}
+
+pub fn deleteFramebuffer(buf: Framebuffer) void {
+    var fb_name = @enumToInt(buf);
+    c.glDeleteFramebuffers(1, &fb_name);
+}
+
 pub fn bindFrameBuffer(buf: Framebuffer, target: FramebufferTarget) void {
     c.glBindFramebuffer(@enumToInt(target), @enumToInt(buf));
     checkError();
 }
 
-const FramebufferAttachment = enum(c.GLenum) {
+pub const FramebufferAttachment = enum(c.GLenum) {
     color0 = c.GL_COLOR_ATTACHMENT0,
     color1 = c.GL_COLOR_ATTACHMENT1,
     color2 = c.GL_COLOR_ATTACHMENT2,
@@ -1550,6 +1569,30 @@ const FramebufferAttachment = enum(c.GLenum) {
 pub fn framebufferTexture(buffer: Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, texture: Texture, level: i32) void {
     buffer.bind(.buffer);
     c.glFramebufferTexture(@enumToInt(target), @enumToInt(attachment), @intCast(c.GLuint, @enumToInt(texture)), @intCast(c.GLint, level));
+    checkError();
+}
+
+pub const FramebufferTextureTarget = enum(c.GLenum) {
+    @"1d" = c.GL_TEXTURE_1D,
+    @"2d" = c.GL_TEXTURE_2D,
+    @"3d" = c.GL_TEXTURE_3D,
+    @"1d_array" = c.GL_TEXTURE_1D_ARRAY,
+    @"2d_array" = c.GL_TEXTURE_2D_ARRAY,
+    rectangle = c.GL_TEXTURE_RECTANGLE,
+    cube_map_positive_x = c.GL_TEXTURE_CUBE_MAP_POSITIVE_X,
+    cube_map_negative_x = c.GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
+    cube_map_positive_y = c.GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
+    cube_map_negative_y = c.GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
+    cube_map_positive_z = c.GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
+    cube_map_negative_z = c.GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
+    buffer = c.GL_TEXTURE_BUFFER,
+    @"2d_multisample" = c.GL_TEXTURE_2D_MULTISAMPLE,
+    @"2d_multisample_array" = c.GL_TEXTURE_2D_MULTISAMPLE_ARRAY,
+};
+
+pub fn framebufferTexture2D(buffer: Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, textarget: FramebufferTextureTarget, texture: Texture, level: i32) void {
+    buffer.bind(.buffer);
+    c.glFramebufferTexture2D(@enumToInt(target), @enumToInt(attachment), @enumToInt(textarget), @intCast(c.GLuint, @enumToInt(texture)), @intCast(c.GLint, level));
     checkError();
 }
 
