@@ -394,7 +394,7 @@ pub fn vertexArrayAttribLFormat(vertexArray: VertexArray, attribindex: u32, size
             size,
         ),
         @enumToInt(attribute_type),
-        relativeoffset,
+        @intCast(c.GLuint, relativeoffset),
     );
     checkError();
 }
@@ -929,7 +929,7 @@ pub fn uniform4uiv(location: ?u32, items: []const [4]u32) void {
 
 pub fn uniform1i64(location: ?u32, v0: i64) void {
     if (location) |loc| {
-        c.glUniform1i64ARB(@intCast(c.GLint, loc), value);
+        c.glUniform1i64ARB(@intCast(c.GLint, loc), v0);
         checkError();
     }
 }
