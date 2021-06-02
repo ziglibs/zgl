@@ -532,6 +532,33 @@ pub fn bufferData(target: BufferTarget, comptime T: type, items: []align(1) cons
     checkError();
 }
 
+pub const BufferStorageFlags = packed struct {
+    dynamic_storage: bool = false,
+    map_read: bool = false,
+    map_write: bool = false,
+    map_persistent: bool = false,
+    map_coherent: bool = false,
+    client_storage: bool = false,
+};
+
+pub fn namedBufferStorage(buf: Buffer, comptime T: type, count: usize, items: ?[*]align(1) const T, flags: BufferStorageFlags) void {
+    var flag_bits: c.GLbitfield = 0;
+    if (flags.dynamic_storage) flag_bits |= c.GL_DYNAMIC_STORAGE_BIT;
+    if (flags.map_read) flag_bits |= c.GL_MAP_READ_BIT;
+    if (flags.map_write) flag_bits |= c.GL_MAP_WRITE_BIT;
+    if (flags.map_persistent) flag_bits |= c.GL_MAP_PERSISTENT_BIT;
+    if (flags.map_coherent) flag_bits |= c.GL_MAP_COHERENT_BIT;
+    if (flags.client_storage) flag_bits |= c.GL_CLIENT_STORAGE_BIT;
+
+    c.glNamedBufferStorage(
+        @enumToInt(buf),
+        cs2gl(@sizeOf(T) * count),
+        items,
+        flag_bits,
+    );
+    checkError();
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Shaders
 
