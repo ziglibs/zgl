@@ -57,6 +57,7 @@ pub const Buffer = enum(UInt) {
     pub const bind = gl.bindBuffer;
     pub const delete = gl.deleteBuffer;
     pub const data = gl.namedBufferData;
+    pub const storage = gl.namedBufferStorage;
 };
 
 pub const Shader = enum(UInt) {
