@@ -340,14 +340,14 @@ pub fn vertexAttribLFormat(attribindex: u32, size: u32, attribute_type: Type, re
     checkError();
 }
 
-pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, stride: usize, relativeoffset: ?usize) void {
+pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, stride: usize, relativeoffset: usize) void {
     c.glVertexAttribPointer(
         attribindex,
         @intCast(c.GLint, size),
         @enumToInt(attribute_type),
         b2gl(normalized),
         cs2gl(stride),
-        if (relativeoffset != null) @intToPtr(?*c_void, relativeoffset.?) else null,
+        @intToPtr(*allowzero const c_void, relativeoffset),
     );
     checkError();
 }
@@ -984,22 +984,22 @@ pub const ElementType = enum(c.GLenum) {
     u32 = c.GL_UNSIGNED_INT,
 };
 
-pub fn drawElements(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: ?*const c_void) void {
+pub fn drawElements(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: usize) void {
     c.glDrawElements(
         @enumToInt(primitiveType),
         cs2gl(count),
         @enumToInt(element_type),
-        indices,
+        @intToPtr(*allowzero const c_void, indices),
     );
     checkError();
 }
 
-pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: ?*const c_void, instance_count: usize) void {
+pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: usize, instance_count: usize) void {
     c.glDrawElementsInstanced(
         @enumToInt(primitiveType),
         cs2gl(count),
         @enumToInt(element_type),
-        indices,
+        @intToPtr(*allowzero const c_void, indices),
         cs2gl(instance_count),
     );
     checkError();
