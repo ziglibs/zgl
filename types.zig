@@ -4,7 +4,30 @@ const c = @cImport({
 
 const gl = @import("zgl.zig");
 
-pub const VertexArray = enum(c.GLuint) {
+pub const Boolean = c.GLboolean;
+pub const Byte = c.GLbyte;
+pub const UByte = c.GLubyte;
+pub const Char = c.GLchar;
+pub const Short = c.GLshort;
+pub const UShort = c.GLushort;
+pub const Int = c.GLint;
+pub const UInt = c.GLuint;
+pub const Fixed = c.GLfixed;
+pub const Int64 = c.GLint64;
+pub const UInt64 = c.GLuint64;
+pub const SizeI = c.GLsizei;
+pub const Enum = c.GLenum;
+pub const IntPtr = c.GLintptr;
+pub const SizeIPtr = c.GLsizeiptr;
+pub const Sync = c.GLsync;
+pub const BitField = c.GLbitfield;
+pub const Half = c.GLhalf;
+pub const Float = c.GLfloat;
+pub const ClampF = c.GLclampf;
+pub const Double = c.GLdouble;
+pub const ClampD = c.GLclampd;
+
+pub const VertexArray = enum(UInt) {
     invalid = 0,
     _,
 
@@ -25,7 +48,7 @@ pub const VertexArray = enum(c.GLuint) {
     pub const elementBuffer = gl.vertexArrayElementBuffer;
 };
 
-pub const Buffer = enum(c.GLuint) {
+pub const Buffer = enum(UInt) {
     invalid = 0,
     _,
 
@@ -36,7 +59,7 @@ pub const Buffer = enum(c.GLuint) {
     pub const data = gl.namedBufferData;
 };
 
-pub const Shader = enum(c.GLuint) {
+pub const Shader = enum(UInt) {
     invalid = 0,
     _,
 
@@ -50,7 +73,7 @@ pub const Shader = enum(c.GLuint) {
     pub const getCompileLog = gl.getShaderInfoLog;
 };
 
-pub const Program = enum(c.GLuint) {
+pub const Program = enum(UInt) {
     invalid = 0,
     _,
 
@@ -76,7 +99,7 @@ pub const Program = enum(c.GLuint) {
     pub const uniformLocation = gl.getUniformLocation;
 };
 
-pub const Texture = enum(c.GLuint) {
+pub const Texture = enum(UInt) {
     invalid = 0,
     _,
 
