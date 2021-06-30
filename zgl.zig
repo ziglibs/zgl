@@ -1208,6 +1208,11 @@ pub const TextureUnit = enum(Enum) {
     texture_0 = c.GL_TEXTURE0,
     texture_1 = c.GL_TEXTURE1,
     texture_2 = c.GL_TEXTURE2,
+    texture_3 = c.GL_TEXTURE3,
+    texture_4 = c.GL_TEXTURE4,
+    texture_5 = c.GL_TEXTURE5,
+    texture_6 = c.GL_TEXTURE6,
+    texture_7 = c.GL_TEXTURE7,
 };
 
 pub const TextureParameter = enum(Enum) {
