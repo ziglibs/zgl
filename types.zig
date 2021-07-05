@@ -58,6 +58,8 @@ pub const Buffer = enum(UInt) {
     pub const delete = gl.deleteBuffer;
     pub const data = gl.namedBufferData;
     pub const storage = gl.namedBufferStorage;
+    pub const mapRange = gl.mapNamedBufferRange;
+    pub const unmap = gl.unmapNamedBuffer;
 };
 
 pub const Shader = enum(UInt) {

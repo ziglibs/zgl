@@ -559,6 +559,44 @@ pub fn namedBufferStorage(buf: Buffer, comptime T: type, count: usize, items: ?[
     checkError();
 }
 
+pub const BufferMapFlags = packed struct {
+    read: bool = false,
+    write: bool = false,
+    persistent: bool = false,
+    coherent: bool = false,
+};
+
+pub fn mapNamedBufferRange(
+    buf: Buffer,
+    comptime T: type,
+    offset: usize,
+    count: usize,
+    flags: BufferMapFlags,
+) []align(1) T {
+    var flag_bits: c.GLbitfield = 0;
+    if (flags.read) flag_bits |= c.GL_MAP_READ_BIT;
+    if (flags.write) flag_bits |= c.GL_MAP_WRITE_BIT;
+    if (flags.persistent) flag_bits |= c.GL_MAP_PERSISTENT_BIT;
+    if (flags.coherent) flag_bits |= c.GL_MAP_COHERENT_BIT;
+
+    const ptr = c.glMapNamedBufferRange(
+        @enumToInt(buf),
+        @intCast(c.GLintptr, offset),
+        @intCast(c.GLsizeiptr, @sizeOf(T) * count),
+        flag_bits,
+    );
+    checkError();
+
+    const values = @ptrCast([*]align(1) T, ptr);
+    return values[0..count];
+}
+
+pub fn unmapNamedBuffer(buf: Buffer) bool {
+    const ok = c.glUnmapNamedBuffer(@enumToInt(buf));
+    checkError();
+    return ok != 0;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Shaders
 
