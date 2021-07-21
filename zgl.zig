@@ -661,17 +661,13 @@ pub fn getShader(shader: Shader, parameter: ShaderParameter) Int {
 
 pub fn getShaderInfoLog(shader: Shader, allocator: *std.mem.Allocator) ![:0]const u8 {
     const length = getShader(shader, .info_log_length);
-    const log = try allocator.allocWithOptions(u8, @intCast(usize, length) + 1, null, 0);
+    const log = try allocator.allocSentinel(u8, @intCast(usize, length), 0);
     errdefer allocator.free(log);
 
-    var actual_length: SizeI = undefined;
-
-    c.glGetShaderInfoLog(@enumToInt(shader), cs2gl(log.len), &actual_length, log.ptr);
+    c.glGetShaderInfoLog(@enumToInt(shader), cs2gl(log.len), null, log.ptr);
     checkError();
 
-    log[@intCast(usize, actual_length)] = 0;
-
-    return log[0..@intCast(usize, actual_length) :0];
+    return log;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -743,17 +739,13 @@ pub fn getProgram(program: Program, parameter: ProgramParameter) Int {
 
 pub fn getProgramInfoLog(program: Program, allocator: *std.mem.Allocator) ![:0]const u8 {
     const length = getProgram(program, .info_log_length);
-    const log = try allocator.allocWithOptions(u8, @intCast(usize, length) + 1, null, 0);
+    const log = try allocator.allocSentinel(u8, @intCast(usize, length), 0);
     errdefer allocator.free(log);
 
-    var actual_length: SizeI = undefined;
-
-    c.glGetProgramInfoLog(@enumToInt(program), cs2gl(log.len), &actual_length, log.ptr);
+    c.glGetProgramInfoLog(@enumToInt(program), cs2gl(log.len), null, log.ptr);
     checkError();
 
-    log[@intCast(usize, actual_length)] = 0;
-
-    return log[0..@intCast(usize, actual_length) :0];
+    return log;
 }
 
 pub fn getUniformLocation(program: Program, name: [:0]const u8) ?u32 {
