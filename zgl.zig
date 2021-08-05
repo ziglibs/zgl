@@ -532,6 +532,16 @@ pub fn bufferData(target: BufferTarget, comptime T: type, items: []align(1) cons
     checkError();
 }
 
+pub fn bufferSubData(target: BufferTarget, offset: usize, comptime T: type, items: []align(1) const T) void {
+    c.glBufferSubData(
+        @enumToInt(target),
+        cs2gl(offset),
+        cs2gl(@sizeOf(T) * items.len),
+        items.ptr
+    );
+    checkError();
+}
+
 pub const BufferStorageFlags = packed struct {
     dynamic_storage: bool = false,
     map_read: bool = false,
