@@ -788,6 +788,13 @@ pub fn programUniform1f(program: Program, location: ?u32, value: f32) void {
     }
 }
 
+pub fn programUniform2f(program: Program, location: ?u32, x: f32, y: f32) void {
+    if (location) |loc| {
+        c.glProgramUniform2f(@enumToInt(program), @intCast(Int, loc), x, y);
+        checkError();
+    }
+}
+
 pub fn programUniform3f(program: Program, location: ?u32, x: f32, y: f32, z: f32) void {
     if (location) |loc| {
         c.glProgramUniform3f(@enumToInt(program), @intCast(Int, loc), x, y, z);
