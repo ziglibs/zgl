@@ -93,6 +93,7 @@ pub const Program = enum(UInt) {
     pub const uniform1ui = gl.programUniform1ui;
     pub const uniform1i = gl.programUniform1i;
     pub const uniform1f = gl.programUniform1f;
+    pub const uniform2f = gl.programUniform2f;
     pub const uniform3f = gl.programUniform3f;
     pub const uniform4f = gl.programUniform4f;
     pub const uniformMatrix4 = gl.programUniformMatrix4;
