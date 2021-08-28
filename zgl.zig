@@ -1125,6 +1125,17 @@ pub fn disableI(cap: Capabilities, index: u32) void {
     checkError();
 }
 
+pub const CullMode = enum(Enum) {
+    front = c.GL_FRONT,
+    back = c.GL_BACK,
+    front_and_back = c.GL_FRONT_AND_BACK,
+};
+
+pub fn cullFace(mode: CullMode) void {
+    c.glCullFace(@enumToInt(mode));
+    checkError();
+}
+
 pub fn depthMask(enabled: bool) void {
     c.glDepthMask(if (enabled) c.GL_TRUE else c.GL_FALSE);
     checkError();
