@@ -1437,6 +1437,13 @@ pub const PixelFormat = enum(Enum) {
     depth_component = c.GL_DEPTH_COMPONENT,
     stencil_index = c.GL_STENCIL_INDEX,
     luminance = c.GL_LUMINANCE,
+
+    red_integer = c.GL_RED_INTEGER,
+    rg_integer = c.GL_RG_INTEGER,
+    rgb_integer = c.GL_RGB_INTEGER,
+    bgr_integer = c.GL_BGR_INTEGER,
+    rgba_integer = c.GL_RGBA_INTEGER,
+    bgra_integer = c.GL_BGRA_INTEGER,
 };
 
 pub const PixelType = enum(Enum) {
