@@ -509,21 +509,21 @@ pub const BufferUsage = enum(Enum) {
 };
 
 // using align(1) as we are not required to have aligned data here
-pub fn namedBufferData(buf: Buffer, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
+pub fn namedBufferData(buf: Buffer, comptime T: type, count: usize, items: ?[*]align(1) const T, usage: BufferUsage) void {
     c.glNamedBufferData(
         @enumToInt(buf),
-        cs2gl(@sizeOf(T) * items.len),
-        items.ptr,
+        cs2gl(@sizeOf(T) * count),
+        items,
         @enumToInt(usage),
     );
     checkError();
 }
 
-pub fn bufferData(target: BufferTarget, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
+pub fn bufferData(target: BufferTarget, comptime T: type, count: usize, items: ?[*]align(1) const T, usage: BufferUsage) void {
     c.glBufferData(
         @enumToInt(target),
-        cs2gl(@sizeOf(T) * items.len),
-        items.ptr,
+        cs2gl(@sizeOf(T) * count),
+        items,
         @enumToInt(usage),
     );
     checkError();
