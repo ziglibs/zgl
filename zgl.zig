@@ -519,11 +519,31 @@ pub fn namedBufferData(buf: Buffer, comptime T: type, items: []align(1) const T,
     checkError();
 }
 
+pub fn namedBufferUninitialized(buf: Buffer, comptime T: type, count: usize, usage: BufferUsage) void {
+    c.glNamedBufferData(
+        @enumToInt(buf),
+        cs2gl(@sizeOf(T) * count),
+        null,
+        @enumToInt(usage),
+    );
+    checkError();
+}
+
 pub fn bufferData(target: BufferTarget, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
     c.glBufferData(
         @enumToInt(target),
         cs2gl(@sizeOf(T) * items.len),
         items.ptr,
+        @enumToInt(usage),
+    );
+    checkError();
+}
+
+pub fn bufferUninitialized(target: BufferTarget, comptime T: type, count: usize, usage: BufferUsage) void {
+    c.glBufferData(
+        @enumToInt(target),
+        cs2gl(@sizeOf(T) * count),
+        null,
         @enumToInt(usage),
     );
     checkError();
