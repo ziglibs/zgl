@@ -1352,6 +1352,7 @@ pub fn TextureParameterType(comptime param: TextureParameter) type {
         .compare_mode => enum(types.Int) {
             none = c.GL_NONE,
         },
+        .max_level => types.Int,
         else => @compileError("textureParameter not implemented yet for " ++ @tagName(param)),
     };
 }
@@ -1359,10 +1360,19 @@ pub fn TextureParameterType(comptime param: TextureParameter) type {
 pub fn texParameter(target: TextureTarget, comptime parameter: TextureParameter, value: TextureParameterType(parameter)) void {
     const T = TextureParameterType(parameter);
     const info = @typeInfo(T);
-    if (info == .Enum) {
-        c.glTexParameteri(@enumToInt(target), @enumToInt(parameter), @enumToInt(value));
-    } else {
-        @compileError(@tagName(info) ++ " is not supported yet by texParameter");
+    switch (info) {
+        .Enum => {
+            c.glTexParameteri(@enumToInt(target), @enumToInt(parameter), @enumToInt(value));
+        },
+        .Int => {
+            if (info.Int.signedness == .signed)
+                c.glTexParameteri(@enumToInt(target), @enumToInt(parameter), @intCast(types.Int, value))
+            else
+                c.glTexParameterui(@enumToInt(target), @enumToInt(parameter), @intCast(types.Int, value));
+        },
+        else => {
+            @compileError(@tagName(info) ++ " is not supported yet by texParameter");
+        },
     }
     checkError();
 }
