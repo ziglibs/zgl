@@ -1063,7 +1063,7 @@ pub fn uniform4i64(location: ?u32, v0: i64, v1: i64, v2: i64, v3: i64) void {
     }
 }
 
-pub fn uniformMatrix4(location: ?u32, transpose: bool, items: []const [4][4]f32) void {
+pub fn uniformMatrix4fv(location: ?u32, transpose: bool, items: []const [4][4]f32) void {
     if (location) |loc| {
         c.glUniformMatrix4fv(
             @intCast(types.Int, loc),
