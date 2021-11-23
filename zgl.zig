@@ -1294,6 +1294,11 @@ pub fn deleteTexture(texture: types.Texture) void {
     c.glDeleteTextures(1, &id);
 }
 
+pub fn generateMipmap(target: TextureTarget) void {
+    c.glGenerateMipmap(@enumToInt(target));
+    checkError();
+}
+
 pub fn bindTextureUnit(texture: types.Texture, unit: u32) void {
     c.glBindTextureUnit(unit, @enumToInt(texture));
     checkError();
