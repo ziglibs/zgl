@@ -682,7 +682,7 @@ pub fn getShader(shader: types.Shader, parameter: ShaderParameter) types.Int {
     return value;
 }
 
-pub fn getShaderInfoLog(shader: types.Shader, allocator: *std.mem.Allocator) ![:0]const u8 {
+pub fn getShaderInfoLog(shader: types.Shader, allocator: std.mem.Allocator) ![:0]const u8 {
     const length = getShader(shader, .info_log_length);
     const log = try allocator.allocSentinel(u8, @intCast(usize, length), 0);
     errdefer allocator.free(log);
