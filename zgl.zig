@@ -193,7 +193,7 @@ pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCall
             c_severity: types.Enum,
             length: types.SizeI,
             c_message: [*c]const types.Char,
-            userParam: ?*const c_void,
+            userParam: ?*const anyopaque,
         ) callconv(.C) void {
             const debug_source = translateSource(c_source);
             const msg_type = translateMessageType(c_msg_type);
@@ -212,7 +212,7 @@ pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCall
     if (is_void)
         c.glDebugMessageCallback(H.callback, null)
     else
-        c.glDebugMessageCallback(H.callback, @ptrCast(?*const c_void, context));
+        c.glDebugMessageCallback(H.callback, @ptrCast(?*const anyopaque, context));
     checkError();
 }
 
@@ -345,7 +345,7 @@ pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, no
         @enumToInt(attribute_type),
         b2gl(normalized),
         cs2gl(stride),
-        @intToPtr(*allowzero const c_void, relativeoffset),
+        @intToPtr(*allowzero const anyopaque, relativeoffset),
     );
     checkError();
 }
@@ -1110,7 +1110,7 @@ pub fn drawElements(primitiveType: PrimitiveType, count: usize, element_type: El
         @enumToInt(primitiveType),
         cs2gl(count),
         @enumToInt(element_type),
-        @intToPtr(*allowzero const c_void, indices),
+        @intToPtr(*allowzero const anyopaque, indices),
     );
     checkError();
 }
@@ -1120,7 +1120,7 @@ pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element
         @enumToInt(primitiveType),
         cs2gl(count),
         @enumToInt(element_type),
-        @intToPtr(*allowzero const c_void, indices),
+        @intToPtr(*allowzero const anyopaque, indices),
         cs2gl(instance_count),
     );
     checkError();
