@@ -1563,6 +1563,31 @@ pub fn textureImage2D(
     checkError();
 }
 
+pub fn texSubImage2D(
+    textureTarget: TextureTarget,
+    level: usize,
+    xoffset: usize,
+    yoffset: usize,
+    width: usize,
+    height: usize,
+    pixel_format: PixelFormat,
+    pixel_type: PixelType,
+    data: ?[*]const u8,
+) void {
+    c.glTexSubImage2D(
+        @enumToInt(textureTarget),
+        @intCast(types.Int, level),
+        @intCast(types.Int, xoffset),
+        @intCast(types.Int, yoffset),
+        @intCast(types.SizeI, width),
+        @intCast(types.SizeI, height),
+        @enumToInt(pixel_format),
+        @enumToInt(pixel_type),
+        data,
+    );
+    checkError();
+}
+
 pub fn textureSubImage2D(
     texture: types.Texture,
     level: usize,
