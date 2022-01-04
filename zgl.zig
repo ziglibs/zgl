@@ -1985,7 +1985,7 @@ pub const StringParameter = enum(types.Enum) {
 pub fn getStringi(parameter: StringParameter, index: u32) ?[:0]const u8 {
     return std.mem.span(c.glGetStringi(@enumToInt(parameter), index));
 }
-pub fn getStringi(parameter: StringParameter) ?[:0]const u8 {
+pub fn getString(parameter: StringParameter) ?[:0]const u8 {
     return std.mem.span(c.glGetString(@enumToInt(parameter)));
 }
 
