@@ -113,6 +113,7 @@ pub const Texture = enum(UInt) {
     pub const create = gl.createTexture;
     pub const delete = gl.deleteTexture;
 
+    pub const bind = gl.bindTexture;
     pub const bindTo = gl.bindTextureUnit;
 
     pub const parameter = gl.textureParameter;
