@@ -1239,6 +1239,17 @@ pub fn blendFuncSeparate(srcRGB: BlendFactor, dstRGB: BlendFactor, srcAlpha: Ble
     checkError();
 }
 
+const DrawMode = enum(types.Enum) {
+    point = c.GL_POINT,
+    line = c.GL_LINE,
+    fill = c.GL_FILL,
+};
+
+pub fn polygonMode(face: CullMode, mode: DrawMode) void {
+    c.glPolygonMode(@enumToInt(face),  @enumToInt(mode));
+    checkError();
+}
+
 pub fn polygonOffset(factor: f32, units: f32) void {
     c.glPolygonOffset(factor, units);
     checkError();
