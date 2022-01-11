@@ -1908,6 +1908,7 @@ pub const Parameter = enum(types.Enum) {
     point_size = c.GL_POINT_SIZE,
     point_size_granularity = c.GL_POINT_SIZE_GRANULARITY,
     point_size_range = c.GL_POINT_SIZE_RANGE,
+    polygon_mode = c.GL_POLYGON_MODE,
     polygon_offset_factor = c.GL_POLYGON_OFFSET_FACTOR,
     polygon_offset_fill = c.GL_POLYGON_OFFSET_FILL,
     polygon_offset_line = c.GL_POLYGON_OFFSET_LINE,
