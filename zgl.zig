@@ -1239,7 +1239,7 @@ pub fn blendFuncSeparate(srcRGB: BlendFactor, dstRGB: BlendFactor, srcAlpha: Ble
     checkError();
 }
 
-const DrawMode = enum(types.Enum) {
+pub const DrawMode = enum(types.Enum) {
     point = c.GL_POINT,
     line = c.GL_LINE,
     fill = c.GL_FILL,
