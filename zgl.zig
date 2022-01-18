@@ -582,6 +582,49 @@ pub fn namedBufferStorage(buf: types.Buffer, comptime T: type, count: usize, ite
     checkError();
 }
 
+pub const BufferMapTarget = enum(types.Enum) {
+    array_buffer = c.GL_ARRAY_BUFFER,
+    atomic_counter_buffer = c.GL_ATOMIC_COUNTER_BUFFER,
+    copy_read_buffer = c.GL_COPY_READ_BUFFER,
+    copy_write_buffer = c.GL_COPY_WRITE_BUFFER,
+    dispatch_indirect_buffer = c.GL_DISPATCH_INDIRECT_BUFFER,
+    draw_indirect_buffer = c.GL_DRAW_INDIRECT_BUFFER,
+    element_array_buffer = c.GL_ELEMENT_ARRAY_BUFFER,
+    pixel_pack_buffer = c.GL_PIXEL_PACK_BUFFER,
+    pixel_unpack_buffer = c.GL_PIXEL_UNPACK_BUFFER,
+    query_buffer = c.GL_QUERY_BUFFER,
+    shader_storage_buffer = c.GL_SHADER_STORAGE_BUFFER,
+    texture_buffer = c.GL_TEXTURE_BUFFER,
+    transform_feedback_buffer = c.GL_TRANSFORM_FEEDBACK_BUFFER,
+    uniform_buffer = c.GL_UNIFORM_BUFFER,
+};
+
+pub const BufferMapAccess = enum(types.Enum) {
+    read_only = c.GL_READ_ONLY,
+    write_only = c.GL_WRITE_ONLY,
+    read_write = c.GL_READ_WRITE,
+};
+
+pub fn mapBuffer(
+    target: BufferMapTarget,
+    comptime T: type,
+    access: BufferMapAccess,
+) [*]align(1) T {
+    const ptr = c.glMapBuffer(
+        @enumToInt(target),
+        @enumToInt(access),
+    );
+
+    checkError();
+    return @ptrCast([*]align(1) T, ptr);
+}
+
+pub fn unmapBuffer(target: BufferMapTarget) bool {
+    const ok = c.glUnmapBuffer(@enumToInt(target));
+    checkError();
+    return ok == c.GL_TRUE;
+}
+
 pub const BufferMapFlags = packed struct {
     read: bool = false,
     write: bool = false,
