@@ -343,12 +343,24 @@ pub fn vertexAttribLFormat(attribindex: u32, size: u32, attribute_type: Type, re
     checkError();
 }
 
+/// NOTE: if you use any integer type, it will cast to a floating point, you are probably looking for vertexAttribIPointer()
 pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, stride: usize, relativeoffset: usize) void {
     c.glVertexAttribPointer(
         attribindex,
         @intCast(types.Int, size),
         @enumToInt(attribute_type),
         b2gl(normalized),
+        cs2gl(stride),
+        @intToPtr(*allowzero const anyopaque, relativeoffset),
+    );
+    checkError();
+}
+
+pub fn vertexAttribIPointer(attribindex: u32, size: u32, attribute_type: Type, stride: usize, relativeoffset: usize) void {
+    c.glVertexAttribIPointer(
+        attribindex,
+        @intCast(types.Int, size),
+        @enumToInt(attribute_type),
         cs2gl(stride),
         @intToPtr(*allowzero const anyopaque, relativeoffset),
     );
