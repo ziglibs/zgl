@@ -276,6 +276,11 @@ pub fn enableVertexAttribArray(index: u32) void {
     checkError();
 }
 
+pub fn vertexAttribDivisor(index: u32, divisor: u32) void {
+    c.glVertexAttribDivisor(index, divisor);
+    checkError();
+}
+
 pub fn disableVertexAttribArray(index: u32) void {
     c.glDisableVertexAttribArray(index);
     checkError();
@@ -1142,6 +1147,11 @@ pub fn drawArrays(primitiveType: PrimitiveType, first: usize, count: usize) void
     checkError();
 }
 
+pub fn drawArraysInstanced(primitiveType: PrimitiveType, first: usize, count: usize, instanceCount: usize) void {
+    c.glDrawArraysInstanced(@enumToInt(primitiveType), cs2gl(first), cs2gl(count), cs2gl(instanceCount));
+    checkError();
+}
+
 pub const ElementType = enum(types.Enum) {
     u8 = c.GL_UNSIGNED_BYTE,
     u16 = c.GL_UNSIGNED_SHORT,
@@ -1289,7 +1299,7 @@ pub const DrawMode = enum(types.Enum) {
 };
 
 pub fn polygonMode(face: CullMode, mode: DrawMode) void {
-    c.glPolygonMode(@enumToInt(face),  @enumToInt(mode));
+    c.glPolygonMode(@enumToInt(face), @enumToInt(mode));
     checkError();
 }
 
