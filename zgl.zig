@@ -276,6 +276,11 @@ pub fn enableVertexAttribArray(index: u32) void {
     checkError();
 }
 
+pub fn vertexAttribDivisor(index: u32, divisor: u32) void {
+    c.glVertexAttribDivisor(index, divisor);
+    checkError();
+}
+
 pub fn disableVertexAttribArray(index: u32) void {
     c.glDisableVertexAttribArray(index);
     checkError();
@@ -338,12 +343,24 @@ pub fn vertexAttribLFormat(attribindex: u32, size: u32, attribute_type: Type, re
     checkError();
 }
 
+/// NOTE: if you use any integer type, it will cast to a floating point, you are probably looking for vertexAttribIPointer()
 pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, stride: usize, relativeoffset: usize) void {
     c.glVertexAttribPointer(
         attribindex,
         @intCast(types.Int, size),
         @enumToInt(attribute_type),
         b2gl(normalized),
+        cs2gl(stride),
+        @intToPtr(*allowzero const anyopaque, relativeoffset),
+    );
+    checkError();
+}
+
+pub fn vertexAttribIPointer(attribindex: u32, size: u32, attribute_type: Type, stride: usize, relativeoffset: usize) void {
+    c.glVertexAttribIPointer(
+        attribindex,
+        @intCast(types.Int, size),
+        @enumToInt(attribute_type),
         cs2gl(stride),
         @intToPtr(*allowzero const anyopaque, relativeoffset),
     );
@@ -1142,6 +1159,11 @@ pub fn drawArrays(primitiveType: PrimitiveType, first: usize, count: usize) void
     checkError();
 }
 
+pub fn drawArraysInstanced(primitiveType: PrimitiveType, first: usize, count: usize, instanceCount: usize) void {
+    c.glDrawArraysInstanced(@enumToInt(primitiveType), cs2gl(first), cs2gl(count), cs2gl(instanceCount));
+    checkError();
+}
+
 pub const ElementType = enum(types.Enum) {
     u8 = c.GL_UNSIGNED_BYTE,
     u16 = c.GL_UNSIGNED_SHORT,
@@ -1289,7 +1311,7 @@ pub const DrawMode = enum(types.Enum) {
 };
 
 pub fn polygonMode(face: CullMode, mode: DrawMode) void {
-    c.glPolygonMode(@enumToInt(face),  @enumToInt(mode));
+    c.glPolygonMode(@enumToInt(face), @enumToInt(mode));
     checkError();
 }
 
