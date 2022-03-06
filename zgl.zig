@@ -1375,6 +1375,11 @@ pub fn generateMipmap(target: TextureTarget) void {
     checkError();
 }
 
+pub fn generateTextureMipmap(texture: types.Texture) void {
+    c.glGenerateTextureMipmap(@enumToInt(texture));
+    checkError();
+}
+
 pub fn bindTextureUnit(texture: types.Texture, unit: u32) void {
     c.glBindTextureUnit(unit, @enumToInt(texture));
     checkError();

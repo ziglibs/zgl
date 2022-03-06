@@ -123,4 +123,6 @@ pub const Texture = enum(UInt) {
 
     pub const subImage2D = gl.textureSubImage2D;
     pub const subImage3D = gl.textureSubImage3D;
+
+    pub const generateMipmap = gl.generateTextureMipmap;
 };
