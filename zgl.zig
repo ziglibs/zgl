@@ -1441,6 +1441,11 @@ pub const TextureUnit = enum(types.Enum) {
     texture_5 = c.GL_TEXTURE5,
     texture_6 = c.GL_TEXTURE6,
     texture_7 = c.GL_TEXTURE7,
+    _,
+
+    pub fn unit(id: types.Enum) TextureUnit {
+        return @intToEnum(TextureUnit, @enumToInt(TextureUnit.texture_0) + id);
+    }
 };
 
 pub const TextureParameter = enum(types.Enum) {
