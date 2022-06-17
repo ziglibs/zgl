@@ -1245,6 +1245,20 @@ pub fn disableI(cap: Capabilities, index: u32) void {
     checkError();
 }
 
+pub const ClipOrigin = enum(types.Enum) {
+    lower_left = c.GL_LOWER_LEFT,
+    upper_left = c.GL_UPPER_LEFT,
+};
+pub const ClipDepth = enum(types.Enum) {
+    negative_one_to_one = c.GL_NEGATIVE_ONE_TO_ONE,
+    zero_to_one = c.GL_ZERO_TO_ONE,
+};
+
+pub fn clipControl(origin: ClipOrigin, depth: ClipDepth) void {
+    c.glClipControl(@enumToInt(origin), @enumToInt(depth));
+    checkError();
+}
+
 pub const CullMode = enum(types.Enum) {
     front = c.GL_FRONT,
     back = c.GL_BACK,
