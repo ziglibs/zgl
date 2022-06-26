@@ -1779,6 +1779,61 @@ pub fn textureSubImage3D(
     checkError();
 }
 
+pub fn textureImage3D(
+    texture: TextureTarget,
+    level: usize,
+    pixel_internal_format: TextureInternalFormat,
+    width: usize,
+    height: usize,
+    depth: usize,
+    pixel_format: PixelFormat,
+    pixel_type: PixelType,
+    data: ?[*]const u8,
+) void {
+    c.glTexImage3D(
+        @enumToInt(texture),
+        @intCast(types.Int, level),
+        @intCast(types.Int, @enumToInt(pixel_internal_format)),
+        @intCast(types.SizeI, width),
+        @intCast(types.SizeI, height),
+        @intCast(types.SizeI, depth),
+        0,
+        @enumToInt(pixel_format),
+        @enumToInt(pixel_type),
+        data,
+    );
+    checkError();
+}
+
+pub fn texSubImage3D(
+    textureTarget: TextureTarget,
+    level: usize,
+    xoffset: usize,
+    yoffset: usize,
+    zoffset: usize,
+    width: usize,
+    height: usize,
+    depth: usize,
+    pixel_format: PixelFormat,
+    pixel_type: PixelType,
+    data: ?[*]const u8,
+) void {
+    c.glTexSubImage3D(
+        @enumToInt(textureTarget),
+        @intCast(types.Int, level),
+        @intCast(types.Int, xoffset),
+        @intCast(types.Int, yoffset),
+        @intCast(types.Int, zoffset),
+        @intCast(types.SizeI, width),
+        @intCast(types.SizeI, height),
+        @intCast(types.SizeI, depth),
+        @enumToInt(pixel_format),
+        @enumToInt(pixel_type),
+        data,
+    );
+    checkError();
+}
+
 pub const PixelStoreParameter = enum(types.Enum) {
     pack_swap_bytes = c.GL_PACK_SWAP_BYTES,
     pack_lsb_first = c.GL_PACK_LSB_FIRST,
