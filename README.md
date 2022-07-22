@@ -14,6 +14,8 @@ var vertex_buffer = gl.Buffer.create();
 defer vertex_buffer.delete();
 ```
 
+You may also use a different OpenGL Loading Library by declaring a public `gl` namespace on your `root` file.
+
 ## Development Philosophy
 
 This library is developed incrementally. That means that functions and other things will be included on-demand and not just for the sake of completeness.
