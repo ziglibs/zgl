@@ -1,8 +1,12 @@
 const std = @import("std");
+const root = @import("root");
 
-const c = @cImport({
-    @cInclude("epoxy/gl.h");
-});
+const c = if (@hasDecl(root, "gl"))
+    root.gl
+else
+    @cImport({
+        @cInclude("epoxy/gl.h");
+    });
 
 comptime {
     std.testing.refAllDecls(@This());
