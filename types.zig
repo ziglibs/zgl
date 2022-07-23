@@ -1,6 +1,4 @@
-const c = @cImport({
-    @cInclude("epoxy/gl.h");
-});
+const c = @import("c.zig");
 
 const gl = @import("zgl.zig");
 
