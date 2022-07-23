@@ -1,12 +1,6 @@
 const std = @import("std");
-const root = @import("root");
 
-const c = if (@hasDecl(root, "gl"))
-    root.gl
-else
-    @cImport({
-        @cInclude("epoxy/gl.h");
-    });
+const c = @import("c.zig");
 
 comptime {
     std.testing.refAllDecls(@This());
