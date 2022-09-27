@@ -844,6 +844,10 @@ pub fn getAttribLocation(program: types.Program, name: [:0]const u8) ?u32 {
         return null;
     return @intCast(u32, loc);
 }
+pub fn bindAttribLocation(program: types.Program, attribute: u32, name: [:0]const u8) void {
+    c.glBindAttribLocation(@enumToInt(program), attribute, name.ptr);
+    checkError();
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Uniforms
