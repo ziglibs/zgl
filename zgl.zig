@@ -1,6 +1,5 @@
 const std = @import("std");
-
-const c = @import("c.zig");
+const binding = @import("binding.zig");
 
 comptime {
     std.testing.refAllDecls(@This());
@@ -32,23 +31,23 @@ fn checkError() void {
     if (error_handling == .none)
         return;
 
-    var error_code = c.glGetError();
-    if (error_code == c.GL_NO_ERROR)
+    var error_code = binding.getError();
+    if (error_code == binding.NO_ERROR)
         return;
-    while (error_code != c.GL_NO_ERROR) : (error_code = c.glGetError()) {
+    while (error_code != binding.NO_ERROR) : (error_code = binding.getError()) {
         const name = switch (error_code) {
-            c.GL_INVALID_ENUM => "invalid enum",
-            c.GL_INVALID_VALUE => "invalid value",
-            c.GL_INVALID_OPERATION => "invalid operation",
-            c.GL_STACK_OVERFLOW => "stack overflow",
-            c.GL_STACK_UNDERFLOW => "stack underflow",
-            c.GL_OUT_OF_MEMORY => "out of memory",
-            c.GL_INVALID_FRAMEBUFFER_OPERATION => "invalid framebuffer operation",
-            // c.GL_INVALID_FRAMEBUFFER_OPERATION_EXT => Error.InvalidFramebufferOperation,
-            // c.GL_INVALID_FRAMEBUFFER_OPERATION_OES => Error.InvalidFramebufferOperation,
-            c.GL_TABLE_TOO_LARGE => "Table too large",
-            // c.GL_TABLE_TOO_LARGE_EXT => Error.TableTooLarge,
-            c.GL_TEXTURE_TOO_LARGE_EXT => "Texture too large",
+            binding.INVALID_ENUM => "invalid enum",
+            binding.INVALID_VALUE => "invalid value",
+            binding.INVALID_OPERATION => "invalid operation",
+            binding.STACK_OVERFLOW => "stack overflow",
+            binding.STACK_UNDERFLOW => "stack underflow",
+            binding.OUT_OF_MEMORY => "out of memory",
+            binding.INVALID_FRAMEBUFFER_OPERATION => "invalid framebuffer operation",
+            // binding.INVALID_FRAMEBUFFER_OPERATION_EXT => Error.InvalidFramebufferOperation,
+            // binding.INVALID_FRAMEBUFFER_OPERATION_OES => Error.InvalidFramebufferOperation,
+            //binding.TABLE_TOO_LARGE => "Table too large",
+            // binding.TABLE_TOO_LARGE_EXT => Error.TableTooLarge,
+            //binding.TEXTURE_TOO_LARGE_EXT => "Texture too large",
             else => "unknown error",
         };
 
@@ -72,9 +71,9 @@ fn ui2gl(val: usize) types.UInt {
 
 fn b2gl(b: bool) types.Boolean {
     return if (b)
-        c.GL_TRUE
+        binding.TRUE
     else
-        c.GL_FALSE;
+        binding.FALSE;
 }
 
 pub const DebugSource = enum {
@@ -118,68 +117,68 @@ pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCall
     const H = struct {
         fn translateSource(source: types.UInt) DebugSource {
             return switch (source) {
-                c.GL_DEBUG_SOURCE_API => DebugSource.api,
-                // c.GL_DEBUG_SOURCE_API_ARB => DebugSource.api,
-                // c.GL_DEBUG_SOURCE_API_KHR => DebugSource.api,
-                c.GL_DEBUG_SOURCE_WINDOW_SYSTEM => DebugSource.window_system,
-                // c.GL_DEBUG_SOURCE_WINDOW_SYSTEM_ARB => DebugSource.window_system,
-                // c.GL_DEBUG_SOURCE_WINDOW_SYSTEM_KHR => DebugSource.window_system,
-                c.GL_DEBUG_SOURCE_SHADER_COMPILER => DebugSource.shader_compiler,
-                // c.GL_DEBUG_SOURCE_SHADER_COMPILER_ARB => DebugSource.shader_compiler,
-                // c.GL_DEBUG_SOURCE_SHADER_COMPILER_KHR => DebugSource.shader_compiler,
-                c.GL_DEBUG_SOURCE_THIRD_PARTY => DebugSource.third_party,
-                // c.GL_DEBUG_SOURCE_THIRD_PARTY_ARB => DebugSource.third_party,
-                // c.GL_DEBUG_SOURCE_THIRD_PARTY_KHR => DebugSource.third_party,
-                c.GL_DEBUG_SOURCE_APPLICATION => DebugSource.application,
-                // c.GL_DEBUG_SOURCE_APPLICATION_ARB => DebugSource.application,
-                // c.GL_DEBUG_SOURCE_APPLICATION_KHR => DebugSource.application,
-                c.GL_DEBUG_SOURCE_OTHER => DebugSource.other,
-                // c.GL_DEBUG_SOURCE_OTHER_ARB => DebugSource.other,
-                // c.GL_DEBUG_SOURCE_OTHER_KHR => DebugSource.other,
+                binding.DEBUG_SOURCE_API => DebugSource.api,
+                // binding.DEBUG_SOURCE_API_ARB => DebugSource.api,
+                // binding.DEBUG_SOURCE_API_KHR => DebugSource.api,
+                binding.DEBUG_SOURCE_WINDOW_SYSTEM => DebugSource.window_system,
+                // binding.DEBUG_SOURCE_WINDOW_SYSTEM_ARB => DebugSource.window_system,
+                // binding.DEBUG_SOURCE_WINDOW_SYSTEM_KHR => DebugSource.window_system,
+                binding.DEBUG_SOURCE_SHADER_COMPILER => DebugSource.shader_compiler,
+                // binding.DEBUG_SOURCE_SHADER_COMPILER_ARB => DebugSource.shader_compiler,
+                // binding.DEBUG_SOURCE_SHADER_COMPILER_KHR => DebugSource.shader_compiler,
+                binding.DEBUG_SOURCE_THIRD_PARTY => DebugSource.third_party,
+                // binding.DEBUG_SOURCE_THIRD_PARTY_ARB => DebugSource.third_party,
+                // binding.DEBUG_SOURCE_THIRD_PARTY_KHR => DebugSource.third_party,
+                binding.DEBUG_SOURCE_APPLICATION => DebugSource.application,
+                // binding.DEBUG_SOURCE_APPLICATION_ARB => DebugSource.application,
+                // binding.DEBUG_SOURCE_APPLICATION_KHR => DebugSource.application,
+                binding.DEBUG_SOURCE_OTHER => DebugSource.other,
+                // binding.DEBUG_SOURCE_OTHER_ARB => DebugSource.other,
+                // binding.DEBUG_SOURCE_OTHER_KHR => DebugSource.other,
                 else => DebugSource.other,
             };
         }
 
         fn translateMessageType(msg_type: types.UInt) DebugMessageType {
             return switch (msg_type) {
-                c.GL_DEBUG_TYPE_ERROR => DebugMessageType.@"error",
-                // c.GL_DEBUG_TYPE_ERROR_ARB => DebugMessageType.@"error",
-                // c.GL_DEBUG_TYPE_ERROR_KHR => DebugMessageType.@"error",
-                c.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR => DebugMessageType.deprecated_behavior,
-                // c.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB => DebugMessageType.deprecated_behavior,
-                // c.GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR_KHR => DebugMessageType.deprecated_behavior,
-                c.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR => DebugMessageType.undefined_behavior,
-                // c.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB => DebugMessageType.undefined_behavior,
-                // c.GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR_KHR => DebugMessageType.undefined_behavior,
-                c.GL_DEBUG_TYPE_PORTABILITY => DebugMessageType.portability,
-                // c.GL_DEBUG_TYPE_PORTABILITY_ARB => DebugMessageType.portability,
-                // c.GL_DEBUG_TYPE_PORTABILITY_KHR => DebugMessageType.portability,
-                c.GL_DEBUG_TYPE_PERFORMANCE => DebugMessageType.performance,
-                // c.GL_DEBUG_TYPE_PERFORMANCE_ARB => DebugMessageType.performance,
-                // c.GL_DEBUG_TYPE_PERFORMANCE_KHR => DebugMessageType.performance,
-                c.GL_DEBUG_TYPE_OTHER => DebugMessageType.other,
-                // c.GL_DEBUG_TYPE_OTHER_ARB => DebugMessageType.other,
-                // c.GL_DEBUG_TYPE_OTHER_KHR => DebugMessageType.other,
+                binding.DEBUG_TYPE_ERROR => DebugMessageType.@"error",
+                // binding.DEBUG_TYPE_ERROR_ARB => DebugMessageType.@"error",
+                // binding.DEBUG_TYPE_ERROR_KHR => DebugMessageType.@"error",
+                binding.DEBUG_TYPE_DEPRECATED_BEHAVIOR => DebugMessageType.deprecated_behavior,
+                // binding.DEBUG_TYPE_DEPRECATED_BEHAVIOR_ARB => DebugMessageType.deprecated_behavior,
+                // binding.DEBUG_TYPE_DEPRECATED_BEHAVIOR_KHR => DebugMessageType.deprecated_behavior,
+                binding.DEBUG_TYPE_UNDEFINED_BEHAVIOR => DebugMessageType.undefined_behavior,
+                // binding.DEBUG_TYPE_UNDEFINED_BEHAVIOR_ARB => DebugMessageType.undefined_behavior,
+                // binding.DEBUG_TYPE_UNDEFINED_BEHAVIOR_KHR => DebugMessageType.undefined_behavior,
+                binding.DEBUG_TYPE_PORTABILITY => DebugMessageType.portability,
+                // binding.DEBUG_TYPE_PORTABILITY_ARB => DebugMessageType.portability,
+                // binding.DEBUG_TYPE_PORTABILITY_KHR => DebugMessageType.portability,
+                binding.DEBUG_TYPE_PERFORMANCE => DebugMessageType.performance,
+                // binding.DEBUG_TYPE_PERFORMANCE_ARB => DebugMessageType.performance,
+                // binding.DEBUG_TYPE_PERFORMANCE_KHR => DebugMessageType.performance,
+                binding.DEBUG_TYPE_OTHER => DebugMessageType.other,
+                // binding.DEBUG_TYPE_OTHER_ARB => DebugMessageType.other,
+                // binding.DEBUG_TYPE_OTHER_KHR => DebugMessageType.other,
                 else => DebugMessageType.other,
             };
         }
 
         fn translateSeverity(sev: types.UInt) DebugSeverity {
             return switch (sev) {
-                c.GL_DEBUG_SEVERITY_HIGH => DebugSeverity.high,
-                // c.GL_DEBUG_SEVERITY_HIGH_AMD => DebugSeverity.high,
-                // c.GL_DEBUG_SEVERITY_HIGH_ARB => DebugSeverity.high,
-                // c.GL_DEBUG_SEVERITY_HIGH_KHR => DebugSeverity.high,
-                c.GL_DEBUG_SEVERITY_MEDIUM => DebugSeverity.medium,
-                // c.GL_DEBUG_SEVERITY_MEDIUM_AMD => DebugSeverity.medium,
-                // c.GL_DEBUG_SEVERITY_MEDIUM_ARB => DebugSeverity.medium,
-                // c.GL_DEBUG_SEVERITY_MEDIUM_KHR => DebugSeverity.medium,
-                c.GL_DEBUG_SEVERITY_LOW => DebugSeverity.low,
-                // c.GL_DEBUG_SEVERITY_LOW_AMD => DebugSeverity.low,
-                // c.GL_DEBUG_SEVERITY_LOW_ARB => DebugSeverity.low,
-                // c.GL_DEBUG_SEVERITY_LOW_KHR => DebugSeverity.low,
-                c.GL_DEBUG_SEVERITY_NOTIFICATION => DebugSeverity.notification,
-                // c.GL_DEBUG_SEVERITY_NOTIFICATION_KHR => DebugSeverity.notification,
+                binding.DEBUG_SEVERITY_HIGH => DebugSeverity.high,
+                // binding.DEBUG_SEVERITY_HIGH_AMD => DebugSeverity.high,
+                // binding.DEBUG_SEVERITY_HIGH_ARB => DebugSeverity.high,
+                // binding.DEBUG_SEVERITY_HIGH_KHR => DebugSeverity.high,
+                binding.DEBUG_SEVERITY_MEDIUM => DebugSeverity.medium,
+                // binding.DEBUG_SEVERITY_MEDIUM_AMD => DebugSeverity.medium,
+                // binding.DEBUG_SEVERITY_MEDIUM_ARB => DebugSeverity.medium,
+                // binding.DEBUG_SEVERITY_MEDIUM_KHR => DebugSeverity.medium,
+                binding.DEBUG_SEVERITY_LOW => DebugSeverity.low,
+                // binding.DEBUG_SEVERITY_LOW_AMD => DebugSeverity.low,
+                // binding.DEBUG_SEVERITY_LOW_ARB => DebugSeverity.low,
+                // binding.DEBUG_SEVERITY_LOW_KHR => DebugSeverity.low,
+                binding.DEBUG_SEVERITY_NOTIFICATION => DebugSeverity.notification,
+                // binding.DEBUG_SEVERITY_NOTIFICATION_KHR => DebugSeverity.notification,
                 else => DebugSeverity.high,
             };
         }
@@ -208,26 +207,26 @@ pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCall
     };
 
     if (is_void)
-        c.glDebugMessageCallback(H.callback, null)
+        binding.debugMessageCallback(H.callback, null)
     else
-        c.glDebugMessageCallback(H.callback, @ptrCast(?*const anyopaque, context));
+        binding.debugMessageCallback(H.callback, @ptrCast(?*const anyopaque, context));
     checkError();
 }
 
 pub fn clearColor(r: f32, g: f32, b: f32, a: f32) void {
-    c.glClearColor(r, g, b, a);
+    binding.clearColor(r, g, b, a);
     checkError();
 }
 
 pub fn clearDepth(depth: f32) void {
-    c.glClearDepth(depth);
+    binding.clearDepth(depth);
     checkError();
 }
 
 pub fn clear(mask: struct { color: bool = false, depth: bool = false, stencil: bool = false }) void {
-    c.glClear(@as(types.BitField, if (mask.color) c.GL_COLOR_BUFFER_BIT else 0) |
-        @as(types.BitField, if (mask.depth) c.GL_DEPTH_BUFFER_BIT else 0) |
-        @as(types.BitField, if (mask.stencil) c.GL_STENCIL_BUFFER_BIT else 0));
+    binding.clear(@as(types.BitField, if (mask.color) binding.COLOR_BUFFER_BIT else 0) |
+        @as(types.BitField, if (mask.depth) binding.DEPTH_BUFFER_BIT else 0) |
+        @as(types.BitField, if (mask.stencil) binding.STENCIL_BUFFER_BIT else 0));
     checkError();
 }
 
@@ -235,7 +234,7 @@ pub fn clear(mask: struct { color: bool = false, depth: bool = false, stencil: b
 // Vertex Arrays
 
 pub fn createVertexArrays(items: []types.VertexArray) void {
-    c.glCreateVertexArrays(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
+    binding.createVertexArrays(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
     checkError();
 }
 
@@ -246,7 +245,7 @@ pub fn createVertexArray() types.VertexArray {
 }
 
 pub fn genVertexArrays(items: []types.VertexArray) void {
-    c.glGenVertexArrays(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
+    binding.genVertexArrays(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
     checkError();
 }
 
@@ -257,12 +256,12 @@ pub fn genVertexArray() types.VertexArray {
 }
 
 pub fn bindVertexArray(vao: types.VertexArray) void {
-    c.glBindVertexArray(@enumToInt(vao));
+    binding.bindVertexArray(@enumToInt(vao));
     checkError();
 }
 
 pub fn deleteVertexArrays(items: []const types.VertexArray) void {
-    c.glDeleteVertexArrays(cs2gl(items.len), @ptrCast([*]const types.UInt, items.ptr));
+    binding.deleteVertexArrays(cs2gl(items.len), @ptrCast([*]const types.UInt, items.ptr));
 }
 
 pub fn deleteVertexArray(vao: types.VertexArray) void {
@@ -270,48 +269,48 @@ pub fn deleteVertexArray(vao: types.VertexArray) void {
 }
 
 pub fn enableVertexAttribArray(index: u32) void {
-    c.glEnableVertexAttribArray(index);
+    binding.enableVertexAttribArray(index);
     checkError();
 }
 
 pub fn vertexAttribDivisor(index: u32, divisor: u32) void {
-    c.glVertexAttribDivisor(index, divisor);
+    binding.vertexAttribDivisor(index, divisor);
     checkError();
 }
 
 pub fn disableVertexAttribArray(index: u32) void {
-    c.glDisableVertexAttribArray(index);
+    binding.disableVertexAttribArray(index);
     checkError();
 }
 
 pub fn enableVertexArrayAttrib(vertexArray: types.VertexArray, index: u32) void {
-    c.glEnableVertexArrayAttrib(@enumToInt(vertexArray), index);
+    binding.enableVertexArrayAttrib(@enumToInt(vertexArray), index);
     checkError();
 }
 
 pub fn disableVertexArrayAttrib(vertexArray: types.VertexArray, index: u32) void {
-    c.glDisableVertexArrayAttrib(@enumToInt(vertexArray), index);
+    binding.disableVertexArrayAttrib(@enumToInt(vertexArray), index);
     checkError();
 }
 
 pub const Type = enum(types.Enum) {
-    byte = c.GL_BYTE,
-    short = c.GL_SHORT,
-    int = c.GL_INT,
-    fixed = c.GL_FIXED,
-    float = c.GL_FLOAT,
-    half_float = c.GL_HALF_FLOAT,
-    double = c.GL_DOUBLE,
-    unsigned_byte = c.GL_UNSIGNED_BYTE,
-    unsigned_short = c.GL_UNSIGNED_SHORT,
-    unsigned_int = c.GL_UNSIGNED_INT,
-    int_2_10_10_10_rev = c.GL_INT_2_10_10_10_REV,
-    unsigned_int_2_10_10_10_rev = c.GL_UNSIGNED_INT_2_10_10_10_REV,
-    unsigned_int_10_f_11_f_11_f_rev = c.GL_UNSIGNED_INT_10F_11F_11F_REV,
+    byte = binding.BYTE,
+    short = binding.SHORT,
+    int = binding.INT,
+    fixed = binding.FIXED,
+    float = binding.FLOAT,
+    half_float = binding.HALF_FLOAT,
+    double = binding.DOUBLE,
+    unsigned_byte = binding.UNSIGNED_BYTE,
+    unsigned_short = binding.UNSIGNED_SHORT,
+    unsigned_int = binding.UNSIGNED_INT,
+    int_2_10_10_10_rev = binding.INT_2_10_10_10_REV,
+    unsigned_int_2_10_10_10_rev = binding.UNSIGNED_INT_2_10_10_10_REV,
+    unsigned_int_10_f_11_f_11_f_rev = binding.UNSIGNED_INT_10F_11F_11F_REV,
 };
 
 pub fn vertexAttribFormat(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, relativeoffset: usize) void {
-    c.glVertexAttribFormat(
+    binding.vertexAttribFormat(
         attribindex,
         @intCast(types.Int, size),
         @enumToInt(attribute_type),
@@ -322,7 +321,7 @@ pub fn vertexAttribFormat(attribindex: u32, size: u32, attribute_type: Type, nor
 }
 
 pub fn vertexAttribIFormat(attribindex: u32, size: u32, attribute_type: Type, relativeoffset: usize) void {
-    c.glVertexAttribIFormat(
+    binding.vertexAttribIFormat(
         attribindex,
         @intCast(types.Int, size),
         @enumToInt(attribute_type),
@@ -332,7 +331,7 @@ pub fn vertexAttribIFormat(attribindex: u32, size: u32, attribute_type: Type, re
 }
 
 pub fn vertexAttribLFormat(attribindex: u32, size: u32, attribute_type: Type, relativeoffset: usize) void {
-    c.glVertexAttribLFormat(
+    binding.vertexAttribLFormat(
         attribindex,
         @intCast(types.Int, size),
         @enumToInt(attribute_type),
@@ -343,7 +342,7 @@ pub fn vertexAttribLFormat(attribindex: u32, size: u32, attribute_type: Type, re
 
 /// NOTE: if you use any integer type, it will cast to a floating point, you are probably looking for vertexAttribIPointer()
 pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, stride: usize, relativeoffset: usize) void {
-    c.glVertexAttribPointer(
+    binding.vertexAttribPointer(
         attribindex,
         @intCast(types.Int, size),
         @enumToInt(attribute_type),
@@ -355,7 +354,7 @@ pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, no
 }
 
 pub fn vertexAttribIPointer(attribindex: u32, size: u32, attribute_type: Type, stride: usize, relativeoffset: usize) void {
-    c.glVertexAttribIPointer(
+    binding.vertexAttribIPointer(
         attribindex,
         @intCast(types.Int, size),
         @enumToInt(attribute_type),
@@ -373,7 +372,7 @@ pub fn vertexArrayAttribFormat(
     normalized: bool,
     relativeoffset: usize,
 ) void {
-    c.glVertexArrayAttribFormat(
+    binding.vertexArrayAttribFormat(
         @enumToInt(vertexArray),
         attribindex,
         @intCast(types.Int, size),
@@ -385,7 +384,7 @@ pub fn vertexArrayAttribFormat(
 }
 
 pub fn vertexArrayAttribIFormat(vertexArray: types.VertexArray, attribindex: u32, size: u32, attribute_type: Type, relativeoffset: usize) void {
-    c.glVertexArrayAttribIFormat(
+    binding.vertexArrayAttribIFormat(
         @enumToInt(vertexArray),
         attribindex,
         @intCast(
@@ -399,7 +398,7 @@ pub fn vertexArrayAttribIFormat(vertexArray: types.VertexArray, attribindex: u32
 }
 
 pub fn vertexArrayAttribLFormat(vertexArray: types.VertexArray, attribindex: u32, size: u32, attribute_type: Type, relativeoffset: usize) void {
-    c.glVertexArrayAttribLFormat(
+    binding.vertexArrayAttribLFormat(
         @enumToInt(vertexArray),
         attribindex,
         @intCast(
@@ -413,14 +412,14 @@ pub fn vertexArrayAttribLFormat(vertexArray: types.VertexArray, attribindex: u32
 }
 
 pub fn vertexAttribBinding(attribindex: u32, bindingindex: u32) void {
-    c.glVertexAttribBinding(
+    binding.vertexAttribBinding(
         attribindex,
         bindingindex,
     );
     checkError();
 }
 pub fn vertexArrayAttribBinding(vertexArray: types.VertexArray, attribindex: u32, bindingindex: u32) void {
-    c.glVertexArrayAttribBinding(
+    binding.vertexArrayAttribBinding(
         @enumToInt(vertexArray),
         attribindex,
         bindingindex,
@@ -429,17 +428,17 @@ pub fn vertexArrayAttribBinding(vertexArray: types.VertexArray, attribindex: u32
 }
 
 pub fn bindVertexBuffer(bindingindex: u32, buffer: types.Buffer, offset: usize, stride: usize) void {
-    c.glBindVertexBuffer(bindingindex, @enumToInt(buffer), cs2gl(offset), cs2gl(stride));
+    binding.bindVertexBuffer(bindingindex, @enumToInt(buffer), cs2gl(offset), cs2gl(stride));
     checkError();
 }
 
 pub fn vertexArrayVertexBuffer(vertexArray: types.VertexArray, bindingindex: u32, buffer: types.Buffer, offset: usize, stride: usize) void {
-    c.glVertexArrayVertexBuffer(@enumToInt(vertexArray), bindingindex, @enumToInt(buffer), cs2gl(offset), cs2gl(stride));
+    binding.vertexArrayVertexBuffer(@enumToInt(vertexArray), bindingindex, @enumToInt(buffer), cs2gl(offset), cs2gl(stride));
     checkError();
 }
 
 pub fn vertexArrayElementBuffer(vertexArray: types.VertexArray, buffer: types.Buffer) void {
-    c.glVertexArrayElementBuffer(@enumToInt(vertexArray), @enumToInt(buffer));
+    binding.vertexArrayElementBuffer(@enumToInt(vertexArray), @enumToInt(buffer));
     checkError();
 }
 
@@ -448,37 +447,37 @@ pub fn vertexArrayElementBuffer(vertexArray: types.VertexArray, buffer: types.Bu
 
 pub const BufferTarget = enum(types.Enum) {
     /// Vertex attributes
-    array_buffer = c.GL_ARRAY_BUFFER,
+    array_buffer = binding.ARRAY_BUFFER,
     /// Atomic counter storage
-    atomic_counter_buffer = c.GL_ATOMIC_COUNTER_BUFFER,
+    atomic_counter_buffer = binding.ATOMIC_COUNTER_BUFFER,
     /// Buffer copy source
-    copy_read_buffer = c.GL_COPY_READ_BUFFER,
+    copy_read_buffer = binding.COPY_READ_BUFFER,
     /// Buffer copy destination
-    copy_write_buffer = c.GL_COPY_WRITE_BUFFER,
+    copy_write_buffer = binding.COPY_WRITE_BUFFER,
     /// Indirect compute dispatch commands
-    dispatch_indirect_buffer = c.GL_DISPATCH_INDIRECT_BUFFER,
+    dispatch_indirect_buffer = binding.DISPATCH_INDIRECT_BUFFER,
     /// Indirect command arguments
-    draw_indirect_buffer = c.GL_DRAW_INDIRECT_BUFFER,
+    draw_indirect_buffer = binding.DRAW_INDIRECT_BUFFER,
     /// Vertex array indices
-    element_array_buffer = c.GL_ELEMENT_ARRAY_BUFFER,
+    element_array_buffer = binding.ELEMENT_ARRAY_BUFFER,
     /// Pixel read target
-    pixel_pack_buffer = c.GL_PIXEL_PACK_BUFFER,
+    pixel_pack_buffer = binding.PIXEL_PACK_BUFFER,
     /// Texture data source
-    pixel_unpack_buffer = c.GL_PIXEL_UNPACK_BUFFER,
+    pixel_unpack_buffer = binding.PIXEL_UNPACK_BUFFER,
     /// Query result buffer
-    query_buffer = c.GL_QUERY_BUFFER,
+    query_buffer = binding.QUERY_BUFFER,
     /// Read-write storage for shaders
-    shader_storage_buffer = c.GL_SHADER_STORAGE_BUFFER,
+    shader_storage_buffer = binding.SHADER_STORAGE_BUFFER,
     /// Texture data buffer
-    texture_buffer = c.GL_TEXTURE_BUFFER,
+    texture_buffer = binding.TEXTURE_BUFFER,
     /// Transform feedback buffer
-    transform_feedback_buffer = c.GL_TRANSFORM_FEEDBACK_BUFFER,
+    transform_feedback_buffer = binding.TRANSFORM_FEEDBACK_BUFFER,
     /// Uniform block storage
-    uniform_buffer = c.GL_UNIFORM_BUFFER,
+    uniform_buffer = binding.UNIFORM_BUFFER,
 };
 
 pub fn createBuffers(items: []types.Buffer) void {
-    c.glCreateBuffers(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
+    binding.createBuffers(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
     checkError();
 }
 
@@ -489,7 +488,7 @@ pub fn createBuffer() types.Buffer {
 }
 
 pub fn genBuffers(items: []types.Buffer) void {
-    c.glGenBuffers(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
+    binding.genBuffers(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
     checkError();
 }
 
@@ -500,12 +499,12 @@ pub fn genBuffer() types.Buffer {
 }
 
 pub fn bindBuffer(buf: types.Buffer, target: BufferTarget) void {
-    c.glBindBuffer(@enumToInt(target), @enumToInt(buf));
+    binding.bindBuffer(@enumToInt(target), @enumToInt(buf));
     checkError();
 }
 
 pub fn deleteBuffers(items: []const types.Buffer) void {
-    c.glDeleteBuffers(cs2gl(items.len), @ptrCast([*]const types.UInt, items.ptr));
+    binding.deleteBuffers(cs2gl(items.len), @ptrCast([*]const types.UInt, items.ptr));
 }
 
 pub fn deleteBuffer(buf: types.Buffer) void {
@@ -513,20 +512,20 @@ pub fn deleteBuffer(buf: types.Buffer) void {
 }
 
 pub const BufferUsage = enum(types.Enum) {
-    stream_draw = c.GL_STREAM_DRAW,
-    stream_read = c.GL_STREAM_READ,
-    stream_copy = c.GL_STREAM_COPY,
-    static_draw = c.GL_STATIC_DRAW,
-    static_read = c.GL_STATIC_READ,
-    static_copy = c.GL_STATIC_COPY,
-    dynamic_draw = c.GL_DYNAMIC_DRAW,
-    dynamic_read = c.GL_DYNAMIC_READ,
-    dynamic_copy = c.GL_DYNAMIC_COPY,
+    stream_draw = binding.STREAM_DRAW,
+    stream_read = binding.STREAM_READ,
+    stream_copy = binding.STREAM_COPY,
+    static_draw = binding.STATIC_DRAW,
+    static_read = binding.STATIC_READ,
+    static_copy = binding.STATIC_COPY,
+    dynamic_draw = binding.DYNAMIC_DRAW,
+    dynamic_read = binding.DYNAMIC_READ,
+    dynamic_copy = binding.DYNAMIC_COPY,
 };
 
 // using align(1) as we are not required to have aligned data here
 pub fn namedBufferData(buf: types.Buffer, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
-    c.glNamedBufferData(
+    binding.namedBufferData(
         @enumToInt(buf),
         cs2gl(@sizeOf(T) * items.len),
         items.ptr,
@@ -536,7 +535,7 @@ pub fn namedBufferData(buf: types.Buffer, comptime T: type, items: []align(1) co
 }
 
 pub fn namedBufferUninitialized(buf: types.Buffer, comptime T: type, count: usize, usage: BufferUsage) void {
-    c.glNamedBufferData(
+    binding.namedBufferData(
         @enumToInt(buf),
         cs2gl(@sizeOf(T) * count),
         null,
@@ -546,7 +545,7 @@ pub fn namedBufferUninitialized(buf: types.Buffer, comptime T: type, count: usiz
 }
 
 pub fn bufferData(target: BufferTarget, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
-    c.glBufferData(
+    binding.bufferData(
         @enumToInt(target),
         cs2gl(@sizeOf(T) * items.len),
         items.ptr,
@@ -556,7 +555,7 @@ pub fn bufferData(target: BufferTarget, comptime T: type, items: []align(1) cons
 }
 
 pub fn bufferUninitialized(target: BufferTarget, comptime T: type, count: usize, usage: BufferUsage) void {
-    c.glBufferData(
+    binding.bufferData(
         @enumToInt(target),
         cs2gl(@sizeOf(T) * count),
         null,
@@ -566,7 +565,7 @@ pub fn bufferUninitialized(target: BufferTarget, comptime T: type, count: usize,
 }
 
 pub fn bufferSubData(target: BufferTarget, offset: usize, comptime T: type, items: []align(1) const T) void {
-    c.glBufferSubData(@enumToInt(target), cs2gl(offset), cs2gl(@sizeOf(T) * items.len), items.ptr);
+    binding.bufferSubData(@enumToInt(target), cs2gl(offset), cs2gl(@sizeOf(T) * items.len), items.ptr);
     checkError();
 }
 
@@ -580,15 +579,15 @@ pub const BufferStorageFlags = packed struct {
 };
 
 pub fn namedBufferStorage(buf: types.Buffer, comptime T: type, count: usize, items: ?[*]align(1) const T, flags: BufferStorageFlags) void {
-    var flag_bits: c.GLbitfield = 0;
-    if (flags.dynamic_storage) flag_bits |= c.GL_DYNAMIC_STORAGE_BIT;
-    if (flags.map_read) flag_bits |= c.GL_MAP_READ_BIT;
-    if (flags.map_write) flag_bits |= c.GL_MAP_WRITE_BIT;
-    if (flags.map_persistent) flag_bits |= c.GL_MAP_PERSISTENT_BIT;
-    if (flags.map_coherent) flag_bits |= c.GL_MAP_COHERENT_BIT;
-    if (flags.client_storage) flag_bits |= c.GL_CLIENT_STORAGE_BIT;
+    var flag_bits: binding.GLbitfield = 0;
+    if (flags.dynamic_storage) flag_bits |= binding.DYNAMIC_STORAGE_BIT;
+    if (flags.map_read) flag_bits |= binding.MAP_READ_BIT;
+    if (flags.map_write) flag_bits |= binding.MAP_WRITE_BIT;
+    if (flags.map_persistent) flag_bits |= binding.MAP_PERSISTENT_BIT;
+    if (flags.map_coherent) flag_bits |= binding.MAP_COHERENT_BIT;
+    if (flags.client_storage) flag_bits |= binding.CLIENT_STORAGE_BIT;
 
-    c.glNamedBufferStorage(
+    binding.namedBufferStorage(
         @enumToInt(buf),
         cs2gl(@sizeOf(T) * count),
         items,
@@ -598,26 +597,26 @@ pub fn namedBufferStorage(buf: types.Buffer, comptime T: type, count: usize, ite
 }
 
 pub const BufferMapTarget = enum(types.Enum) {
-    array_buffer = c.GL_ARRAY_BUFFER,
-    atomic_counter_buffer = c.GL_ATOMIC_COUNTER_BUFFER,
-    copy_read_buffer = c.GL_COPY_READ_BUFFER,
-    copy_write_buffer = c.GL_COPY_WRITE_BUFFER,
-    dispatch_indirect_buffer = c.GL_DISPATCH_INDIRECT_BUFFER,
-    draw_indirect_buffer = c.GL_DRAW_INDIRECT_BUFFER,
-    element_array_buffer = c.GL_ELEMENT_ARRAY_BUFFER,
-    pixel_pack_buffer = c.GL_PIXEL_PACK_BUFFER,
-    pixel_unpack_buffer = c.GL_PIXEL_UNPACK_BUFFER,
-    query_buffer = c.GL_QUERY_BUFFER,
-    shader_storage_buffer = c.GL_SHADER_STORAGE_BUFFER,
-    texture_buffer = c.GL_TEXTURE_BUFFER,
-    transform_feedback_buffer = c.GL_TRANSFORM_FEEDBACK_BUFFER,
-    uniform_buffer = c.GL_UNIFORM_BUFFER,
+    array_buffer = binding.ARRAY_BUFFER,
+    atomic_counter_buffer = binding.ATOMIC_COUNTER_BUFFER,
+    copy_read_buffer = binding.COPY_READ_BUFFER,
+    copy_write_buffer = binding.COPY_WRITE_BUFFER,
+    dispatch_indirect_buffer = binding.DISPATCH_INDIRECT_BUFFER,
+    draw_indirect_buffer = binding.DRAW_INDIRECT_BUFFER,
+    element_array_buffer = binding.ELEMENT_ARRAY_BUFFER,
+    pixel_pack_buffer = binding.PIXEL_PACK_BUFFER,
+    pixel_unpack_buffer = binding.PIXEL_UNPACK_BUFFER,
+    query_buffer = binding.QUERY_BUFFER,
+    shader_storage_buffer = binding.SHADER_STORAGE_BUFFER,
+    texture_buffer = binding.TEXTURE_BUFFER,
+    transform_feedback_buffer = binding.TRANSFORM_FEEDBACK_BUFFER,
+    uniform_buffer = binding.UNIFORM_BUFFER,
 };
 
 pub const BufferMapAccess = enum(types.Enum) {
-    read_only = c.GL_READ_ONLY,
-    write_only = c.GL_WRITE_ONLY,
-    read_write = c.GL_READ_WRITE,
+    read_only = binding.READ_ONLY,
+    write_only = binding.WRITE_ONLY,
+    read_write = binding.READ_WRITE,
 };
 
 pub fn mapBuffer(
@@ -625,7 +624,7 @@ pub fn mapBuffer(
     comptime T: type,
     access: BufferMapAccess,
 ) [*]align(1) T {
-    const ptr = c.glMapBuffer(
+    const ptr = binding.mapBuffer(
         @enumToInt(target),
         @enumToInt(access),
     );
@@ -635,9 +634,9 @@ pub fn mapBuffer(
 }
 
 pub fn unmapBuffer(target: BufferMapTarget) bool {
-    const ok = c.glUnmapBuffer(@enumToInt(target));
+    const ok = binding.unmapBuffer(@enumToInt(target));
     checkError();
-    return ok == c.GL_TRUE;
+    return ok == binding.TRUE;
 }
 
 pub const BufferMapFlags = packed struct {
@@ -654,16 +653,16 @@ pub fn mapNamedBufferRange(
     count: usize,
     flags: BufferMapFlags,
 ) []align(1) T {
-    var flag_bits: c.GLbitfield = 0;
-    if (flags.read) flag_bits |= c.GL_MAP_READ_BIT;
-    if (flags.write) flag_bits |= c.GL_MAP_WRITE_BIT;
-    if (flags.persistent) flag_bits |= c.GL_MAP_PERSISTENT_BIT;
-    if (flags.coherent) flag_bits |= c.GL_MAP_COHERENT_BIT;
+    var flag_bits: binding.GLbitfield = 0;
+    if (flags.read) flag_bits |= binding.MAP_READ_BIT;
+    if (flags.write) flag_bits |= binding.MAP_WRITE_BIT;
+    if (flags.persistent) flag_bits |= binding.MAP_PERSISTENT_BIT;
+    if (flags.coherent) flag_bits |= binding.MAP_COHERENT_BIT;
 
-    const ptr = c.glMapNamedBufferRange(
+    const ptr = binding.mapNamedBufferRange(
         @enumToInt(buf),
-        @intCast(c.GLintptr, offset),
-        @intCast(c.GLsizeiptr, @sizeOf(T) * count),
+        @intCast(binding.GLintptr, offset),
+        @intCast(binding.GLsizeiptr, @sizeOf(T) * count),
         flag_bits,
     );
     checkError();
@@ -673,7 +672,7 @@ pub fn mapNamedBufferRange(
 }
 
 pub fn unmapNamedBuffer(buf: types.Buffer) bool {
-    const ok = c.glUnmapNamedBuffer(@enumToInt(buf));
+    const ok = binding.unmapNamedBuffer(@enumToInt(buf));
     checkError();
     return ok != 0;
 }
@@ -682,16 +681,16 @@ pub fn unmapNamedBuffer(buf: types.Buffer) bool {
 // Shaders
 
 pub const ShaderType = enum(types.Enum) {
-    compute = c.GL_COMPUTE_SHADER,
-    vertex = c.GL_VERTEX_SHADER,
-    tess_control = c.GL_TESS_CONTROL_SHADER,
-    tess_evaluation = c.GL_TESS_EVALUATION_SHADER,
-    geometry = c.GL_GEOMETRY_SHADER,
-    fragment = c.GL_FRAGMENT_SHADER,
+    compute = binding.COMPUTE_SHADER,
+    vertex = binding.VERTEX_SHADER,
+    tess_control = binding.TESS_CONTROL_SHADER,
+    tess_evaluation = binding.TESS_EVALUATION_SHADER,
+    geometry = binding.GEOMETRY_SHADER,
+    fragment = binding.FRAGMENT_SHADER,
 };
 
 pub fn createShader(shaderType: ShaderType) types.Shader {
-    const shader = @intToEnum(types.Shader, c.glCreateShader(@enumToInt(shaderType)));
+    const shader = @intToEnum(types.Shader, binding.createShader(@enumToInt(shaderType)));
     if (shader == .invalid) {
         checkError();
         unreachable;
@@ -700,12 +699,12 @@ pub fn createShader(shaderType: ShaderType) types.Shader {
 }
 
 pub fn deleteShader(shader: types.Shader) void {
-    c.glDeleteShader(@enumToInt(shader));
+    binding.deleteShader(@enumToInt(shader));
     checkError();
 }
 
 pub fn compileShader(shader: types.Shader) void {
-    c.glCompileShader(@enumToInt(shader));
+    binding.compileShader(@enumToInt(shader));
     checkError();
 }
 
@@ -720,22 +719,22 @@ pub fn shaderSource(shader: types.Shader, comptime N: comptime_int, sources: *co
         ptr.* = @ptrCast(*const types.Char, sources[i].ptr);
     }
 
-    c.glShaderSource(@enumToInt(shader), N, &ptrs, &lengths);
+    binding.shaderSource(@enumToInt(shader), N, &ptrs, &lengths);
 
     checkError();
 }
 
 pub const ShaderParameter = enum(types.Enum) {
-    shader_type = c.GL_SHADER_TYPE,
-    delete_status = c.GL_DELETE_STATUS,
-    compile_status = c.GL_COMPILE_STATUS,
-    info_log_length = c.GL_INFO_LOG_LENGTH,
-    shader_source_length = c.GL_SHADER_SOURCE_LENGTH,
+    shader_type = binding.SHADER_TYPE,
+    delete_status = binding.DELETE_STATUS,
+    compile_status = binding.COMPILE_STATUS,
+    info_log_length = binding.INFO_LOG_LENGTH,
+    shader_source_length = binding.SHADER_SOURCE_LENGTH,
 };
 
 pub fn getShader(shader: types.Shader, parameter: ShaderParameter) types.Int {
     var value: types.Int = undefined;
-    c.glGetShaderiv(@enumToInt(shader), @enumToInt(parameter), &value);
+    binding.getShaderiv(@enumToInt(shader), @enumToInt(parameter), &value);
     checkError();
     return value;
 }
@@ -745,7 +744,7 @@ pub fn getShaderInfoLog(shader: types.Shader, allocator: std.mem.Allocator) ![:0
     const log = try allocator.allocSentinel(u8, @intCast(usize, length), 0);
     errdefer allocator.free(log);
 
-    c.glGetShaderInfoLog(@enumToInt(shader), cs2gl(log.len), null, log.ptr);
+    binding.getShaderInfoLog(@enumToInt(shader), cs2gl(log.len), null, log.ptr);
     checkError();
 
     return log;
@@ -755,7 +754,7 @@ pub fn getShaderInfoLog(shader: types.Shader, allocator: std.mem.Allocator) ![:0
 // Program
 
 pub fn createProgram() types.Program {
-    const program = @intToEnum(types.Program, c.glCreateProgram());
+    const program = @intToEnum(types.Program, binding.createProgram());
     if (program == .invalid) {
         checkError();
         unreachable;
@@ -764,56 +763,56 @@ pub fn createProgram() types.Program {
 }
 
 pub fn deleteProgram(program: types.Program) void {
-    c.glDeleteProgram(@enumToInt(program));
+    binding.deleteProgram(@enumToInt(program));
     checkError();
 }
 
 pub fn linkProgram(program: types.Program) void {
-    c.glLinkProgram(@enumToInt(program));
+    binding.linkProgram(@enumToInt(program));
     checkError();
 }
 
 pub fn attachShader(program: types.Program, shader: types.Shader) void {
-    c.glAttachShader(@enumToInt(program), @enumToInt(shader));
+    binding.attachShader(@enumToInt(program), @enumToInt(shader));
     checkError();
 }
 
 pub fn detachShader(program: types.Program, shader: types.Shader) void {
-    c.glDetachShader(@enumToInt(program), @enumToInt(shader));
+    binding.detachShader(@enumToInt(program), @enumToInt(shader));
     checkError();
 }
 
 pub fn useProgram(program: types.Program) void {
-    c.glUseProgram(@enumToInt(program));
+    binding.useProgram(@enumToInt(program));
     checkError();
 }
 
 pub const ProgramParameter = enum(types.Enum) {
-    delete_status = c.GL_DELETE_STATUS,
-    link_status = c.GL_LINK_STATUS,
-    validate_status = c.GL_VALIDATE_STATUS,
-    info_log_length = c.GL_INFO_LOG_LENGTH,
-    attached_shaders = c.GL_ATTACHED_SHADERS,
-    active_atomic_counter_buffers = c.GL_ACTIVE_ATOMIC_COUNTER_BUFFERS,
-    active_attributes = c.GL_ACTIVE_ATTRIBUTES,
-    active_attribute_max_length = c.GL_ACTIVE_ATTRIBUTE_MAX_LENGTH,
-    active_uniforms = c.GL_ACTIVE_UNIFORMS,
-    active_uniform_blocks = c.GL_ACTIVE_UNIFORM_BLOCKS,
-    active_uniform_block_max_name_length = c.GL_ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH,
-    active_uniform_max_length = c.GL_ACTIVE_UNIFORM_MAX_LENGTH,
-    compute_work_group_size = c.GL_COMPUTE_WORK_GROUP_SIZE,
-    program_binary_length = c.GL_PROGRAM_BINARY_LENGTH,
-    transform_feedback_buffer_mode = c.GL_TRANSFORM_FEEDBACK_BUFFER_MODE,
-    transform_feedback_varyings = c.GL_TRANSFORM_FEEDBACK_VARYINGS,
-    transform_feedback_varying_max_length = c.GL_TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH,
-    geometry_vertices_out = c.GL_GEOMETRY_VERTICES_OUT,
-    geometry_input_type = c.GL_GEOMETRY_INPUT_TYPE,
-    geometry_output_type = c.GL_GEOMETRY_OUTPUT_TYPE,
+    delete_status = binding.DELETE_STATUS,
+    link_status = binding.LINK_STATUS,
+    validate_status = binding.VALIDATE_STATUS,
+    info_log_length = binding.INFO_LOG_LENGTH,
+    attached_shaders = binding.ATTACHED_SHADERS,
+    active_atomic_counter_buffers = binding.ACTIVE_ATOMIC_COUNTER_BUFFERS,
+    active_attributes = binding.ACTIVE_ATTRIBUTES,
+    active_attribute_max_length = binding.ACTIVE_ATTRIBUTE_MAX_LENGTH,
+    active_uniforms = binding.ACTIVE_UNIFORMS,
+    active_uniform_blocks = binding.ACTIVE_UNIFORM_BLOCKS,
+    active_uniform_block_max_name_length = binding.ACTIVE_UNIFORM_BLOCK_MAX_NAME_LENGTH,
+    active_uniform_max_length = binding.ACTIVE_UNIFORM_MAX_LENGTH,
+    compute_work_group_size = binding.COMPUTE_WORK_GROUP_SIZE,
+    program_binary_length = binding.PROGRAM_BINARY_LENGTH,
+    transform_feedback_buffer_mode = binding.TRANSFORM_FEEDBACK_BUFFER_MODE,
+    transform_feedback_varyings = binding.TRANSFORM_FEEDBACK_VARYINGS,
+    transform_feedback_varying_max_length = binding.TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH,
+    geometry_vertices_out = binding.GEOMETRY_VERTICES_OUT,
+    geometry_input_type = binding.GEOMETRY_INPUT_TYPE,
+    geometry_output_type = binding.GEOMETRY_OUTPUT_TYPE,
 };
 
 pub fn getProgram(program: types.Program, parameter: ProgramParameter) types.Int {
     var value: types.Int = undefined;
-    c.glGetProgramiv(@enumToInt(program), @enumToInt(parameter), &value);
+    binding.getProgramiv(@enumToInt(program), @enumToInt(parameter), &value);
     checkError();
     return value;
 }
@@ -823,14 +822,14 @@ pub fn getProgramInfoLog(program: types.Program, allocator: std.mem.Allocator) !
     const log = try allocator.allocSentinel(u8, @intCast(usize, length), 0);
     errdefer allocator.free(log);
 
-    c.glGetProgramInfoLog(@enumToInt(program), cs2gl(log.len), null, log.ptr);
+    binding.getProgramInfoLog(@enumToInt(program), cs2gl(log.len), null, log.ptr);
     checkError();
 
     return log;
 }
 
 pub fn getUniformLocation(program: types.Program, name: [:0]const u8) ?u32 {
-    const loc = c.glGetUniformLocation(@enumToInt(program), name.ptr);
+    const loc = binding.getUniformLocation(@enumToInt(program), name.ptr);
     checkError();
     if (loc < 0)
         return null;
@@ -838,14 +837,14 @@ pub fn getUniformLocation(program: types.Program, name: [:0]const u8) ?u32 {
 }
 
 pub fn getAttribLocation(program: types.Program, name: [:0]const u8) ?u32 {
-    const loc = c.glGetAttribLocation(@enumToInt(program), name.ptr);
+    const loc = binding.getAttribLocation(@enumToInt(program), name.ptr);
     checkError();
     if (loc < 0)
         return null;
     return @intCast(u32, loc);
 }
 pub fn bindAttribLocation(program: types.Program, attribute: u32, name: [:0]const u8) void {
-    c.glBindAttribLocation(@enumToInt(program), attribute, name.ptr);
+    binding.bindAttribLocation(@enumToInt(program), attribute, name.ptr);
     checkError();
 }
 
@@ -854,70 +853,70 @@ pub fn bindAttribLocation(program: types.Program, attribute: u32, name: [:0]cons
 
 pub fn programUniform1ui(program: types.Program, location: ?u32, value: u32) void {
     if (location) |loc| {
-        c.glProgramUniform1ui(@enumToInt(program), @intCast(types.Int, loc), value);
+        binding.programUniform1ui(@enumToInt(program), @intCast(types.Int, loc), value);
         checkError();
     }
 }
 
 pub fn programUniform1i(program: types.Program, location: ?u32, value: i32) void {
     if (location) |loc| {
-        c.glProgramUniform1i(@enumToInt(program), @intCast(types.Int, loc), value);
+        binding.programUniform1i(@enumToInt(program), @intCast(types.Int, loc), value);
         checkError();
     }
 }
 
 pub fn programUniform3ui(program: types.Program, location: ?u32, x: u32, y: u32, z: u32) void {
     if (location) |loc| {
-        c.glProgramUniform3ui(@enumToInt(program), @intCast(types.Int, loc), x, y, z);
+        binding.programUniform3ui(@enumToInt(program), @intCast(types.Int, loc), x, y, z);
         checkError();
     }
 }
 
 pub fn programUniform3i(program: types.Program, location: ?u32, x: i32, y: i32, z: i32) void {
     if (location) |loc| {
-        c.glProgramUniform3i(@enumToInt(program), @intCast(types.Int, loc), x, y, z);
+        binding.programUniform3i(@enumToInt(program), @intCast(types.Int, loc), x, y, z);
         checkError();
     }
 }
 
 pub fn programUniform2i(program: types.Program, location: ?u32, v0: i32, v1: i32) void {
     if (location) |loc| {
-        c.glProgramUniform2i(@enumToInt(program), @intCast(types.Int, loc), v0, v1);
+        binding.programUniform2i(@enumToInt(program), @intCast(types.Int, loc), v0, v1);
         checkError();
     }
 }
 
 pub fn programUniform1f(program: types.Program, location: ?u32, value: f32) void {
     if (location) |loc| {
-        c.glProgramUniform1f(@enumToInt(program), @intCast(types.Int, loc), value);
+        binding.programUniform1f(@enumToInt(program), @intCast(types.Int, loc), value);
         checkError();
     }
 }
 
 pub fn programUniform2f(program: types.Program, location: ?u32, x: f32, y: f32) void {
     if (location) |loc| {
-        c.glProgramUniform2f(@enumToInt(program), @intCast(types.Int, loc), x, y);
+        binding.programUniform2f(@enumToInt(program), @intCast(types.Int, loc), x, y);
         checkError();
     }
 }
 
 pub fn programUniform3f(program: types.Program, location: ?u32, x: f32, y: f32, z: f32) void {
     if (location) |loc| {
-        c.glProgramUniform3f(@enumToInt(program), @intCast(types.Int, loc), x, y, z);
+        binding.programUniform3f(@enumToInt(program), @intCast(types.Int, loc), x, y, z);
         checkError();
     }
 }
 
 pub fn programUniform4f(program: types.Program, location: ?u32, x: f32, y: f32, z: f32, w: f32) void {
     if (location) |loc| {
-        c.glProgramUniform4f(@enumToInt(program), @intCast(types.Int, loc), x, y, z, w);
+        binding.programUniform4f(@enumToInt(program), @intCast(types.Int, loc), x, y, z, w);
         checkError();
     }
 }
 
 pub fn programUniformMatrix4(program: types.Program, location: ?u32, transpose: bool, items: []const [4][4]f32) void {
     if (location) |loc| {
-        c.glProgramUniformMatrix4fv(
+        binding.programUniformMatrix4fv(
             @enumToInt(program),
             @intCast(types.Int, loc),
             cs2gl(items.len),
@@ -931,203 +930,203 @@ pub fn programUniformMatrix4(program: types.Program, location: ?u32, transpose: 
 
 pub fn uniform1f(location: ?u32, v0: f32) void {
     if (location) |loc| {
-        c.glUniform1f(@intCast(types.Int, loc), v0);
+        binding.uniform1f(@intCast(types.Int, loc), v0);
         checkError();
     }
 }
 
 pub fn uniform2f(location: ?u32, v0: f32, v1: f32) void {
     if (location) |loc| {
-        c.glUniform2f(@intCast(types.Int, loc), v0, v1);
+        binding.uniform2f(@intCast(types.Int, loc), v0, v1);
         checkError();
     }
 }
 
 pub fn uniform3f(location: ?u32, v0: f32, v1: f32, v2: f32) void {
     if (location) |loc| {
-        c.glUniform3f(@intCast(types.Int, loc), v0, v1, v2);
+        binding.uniform3f(@intCast(types.Int, loc), v0, v1, v2);
         checkError();
     }
 }
 
 pub fn uniform4f(location: ?u32, v0: f32, v1: f32, v2: f32, v3: f32) void {
     if (location) |loc| {
-        c.glUniform4f(@intCast(types.Int, loc), v0, v1, v2, v3);
+        binding.uniform4f(@intCast(types.Int, loc), v0, v1, v2, v3);
         checkError();
     }
 }
 
 pub fn uniform1i(location: ?u32, v0: i32) void {
     if (location) |loc| {
-        c.glUniform1i(@intCast(types.Int, loc), v0);
+        binding.uniform1i(@intCast(types.Int, loc), v0);
         checkError();
     }
 }
 
 pub fn uniform2i(location: ?u32, v0: i32, v1: i32) void {
     if (location) |loc| {
-        c.glUniform2i(@intCast(types.Int, loc), v0, v1);
+        binding.uniform2i(@intCast(types.Int, loc), v0, v1);
         checkError();
     }
 }
 
 pub fn uniform3i(location: ?u32, v0: i32, v1: i32, v2: i32) void {
     if (location) |loc| {
-        c.glUniform3i(@intCast(types.Int, loc), v0, v1, v2);
+        binding.uniform3i(@intCast(types.Int, loc), v0, v1, v2);
         checkError();
     }
 }
 
 pub fn uniform4i(location: ?u32, v0: i32, v1: i32, v2: i32, v3: i32) void {
     if (location) |loc| {
-        c.glUniform4i(@intCast(types.Int, loc), v0, v1, v2, v3);
+        binding.uniform4i(@intCast(types.Int, loc), v0, v1, v2, v3);
         checkError();
     }
 }
 
 pub fn uniform1ui(location: ?u32, v0: u32) void {
     if (location) |loc| {
-        c.glUniform1ui(@intCast(types.Int, loc), v0);
+        binding.uniform1ui(@intCast(types.Int, loc), v0);
         checkError();
     }
 }
 
 pub fn uniform2ui(location: ?u32, v0: u32, v1: u32) void {
     if (location) |loc| {
-        c.glUniform2ui(@intCast(types.Int, loc), v0, v1);
+        binding.uniform2ui(@intCast(types.Int, loc), v0, v1);
         checkError();
     }
 }
 
 pub fn uniform3ui(location: ?u32, v0: u32, v1: u32, v2: u32) void {
     if (location) |loc| {
-        c.glUniform3ui(@intCast(types.Int, loc), v0, v1, v2);
+        binding.uniform3ui(@intCast(types.Int, loc), v0, v1, v2);
         checkError();
     }
 }
 
 pub fn uniform4ui(location: ?u32, v0: u32, v1: u32, v2: u32, v3: u32) void {
     if (location) |loc| {
-        c.glUniform4ui(@intCast(types.Int, loc), v0, v1, v2, v3);
+        binding.uniform4ui(@intCast(types.Int, loc), v0, v1, v2, v3);
         checkError();
     }
 }
 
 pub fn uniform1fv(location: ?u32, items: []const f32) void {
     if (location) |loc| {
-        c.glUniform1fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        binding.uniform1fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform2fv(location: ?u32, items: []const [2]f32) void {
     if (location) |loc| {
-        c.glUniform2fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        binding.uniform2fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform3fv(location: ?u32, items: []const [3]f32) void {
     if (location) |loc| {
-        c.glUniform3fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        binding.uniform3fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform4fv(location: ?u32, items: []const [4]f32) void {
     if (location) |loc| {
-        c.glUniform4fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        binding.uniform4fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform1iv(location: ?u32, items: []const i32) void {
     if (location) |loc| {
-        c.glUniform1iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        binding.uniform1iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform2iv(location: ?u32, items: []const [2]i32) void {
     if (location) |loc| {
-        c.glUniform2iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        binding.uniform2iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform3iv(location: ?u32, items: []const [3]i32) void {
     if (location) |loc| {
-        c.glUniform3iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        binding.uniform3iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform4iv(location: ?u32, items: []const [4]i32) void {
     if (location) |loc| {
-        c.glUniform4iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        binding.uniform4iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform1uiv(location: ?u32, items: []const u32) void {
     if (location) |loc| {
-        c.glUniform1uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        binding.uniform1uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform2uiv(location: ?u32, items: []const [2]u32) void {
     if (location) |loc| {
-        c.glUniform2uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        binding.uniform2uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform3uiv(location: ?u32, items: []const [3]u32) void {
     if (location) |loc| {
-        c.glUniform3uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        binding.uniform3uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform4uiv(location: ?u32, items: []const [4]u32) void {
     if (location) |loc| {
-        c.glUniform4uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        binding.uniform4uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
         checkError();
     }
 }
 
 pub fn uniform1i64(location: ?u32, v0: i64) void {
     if (location) |loc| {
-        c.glUniform1i64ARB(@intCast(types.Int, loc), v0);
+        binding.uniform1i64ARB(@intCast(types.Int, loc), v0);
         checkError();
     }
 }
 
 pub fn uniform2i64(location: ?u32, v0: i64, v1: i64) void {
     if (location) |loc| {
-        c.glUniform2i64ARB(@intCast(types.Int, loc), v0, v1);
+        binding.uniform2i64ARB(@intCast(types.Int, loc), v0, v1);
         checkError();
     }
 }
 
 pub fn uniform3i64(location: ?u32, v0: i64, v1: i64, v2: i64) void {
     if (location) |loc| {
-        c.glUniform3i64ARB(@intCast(types.Int, loc), v0, v1, v2);
+        binding.uniform3i64ARB(@intCast(types.Int, loc), v0, v1, v2);
         checkError();
     }
 }
 
 pub fn uniform4i64(location: ?u32, v0: i64, v1: i64, v2: i64, v3: i64) void {
     if (location) |loc| {
-        c.glUniform4i64ARB(@intCast(types.Int, loc), v0, v1, v2, v3);
+        binding.uniform4i64ARB(@intCast(types.Int, loc), v0, v1, v2, v3);
         checkError();
     }
 }
 
 pub fn uniformMatrix4fv(location: ?u32, transpose: bool, items: []const [4][4]f32) void {
     if (location) |loc| {
-        c.glUniformMatrix4fv(
+        binding.uniformMatrix4fv(
             @intCast(types.Int, loc),
             cs2gl(items.len),
             b2gl(transpose),
@@ -1142,38 +1141,38 @@ pub fn uniformMatrix4fv(location: ?u32, transpose: bool, items: []const [4][4]f3
 // Draw Calls
 
 pub const PrimitiveType = enum(types.Enum) {
-    points = c.GL_POINTS,
-    line_strip = c.GL_LINE_STRIP,
-    line_loop = c.GL_LINE_LOOP,
-    lines = c.GL_LINES,
-    line_strip_adjacency = c.GL_LINE_STRIP_ADJACENCY,
-    lines_adjacency = c.GL_LINES_ADJACENCY,
-    triangle_strip = c.GL_TRIANGLE_STRIP,
-    triangle_fan = c.GL_TRIANGLE_FAN,
-    triangles = c.GL_TRIANGLES,
-    triangle_strip_adjacency = c.GL_TRIANGLE_STRIP_ADJACENCY,
-    triangles_adjacency = c.GL_TRIANGLES_ADJACENCY,
-    patches = c.GL_PATCHES,
+    points = binding.POINTS,
+    line_strip = binding.LINE_STRIP,
+    line_loop = binding.LINE_LOOP,
+    lines = binding.LINES,
+    line_strip_adjacency = binding.LINE_STRIP_ADJACENCY,
+    lines_adjacency = binding.LINES_ADJACENCY,
+    triangle_strip = binding.TRIANGLE_STRIP,
+    triangle_fan = binding.TRIANGLE_FAN,
+    triangles = binding.TRIANGLES,
+    triangle_strip_adjacency = binding.TRIANGLE_STRIP_ADJACENCY,
+    triangles_adjacency = binding.TRIANGLES_ADJACENCY,
+    patches = binding.PATCHES,
 };
 
 pub fn drawArrays(primitiveType: PrimitiveType, first: usize, count: usize) void {
-    c.glDrawArrays(@enumToInt(primitiveType), cs2gl(first), cs2gl(count));
+    binding.drawArrays(@enumToInt(primitiveType), cs2gl(first), cs2gl(count));
     checkError();
 }
 
 pub fn drawArraysInstanced(primitiveType: PrimitiveType, first: usize, count: usize, instanceCount: usize) void {
-    c.glDrawArraysInstanced(@enumToInt(primitiveType), cs2gl(first), cs2gl(count), cs2gl(instanceCount));
+    binding.drawArraysInstanced(@enumToInt(primitiveType), cs2gl(first), cs2gl(count), cs2gl(instanceCount));
     checkError();
 }
 
 pub const ElementType = enum(types.Enum) {
-    u8 = c.GL_UNSIGNED_BYTE,
-    u16 = c.GL_UNSIGNED_SHORT,
-    u32 = c.GL_UNSIGNED_INT,
+    u8 = binding.UNSIGNED_BYTE,
+    u16 = binding.UNSIGNED_SHORT,
+    u32 = binding.UNSIGNED_INT,
 };
 
 pub fn drawElements(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: usize) void {
-    c.glDrawElements(
+    binding.drawElements(
         @enumToInt(primitiveType),
         cs2gl(count),
         @enumToInt(element_type),
@@ -1183,7 +1182,7 @@ pub fn drawElements(primitiveType: PrimitiveType, count: usize, element_type: El
 }
 
 pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: usize, instance_count: usize) void {
-    c.glDrawElementsInstanced(
+    binding.drawElementsInstanced(
         @enumToInt(primitiveType),
         cs2gl(count),
         @enumToInt(element_type),
@@ -1197,209 +1196,209 @@ pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element
 // Status Control
 
 pub const Capabilities = enum(types.Enum) {
-    blend = c.GL_BLEND,
-    // clip_distance = c.GL_CLIP_DISTANCE,
-    color_logic_op = c.GL_COLOR_LOGIC_OP,
-    cull_face = c.GL_CULL_FACE,
-    debug_output = c.GL_DEBUG_OUTPUT,
-    debug_output_synchronous = c.GL_DEBUG_OUTPUT_SYNCHRONOUS,
-    depth_clamp = c.GL_DEPTH_CLAMP,
-    depth_test = c.GL_DEPTH_TEST,
-    dither = c.GL_DITHER,
-    framebuffer_srgb = c.GL_FRAMEBUFFER_SRGB,
-    line_smooth = c.GL_LINE_SMOOTH,
-    multisample = c.GL_MULTISAMPLE,
-    polygon_offset_fill = c.GL_POLYGON_OFFSET_FILL,
-    polygon_offset_line = c.GL_POLYGON_OFFSET_LINE,
-    polygon_offset_point = c.GL_POLYGON_OFFSET_POINT,
-    polygon_smooth = c.GL_POLYGON_SMOOTH,
-    primitive_restart = c.GL_PRIMITIVE_RESTART,
-    primitive_restart_fixed_index = c.GL_PRIMITIVE_RESTART_FIXED_INDEX,
-    rasterizer_discard = c.GL_RASTERIZER_DISCARD,
-    sample_alpha_to_coverage = c.GL_SAMPLE_ALPHA_TO_COVERAGE,
-    sample_alpha_to_one = c.GL_SAMPLE_ALPHA_TO_ONE,
-    sample_coverage = c.GL_SAMPLE_COVERAGE,
-    sample_shading = c.GL_SAMPLE_SHADING,
-    sample_mask = c.GL_SAMPLE_MASK,
-    scissor_test = c.GL_SCISSOR_TEST,
-    stencil_test = c.GL_STENCIL_TEST,
-    texture_cube_map_seamless = c.GL_TEXTURE_CUBE_MAP_SEAMLESS,
-    program_point_size = c.GL_PROGRAM_POINT_SIZE,
+    blend = binding.BLEND,
+    // clip_distance = binding.CLIP_DISTANCE,
+    color_logic_op = binding.COLOR_LOGIC_OP,
+    cull_face = binding.CULL_FACE,
+    debug_output = binding.DEBUG_OUTPUT,
+    debug_output_synchronous = binding.DEBUG_OUTPUT_SYNCHRONOUS,
+    depth_clamp = binding.DEPTH_CLAMP,
+    depth_test = binding.DEPTH_TEST,
+    dither = binding.DITHER,
+    framebuffer_srgb = binding.FRAMEBUFFER_SRGB,
+    line_smooth = binding.LINE_SMOOTH,
+    multisample = binding.MULTISAMPLE,
+    polygon_offset_fill = binding.POLYGON_OFFSET_FILL,
+    polygon_offset_line = binding.POLYGON_OFFSET_LINE,
+    polygon_offset_point = binding.POLYGON_OFFSET_POINT,
+    polygon_smooth = binding.POLYGON_SMOOTH,
+    primitive_restart = binding.PRIMITIVE_RESTART,
+    primitive_restart_fixed_index = binding.PRIMITIVE_RESTART_FIXED_INDEX,
+    rasterizer_discard = binding.RASTERIZER_DISCARD,
+    sample_alpha_to_coverage = binding.SAMPLE_ALPHA_TO_COVERAGE,
+    sample_alpha_to_one = binding.SAMPLE_ALPHA_TO_ONE,
+    sample_coverage = binding.SAMPLE_COVERAGE,
+    sample_shading = binding.SAMPLE_SHADING,
+    sample_mask = binding.SAMPLE_MASK,
+    scissor_test = binding.SCISSOR_TEST,
+    stencil_test = binding.STENCIL_TEST,
+    texture_cube_map_seamless = binding.TEXTURE_CUBE_MAP_SEAMLESS,
+    program_point_size = binding.PROGRAM_POINT_SIZE,
 };
 
 pub fn enable(cap: Capabilities) void {
-    c.glEnable(@enumToInt(cap));
+    binding.enable(@enumToInt(cap));
     checkError();
 }
 
 pub fn disable(cap: Capabilities) void {
-    c.glDisable(@enumToInt(cap));
+    binding.disable(@enumToInt(cap));
     checkError();
 }
 
 pub fn enableI(cap: Capabilities, index: u32) void {
-    c.glEnablei(@enumToInt(cap), index);
+    binding.enablei(@enumToInt(cap), index);
     checkError();
 }
 
 pub fn disableI(cap: Capabilities, index: u32) void {
-    c.glDisablei(@enumToInt(cap), index);
+    binding.disablei(@enumToInt(cap), index);
     checkError();
 }
 
 pub const ClipOrigin = enum(types.Enum) {
-    lower_left = c.GL_LOWER_LEFT,
-    upper_left = c.GL_UPPER_LEFT,
+    lower_left = binding.LOWER_LEFT,
+    upper_left = binding.UPPER_LEFT,
 };
 pub const ClipDepth = enum(types.Enum) {
-    negative_one_to_one = c.GL_NEGATIVE_ONE_TO_ONE,
-    zero_to_one = c.GL_ZERO_TO_ONE,
+    negative_one_to_one = binding.NEGATIVE_ONE_TO_ONE,
+    zero_to_one = binding.ZERO_TO_ONE,
 };
 
 pub fn clipControl(origin: ClipOrigin, depth: ClipDepth) void {
-    c.glClipControl(@enumToInt(origin), @enumToInt(depth));
+    binding.clipControl(@enumToInt(origin), @enumToInt(depth));
     checkError();
 }
 
 pub const CullMode = enum(types.Enum) {
-    front = c.GL_FRONT,
-    back = c.GL_BACK,
-    front_and_back = c.GL_FRONT_AND_BACK,
+    front = binding.FRONT,
+    back = binding.BACK,
+    front_and_back = binding.FRONT_AND_BACK,
 };
 
 pub fn cullFace(mode: CullMode) void {
-    c.glCullFace(@enumToInt(mode));
+    binding.cullFace(@enumToInt(mode));
     checkError();
 }
 
 pub fn depthMask(enabled: bool) void {
-    c.glDepthMask(if (enabled) c.GL_TRUE else c.GL_FALSE);
+    binding.depthMask(if (enabled) binding.TRUE else binding.FALSE);
     checkError();
 }
 
 pub const DepthFunc = enum(types.Enum) {
-    never = c.GL_NEVER,
-    less = c.GL_LESS,
-    equal = c.GL_EQUAL,
-    less_or_equal = c.GL_LEQUAL,
-    greater = c.GL_GREATER,
-    not_equal = c.GL_NOTEQUAL,
-    greator_or_equal = c.GL_GEQUAL,
-    always = c.GL_ALWAYS,
+    never = binding.NEVER,
+    less = binding.LESS,
+    equal = binding.EQUAL,
+    less_or_equal = binding.LEQUAL,
+    greater = binding.GREATER,
+    not_equal = binding.NOTEQUAL,
+    greator_or_equal = binding.GEQUAL,
+    always = binding.ALWAYS,
 };
 
 pub fn depthFunc(func: DepthFunc) void {
-    c.glDepthFunc(@enumToInt(func));
+    binding.depthFunc(@enumToInt(func));
     checkError();
 }
 
 pub fn stencilMask(mask: u32) void {
-    c.glStencilMask(mask);
+    binding.stencilMask(mask);
     checkError();
 }
 
 pub const StencilFunc = enum(types.Enum) {
-    never = c.GL_NEVER,
-    less = c.GL_LESS,
-    equal = c.GL_EQUAL,
-    less_or_equal = c.GL_LEQUAL,
-    greater = c.GL_GREATER,
-    not_equal = c.GL_NOTEQUAL,
-    greator_or_equal = c.GL_GEQUAL,
-    always = c.GL_ALWAYS,
+    never = binding.NEVER,
+    less = binding.LESS,
+    equal = binding.EQUAL,
+    less_or_equal = binding.LEQUAL,
+    greater = binding.GREATER,
+    not_equal = binding.NOTEQUAL,
+    greator_or_equal = binding.GEQUAL,
+    always = binding.ALWAYS,
 };
 
 pub fn stencilFunc(func: StencilFunc, ref: i32, mask: u32) void {
-    c.glStencilFunc(@enumToInt(func), ref, mask);
+    binding.stencilFunc(@enumToInt(func), ref, mask);
     checkError();
 }
 
 pub const StencilOp = enum(types.Enum) {
-    keep = c.GL_KEEP,
-    zero = c.GL_ZERO,
-    replace = c.GL_REPLACE,
-    incr = c.GL_INCR,
-    incr_wrap = c.GL_INCR_WRAP,
-    decr = c.GL_DECR,
-    decr_wrap = c.GL_DECR_WRAP,
-    invert = c.GL_INVERT,
+    keep = binding.KEEP,
+    zero = binding.ZERO,
+    replace = binding.REPLACE,
+    incr = binding.INCR,
+    incr_wrap = binding.INCR_WRAP,
+    decr = binding.DECR,
+    decr_wrap = binding.DECR_WRAP,
+    invert = binding.INVERT,
 };
 
 pub fn stencilOp(sfail: StencilOp, dpfail: StencilOp, dppass: StencilOp) void {
-    c.glStencilOp(@enumToInt(sfail), @enumToInt(dpfail), @enumToInt(dppass));
+    binding.stencilOp(@enumToInt(sfail), @enumToInt(dpfail), @enumToInt(dppass));
     checkError();
 }
 
 pub const BlendFactor = enum(types.Enum) {
-    zero = c.GL_ZERO,
-    one = c.GL_ONE,
-    src_color = c.GL_SRC_COLOR,
-    one_minus_src_color = c.GL_ONE_MINUS_SRC_COLOR,
-    dst_color = c.GL_DST_COLOR,
-    one_minus_dst_color = c.GL_ONE_MINUS_DST_COLOR,
-    src_alpha = c.GL_SRC_ALPHA,
-    one_minus_src_alpha = c.GL_ONE_MINUS_SRC_ALPHA,
-    dst_alpha = c.GL_DST_ALPHA,
-    one_minus_dst_alpha = c.GL_ONE_MINUS_DST_ALPHA,
-    constant_color = c.GL_CONSTANT_COLOR,
-    one_minus_constant_color = c.GL_ONE_MINUS_CONSTANT_COLOR,
-    constant_alpha = c.GL_CONSTANT_ALPHA,
-    one_minus_constant_alpha = c.GL_ONE_MINUS_CONSTANT_ALPHA,
+    zero = binding.ZERO,
+    one = binding.ONE,
+    src_color = binding.SRC_COLOR,
+    one_minus_src_color = binding.ONE_MINUS_SRC_COLOR,
+    dst_color = binding.DST_COLOR,
+    one_minus_dst_color = binding.ONE_MINUS_DST_COLOR,
+    src_alpha = binding.SRC_ALPHA,
+    one_minus_src_alpha = binding.ONE_MINUS_SRC_ALPHA,
+    dst_alpha = binding.DST_ALPHA,
+    one_minus_dst_alpha = binding.ONE_MINUS_DST_ALPHA,
+    constant_color = binding.CONSTANT_COLOR,
+    one_minus_constant_color = binding.ONE_MINUS_CONSTANT_COLOR,
+    constant_alpha = binding.CONSTANT_ALPHA,
+    one_minus_constant_alpha = binding.ONE_MINUS_CONSTANT_ALPHA,
 };
 
 pub fn blendFunc(sfactor: BlendFactor, dfactor: BlendFactor) void {
-    c.glBlendFunc(@enumToInt(sfactor), @enumToInt(dfactor));
+    binding.blendFunc(@enumToInt(sfactor), @enumToInt(dfactor));
     checkError();
 }
 
 pub fn blendFuncSeparate(srcRGB: BlendFactor, dstRGB: BlendFactor, srcAlpha: BlendFactor, dstAlpha: BlendFactor) void {
-    c.glBlendFuncSeparate(@enumToInt(srcRGB), @enumToInt(dstRGB), @enumToInt(srcAlpha), @enumToInt(dstAlpha));
+    binding.blendFuncSeparate(@enumToInt(srcRGB), @enumToInt(dstRGB), @enumToInt(srcAlpha), @enumToInt(dstAlpha));
     checkError();
 }
 
 pub const DrawMode = enum(types.Enum) {
-    point = c.GL_POINT,
-    line = c.GL_LINE,
-    fill = c.GL_FILL,
+    point = binding.POINT,
+    line = binding.LINE,
+    fill = binding.FILL,
 };
 
 pub fn polygonMode(face: CullMode, mode: DrawMode) void {
-    c.glPolygonMode(@enumToInt(face), @enumToInt(mode));
+    binding.polygonMode(@enumToInt(face), @enumToInt(mode));
     checkError();
 }
 
 pub fn polygonOffset(factor: f32, units: f32) void {
-    c.glPolygonOffset(factor, units);
+    binding.polygonOffset(factor, units);
     checkError();
 }
 
 pub fn pointSize(size: f32) void {
-    c.glPointSize(size);
+    binding.pointSize(size);
     checkError();
 }
 
 pub fn lineWidth(size: f32) void {
-    c.glLineWidth(size);
+    binding.lineWidth(size);
     checkError();
 }
 
 pub const TextureTarget = enum(types.Enum) {
-    @"1d" = c.GL_TEXTURE_1D,
-    @"2d" = c.GL_TEXTURE_2D,
-    @"3d" = c.GL_TEXTURE_3D,
-    @"1d_array" = c.GL_TEXTURE_1D_ARRAY,
-    @"2d_array" = c.GL_TEXTURE_2D_ARRAY,
-    rectangle = c.GL_TEXTURE_RECTANGLE,
-    cube_map = c.GL_TEXTURE_CUBE_MAP,
-    cube_map_array = c.GL_TEXTURE_CUBE_MAP_ARRAY,
-    buffer = c.GL_TEXTURE_BUFFER,
-    @"2d_multisample" = c.GL_TEXTURE_2D_MULTISAMPLE,
-    @"2d_multisample_array" = c.GL_TEXTURE_2D_MULTISAMPLE_ARRAY,
+    @"1d" = binding.TEXTURE_1D,
+    @"2d" = binding.TEXTURE_2D,
+    @"3d" = binding.TEXTURE_3D,
+    @"1d_array" = binding.TEXTURE_1D_ARRAY,
+    @"2d_array" = binding.TEXTURE_2D_ARRAY,
+    rectangle = binding.TEXTURE_RECTANGLE,
+    cube_map = binding.TEXTURE_CUBE_MAP,
+    cube_map_array = binding.TEXTURE_CUBE_MAP_ARRAY,
+    buffer = binding.TEXTURE_BUFFER,
+    @"2d_multisample" = binding.TEXTURE_2D_MULTISAMPLE,
+    @"2d_multisample_array" = binding.TEXTURE_2D_MULTISAMPLE_ARRAY,
 };
 
 pub fn genTexture() types.Texture {
     var tex_name: types.UInt = undefined;
-    c.glGenTextures(1, &tex_name);
+    binding.genTextures(1, &tex_name);
     checkError();
     return @intToEnum(types.Texture, tex_name);
 }
@@ -1407,7 +1406,7 @@ pub fn genTexture() types.Texture {
 pub fn createTexture(texture_target: TextureTarget) types.Texture {
     var tex_name: types.UInt = undefined;
 
-    c.glCreateTextures(@enumToInt(texture_target), 1, &tex_name);
+    binding.createTextures(@enumToInt(texture_target), 1, &tex_name);
     checkError();
 
     const texture = @intToEnum(types.Texture, tex_name);
@@ -1420,43 +1419,43 @@ pub fn createTexture(texture_target: TextureTarget) types.Texture {
 
 pub fn deleteTexture(texture: types.Texture) void {
     var id = @enumToInt(texture);
-    c.glDeleteTextures(1, &id);
+    binding.deleteTextures(1, &id);
 }
 
 pub fn generateMipmap(target: TextureTarget) void {
-    c.glGenerateMipmap(@enumToInt(target));
+    binding.generateMipmap(@enumToInt(target));
     checkError();
 }
 
 pub fn generateTextureMipmap(texture: types.Texture) void {
-    c.glGenerateTextureMipmap(@enumToInt(texture));
+    binding.generateTextureMipmap(@enumToInt(texture));
     checkError();
 }
 
 pub fn bindTextureUnit(texture: types.Texture, unit: u32) void {
-    c.glBindTextureUnit(unit, @enumToInt(texture));
+    binding.bindTextureUnit(unit, @enumToInt(texture));
     checkError();
 }
 
 pub fn bindTexture(texture: types.Texture, target: TextureTarget) void {
-    c.glBindTexture(@enumToInt(target), @enumToInt(texture));
+    binding.bindTexture(@enumToInt(target), @enumToInt(texture));
     checkError();
 }
 
 pub fn activeTexture(texture_unit: TextureUnit) void {
-    c.glActiveTexture(@enumToInt(texture_unit));
+    binding.activeTexture(@enumToInt(texture_unit));
     checkError();
 }
 
 pub const TextureUnit = enum(types.Enum) {
-    texture_0 = c.GL_TEXTURE0,
-    texture_1 = c.GL_TEXTURE1,
-    texture_2 = c.GL_TEXTURE2,
-    texture_3 = c.GL_TEXTURE3,
-    texture_4 = c.GL_TEXTURE4,
-    texture_5 = c.GL_TEXTURE5,
-    texture_6 = c.GL_TEXTURE6,
-    texture_7 = c.GL_TEXTURE7,
+    texture_0 = binding.TEXTURE0,
+    texture_1 = binding.TEXTURE1,
+    texture_2 = binding.TEXTURE2,
+    texture_3 = binding.TEXTURE3,
+    texture_4 = binding.TEXTURE4,
+    texture_5 = binding.TEXTURE5,
+    texture_6 = binding.TEXTURE6,
+    texture_7 = binding.TEXTURE7,
     _,
 
     pub fn unit(id: types.Enum) TextureUnit {
@@ -1465,49 +1464,57 @@ pub const TextureUnit = enum(types.Enum) {
 };
 
 pub const TextureParameter = enum(types.Enum) {
-    depth_stencil_texture_mode = c.GL_DEPTH_STENCIL_TEXTURE_MODE,
-    base_level = c.GL_TEXTURE_BASE_LEVEL,
-    compare_func = c.GL_TEXTURE_COMPARE_FUNC,
-    compare_mode = c.GL_TEXTURE_COMPARE_MODE,
-    lod_bias = c.GL_TEXTURE_LOD_BIAS,
-    min_filter = c.GL_TEXTURE_MIN_FILTER,
-    mag_filter = c.GL_TEXTURE_MAG_FILTER,
-    min_lod = c.GL_TEXTURE_MIN_LOD,
-    max_lod = c.GL_TEXTURE_MAX_LOD,
-    max_level = c.GL_TEXTURE_MAX_LEVEL,
-    swizzle_r = c.GL_TEXTURE_SWIZZLE_R,
-    swizzle_g = c.GL_TEXTURE_SWIZZLE_G,
-    swizzle_b = c.GL_TEXTURE_SWIZZLE_B,
-    swizzle_a = c.GL_TEXTURE_SWIZZLE_A,
-    wrap_s = c.GL_TEXTURE_WRAP_S,
-    wrap_t = c.GL_TEXTURE_WRAP_T,
-    wrap_r = c.GL_TEXTURE_WRAP_R,
+    depth_stencil_texture_mode = binding.DEPTH_STENCIL_TEXTURE_MODE,
+    base_level = binding.TEXTURE_BASE_LEVEL,
+    compare_func = binding.TEXTURE_COMPARE_FUNC,
+    compare_mode = binding.TEXTURE_COMPARE_MODE,
+    lod_bias = binding.TEXTURE_LOD_BIAS,
+    min_filter = binding.TEXTURE_MIN_FILTER,
+    mag_filter = binding.TEXTURE_MAG_FILTER,
+    min_lod = binding.TEXTURE_MIN_LOD,
+    max_lod = binding.TEXTURE_MAX_LOD,
+    max_level = binding.TEXTURE_MAX_LEVEL,
+    swizzle_r = binding.TEXTURE_SWIZZLE_R,
+    swizzle_g = binding.TEXTURE_SWIZZLE_G,
+    swizzle_b = binding.TEXTURE_SWIZZLE_B,
+    swizzle_a = binding.TEXTURE_SWIZZLE_A,
+    wrap_s = binding.TEXTURE_WRAP_S,
+    wrap_t = binding.TEXTURE_WRAP_T,
+    wrap_r = binding.TEXTURE_WRAP_R,
 };
 
 pub fn TextureParameterType(comptime param: TextureParameter) type {
     // see https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/glTexParameter.xhtml
     return switch (param) {
         .wrap_s, .wrap_t, .wrap_r => enum(types.Int) {
-            clamp_to_edge = c.GL_CLAMP_TO_EDGE,
-            clamp_to_border = c.GL_CLAMP_TO_BORDER,
-            mirrored_repeat = c.GL_MIRRORED_REPEAT,
-            repeat = c.GL_REPEAT,
-            mirror_clamp_to_edge = c.GL_MIRROR_CLAMP_TO_EDGE,
+            clamp_to_edge = binding.CLAMP_TO_EDGE,
+            clamp_to_border = binding.CLAMP_TO_BORDER,
+            mirrored_repeat = binding.MIRRORED_REPEAT,
+            repeat = binding.REPEAT,
+            mirror_clamp_to_edge = binding.MIRROR_CLAMP_TO_EDGE,
+        },
+        .swizzle_r, .swizzle_g, .swizzle_b, .swizzle_a => enum(types.Int) {
+            red = binding.RED,
+            green = binding.GREEN,
+            blue = binding.BLUE,
+            alpha = binding.ALPHA,
+            zero = binding.ZERO,
+            one = binding.ONE,
         },
         .mag_filter => enum(types.Int) {
-            nearest = c.GL_NEAREST,
-            linear = c.GL_LINEAR,
+            nearest = binding.NEAREST,
+            linear = binding.LINEAR,
         },
         .min_filter => enum(types.Int) {
-            nearest = c.GL_NEAREST,
-            linear = c.GL_LINEAR,
-            nearest_mipmap_nearest = c.GL_NEAREST_MIPMAP_NEAREST,
-            linear_mipmap_nearest = c.GL_LINEAR_MIPMAP_NEAREST,
-            nearest_mipmap_linear = c.GL_NEAREST_MIPMAP_LINEAR,
-            linear_mipmap_linear = c.GL_LINEAR_MIPMAP_LINEAR,
+            nearest = binding.NEAREST,
+            linear = binding.LINEAR,
+            nearest_mipmap_nearest = binding.NEAREST_MIPMAP_NEAREST,
+            linear_mipmap_nearest = binding.LINEAR_MIPMAP_NEAREST,
+            nearest_mipmap_linear = binding.NEAREST_MIPMAP_LINEAR,
+            linear_mipmap_linear = binding.LINEAR_MIPMAP_LINEAR,
         },
         .compare_mode => enum(types.Int) {
-            none = c.GL_NONE,
+            none = binding.NONE,
         },
         else => @compileError("textureParameter not implemented yet for " ++ @tagName(param)),
     };
@@ -1517,7 +1524,7 @@ pub fn texParameter(target: TextureTarget, comptime parameter: TextureParameter,
     const T = TextureParameterType(parameter);
     const info = @typeInfo(T);
     if (info == .Enum) {
-        c.glTexParameteri(@enumToInt(target), @enumToInt(parameter), @enumToInt(value));
+        binding.texParameteri(@enumToInt(target), @enumToInt(parameter), @enumToInt(value));
     } else {
         @compileError(@tagName(info) ++ " is not supported yet by texParameter");
     }
@@ -1529,7 +1536,7 @@ pub fn textureParameter(texture: types.Texture, comptime parameter: TextureParam
     const info = @typeInfo(T);
 
     if (info == .Enum) {
-        c.glTextureParameteri(@enumToInt(texture), @enumToInt(parameter), @enumToInt(value));
+        binding.textureParameteri(@enumToInt(texture), @enumToInt(parameter), @enumToInt(value));
     } else {
         @compileError(@tagName(info) ++ " is not supported yet by textureParameter");
     }
@@ -1537,68 +1544,68 @@ pub fn textureParameter(texture: types.Texture, comptime parameter: TextureParam
 }
 
 pub const TextureInternalFormat = enum(types.Enum) {
-    r8 = c.GL_R8,
-    r8_snorm = c.GL_R8_SNORM,
-    r16 = c.GL_R16,
-    r16_snorm = c.GL_R16_SNORM,
-    rg8 = c.GL_RG8,
-    rg8_snorm = c.GL_RG8_SNORM,
-    rg16 = c.GL_RG16,
-    rg16_snorm = c.GL_RG16_SNORM,
-    r3_g3_b2 = c.GL_R3_G3_B2,
-    rgb4 = c.GL_RGB4,
-    rgb5 = c.GL_RGB5,
-    rgb8 = c.GL_RGB8,
-    rgb8_snorm = c.GL_RGB8_SNORM,
-    rgb10 = c.GL_RGB10,
-    rgb12 = c.GL_RGB12,
-    rgb16_snorm = c.GL_RGB16_SNORM,
-    rgba2 = c.GL_RGBA2,
-    rgba4 = c.GL_RGBA4,
-    rgb5_a1 = c.GL_RGB5_A1,
-    rgba8 = c.GL_RGBA8,
-    rgba8_snorm = c.GL_RGBA8_SNORM,
-    rgb10_a2 = c.GL_RGB10_A2,
-    rgb10_a2ui = c.GL_RGB10_A2UI,
-    rgba12 = c.GL_RGBA12,
-    rgba16 = c.GL_RGBA16,
-    srgb8 = c.GL_SRGB8,
-    srgb8_alpha8 = c.GL_SRGB8_ALPHA8,
-    r16f = c.GL_R16F,
-    rg16f = c.GL_RG16F,
-    rgb16f = c.GL_RGB16F,
-    rgba16f = c.GL_RGBA16F,
-    r32f = c.GL_R32F,
-    rg32f = c.GL_RG32F,
-    rgb32f = c.GL_RGB32F,
-    rgba32f = c.GL_RGBA32F,
-    r11f_g11f_b10f = c.GL_R11F_G11F_B10F,
-    rgb9_e5 = c.GL_RGB9_E5,
-    r8i = c.GL_R8I,
-    r8ui = c.GL_R8UI,
-    r16i = c.GL_R16I,
-    r16ui = c.GL_R16UI,
-    r32i = c.GL_R32I,
-    r32ui = c.GL_R32UI,
-    rg8i = c.GL_RG8I,
-    rg8ui = c.GL_RG8UI,
-    rg16i = c.GL_RG16I,
-    rg16ui = c.GL_RG16UI,
-    rg32i = c.GL_RG32I,
-    rg32ui = c.GL_RG32UI,
-    rgb8i = c.GL_RGB8I,
-    rgb8ui = c.GL_RGB8UI,
-    rgb16i = c.GL_RGB16I,
-    rgb16ui = c.GL_RGB16UI,
-    rgb32i = c.GL_RGB32I,
-    rgb32ui = c.GL_RGB32UI,
-    rgba8i = c.GL_RGBA8I,
-    rgba8ui = c.GL_RGBA8UI,
-    rgba16i = c.GL_RGBA16I,
-    rgba16ui = c.GL_RGBA16UI,
-    rgba32i = c.GL_RGBA32I,
-    rgba32ui = c.GL_RGBA32UI,
-    depth_component16 = c.GL_DEPTH_COMPONENT16,
+    r8 = binding.R8,
+    r8_snorm = binding.R8_SNORM,
+    r16 = binding.R16,
+    r16_snorm = binding.R16_SNORM,
+    rg8 = binding.RG8,
+    rg8_snorm = binding.RG8_SNORM,
+    rg16 = binding.RG16,
+    rg16_snorm = binding.RG16_SNORM,
+    r3_g3_b2 = binding.R3_G3_B2,
+    rgb4 = binding.RGB4,
+    rgb5 = binding.RGB5,
+    rgb8 = binding.RGB8,
+    rgb8_snorm = binding.RGB8_SNORM,
+    rgb10 = binding.RGB10,
+    rgb12 = binding.RGB12,
+    rgb16_snorm = binding.RGB16_SNORM,
+    rgba2 = binding.RGBA2,
+    rgba4 = binding.RGBA4,
+    rgb5_a1 = binding.RGB5_A1,
+    rgba8 = binding.RGBA8,
+    rgba8_snorm = binding.RGBA8_SNORM,
+    rgb10_a2 = binding.RGB10_A2,
+    rgb10_a2ui = binding.RGB10_A2UI,
+    rgba12 = binding.RGBA12,
+    rgba16 = binding.RGBA16,
+    srgb8 = binding.SRGB8,
+    srgb8_alpha8 = binding.SRGB8_ALPHA8,
+    r16f = binding.R16F,
+    rg16f = binding.RG16F,
+    rgb16f = binding.RGB16F,
+    rgba16f = binding.RGBA16F,
+    r32f = binding.R32F,
+    rg32f = binding.RG32F,
+    rgb32f = binding.RGB32F,
+    rgba32f = binding.RGBA32F,
+    r11f_g11f_b10f = binding.R11F_G11F_B10F,
+    rgb9_e5 = binding.RGB9_E5,
+    r8i = binding.R8I,
+    r8ui = binding.R8UI,
+    r16i = binding.R16I,
+    r16ui = binding.R16UI,
+    r32i = binding.R32I,
+    r32ui = binding.R32UI,
+    rg8i = binding.RG8I,
+    rg8ui = binding.RG8UI,
+    rg16i = binding.RG16I,
+    rg16ui = binding.RG16UI,
+    rg32i = binding.RG32I,
+    rg32ui = binding.RG32UI,
+    rgb8i = binding.RGB8I,
+    rgb8ui = binding.RGB8UI,
+    rgb16i = binding.RGB16I,
+    rgb16ui = binding.RGB16UI,
+    rgb32i = binding.RGB32I,
+    rgb32ui = binding.RGB32UI,
+    rgba8i = binding.RGBA8I,
+    rgba8ui = binding.RGBA8UI,
+    rgba16i = binding.RGBA16I,
+    rgba16ui = binding.RGBA16UI,
+    rgba32i = binding.RGBA32I,
+    rgba32ui = binding.RGBA32UI,
+    depth_component16 = binding.DEPTH_COMPONENT16,
 };
 
 pub fn textureStorage2D(
@@ -1608,7 +1615,7 @@ pub fn textureStorage2D(
     width: usize,
     height: usize,
 ) void {
-    c.glTextureStorage2D(
+    binding.textureStorage2D(
         @enumToInt(texture),
         @intCast(types.SizeI, levels),
         @enumToInt(internalformat),
@@ -1626,7 +1633,7 @@ pub fn textureStorage3D(
     height: usize,
     depth: usize,
 ) void {
-    c.glTextureStorage3D(
+    binding.textureStorage3D(
         @enumToInt(texture),
         @intCast(types.SizeI, levels),
         @enumToInt(internalformat),
@@ -1638,44 +1645,44 @@ pub fn textureStorage3D(
 }
 
 pub const PixelFormat = enum(types.Enum) {
-    red = c.GL_RED,
-    rg = c.GL_RG,
-    rgb = c.GL_RGB,
-    bgr = c.GL_BGR,
-    rgba = c.GL_RGBA,
-    bgra = c.GL_BGRA,
-    depth_component = c.GL_DEPTH_COMPONENT,
-    stencil_index = c.GL_STENCIL_INDEX,
-    luminance = c.GL_LUMINANCE,
+    red = binding.RED,
+    rg = binding.RG,
+    rgb = binding.RGB,
+    bgr = binding.BGR,
+    rgba = binding.RGBA,
+    bgra = binding.BGRA,
+    depth_component = binding.DEPTH_COMPONENT,
+    stencil_index = binding.STENCIL_INDEX,
+    //luminance = binding.LUMINANCE,
 
-    red_integer = c.GL_RED_INTEGER,
-    rg_integer = c.GL_RG_INTEGER,
-    rgb_integer = c.GL_RGB_INTEGER,
-    bgr_integer = c.GL_BGR_INTEGER,
-    rgba_integer = c.GL_RGBA_INTEGER,
-    bgra_integer = c.GL_BGRA_INTEGER,
+    red_integer = binding.RED_INTEGER,
+    rg_integer = binding.RG_INTEGER,
+    rgb_integer = binding.RGB_INTEGER,
+    bgr_integer = binding.BGR_INTEGER,
+    rgba_integer = binding.RGBA_INTEGER,
+    bgra_integer = binding.BGRA_INTEGER,
 };
 
 pub const PixelType = enum(types.Enum) {
-    unsigned_byte = c.GL_UNSIGNED_BYTE,
-    byte = c.GL_BYTE,
-    unsigned_short = c.GL_UNSIGNED_SHORT,
-    short = c.GL_SHORT,
-    unsigned_int = c.GL_UNSIGNED_INT,
-    int = c.GL_INT,
-    float = c.GL_FLOAT,
-    unsigned_byte_3_3_2 = c.GL_UNSIGNED_BYTE_3_3_2,
-    unsigned_byte_2_3_3_rev = c.GL_UNSIGNED_BYTE_2_3_3_REV,
-    unsigned_short_5_6_5 = c.GL_UNSIGNED_SHORT_5_6_5,
-    unsigned_short_5_6_5_rev = c.GL_UNSIGNED_SHORT_5_6_5_REV,
-    unsigned_short_4_4_4_4 = c.GL_UNSIGNED_SHORT_4_4_4_4,
-    unsigned_short_4_4_4_4_rev = c.GL_UNSIGNED_SHORT_4_4_4_4_REV,
-    unsigned_short_5_5_5_1 = c.GL_UNSIGNED_SHORT_5_5_5_1,
-    unsigned_short_1_5_5_5_rev = c.GL_UNSIGNED_SHORT_1_5_5_5_REV,
-    unsigned_int_8_8_8_8 = c.GL_UNSIGNED_INT_8_8_8_8,
-    unsigned_int_8_8_8_8_rev = c.GL_UNSIGNED_INT_8_8_8_8_REV,
-    unsigned_int_10_10_10_2 = c.GL_UNSIGNED_INT_10_10_10_2,
-    unsigned_int_2_10_10_10_rev = c.GL_UNSIGNED_INT_2_10_10_10_REV,
+    unsigned_byte = binding.UNSIGNED_BYTE,
+    byte = binding.BYTE,
+    unsigned_short = binding.UNSIGNED_SHORT,
+    short = binding.SHORT,
+    unsigned_int = binding.UNSIGNED_INT,
+    int = binding.INT,
+    float = binding.FLOAT,
+    unsigned_byte_3_3_2 = binding.UNSIGNED_BYTE_3_3_2,
+    unsigned_byte_2_3_3_rev = binding.UNSIGNED_BYTE_2_3_3_REV,
+    unsigned_short_5_6_5 = binding.UNSIGNED_SHORT_5_6_5,
+    unsigned_short_5_6_5_rev = binding.UNSIGNED_SHORT_5_6_5_REV,
+    unsigned_short_4_4_4_4 = binding.UNSIGNED_SHORT_4_4_4_4,
+    unsigned_short_4_4_4_4_rev = binding.UNSIGNED_SHORT_4_4_4_4_REV,
+    unsigned_short_5_5_5_1 = binding.UNSIGNED_SHORT_5_5_5_1,
+    unsigned_short_1_5_5_5_rev = binding.UNSIGNED_SHORT_1_5_5_5_REV,
+    unsigned_int_8_8_8_8 = binding.UNSIGNED_INT_8_8_8_8,
+    unsigned_int_8_8_8_8_rev = binding.UNSIGNED_INT_8_8_8_8_REV,
+    unsigned_int_10_10_10_2 = binding.UNSIGNED_INT_10_10_10_2,
+    unsigned_int_2_10_10_10_rev = binding.UNSIGNED_INT_2_10_10_10_REV,
 };
 
 pub fn textureImage2D(
@@ -1688,7 +1695,7 @@ pub fn textureImage2D(
     pixel_type: PixelType,
     data: ?[*]const u8,
 ) void {
-    c.glTexImage2D(
+    binding.texImage2D(
         @enumToInt(texture),
         @intCast(types.Int, level),
         @intCast(types.Int, @enumToInt(pixel_internal_format)),
@@ -1713,7 +1720,7 @@ pub fn texSubImage2D(
     pixel_type: PixelType,
     data: ?[*]const u8,
 ) void {
-    c.glTexSubImage2D(
+    binding.texSubImage2D(
         @enumToInt(textureTarget),
         @intCast(types.Int, level),
         @intCast(types.Int, xoffset),
@@ -1738,7 +1745,7 @@ pub fn textureSubImage2D(
     pixel_type: PixelType,
     data: ?[*]const u8,
 ) void {
-    c.glTextureSubImage2D(
+    binding.textureSubImage2D(
         @enumToInt(texture),
         @intCast(types.Int, level),
         @intCast(types.Int, xoffset),
@@ -1765,7 +1772,7 @@ pub fn textureSubImage3D(
     pixel_type: PixelType,
     pixels: ?[*]const u8,
 ) void {
-    c.glTextureSubImage3D(
+    binding.textureSubImage3D(
         @enumToInt(texture),
         @intCast(types.Int, level),
         @intCast(types.Int, xoffset),
@@ -1792,7 +1799,7 @@ pub fn textureImage3D(
     pixel_type: PixelType,
     data: ?[*]const u8,
 ) void {
-    c.glTexImage3D(
+    binding.texImage3D(
         @enumToInt(texture),
         @intCast(types.Int, level),
         @intCast(types.Int, @enumToInt(pixel_internal_format)),
@@ -1820,7 +1827,7 @@ pub fn texSubImage3D(
     pixel_type: PixelType,
     data: ?[*]const u8,
 ) void {
-    c.glTexSubImage3D(
+    binding.texSubImage3D(
         @enumToInt(textureTarget),
         @intCast(types.Int, level),
         @intCast(types.Int, xoffset),
@@ -1837,42 +1844,42 @@ pub fn texSubImage3D(
 }
 
 pub const PixelStoreParameter = enum(types.Enum) {
-    pack_swap_bytes = c.GL_PACK_SWAP_BYTES,
-    pack_lsb_first = c.GL_PACK_LSB_FIRST,
-    pack_row_length = c.GL_PACK_ROW_LENGTH,
-    pack_image_height = c.GL_PACK_IMAGE_HEIGHT,
-    pack_skip_pixels = c.GL_PACK_SKIP_PIXELS,
-    pack_skip_rows = c.GL_PACK_SKIP_ROWS,
-    pack_skip_images = c.GL_PACK_SKIP_IMAGES,
-    pack_alignment = c.GL_PACK_ALIGNMENT,
+    pack_swap_bytes = binding.PACK_SWAP_BYTES,
+    pack_lsb_first = binding.PACK_LSB_FIRST,
+    pack_row_length = binding.PACK_ROW_LENGTH,
+    pack_image_height = binding.PACK_IMAGE_HEIGHT,
+    pack_skip_pixels = binding.PACK_SKIP_PIXELS,
+    pack_skip_rows = binding.PACK_SKIP_ROWS,
+    pack_skip_images = binding.PACK_SKIP_IMAGES,
+    pack_alignment = binding.PACK_ALIGNMENT,
 
-    unpack_swap_bytes = c.GL_UNPACK_SWAP_BYTES,
-    unpack_lsb_first = c.GL_UNPACK_LSB_FIRST,
-    unpack_row_length = c.GL_UNPACK_ROW_LENGTH,
-    unpack_image_height = c.GL_UNPACK_IMAGE_HEIGHT,
-    unpack_skip_pixels = c.GL_UNPACK_SKIP_PIXELS,
-    unpack_skip_rows = c.GL_UNPACK_SKIP_ROWS,
-    unpack_skip_images = c.GL_UNPACK_SKIP_IMAGES,
-    unpack_alignment = c.GL_UNPACK_ALIGNMENT,
+    unpack_swap_bytes = binding.UNPACK_SWAP_BYTES,
+    unpack_lsb_first = binding.UNPACK_LSB_FIRST,
+    unpack_row_length = binding.UNPACK_ROW_LENGTH,
+    unpack_image_height = binding.UNPACK_IMAGE_HEIGHT,
+    unpack_skip_pixels = binding.UNPACK_SKIP_PIXELS,
+    unpack_skip_rows = binding.UNPACK_SKIP_ROWS,
+    unpack_skip_images = binding.UNPACK_SKIP_IMAGES,
+    unpack_alignment = binding.UNPACK_ALIGNMENT,
 };
 
 pub fn pixelStore(param: PixelStoreParameter, value: usize) void {
-    c.glPixelStorei(@enumToInt(param), @intCast(types.Int, value));
+    binding.pixelStorei(@enumToInt(param), @intCast(types.Int, value));
     checkError();
 }
 
 pub fn viewport(x: i32, y: i32, width: usize, height: usize) void {
-    c.glViewport(@intCast(types.Int, x), @intCast(types.Int, y), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
+    binding.viewport(@intCast(types.Int, x), @intCast(types.Int, y), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
     checkError();
 }
 
 pub fn scissor(x: i32, y: i32, width: usize, height: usize) void {
-    c.glScissor(@intCast(types.Int, x), @intCast(types.Int, y), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
+    binding.scissor(@intCast(types.Int, x), @intCast(types.Int, y), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
     checkError();
 }
 
 pub const FramebufferTarget = enum(types.Enum) {
-    buffer = c.GL_FRAMEBUFFER,
+    buffer = binding.FRAMEBUFFER,
 };
 
 pub const Framebuffer = enum(types.UInt) {
@@ -1890,7 +1897,7 @@ pub const Framebuffer = enum(types.UInt) {
 
 pub fn createFramebuffer() Framebuffer {
     var fb_name: types.UInt = undefined;
-    c.glCreateFramebuffers(1, &fb_name);
+    binding.createFramebuffers(1, &fb_name);
     checkError();
     const framebuffer = @intToEnum(Framebuffer, fb_name);
     if (framebuffer == .invalid) {
@@ -1902,7 +1909,7 @@ pub fn createFramebuffer() Framebuffer {
 
 pub fn genFramebuffer() Framebuffer {
     var fb_name: types.UInt = undefined;
-    c.glGenFramebuffers(1, &fb_name);
+    binding.genFramebuffers(1, &fb_name);
     checkError();
     const framebuffer = @intToEnum(Framebuffer, fb_name);
     if (framebuffer == .invalid) unreachable;
@@ -1911,277 +1918,277 @@ pub fn genFramebuffer() Framebuffer {
 
 pub fn deleteFramebuffer(buf: Framebuffer) void {
     var fb_name = @enumToInt(buf);
-    c.glDeleteFramebuffers(1, &fb_name);
+    binding.deleteFramebuffers(1, &fb_name);
 }
 
 pub fn bindFrameBuffer(buf: Framebuffer, target: FramebufferTarget) void {
-    c.glBindFramebuffer(@enumToInt(target), @enumToInt(buf));
+    binding.bindFramebuffer(@enumToInt(target), @enumToInt(buf));
     checkError();
 }
 
 pub const FramebufferAttachment = enum(types.Enum) {
-    color0 = c.GL_COLOR_ATTACHMENT0,
-    color1 = c.GL_COLOR_ATTACHMENT1,
-    color2 = c.GL_COLOR_ATTACHMENT2,
-    color3 = c.GL_COLOR_ATTACHMENT3,
-    color4 = c.GL_COLOR_ATTACHMENT4,
-    color5 = c.GL_COLOR_ATTACHMENT5,
-    color6 = c.GL_COLOR_ATTACHMENT6,
-    color7 = c.GL_COLOR_ATTACHMENT7,
-    depth = c.GL_DEPTH_ATTACHMENT,
-    stencil = c.GL_STENCIL_ATTACHMENT,
-    depth_stencil = c.GL_DEPTH_STENCIL_ATTACHMENT,
-    max_color = c.GL_MAX_COLOR_ATTACHMENTS,
+    color0 = binding.COLOR_ATTACHMENT0,
+    color1 = binding.COLOR_ATTACHMENT1,
+    color2 = binding.COLOR_ATTACHMENT2,
+    color3 = binding.COLOR_ATTACHMENT3,
+    color4 = binding.COLOR_ATTACHMENT4,
+    color5 = binding.COLOR_ATTACHMENT5,
+    color6 = binding.COLOR_ATTACHMENT6,
+    color7 = binding.COLOR_ATTACHMENT7,
+    depth = binding.DEPTH_ATTACHMENT,
+    stencil = binding.STENCIL_ATTACHMENT,
+    depth_stencil = binding.DEPTH_STENCIL_ATTACHMENT,
+    max_color = binding.MAX_COLOR_ATTACHMENTS,
 };
 
 pub fn framebufferTexture(buffer: Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, texture: types.Texture, level: i32) void {
     buffer.bind(.buffer);
-    c.glFramebufferTexture(@enumToInt(target), @enumToInt(attachment), @intCast(types.UInt, @enumToInt(texture)), @intCast(types.Int, level));
+    binding.framebufferTexture(@enumToInt(target), @enumToInt(attachment), @intCast(types.UInt, @enumToInt(texture)), @intCast(types.Int, level));
     checkError();
 }
 
 pub const FramebufferTextureTarget = enum(types.Enum) {
-    @"1d" = c.GL_TEXTURE_1D,
-    @"2d" = c.GL_TEXTURE_2D,
-    @"3d" = c.GL_TEXTURE_3D,
-    @"1d_array" = c.GL_TEXTURE_1D_ARRAY,
-    @"2d_array" = c.GL_TEXTURE_2D_ARRAY,
-    rectangle = c.GL_TEXTURE_RECTANGLE,
-    cube_map_positive_x = c.GL_TEXTURE_CUBE_MAP_POSITIVE_X,
-    cube_map_negative_x = c.GL_TEXTURE_CUBE_MAP_NEGATIVE_X,
-    cube_map_positive_y = c.GL_TEXTURE_CUBE_MAP_POSITIVE_Y,
-    cube_map_negative_y = c.GL_TEXTURE_CUBE_MAP_NEGATIVE_Y,
-    cube_map_positive_z = c.GL_TEXTURE_CUBE_MAP_POSITIVE_Z,
-    cube_map_negative_z = c.GL_TEXTURE_CUBE_MAP_NEGATIVE_Z,
-    buffer = c.GL_TEXTURE_BUFFER,
-    @"2d_multisample" = c.GL_TEXTURE_2D_MULTISAMPLE,
-    @"2d_multisample_array" = c.GL_TEXTURE_2D_MULTISAMPLE_ARRAY,
+    @"1d" = binding.TEXTURE_1D,
+    @"2d" = binding.TEXTURE_2D,
+    @"3d" = binding.TEXTURE_3D,
+    @"1d_array" = binding.TEXTURE_1D_ARRAY,
+    @"2d_array" = binding.TEXTURE_2D_ARRAY,
+    rectangle = binding.TEXTURE_RECTANGLE,
+    cube_map_positive_x = binding.TEXTURE_CUBE_MAP_POSITIVE_X,
+    cube_map_negative_x = binding.TEXTURE_CUBE_MAP_NEGATIVE_X,
+    cube_map_positive_y = binding.TEXTURE_CUBE_MAP_POSITIVE_Y,
+    cube_map_negative_y = binding.TEXTURE_CUBE_MAP_NEGATIVE_Y,
+    cube_map_positive_z = binding.TEXTURE_CUBE_MAP_POSITIVE_Z,
+    cube_map_negative_z = binding.TEXTURE_CUBE_MAP_NEGATIVE_Z,
+    buffer = binding.TEXTURE_BUFFER,
+    @"2d_multisample" = binding.TEXTURE_2D_MULTISAMPLE,
+    @"2d_multisample_array" = binding.TEXTURE_2D_MULTISAMPLE_ARRAY,
 };
 
 pub fn framebufferTexture2D(buffer: Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, textarget: FramebufferTextureTarget, texture: types.Texture, level: i32) void {
     buffer.bind(.buffer);
-    c.glFramebufferTexture2D(@enumToInt(target), @enumToInt(attachment), @enumToInt(textarget), @intCast(types.UInt, @enumToInt(texture)), @intCast(types.Int, level));
+    binding.framebufferTexture2D(@enumToInt(target), @enumToInt(attachment), @enumToInt(textarget), @intCast(types.UInt, @enumToInt(texture)), @intCast(types.Int, level));
     checkError();
 }
 
 const FramebufferStatus = enum(types.UInt) {
-    complete = c.GL_FRAMEBUFFER_COMPLETE,
+    complete = binding.FRAMEBUFFER_COMPLETE,
 };
 
 pub fn checkFramebufferStatus(target: FramebufferTarget) FramebufferStatus {
-    const status = @intToEnum(FramebufferStatus, c.glCheckFramebufferStatus(@enumToInt(target)));
+    const status = @intToEnum(FramebufferStatus, binding.checkFramebufferStatus(@enumToInt(target)));
     return status;
 }
 
 pub fn drawBuffers(bufs: []const FramebufferAttachment) void {
-    c.glDrawBuffers(cs2gl(bufs.len), @ptrCast([*]const types.UInt, bufs.ptr));
+    binding.drawBuffers(cs2gl(bufs.len), @ptrCast([*]const types.UInt, bufs.ptr));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Parameters
 pub const Parameter = enum(types.Enum) {
-    active_texture = c.GL_ACTIVE_TEXTURE,
-    aliased_line_width_range = c.GL_ALIASED_LINE_WIDTH_RANGE,
-    array_buffer_binding = c.GL_ARRAY_BUFFER_BINDING,
-    blend = c.GL_BLEND,
-    blend_color = c.GL_BLEND_COLOR,
-    blend_dst_alpha = c.GL_BLEND_DST_ALPHA,
-    blend_dst_rgb = c.GL_BLEND_DST_RGB,
-    blend_equation_alpha = c.GL_BLEND_EQUATION_ALPHA,
-    blend_equation_rgb = c.GL_BLEND_EQUATION_RGB,
-    blend_src_alpha = c.GL_BLEND_SRC_ALPHA,
-    blend_src_rgb = c.GL_BLEND_SRC_RGB,
-    color_clear_value = c.GL_COLOR_CLEAR_VALUE,
-    color_logic_op = c.GL_COLOR_LOGIC_OP,
-    color_writemask = c.GL_COLOR_WRITEMASK,
-    compressed_texture_formats = c.GL_COMPRESSED_TEXTURE_FORMATS,
-    context_flags = c.GL_CONTEXT_FLAGS,
-    cull_face = c.GL_CULL_FACE,
-    current_program = c.GL_CURRENT_PROGRAM,
-    depth_clear_value = c.GL_DEPTH_CLEAR_VALUE,
-    depth_func = c.GL_DEPTH_FUNC,
-    depth_range = c.GL_DEPTH_RANGE,
-    depth_test = c.GL_DEPTH_TEST,
-    depth_writemask = c.GL_DEPTH_WRITEMASK,
-    dither = c.GL_DITHER,
-    doublebuffer = c.GL_DOUBLEBUFFER,
-    draw_buffer = c.GL_DRAW_BUFFER,
-    draw_buffer0 = c.GL_DRAW_BUFFER0,
-    draw_buffer1 = c.GL_DRAW_BUFFER1,
-    draw_buffer2 = c.GL_DRAW_BUFFER2,
-    draw_buffer3 = c.GL_DRAW_BUFFER3,
-    draw_buffer4 = c.GL_DRAW_BUFFER4,
-    draw_buffer5 = c.GL_DRAW_BUFFER5,
-    draw_buffer6 = c.GL_DRAW_BUFFER6,
-    draw_buffer7 = c.GL_DRAW_BUFFER7,
-    draw_buffer8 = c.GL_DRAW_BUFFER8,
-    draw_buffer9 = c.GL_DRAW_BUFFER9,
-    draw_buffer10 = c.GL_DRAW_BUFFER10,
-    draw_buffer11 = c.GL_DRAW_BUFFER11,
-    draw_buffer12 = c.GL_DRAW_BUFFER12,
-    draw_buffer13 = c.GL_DRAW_BUFFER13,
-    draw_buffer14 = c.GL_DRAW_BUFFER14,
-    draw_buffer15 = c.GL_DRAW_BUFFER15,
-    draw_framebuffer_binding = c.GL_DRAW_FRAMEBUFFER_BINDING,
-    element_array_buffer_binding = c.GL_ELEMENT_ARRAY_BUFFER_BINDING,
-    fragment_shader_derivative_hint = c.GL_FRAGMENT_SHADER_DERIVATIVE_HINT,
-    line_smooth = c.GL_LINE_SMOOTH,
-    line_smooth_hint = c.GL_LINE_SMOOTH_HINT,
-    line_width = c.GL_LINE_WIDTH,
-    logic_op_mode = c.GL_LOGIC_OP_MODE,
-    major_version = c.GL_MAJOR_VERSION,
-    max_3d_texture_size = c.GL_MAX_3D_TEXTURE_SIZE,
-    max_array_texture_layers = c.GL_MAX_ARRAY_TEXTURE_LAYERS,
-    max_clip_distances = c.GL_MAX_CLIP_DISTANCES,
-    max_color_texture_samples = c.GL_MAX_COLOR_TEXTURE_SAMPLES,
-    max_combined_fragment_uniform_components = c.GL_MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS,
-    max_combined_geometry_uniform_components = c.GL_MAX_COMBINED_GEOMETRY_UNIFORM_COMPONENTS,
-    max_combined_texture_image_units = c.GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS,
-    max_combined_uniform_blocks = c.GL_MAX_COMBINED_UNIFORM_BLOCKS,
-    max_combined_vertex_uniform_components = c.GL_MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS,
-    max_cube_map_texture_size = c.GL_MAX_CUBE_MAP_TEXTURE_SIZE,
-    max_depth_texture_samples = c.GL_MAX_DEPTH_TEXTURE_SAMPLES,
-    max_draw_buffers = c.GL_MAX_DRAW_BUFFERS,
-    max_dual_source_draw_buffers = c.GL_MAX_DUAL_SOURCE_DRAW_BUFFERS,
-    max_elements_indices = c.GL_MAX_ELEMENTS_INDICES,
-    max_elements_vertices = c.GL_MAX_ELEMENTS_VERTICES,
-    max_fragment_input_components = c.GL_MAX_FRAGMENT_INPUT_COMPONENTS,
-    max_fragment_uniform_blocks = c.GL_MAX_FRAGMENT_UNIFORM_BLOCKS,
-    max_fragment_uniform_components = c.GL_MAX_FRAGMENT_UNIFORM_COMPONENTS,
-    max_geometry_input_components = c.GL_MAX_GEOMETRY_INPUT_COMPONENTS,
-    max_geometry_output_components = c.GL_MAX_GEOMETRY_OUTPUT_COMPONENTS,
-    max_geometry_texture_image_units = c.GL_MAX_GEOMETRY_TEXTURE_IMAGE_UNITS,
-    max_geometry_uniform_blocks = c.GL_MAX_GEOMETRY_UNIFORM_BLOCKS,
-    max_geometry_uniform_components = c.GL_MAX_GEOMETRY_UNIFORM_COMPONENTS,
-    max_integer_samples = c.GL_MAX_INTEGER_SAMPLES,
-    max_program_texel_offset = c.GL_MAX_PROGRAM_TEXEL_OFFSET,
-    max_rectangle_texture_size = c.GL_MAX_RECTANGLE_TEXTURE_SIZE,
-    max_renderbuffer_size = c.GL_MAX_RENDERBUFFER_SIZE,
-    max_sample_mask_words = c.GL_MAX_SAMPLE_MASK_WORDS,
-    max_server_wait_timeout = c.GL_MAX_SERVER_WAIT_TIMEOUT,
-    max_texture_buffer_size = c.GL_MAX_TEXTURE_BUFFER_SIZE,
-    max_texture_image_units = c.GL_MAX_TEXTURE_IMAGE_UNITS,
-    max_texture_lod_bias = c.GL_MAX_TEXTURE_LOD_BIAS,
-    max_texture_size = c.GL_MAX_TEXTURE_SIZE,
-    max_uniform_block_size = c.GL_MAX_UNIFORM_BLOCK_SIZE,
-    max_uniform_buffer_bindings = c.GL_MAX_UNIFORM_BUFFER_BINDINGS,
-    max_varying_components = c.GL_MAX_VARYING_COMPONENTS,
-    // max_varying_floats = c.GL_MAX_VARYING_FLOATS,
-    max_vertex_attribs = c.GL_MAX_VERTEX_ATTRIBS,
-    max_vertex_output_components = c.GL_MAX_VERTEX_OUTPUT_COMPONENTS,
-    max_vertex_texture_image_units = c.GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS,
-    max_vertex_uniform_blocks = c.GL_MAX_VERTEX_UNIFORM_BLOCKS,
-    max_vertex_uniform_components = c.GL_MAX_VERTEX_UNIFORM_COMPONENTS,
-    max_viewport_dims = c.GL_MAX_VIEWPORT_DIMS,
-    min_program_texel_offset = c.GL_MIN_PROGRAM_TEXEL_OFFSET,
-    minor_version = c.GL_MINOR_VERSION,
-    num_compressed_texture_formats = c.GL_NUM_COMPRESSED_TEXTURE_FORMATS,
-    num_extensions = c.GL_NUM_EXTENSIONS,
-    pack_alignment = c.GL_PACK_ALIGNMENT,
-    pack_image_height = c.GL_PACK_IMAGE_HEIGHT,
-    pack_lsb_first = c.GL_PACK_LSB_FIRST,
-    pack_row_length = c.GL_PACK_ROW_LENGTH,
-    pack_skip_images = c.GL_PACK_SKIP_IMAGES,
-    pack_skip_pixels = c.GL_PACK_SKIP_PIXELS,
-    pack_skip_rows = c.GL_PACK_SKIP_ROWS,
-    pack_swap_bytes = c.GL_PACK_SWAP_BYTES,
-    pixel_pack_buffer_binding = c.GL_PIXEL_PACK_BUFFER_BINDING,
-    pixel_unpack_buffer_binding = c.GL_PIXEL_UNPACK_BUFFER_BINDING,
-    point_fade_threshold_size = c.GL_POINT_FADE_THRESHOLD_SIZE,
-    point_size = c.GL_POINT_SIZE,
-    point_size_granularity = c.GL_POINT_SIZE_GRANULARITY,
-    point_size_range = c.GL_POINT_SIZE_RANGE,
-    polygon_mode = c.GL_POLYGON_MODE,
-    polygon_offset_factor = c.GL_POLYGON_OFFSET_FACTOR,
-    polygon_offset_fill = c.GL_POLYGON_OFFSET_FILL,
-    polygon_offset_line = c.GL_POLYGON_OFFSET_LINE,
-    polygon_offset_point = c.GL_POLYGON_OFFSET_POINT,
-    polygon_offset_units = c.GL_POLYGON_OFFSET_UNITS,
-    polygon_smooth = c.GL_POLYGON_SMOOTH,
-    polygon_smooth_hint = c.GL_POLYGON_SMOOTH_HINT,
-    primitive_restart_index = c.GL_PRIMITIVE_RESTART_INDEX,
-    program_point_size = c.GL_PROGRAM_POINT_SIZE,
-    provoking_vertex = c.GL_PROVOKING_VERTEX,
-    read_buffer = c.GL_READ_BUFFER,
-    read_framebuffer_binding = c.GL_READ_FRAMEBUFFER_BINDING,
-    renderbuffer_binding = c.GL_RENDERBUFFER_BINDING,
-    sample_buffers = c.GL_SAMPLE_BUFFERS,
-    sample_coverage_invert = c.GL_SAMPLE_COVERAGE_INVERT,
-    sample_coverage_value = c.GL_SAMPLE_COVERAGE_VALUE,
-    sampler_binding = c.GL_SAMPLER_BINDING,
-    samples = c.GL_SAMPLES,
-    scissor_box = c.GL_SCISSOR_BOX,
-    scissor_test = c.GL_SCISSOR_TEST,
-    smooth_line_width_granularity = c.GL_SMOOTH_LINE_WIDTH_GRANULARITY,
-    smooth_line_width_range = c.GL_SMOOTH_LINE_WIDTH_RANGE,
-    stencil_back_fail = c.GL_STENCIL_BACK_FAIL,
-    stencil_back_func = c.GL_STENCIL_BACK_FUNC,
-    stencil_back_pass_depth_fail = c.GL_STENCIL_BACK_PASS_DEPTH_FAIL,
-    stencil_back_pass_depth_pass = c.GL_STENCIL_BACK_PASS_DEPTH_PASS,
-    stencil_back_ref = c.GL_STENCIL_BACK_REF,
-    stencil_back_value_mask = c.GL_STENCIL_BACK_VALUE_MASK,
-    stencil_back_writemask = c.GL_STENCIL_BACK_WRITEMASK,
-    stencil_clear_value = c.GL_STENCIL_CLEAR_VALUE,
-    stencil_fail = c.GL_STENCIL_FAIL,
-    stencil_func = c.GL_STENCIL_FUNC,
-    stencil_pass_depth_fail = c.GL_STENCIL_PASS_DEPTH_FAIL,
-    stencil_pass_depth_pass = c.GL_STENCIL_PASS_DEPTH_PASS,
-    stencil_ref = c.GL_STENCIL_REF,
-    stencil_test = c.GL_STENCIL_TEST,
-    stencil_value_mask = c.GL_STENCIL_VALUE_MASK,
-    stencil_writemask = c.GL_STENCIL_WRITEMASK,
-    stereo = c.GL_STEREO,
-    subpixel_bits = c.GL_SUBPIXEL_BITS,
-    texture_binding_1d = c.GL_TEXTURE_BINDING_1D,
-    texture_binding_1d_array = c.GL_TEXTURE_BINDING_1D_ARRAY,
-    texture_binding_2d = c.GL_TEXTURE_BINDING_2D,
-    texture_binding_2d_array = c.GL_TEXTURE_BINDING_2D_ARRAY,
-    texture_binding_2d_multisample = c.GL_TEXTURE_BINDING_2D_MULTISAMPLE,
-    texture_binding_2d_multisample_array = c.GL_TEXTURE_BINDING_2D_MULTISAMPLE_ARRAY,
-    texture_binding_3d = c.GL_TEXTURE_BINDING_3D,
-    texture_binding_buffer = c.GL_TEXTURE_BINDING_BUFFER,
-    texture_binding_cube_map = c.GL_TEXTURE_BINDING_CUBE_MAP,
-    texture_binding_rectangle = c.GL_TEXTURE_BINDING_RECTANGLE,
-    texture_compression_hint = c.GL_TEXTURE_COMPRESSION_HINT,
-    timestamp = c.GL_TIMESTAMP,
-    transform_feedback_buffer_binding = c.GL_TRANSFORM_FEEDBACK_BUFFER_BINDING,
-    transform_feedback_buffer_size = c.GL_TRANSFORM_FEEDBACK_BUFFER_SIZE,
-    transform_feedback_buffer_start = c.GL_TRANSFORM_FEEDBACK_BUFFER_START,
-    uniform_buffer_binding = c.GL_UNIFORM_BUFFER_BINDING,
-    uniform_buffer_offset_alignment = c.GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT,
-    uniform_buffer_size = c.GL_UNIFORM_BUFFER_SIZE,
-    uniform_buffer_start = c.GL_UNIFORM_BUFFER_START,
-    unpack_alignment = c.GL_UNPACK_ALIGNMENT,
-    unpack_image_height = c.GL_UNPACK_IMAGE_HEIGHT,
-    unpack_lsb_first = c.GL_UNPACK_LSB_FIRST,
-    unpack_row_length = c.GL_UNPACK_ROW_LENGTH,
-    unpack_skip_images = c.GL_UNPACK_SKIP_IMAGES,
-    unpack_skip_pixels = c.GL_UNPACK_SKIP_PIXELS,
-    unpack_skip_rows = c.GL_UNPACK_SKIP_ROWS,
-    unpack_swap_bytes = c.GL_UNPACK_SWAP_BYTES,
-    viewport = c.GL_VIEWPORT,
+    active_texture = binding.ACTIVE_TEXTURE,
+    aliased_line_width_range = binding.ALIASED_LINE_WIDTH_RANGE,
+    array_buffer_binding = binding.ARRAY_BUFFER_BINDING,
+    blend = binding.BLEND,
+    blend_color = binding.BLEND_COLOR,
+    blend_dst_alpha = binding.BLEND_DST_ALPHA,
+    blend_dst_rgb = binding.BLEND_DST_RGB,
+    blend_equation_alpha = binding.BLEND_EQUATION_ALPHA,
+    blend_equation_rgb = binding.BLEND_EQUATION_RGB,
+    blend_src_alpha = binding.BLEND_SRC_ALPHA,
+    blend_src_rgb = binding.BLEND_SRC_RGB,
+    color_clear_value = binding.COLOR_CLEAR_VALUE,
+    color_logic_op = binding.COLOR_LOGIC_OP,
+    color_writemask = binding.COLOR_WRITEMASK,
+    compressed_texture_formats = binding.COMPRESSED_TEXTURE_FORMATS,
+    context_flags = binding.CONTEXT_FLAGS,
+    cull_face = binding.CULL_FACE,
+    current_program = binding.CURRENT_PROGRAM,
+    depth_clear_value = binding.DEPTH_CLEAR_VALUE,
+    depth_func = binding.DEPTH_FUNC,
+    depth_range = binding.DEPTH_RANGE,
+    depth_test = binding.DEPTH_TEST,
+    depth_writemask = binding.DEPTH_WRITEMASK,
+    dither = binding.DITHER,
+    doublebuffer = binding.DOUBLEBUFFER,
+    draw_buffer = binding.DRAW_BUFFER,
+    draw_buffer0 = binding.DRAW_BUFFER0,
+    draw_buffer1 = binding.DRAW_BUFFER1,
+    draw_buffer2 = binding.DRAW_BUFFER2,
+    draw_buffer3 = binding.DRAW_BUFFER3,
+    draw_buffer4 = binding.DRAW_BUFFER4,
+    draw_buffer5 = binding.DRAW_BUFFER5,
+    draw_buffer6 = binding.DRAW_BUFFER6,
+    draw_buffer7 = binding.DRAW_BUFFER7,
+    draw_buffer8 = binding.DRAW_BUFFER8,
+    draw_buffer9 = binding.DRAW_BUFFER9,
+    draw_buffer10 = binding.DRAW_BUFFER10,
+    draw_buffer11 = binding.DRAW_BUFFER11,
+    draw_buffer12 = binding.DRAW_BUFFER12,
+    draw_buffer13 = binding.DRAW_BUFFER13,
+    draw_buffer14 = binding.DRAW_BUFFER14,
+    draw_buffer15 = binding.DRAW_BUFFER15,
+    draw_framebuffer_binding = binding.DRAW_FRAMEBUFFER_BINDING,
+    element_array_buffer_binding = binding.ELEMENT_ARRAY_BUFFER_BINDING,
+    fragment_shader_derivative_hint = binding.FRAGMENT_SHADER_DERIVATIVE_HINT,
+    line_smooth = binding.LINE_SMOOTH,
+    line_smooth_hint = binding.LINE_SMOOTH_HINT,
+    line_width = binding.LINE_WIDTH,
+    logic_op_mode = binding.LOGIC_OP_MODE,
+    major_version = binding.MAJOR_VERSION,
+    max_3d_texture_size = binding.MAX_3D_TEXTURE_SIZE,
+    max_array_texture_layers = binding.MAX_ARRAY_TEXTURE_LAYERS,
+    max_clip_distances = binding.MAX_CLIP_DISTANCES,
+    max_color_texture_samples = binding.MAX_COLOR_TEXTURE_SAMPLES,
+    max_combined_fragment_uniform_components = binding.MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS,
+    max_combined_geometry_uniform_components = binding.MAX_COMBINED_GEOMETRY_UNIFORM_COMPONENTS,
+    max_combined_texture_image_units = binding.MAX_COMBINED_TEXTURE_IMAGE_UNITS,
+    max_combined_uniform_blocks = binding.MAX_COMBINED_UNIFORM_BLOCKS,
+    max_combined_vertex_uniform_components = binding.MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS,
+    max_cube_map_texture_size = binding.MAX_CUBE_MAP_TEXTURE_SIZE,
+    max_depth_texture_samples = binding.MAX_DEPTH_TEXTURE_SAMPLES,
+    max_draw_buffers = binding.MAX_DRAW_BUFFERS,
+    max_dual_source_draw_buffers = binding.MAX_DUAL_SOURCE_DRAW_BUFFERS,
+    max_elements_indices = binding.MAX_ELEMENTS_INDICES,
+    max_elements_vertices = binding.MAX_ELEMENTS_VERTICES,
+    max_fragment_input_components = binding.MAX_FRAGMENT_INPUT_COMPONENTS,
+    max_fragment_uniform_blocks = binding.MAX_FRAGMENT_UNIFORM_BLOCKS,
+    max_fragment_uniform_components = binding.MAX_FRAGMENT_UNIFORM_COMPONENTS,
+    max_geometry_input_components = binding.MAX_GEOMETRY_INPUT_COMPONENTS,
+    max_geometry_output_components = binding.MAX_GEOMETRY_OUTPUT_COMPONENTS,
+    max_geometry_texture_image_units = binding.MAX_GEOMETRY_TEXTURE_IMAGE_UNITS,
+    max_geometry_uniform_blocks = binding.MAX_GEOMETRY_UNIFORM_BLOCKS,
+    max_geometry_uniform_components = binding.MAX_GEOMETRY_UNIFORM_COMPONENTS,
+    max_integer_samples = binding.MAX_INTEGER_SAMPLES,
+    max_program_texel_offset = binding.MAX_PROGRAM_TEXEL_OFFSET,
+    max_rectangle_texture_size = binding.MAX_RECTANGLE_TEXTURE_SIZE,
+    max_renderbuffer_size = binding.MAX_RENDERBUFFER_SIZE,
+    max_sample_mask_words = binding.MAX_SAMPLE_MASK_WORDS,
+    max_server_wait_timeout = binding.MAX_SERVER_WAIT_TIMEOUT,
+    max_texture_buffer_size = binding.MAX_TEXTURE_BUFFER_SIZE,
+    max_texture_image_units = binding.MAX_TEXTURE_IMAGE_UNITS,
+    max_texture_lod_bias = binding.MAX_TEXTURE_LOD_BIAS,
+    max_texture_size = binding.MAX_TEXTURE_SIZE,
+    max_uniform_block_size = binding.MAX_UNIFORM_BLOCK_SIZE,
+    max_uniform_buffer_bindings = binding.MAX_UNIFORM_BUFFER_BINDINGS,
+    max_varying_components = binding.MAX_VARYING_COMPONENTS,
+    // max_varying_floats = binding.MAX_VARYING_FLOATS,
+    max_vertex_attribs = binding.MAX_VERTEX_ATTRIBS,
+    max_vertex_output_components = binding.MAX_VERTEX_OUTPUT_COMPONENTS,
+    max_vertex_texture_image_units = binding.MAX_VERTEX_TEXTURE_IMAGE_UNITS,
+    max_vertex_uniform_blocks = binding.MAX_VERTEX_UNIFORM_BLOCKS,
+    max_vertex_uniform_components = binding.MAX_VERTEX_UNIFORM_COMPONENTS,
+    max_viewport_dims = binding.MAX_VIEWPORT_DIMS,
+    min_program_texel_offset = binding.MIN_PROGRAM_TEXEL_OFFSET,
+    minor_version = binding.MINOR_VERSION,
+    num_compressed_texture_formats = binding.NUM_COMPRESSED_TEXTURE_FORMATS,
+    num_extensions = binding.NUM_EXTENSIONS,
+    pack_alignment = binding.PACK_ALIGNMENT,
+    pack_image_height = binding.PACK_IMAGE_HEIGHT,
+    pack_lsb_first = binding.PACK_LSB_FIRST,
+    pack_row_length = binding.PACK_ROW_LENGTH,
+    pack_skip_images = binding.PACK_SKIP_IMAGES,
+    pack_skip_pixels = binding.PACK_SKIP_PIXELS,
+    pack_skip_rows = binding.PACK_SKIP_ROWS,
+    pack_swap_bytes = binding.PACK_SWAP_BYTES,
+    pixel_pack_buffer_binding = binding.PIXEL_PACK_BUFFER_BINDING,
+    pixel_unpack_buffer_binding = binding.PIXEL_UNPACK_BUFFER_BINDING,
+    point_fade_threshold_size = binding.POINT_FADE_THRESHOLD_SIZE,
+    point_size = binding.POINT_SIZE,
+    point_size_granularity = binding.POINT_SIZE_GRANULARITY,
+    point_size_range = binding.POINT_SIZE_RANGE,
+    polygon_mode = binding.POLYGON_MODE,
+    polygon_offset_factor = binding.POLYGON_OFFSET_FACTOR,
+    polygon_offset_fill = binding.POLYGON_OFFSET_FILL,
+    polygon_offset_line = binding.POLYGON_OFFSET_LINE,
+    polygon_offset_point = binding.POLYGON_OFFSET_POINT,
+    polygon_offset_units = binding.POLYGON_OFFSET_UNITS,
+    polygon_smooth = binding.POLYGON_SMOOTH,
+    polygon_smooth_hint = binding.POLYGON_SMOOTH_HINT,
+    primitive_restart_index = binding.PRIMITIVE_RESTART_INDEX,
+    program_point_size = binding.PROGRAM_POINT_SIZE,
+    provoking_vertex = binding.PROVOKING_VERTEX,
+    read_buffer = binding.READ_BUFFER,
+    read_framebuffer_binding = binding.READ_FRAMEBUFFER_BINDING,
+    renderbuffer_binding = binding.RENDERBUFFER_BINDING,
+    sample_buffers = binding.SAMPLE_BUFFERS,
+    sample_coverage_invert = binding.SAMPLE_COVERAGE_INVERT,
+    sample_coverage_value = binding.SAMPLE_COVERAGE_VALUE,
+    sampler_binding = binding.SAMPLER_BINDING,
+    samples = binding.SAMPLES,
+    scissor_box = binding.SCISSOR_BOX,
+    scissor_test = binding.SCISSOR_TEST,
+    smooth_line_width_granularity = binding.SMOOTH_LINE_WIDTH_GRANULARITY,
+    smooth_line_width_range = binding.SMOOTH_LINE_WIDTH_RANGE,
+    stencil_back_fail = binding.STENCIL_BACK_FAIL,
+    stencil_back_func = binding.STENCIL_BACK_FUNC,
+    stencil_back_pass_depth_fail = binding.STENCIL_BACK_PASS_DEPTH_FAIL,
+    stencil_back_pass_depth_pass = binding.STENCIL_BACK_PASS_DEPTH_PASS,
+    stencil_back_ref = binding.STENCIL_BACK_REF,
+    stencil_back_value_mask = binding.STENCIL_BACK_VALUE_MASK,
+    stencil_back_writemask = binding.STENCIL_BACK_WRITEMASK,
+    stencil_clear_value = binding.STENCIL_CLEAR_VALUE,
+    stencil_fail = binding.STENCIL_FAIL,
+    stencil_func = binding.STENCIL_FUNC,
+    stencil_pass_depth_fail = binding.STENCIL_PASS_DEPTH_FAIL,
+    stencil_pass_depth_pass = binding.STENCIL_PASS_DEPTH_PASS,
+    stencil_ref = binding.STENCIL_REF,
+    stencil_test = binding.STENCIL_TEST,
+    stencil_value_mask = binding.STENCIL_VALUE_MASK,
+    stencil_writemask = binding.STENCIL_WRITEMASK,
+    stereo = binding.STEREO,
+    subpixel_bits = binding.SUBPIXEL_BITS,
+    texture_binding_1d = binding.TEXTURE_BINDING_1D,
+    texture_binding_1d_array = binding.TEXTURE_BINDING_1D_ARRAY,
+    texture_binding_2d = binding.TEXTURE_BINDING_2D,
+    texture_binding_2d_array = binding.TEXTURE_BINDING_2D_ARRAY,
+    texture_binding_2d_multisample = binding.TEXTURE_BINDING_2D_MULTISAMPLE,
+    texture_binding_2d_multisample_array = binding.TEXTURE_BINDING_2D_MULTISAMPLE_ARRAY,
+    texture_binding_3d = binding.TEXTURE_BINDING_3D,
+    texture_binding_buffer = binding.TEXTURE_BINDING_BUFFER,
+    texture_binding_cube_map = binding.TEXTURE_BINDING_CUBE_MAP,
+    texture_binding_rectangle = binding.TEXTURE_BINDING_RECTANGLE,
+    texture_compression_hint = binding.TEXTURE_COMPRESSION_HINT,
+    timestamp = binding.TIMESTAMP,
+    transform_feedback_buffer_binding = binding.TRANSFORM_FEEDBACK_BUFFER_BINDING,
+    transform_feedback_buffer_size = binding.TRANSFORM_FEEDBACK_BUFFER_SIZE,
+    transform_feedback_buffer_start = binding.TRANSFORM_FEEDBACK_BUFFER_START,
+    uniform_buffer_binding = binding.UNIFORM_BUFFER_BINDING,
+    uniform_buffer_offset_alignment = binding.UNIFORM_BUFFER_OFFSET_ALIGNMENT,
+    uniform_buffer_size = binding.UNIFORM_BUFFER_SIZE,
+    uniform_buffer_start = binding.UNIFORM_BUFFER_START,
+    unpack_alignment = binding.UNPACK_ALIGNMENT,
+    unpack_image_height = binding.UNPACK_IMAGE_HEIGHT,
+    unpack_lsb_first = binding.UNPACK_LSB_FIRST,
+    unpack_row_length = binding.UNPACK_ROW_LENGTH,
+    unpack_skip_images = binding.UNPACK_SKIP_IMAGES,
+    unpack_skip_pixels = binding.UNPACK_SKIP_PIXELS,
+    unpack_skip_rows = binding.UNPACK_SKIP_ROWS,
+    unpack_swap_bytes = binding.UNPACK_SWAP_BYTES,
+    viewport = binding.VIEWPORT,
 };
 
 pub fn getInteger(parameter: Parameter) i32 {
     var value: types.Int = undefined;
-    c.glGetIntegerv(@enumToInt(parameter), &value);
+    binding.getIntegerv(@enumToInt(parameter), &value);
     checkError();
     return value;
 }
 
 pub const StringParameter = enum(types.Enum) {
-    vendor = c.GL_VENDOR,
-    renderer = c.GL_RENDERER,
-    version = c.GL_VERSION,
-    shading_language_version = c.GL_SHADING_LANGUAGE_VERSION,
-    extensions = c.GL_EXTENSIONS,
+    vendor = binding.VENDOR,
+    renderer = binding.RENDERER,
+    version = binding.VERSION,
+    shading_language_version = binding.SHADING_LANGUAGE_VERSION,
+    extensions = binding.EXTENSIONS,
 };
 
 pub fn getStringi(parameter: StringParameter, index: u32) ?[:0]const u8 {
-    return std.mem.span(c.glGetStringi(@enumToInt(parameter), index));
+    return std.mem.span(binding.getStringi(@enumToInt(parameter), index));
 }
 pub fn getString(parameter: StringParameter) ?[:0]const u8 {
-    return std.mem.span(c.glGetString(@enumToInt(parameter)));
+    return std.mem.span(binding.getString(@enumToInt(parameter)));
 }
 
 pub fn hasExtension(extension: [:0]const u8) bool {
@@ -2195,3 +2202,8 @@ pub fn hasExtension(extension: [:0]const u8) bool {
     }
     return false;
 }
+
+pub fn loadExtensions(load_ctx: anytype, get_proc_address: fn(@TypeOf(load_ctx), [:0]const u8) ?*const anyopaque) !void {
+    return binding.load( load_ctx, get_proc_address );
+}
+
