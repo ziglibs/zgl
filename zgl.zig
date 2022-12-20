@@ -230,6 +230,56 @@ pub fn clear(mask: struct { color: bool = false, depth: bool = false, stencil: b
     checkError();
 }
 
+pub const ColorBuffer = enum(types.Enum) {
+    none = binding.NONE,
+    front = binding.FRONT,
+    back = binding.BACK,
+    left = binding.LEFT,
+    right = binding.RIGHT,
+    front_left = binding.FRONT_LEFT,
+    front_right = binding.FRONT_RIGHT,
+    back_left = binding.BACK_LEFT,
+    back_right = binding.BACK_RIGHT,
+    color0 = binding.COLOR_ATTACHMENT0,
+    color1 = binding.COLOR_ATTACHMENT1,
+    color2 = binding.COLOR_ATTACHMENT2,
+    color3 = binding.COLOR_ATTACHMENT3,
+    color4 = binding.COLOR_ATTACHMENT4,
+    color5 = binding.COLOR_ATTACHMENT5,
+    color6 = binding.COLOR_ATTACHMENT6,
+    color7 = binding.COLOR_ATTACHMENT7,
+    color8 = binding.COLOR_ATTACHMENT8,
+    color9 = binding.COLOR_ATTACHMENT9,
+};
+
+pub fn drawBuffer(buf: ColorBuffer) void {
+    binding.drawBuffer(@enumToInt(buf));
+}
+
+pub fn readBuffer(buf: ColorBuffer) void {
+    binding.readBuffer(@enumToInt(buf));
+}
+
+pub fn readPixels(
+    x: usize,
+    y: usize,
+    width: usize,
+    height: usize,
+    format: PixelFormat,
+    pixel_type: PixelType,
+    data: *anyopaque
+) void {
+    binding.readPixels(
+        @intCast(types.Int, x),
+        @intCast(types.Int, y),
+        @intCast(types.SizeI, width),
+        @intCast(types.SizeI, height),
+        @enumToInt(format),
+        @enumToInt(pixel_type),
+        data
+    );
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // Vertex Arrays
 
@@ -1544,6 +1594,23 @@ pub fn textureParameter(texture: types.Texture, comptime parameter: TextureParam
 }
 
 pub const TextureInternalFormat = enum(types.Enum) {
+    red = binding.RED,
+    rg = binding.RG,
+    rgb = binding.RGB,
+    bgr = binding.BGR,
+    rgba = binding.RGBA,
+    bgra = binding.BGRA,
+    depth_component = binding.DEPTH_COMPONENT,
+    stencil_index = binding.STENCIL_INDEX,
+    //luminance = binding.LUMINANCE,
+
+    red_integer = binding.RED_INTEGER,
+    rg_integer = binding.RG_INTEGER,
+    rgb_integer = binding.RGB_INTEGER,
+    bgr_integer = binding.BGR_INTEGER,
+    rgba_integer = binding.RGBA_INTEGER,
+    bgra_integer = binding.BGRA_INTEGER,
+
     r8 = binding.R8,
     r8_snorm = binding.R8_SNORM,
     r16 = binding.R16,
@@ -1646,6 +1713,8 @@ pub fn textureStorage3D(
 
 pub const PixelFormat = enum(types.Enum) {
     red = binding.RED,
+    green = binding.GREEN,
+    blue = binding.BLUE,
     rg = binding.RG,
     rgb = binding.RGB,
     bgr = binding.BGR,
@@ -1653,6 +1722,7 @@ pub const PixelFormat = enum(types.Enum) {
     bgra = binding.BGRA,
     depth_component = binding.DEPTH_COMPONENT,
     stencil_index = binding.STENCIL_INDEX,
+    depth_stencil = binding.DEPTH_STENCIL,
     //luminance = binding.LUMINANCE,
 
     red_integer = binding.RED_INTEGER,
@@ -1688,7 +1758,7 @@ pub const PixelType = enum(types.Enum) {
 pub fn textureImage2D(
     texture: TextureTarget,
     level: usize,
-    pixel_internal_format: PixelFormat,
+    pixel_internal_format: TextureInternalFormat,
     width: usize,
     height: usize,
     pixel_format: PixelFormat,
@@ -1878,28 +1948,15 @@ pub fn scissor(x: i32, y: i32, width: usize, height: usize) void {
     checkError();
 }
 
-pub const FramebufferTarget = enum(types.Enum) {
-    buffer = binding.FRAMEBUFFER,
+pub const RenderbufferTarget = enum(types.Enum) {
+    buffer = binding.RENDERBUFFER,
 };
 
-pub const Framebuffer = enum(types.UInt) {
-    invalid = 0,
-    _,
-
-    pub const gen = genFramebuffer;
-    pub const create = createFramebuffer;
-    pub const delete = deleteFramebuffer;
-    pub const bind = bindFrameBuffer;
-    pub const texture = framebufferTexture;
-    pub const texture2D = framebufferTexture2D;
-    pub const checkStatus = checkFramebufferStatus;
-};
-
-pub fn createFramebuffer() Framebuffer {
-    var fb_name: types.UInt = undefined;
-    binding.createFramebuffers(1, &fb_name);
+pub fn createRenderbuffer() types.Renderbuffer {
+    var rb_name: types.UInt = undefined;
+    binding.createRenderbuffers(1, &rb_name);
     checkError();
-    const framebuffer = @intToEnum(Framebuffer, fb_name);
+    const framebuffer = @intToEnum(types.Renderbuffer, rb_name);
     if (framebuffer == .invalid) {
         checkError();
         unreachable;
@@ -1907,21 +1964,85 @@ pub fn createFramebuffer() Framebuffer {
     return framebuffer;
 }
 
-pub fn genFramebuffer() Framebuffer {
-    var fb_name: types.UInt = undefined;
-    binding.genFramebuffers(1, &fb_name);
+pub fn genRenderbuffer() types.Renderbuffer {
+    var rb_name: types.UInt = undefined;
+    binding.genRenderbuffers(1, &rb_name);
     checkError();
-    const framebuffer = @intToEnum(Framebuffer, fb_name);
+    const framebuffer = @intToEnum(types.Renderbuffer, rb_name);
     if (framebuffer == .invalid) unreachable;
     return framebuffer;
 }
 
-pub fn deleteFramebuffer(buf: Framebuffer) void {
+pub fn deleteRenderbuffer(buf: types.Renderbuffer) void {
+    var rb_name = @enumToInt(buf);
+    binding.deleteRenderbuffers(1, &rb_name);
+}
+
+pub fn bindRenderbuffer(buf: types.Renderbuffer, target: RenderbufferTarget) void {
+    binding.bindRenderbuffer(@enumToInt(target), @enumToInt(buf));
+    checkError();
+}
+
+pub fn renderbufferStorage(
+    buf: types.Renderbuffer,
+    target: RenderbufferTarget,
+    pixel_internal_format: PixelFormat,
+    width: usize,
+    height: usize
+) void {
+    buf.bind(.buffer);
+    binding.renderbufferStorage(@enumToInt(target), @enumToInt(pixel_internal_format), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
+    checkError();
+}
+
+pub fn renderbufferStorageMultisample(
+    buf: types.Renderbuffer,
+    target: RenderbufferTarget,
+    samples: usize,
+    pixel_internal_format: PixelFormat,
+    width: usize,
+    height: usize
+) void {
+    buf.bind(.buffer);
+    binding.renderbufferStorageMultisample(@enumToInt(target), samples, @enumToInt(pixel_internal_format), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
+    checkError();
+}
+
+
+
+pub const FramebufferTarget = enum(types.Enum) {
+    buffer = binding.FRAMEBUFFER,
+    draw_buffer = binding.DRAW_FRAMEBUFFER,
+    read_buffer = binding.READ_FRAMEBUFFER,
+};
+
+pub fn createFramebuffer() types.Framebuffer {
+    var fb_name: types.UInt = undefined;
+    binding.createFramebuffers(1, &fb_name);
+    checkError();
+    const framebuffer = @intToEnum(types.Framebuffer, fb_name);
+    if (framebuffer == .invalid) {
+        checkError();
+        unreachable;
+    }
+    return framebuffer;
+}
+
+pub fn genFramebuffer() types.Framebuffer {
+    var fb_name: types.UInt = undefined;
+    binding.genFramebuffers(1, &fb_name);
+    checkError();
+    const framebuffer = @intToEnum(types.Framebuffer, fb_name);
+    if (framebuffer == .invalid) unreachable;
+    return framebuffer;
+}
+
+pub fn deleteFramebuffer(buf: types.Framebuffer) void {
     var fb_name = @enumToInt(buf);
     binding.deleteFramebuffers(1, &fb_name);
 }
 
-pub fn bindFrameBuffer(buf: Framebuffer, target: FramebufferTarget) void {
+pub fn bindFramebuffer(buf: types.Framebuffer, target: FramebufferTarget) void {
     binding.bindFramebuffer(@enumToInt(target), @enumToInt(buf));
     checkError();
 }
@@ -1941,7 +2062,7 @@ pub const FramebufferAttachment = enum(types.Enum) {
     max_color = binding.MAX_COLOR_ATTACHMENTS,
 };
 
-pub fn framebufferTexture(buffer: Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, texture: types.Texture, level: i32) void {
+pub fn framebufferTexture(buffer: types.Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, texture: types.Texture, level: i32) void {
     buffer.bind(.buffer);
     binding.framebufferTexture(@enumToInt(target), @enumToInt(attachment), @intCast(types.UInt, @enumToInt(texture)), @intCast(types.Int, level));
     checkError();
@@ -1965,9 +2086,15 @@ pub const FramebufferTextureTarget = enum(types.Enum) {
     @"2d_multisample_array" = binding.TEXTURE_2D_MULTISAMPLE_ARRAY,
 };
 
-pub fn framebufferTexture2D(buffer: Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, textarget: FramebufferTextureTarget, texture: types.Texture, level: i32) void {
+pub fn framebufferTexture2D(buffer: types.Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, textarget: FramebufferTextureTarget, texture: types.Texture, level: i32) void {
     buffer.bind(.buffer);
     binding.framebufferTexture2D(@enumToInt(target), @enumToInt(attachment), @enumToInt(textarget), @intCast(types.UInt, @enumToInt(texture)), @intCast(types.Int, level));
+    checkError();
+}
+
+pub fn framebufferRenderbuffer(buffer: types.Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, rbtarget: RenderbufferTarget, renderbuffer: types.Renderbuffer) void {
+    buffer.bind(.buffer);
+    binding.framebufferRenderbuffer(@enumToInt(target), @enumToInt(attachment), @enumToInt(rbtarget), @intCast(types.UInt, @enumToInt(renderbuffer)));
     checkError();
 }
 
@@ -1982,6 +2109,34 @@ pub fn checkFramebufferStatus(target: FramebufferTarget) FramebufferStatus {
 
 pub fn drawBuffers(bufs: []const FramebufferAttachment) void {
     binding.drawBuffers(cs2gl(bufs.len), @ptrCast([*]const types.UInt, bufs.ptr));
+}
+
+pub fn blitFramebuffer(
+    srcX0: usize,
+    srcY0: usize,
+    srcX1: usize,
+    srcY1: usize,
+    destX0: usize,
+    destY0: usize,
+    destX1: usize,
+    destY1: usize,
+    mask: struct { color: bool = false, depth: bool = false, stencil: bool = false },
+    filter: enum(types.UInt) { nearest = binding.NEAREST, linear = binding.LINEAR }
+) void {
+    binding.blitFramebuffer(
+        @intCast(types.Int, srcX0),
+        @intCast(types.Int, srcY0),
+        @intCast(types.Int, srcX1),
+        @intCast(types.Int, srcY1),
+        @intCast(types.Int, destX0),
+        @intCast(types.Int, destY0),
+        @intCast(types.Int, destX1),
+        @intCast(types.Int, destY1),
+        @as(types.BitField, if (mask.color) binding.COLOR_BUFFER_BIT else 0) |
+        @as(types.BitField, if (mask.depth) binding.DEPTH_BUFFER_BIT else 0) |
+        @as(types.BitField, if (mask.stencil) binding.STENCIL_BUFFER_BIT else 0),
+        @enumToInt(filter)
+    );
 }
 
 ///////////////////////////////////////////////////////////////////////////////

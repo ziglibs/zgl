@@ -124,3 +124,30 @@ pub const Texture = enum(UInt) {
 
     pub const generateMipmap = gl.generateTextureMipmap;
 };
+
+pub const Renderbuffer = enum(UInt) {
+    invalid = 0,
+    _,
+
+    pub const gen = gl.genRenderbuffer;
+    pub const create = gl.createRenderbuffer;
+    pub const delete = gl.deleteRenderbuffer;
+    pub const bind = gl.bindRenderbuffer;
+    pub const storage = gl.renderbufferStorage;
+    pub const storageMultisample = gl.renderbufferStorageMultisample;
+};
+
+pub const Framebuffer = enum(UInt) {
+    invalid = 0,
+    _,
+
+    pub const gen = gl.genFramebuffer;
+    pub const create = gl.createFramebuffer;
+    pub const delete = gl.deleteFramebuffer;
+    pub const bind = gl.bindFramebuffer;
+    pub const texture = gl.framebufferTexture;
+    pub const texture2D = gl.framebufferTexture2D;
+    pub const renderbuffer = gl.framebufferRenderbuffer;
+    pub const checkStatus = gl.checkFramebufferStatus;
+};
+
