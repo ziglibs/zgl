@@ -2358,7 +2358,7 @@ pub fn hasExtension(extension: [:0]const u8) bool {
     return false;
 }
 
-pub fn loadExtensions(load_ctx: anytype, get_proc_address: fn(@TypeOf(load_ctx), [:0]const u8) ?*const anyopaque) !void {
+pub fn loadExtensions(load_ctx: anytype, get_proc_address: fn(@TypeOf(load_ctx), [:0]const u8) ?binding.FunctionPointer) void {
     return binding.load( load_ctx, get_proc_address );
 }
 
