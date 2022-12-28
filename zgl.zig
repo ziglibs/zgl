@@ -267,7 +267,7 @@ pub fn readPixels(
     height: usize,
     format: PixelFormat,
     pixel_type: PixelType,
-    data: *anyopaque
+    data: *anyopaque,
 ) void {
     binding.readPixels(
         @intCast(types.Int, x),
@@ -276,7 +276,7 @@ pub fn readPixels(
         @intCast(types.SizeI, height),
         @enumToInt(format),
         @enumToInt(pixel_type),
-        data
+        data,
     );
 }
 
@@ -1988,7 +1988,7 @@ pub fn renderbufferStorage(
     target: RenderbufferTarget,
     pixel_internal_format: PixelFormat,
     width: usize,
-    height: usize
+    height: usize,
 ) void {
     buf.bind(.buffer);
     binding.renderbufferStorage(@enumToInt(target), @enumToInt(pixel_internal_format), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
@@ -2001,14 +2001,12 @@ pub fn renderbufferStorageMultisample(
     samples: usize,
     pixel_internal_format: PixelFormat,
     width: usize,
-    height: usize
+    height: usize,
 ) void {
     buf.bind(.buffer);
     binding.renderbufferStorageMultisample(@enumToInt(target), samples, @enumToInt(pixel_internal_format), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
     checkError();
 }
-
-
 
 pub const FramebufferTarget = enum(types.Enum) {
     buffer = binding.FRAMEBUFFER,
@@ -2121,7 +2119,7 @@ pub fn blitFramebuffer(
     destX1: usize,
     destY1: usize,
     mask: struct { color: bool = false, depth: bool = false, stencil: bool = false },
-    filter: enum(types.UInt) { nearest = binding.NEAREST, linear = binding.LINEAR }
+    filter: enum(types.UInt) { nearest = binding.NEAREST, linear = binding.LINEAR },
 ) void {
     binding.blitFramebuffer(
         @intCast(types.Int, srcX0),
@@ -2133,9 +2131,9 @@ pub fn blitFramebuffer(
         @intCast(types.Int, destX1),
         @intCast(types.Int, destY1),
         @as(types.BitField, if (mask.color) binding.COLOR_BUFFER_BIT else 0) |
-        @as(types.BitField, if (mask.depth) binding.DEPTH_BUFFER_BIT else 0) |
-        @as(types.BitField, if (mask.stencil) binding.STENCIL_BUFFER_BIT else 0),
-        @enumToInt(filter)
+            @as(types.BitField, if (mask.depth) binding.DEPTH_BUFFER_BIT else 0) |
+            @as(types.BitField, if (mask.stencil) binding.STENCIL_BUFFER_BIT else 0),
+        @enumToInt(filter),
     );
 }
 
@@ -2358,7 +2356,6 @@ pub fn hasExtension(extension: [:0]const u8) bool {
     return false;
 }
 
-pub fn loadExtensions(load_ctx: anytype, get_proc_address: fn(@TypeOf(load_ctx), [:0]const u8) ?binding.FunctionPointer) !void {
-    return binding.load( load_ctx, get_proc_address );
+pub fn loadExtensions(load_ctx: anytype, get_proc_address: fn (@TypeOf(load_ctx), [:0]const u8) ?binding.FunctionPointer) !void {
+    return binding.load(load_ctx, get_proc_address);
 }
-
