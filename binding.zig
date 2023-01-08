@@ -1434,2615 +1434,2615 @@ pub const CONTEXT_RELEASE_BEHAVIOR_FLUSH = 0x82FC;
 
 
 pub fn texStorage2D(_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexStorage2D, .{_target, _levels, _internalformat, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexStorage2D, .{_target, _levels, _internalformat, _width, _height});
 }
 
 pub fn texStorage1D(_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexStorage1D, .{_target, _levels, _internalformat, _width});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexStorage1D, .{_target, _levels, _internalformat, _width});
 }
 
 pub fn drawTransformFeedbackStreamInstanced(_mode: GLenum, _id: GLuint, _stream: GLuint, _instancecount: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawTransformFeedbackStreamInstanced, .{_mode, _id, _stream, _instancecount});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawTransformFeedbackStreamInstanced, .{_mode, _id, _stream, _instancecount});
 }
 
 pub fn drawTransformFeedbackInstanced(_mode: GLenum, _id: GLuint, _instancecount: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawTransformFeedbackInstanced, .{_mode, _id, _instancecount});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawTransformFeedbackInstanced, .{_mode, _id, _instancecount});
 }
 
 pub fn texStorage3D(_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexStorage3D, .{_target, _levels, _internalformat, _width, _height, _depth});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexStorage3D, .{_target, _levels, _internalformat, _width, _height, _depth});
 }
 
 pub fn memoryBarrier(_barriers: GLbitfield) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glMemoryBarrier, .{_barriers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMemoryBarrier, .{_barriers});
 }
 
 pub fn bindImageTexture(_unit: GLuint, _texture: GLuint, _level: GLint, _layered: GLboolean, _layer: GLint, _access: GLenum, _format: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindImageTexture, .{_unit, _texture, _level, _layered, _layer, _access, _format});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindImageTexture, .{_unit, _texture, _level, _layered, _layer, _access, _format});
 }
 
 pub fn getActiveAtomicCounterBufferiv(_program: GLuint, _bufferIndex: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetActiveAtomicCounterBufferiv, .{_program, _bufferIndex, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetActiveAtomicCounterBufferiv, .{_program, _bufferIndex, _pname, _params});
 }
 
 pub fn getInternalformativ(_target: GLenum, _internalformat: GLenum, _pname: GLenum, _count: GLsizei, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetInternalformativ, .{_target, _internalformat, _pname, _count, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetInternalformativ, .{_target, _internalformat, _pname, _count, _params});
 }
 
 pub fn drawElementsInstancedBaseVertexBaseInstance(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _basevertex: GLint, _baseinstance: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawElementsInstancedBaseVertexBaseInstance, .{_mode, _count, _type, _indices, _instancecount, _basevertex, _baseinstance});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawElementsInstancedBaseVertexBaseInstance, .{_mode, _count, _type, _indices, _instancecount, _basevertex, _baseinstance});
 }
 
 pub fn drawElementsInstancedBaseInstance(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _baseinstance: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawElementsInstancedBaseInstance, .{_mode, _count, _type, _indices, _instancecount, _baseinstance});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawElementsInstancedBaseInstance, .{_mode, _count, _type, _indices, _instancecount, _baseinstance});
 }
 
 pub fn drawArraysInstancedBaseInstance(_mode: GLenum, _first: GLint, _count: GLsizei, _instancecount: GLsizei, _baseinstance: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawArraysInstancedBaseInstance, .{_mode, _first, _count, _instancecount, _baseinstance});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawArraysInstancedBaseInstance, .{_mode, _first, _count, _instancecount, _baseinstance});
 }
 
 pub fn getDoublei_v(_target: GLenum, _index: GLuint, _data: [*c]GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetDoublei_v, .{_target, _index, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetDoublei_v, .{_target, _index, _data});
 }
 
 pub fn getFloati_v(_target: GLenum, _index: GLuint, _data: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetFloati_v, .{_target, _index, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetFloati_v, .{_target, _index, _data});
 }
 
 pub fn depthRangeIndexed(_index: GLuint, _n: GLdouble, _f: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDepthRangeIndexed, .{_index, _n, _f});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDepthRangeIndexed, .{_index, _n, _f});
 }
 
 pub fn depthRangeArrayv(_first: GLuint, _count: GLsizei, _v: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDepthRangeArrayv, .{_first, _count, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDepthRangeArrayv, .{_first, _count, _v});
 }
 
 pub fn scissorIndexedv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glScissorIndexedv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glScissorIndexedv, .{_index, _v});
 }
 
 pub fn scissorIndexed(_index: GLuint, _left: GLint, _bottom: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glScissorIndexed, .{_index, _left, _bottom, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glScissorIndexed, .{_index, _left, _bottom, _width, _height});
 }
 
 pub fn scissorArrayv(_first: GLuint, _count: GLsizei, _v: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glScissorArrayv, .{_first, _count, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glScissorArrayv, .{_first, _count, _v});
 }
 
 pub fn viewportIndexedfv(_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glViewportIndexedfv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glViewportIndexedfv, .{_index, _v});
 }
 
 pub fn viewportIndexedf(_index: GLuint, _x: GLfloat, _y: GLfloat, _w: GLfloat, _h: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glViewportIndexedf, .{_index, _x, _y, _w, _h});
+    return @call(.{.modifier = .always_tail}, function_pointers.glViewportIndexedf, .{_index, _x, _y, _w, _h});
 }
 
 pub fn viewportArrayv(_first: GLuint, _count: GLsizei, _v: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glViewportArrayv, .{_first, _count, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glViewportArrayv, .{_first, _count, _v});
 }
 
 pub fn getVertexAttribLdv(_index: GLuint, _pname: GLenum, _params: [*c]GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetVertexAttribLdv, .{_index, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetVertexAttribLdv, .{_index, _pname, _params});
 }
 
 pub fn vertexAttribLPointer(_index: GLuint, _size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribLPointer, .{_index, _size, _type, _stride, _pointer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribLPointer, .{_index, _size, _type, _stride, _pointer});
 }
 
 pub fn vertexAttribL4dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribL4dv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribL4dv, .{_index, _v});
 }
 
 pub fn vertexAttribL3dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribL3dv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribL3dv, .{_index, _v});
 }
 
 pub fn vertexAttribL2dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribL2dv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribL2dv, .{_index, _v});
 }
 
 pub fn vertexAttribL1dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribL1dv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribL1dv, .{_index, _v});
 }
 
 pub fn vertexAttribL4d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribL4d, .{_index, _x, _y, _z, _w});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribL4d, .{_index, _x, _y, _z, _w});
 }
 
 pub fn vertexAttribL3d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribL3d, .{_index, _x, _y, _z});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribL3d, .{_index, _x, _y, _z});
 }
 
 pub fn vertexAttribL2d(_index: GLuint, _x: GLdouble, _y: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribL2d, .{_index, _x, _y});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribL2d, .{_index, _x, _y});
 }
 
 pub fn vertexAttribL1d(_index: GLuint, _x: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribL1d, .{_index, _x});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribL1d, .{_index, _x});
 }
 
 pub fn validateProgramPipeline(_pipeline: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glValidateProgramPipeline, .{_pipeline});
+    return @call(.{.modifier = .always_tail}, function_pointers.glValidateProgramPipeline, .{_pipeline});
 }
 
 pub fn programUniformMatrix4x3dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix4x3dv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix4x3dv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix3x4dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix3x4dv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix3x4dv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix4x2dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix4x2dv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix4x2dv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix2x4dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix2x4dv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix2x4dv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix3x2dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix3x2dv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix3x2dv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix2x3dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix2x3dv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix2x3dv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix4x3fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix4x3fv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix4x3fv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix3x4fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix3x4fv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix3x4fv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix4x2fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix4x2fv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix4x2fv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix2x4fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix2x4fv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix2x4fv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix3x2fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix3x2fv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix3x2fv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix2x3fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix2x3fv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix2x3fv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix4dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix4dv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix4dv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix3dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix3dv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix3dv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix2dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix2dv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix2dv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix4fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix4fv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix4fv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix3fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix3fv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix3fv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniformMatrix2fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniformMatrix2fv, .{_program, _location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniformMatrix2fv, .{_program, _location, _count, _transpose, _value});
 }
 
 pub fn programUniform4uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform4uiv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform4uiv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform4ui(_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint, _v3: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform4ui, .{_program, _location, _v0, _v1, _v2, _v3});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform4ui, .{_program, _location, _v0, _v1, _v2, _v3});
 }
 
 pub fn programUniform4dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform4dv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform4dv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform4d(_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble, _v2: GLdouble, _v3: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform4d, .{_program, _location, _v0, _v1, _v2, _v3});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform4d, .{_program, _location, _v0, _v1, _v2, _v3});
 }
 
 pub fn programUniform4fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform4fv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform4fv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform4f(_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat, _v3: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform4f, .{_program, _location, _v0, _v1, _v2, _v3});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform4f, .{_program, _location, _v0, _v1, _v2, _v3});
 }
 
 pub fn programUniform4iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform4iv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform4iv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform4i(_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint, _v2: GLint, _v3: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform4i, .{_program, _location, _v0, _v1, _v2, _v3});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform4i, .{_program, _location, _v0, _v1, _v2, _v3});
 }
 
 pub fn programUniform3uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform3uiv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform3uiv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform3ui(_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform3ui, .{_program, _location, _v0, _v1, _v2});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform3ui, .{_program, _location, _v0, _v1, _v2});
 }
 
 pub fn programUniform3dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform3dv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform3dv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform3d(_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble, _v2: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform3d, .{_program, _location, _v0, _v1, _v2});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform3d, .{_program, _location, _v0, _v1, _v2});
 }
 
 pub fn programUniform3fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform3fv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform3fv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform3f(_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform3f, .{_program, _location, _v0, _v1, _v2});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform3f, .{_program, _location, _v0, _v1, _v2});
 }
 
 pub fn programUniform3iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform3iv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform3iv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform3i(_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint, _v2: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform3i, .{_program, _location, _v0, _v1, _v2});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform3i, .{_program, _location, _v0, _v1, _v2});
 }
 
 pub fn useProgramStages(_pipeline: GLuint, _stages: GLbitfield, _program: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUseProgramStages, .{_pipeline, _stages, _program});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUseProgramStages, .{_pipeline, _stages, _program});
 }
 
 pub fn programParameteri(_program: GLuint, _pname: GLenum, _value: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramParameteri, .{_program, _pname, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramParameteri, .{_program, _pname, _value});
 }
 
 pub fn getShaderPrecisionFormat(_shadertype: GLenum, _precisiontype: GLenum, _range: [*c]GLint, _precision: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetShaderPrecisionFormat, .{_shadertype, _precisiontype, _range, _precision});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetShaderPrecisionFormat, .{_shadertype, _precisiontype, _range, _precision});
 }
 
 pub fn shaderBinary(_count: GLsizei, _shaders: [*c]const GLuint, _binaryFormat: GLenum, _binary: ?*const anyopaque, _length: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glShaderBinary, .{_count, _shaders, _binaryFormat, _binary, _length});
+    return @call(.{.modifier = .always_tail}, function_pointers.glShaderBinary, .{_count, _shaders, _binaryFormat, _binary, _length});
 }
 
 pub fn releaseShaderCompiler() callconv(.C) void {
-    return @call(.always_tail, function_pointers.glReleaseShaderCompiler, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glReleaseShaderCompiler, .{});
 }
 
 pub fn getQueryIndexediv(_target: GLenum, _index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetQueryIndexediv, .{_target, _index, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetQueryIndexediv, .{_target, _index, _pname, _params});
 }
 
 pub fn endQueryIndexed(_target: GLenum, _index: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glEndQueryIndexed, .{_target, _index});
+    return @call(.{.modifier = .always_tail}, function_pointers.glEndQueryIndexed, .{_target, _index});
 }
 
 pub fn beginQueryIndexed(_target: GLenum, _index: GLuint, _id: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBeginQueryIndexed, .{_target, _index, _id});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBeginQueryIndexed, .{_target, _index, _id});
 }
 
 pub fn drawTransformFeedbackStream(_mode: GLenum, _id: GLuint, _stream: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawTransformFeedbackStream, .{_mode, _id, _stream});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawTransformFeedbackStream, .{_mode, _id, _stream});
 }
 
 pub fn drawTransformFeedback(_mode: GLenum, _id: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawTransformFeedback, .{_mode, _id});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawTransformFeedback, .{_mode, _id});
 }
 
 pub fn resumeTransformFeedback() callconv(.C) void {
-    return @call(.always_tail, function_pointers.glResumeTransformFeedback, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glResumeTransformFeedback, .{});
 }
 
 pub fn pauseTransformFeedback() callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPauseTransformFeedback, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPauseTransformFeedback, .{});
 }
 
 pub fn getProgramStageiv(_program: GLuint, _shadertype: GLenum, _pname: GLenum, _values: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetProgramStageiv, .{_program, _shadertype, _pname, _values});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramStageiv, .{_program, _shadertype, _pname, _values});
 }
 
 pub fn getUniformSubroutineuiv(_shadertype: GLenum, _location: GLint, _params: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetUniformSubroutineuiv, .{_shadertype, _location, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetUniformSubroutineuiv, .{_shadertype, _location, _params});
 }
 
 pub fn uniformSubroutinesuiv(_shadertype: GLenum, _count: GLsizei, _indices: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformSubroutinesuiv, .{_shadertype, _count, _indices});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformSubroutinesuiv, .{_shadertype, _count, _indices});
 }
 
 pub fn getActiveSubroutineName(_program: GLuint, _shadertype: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetActiveSubroutineName, .{_program, _shadertype, _index, _bufSize, _length, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetActiveSubroutineName, .{_program, _shadertype, _index, _bufSize, _length, _name});
 }
 
 pub fn cullFace(_mode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCullFace, .{_mode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCullFace, .{_mode});
 }
 
 pub fn frontFace(_mode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFrontFace, .{_mode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFrontFace, .{_mode});
 }
 
 pub fn hint(_target: GLenum, _mode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glHint, .{_target, _mode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glHint, .{_target, _mode});
 }
 
 pub fn lineWidth(_width: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glLineWidth, .{_width});
+    return @call(.{.modifier = .always_tail}, function_pointers.glLineWidth, .{_width});
 }
 
 pub fn pointSize(_size: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPointSize, .{_size});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPointSize, .{_size});
 }
 
 pub fn polygonMode(_face: GLenum, _mode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPolygonMode, .{_face, _mode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPolygonMode, .{_face, _mode});
 }
 
 pub fn scissor(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glScissor, .{_x, _y, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glScissor, .{_x, _y, _width, _height});
 }
 
 pub fn texParameterf(_target: GLenum, _pname: GLenum, _param: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexParameterf, .{_target, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexParameterf, .{_target, _pname, _param});
 }
 
 pub fn texParameterfv(_target: GLenum, _pname: GLenum, _params: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexParameterfv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexParameterfv, .{_target, _pname, _params});
 }
 
 pub fn texParameteri(_target: GLenum, _pname: GLenum, _param: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexParameteri, .{_target, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexParameteri, .{_target, _pname, _param});
 }
 
 pub fn texParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexParameteriv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexParameteriv, .{_target, _pname, _params});
 }
 
 pub fn texImage1D(_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexImage1D, .{_target, _level, _internalformat, _width, _border, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexImage1D, .{_target, _level, _internalformat, _width, _border, _format, _type, _pixels});
 }
 
 pub fn texImage2D(_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _height: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexImage2D, .{_target, _level, _internalformat, _width, _height, _border, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexImage2D, .{_target, _level, _internalformat, _width, _height, _border, _format, _type, _pixels});
 }
 
 pub fn drawBuffer(_buf: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawBuffer, .{_buf});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawBuffer, .{_buf});
 }
 
 pub fn clear(_mask: GLbitfield) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClear, .{_mask});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClear, .{_mask});
 }
 
 pub fn clearColor(_red: GLfloat, _green: GLfloat, _blue: GLfloat, _alpha: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearColor, .{_red, _green, _blue, _alpha});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearColor, .{_red, _green, _blue, _alpha});
 }
 
 pub fn clearStencil(_s: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearStencil, .{_s});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearStencil, .{_s});
 }
 
 pub fn clearDepth(_depth: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearDepth, .{_depth});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearDepth, .{_depth});
 }
 
 pub fn stencilMask(_mask: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glStencilMask, .{_mask});
+    return @call(.{.modifier = .always_tail}, function_pointers.glStencilMask, .{_mask});
 }
 
 pub fn colorMask(_red: GLboolean, _green: GLboolean, _blue: GLboolean, _alpha: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glColorMask, .{_red, _green, _blue, _alpha});
+    return @call(.{.modifier = .always_tail}, function_pointers.glColorMask, .{_red, _green, _blue, _alpha});
 }
 
 pub fn depthMask(_flag: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDepthMask, .{_flag});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDepthMask, .{_flag});
 }
 
 pub fn disable(_cap: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDisable, .{_cap});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDisable, .{_cap});
 }
 
 pub fn enable(_cap: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glEnable, .{_cap});
+    return @call(.{.modifier = .always_tail}, function_pointers.glEnable, .{_cap});
 }
 
 pub fn finish() callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFinish, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFinish, .{});
 }
 
 pub fn flush() callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFlush, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFlush, .{});
 }
 
 pub fn blendFunc(_sfactor: GLenum, _dfactor: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlendFunc, .{_sfactor, _dfactor});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlendFunc, .{_sfactor, _dfactor});
 }
 
 pub fn logicOp(_opcode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glLogicOp, .{_opcode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glLogicOp, .{_opcode});
 }
 
 pub fn stencilFunc(_func: GLenum, _ref: GLint, _mask: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glStencilFunc, .{_func, _ref, _mask});
+    return @call(.{.modifier = .always_tail}, function_pointers.glStencilFunc, .{_func, _ref, _mask});
 }
 
 pub fn stencilOp(_fail: GLenum, _zfail: GLenum, _zpass: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glStencilOp, .{_fail, _zfail, _zpass});
+    return @call(.{.modifier = .always_tail}, function_pointers.glStencilOp, .{_fail, _zfail, _zpass});
 }
 
 pub fn depthFunc(_func: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDepthFunc, .{_func});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDepthFunc, .{_func});
 }
 
 pub fn pixelStoref(_pname: GLenum, _param: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPixelStoref, .{_pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPixelStoref, .{_pname, _param});
 }
 
 pub fn pixelStorei(_pname: GLenum, _param: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPixelStorei, .{_pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPixelStorei, .{_pname, _param});
 }
 
 pub fn readBuffer(_src: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glReadBuffer, .{_src});
+    return @call(.{.modifier = .always_tail}, function_pointers.glReadBuffer, .{_src});
 }
 
 pub fn readPixels(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glReadPixels, .{_x, _y, _width, _height, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glReadPixels, .{_x, _y, _width, _height, _format, _type, _pixels});
 }
 
 pub fn getBooleanv(_pname: GLenum, _data: [*c]GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetBooleanv, .{_pname, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetBooleanv, .{_pname, _data});
 }
 
 pub fn getDoublev(_pname: GLenum, _data: [*c]GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetDoublev, .{_pname, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetDoublev, .{_pname, _data});
 }
 
 pub fn getError() callconv(.C) GLenum {
-    return @call(.always_tail, function_pointers.glGetError, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetError, .{});
 }
 
 pub fn getFloatv(_pname: GLenum, _data: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetFloatv, .{_pname, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetFloatv, .{_pname, _data});
 }
 
 pub fn getIntegerv(_pname: GLenum, _data: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetIntegerv, .{_pname, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetIntegerv, .{_pname, _data});
 }
 
 pub fn getString(_name: GLenum) callconv(.C) ?[*:0]const GLubyte {
-    return @call(.always_tail, function_pointers.glGetString, .{_name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetString, .{_name});
 }
 
 pub fn getTexImage(_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _pixels: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTexImage, .{_target, _level, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTexImage, .{_target, _level, _format, _type, _pixels});
 }
 
 pub fn getTexParameterfv(_target: GLenum, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTexParameterfv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTexParameterfv, .{_target, _pname, _params});
 }
 
 pub fn getTexParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTexParameteriv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTexParameteriv, .{_target, _pname, _params});
 }
 
 pub fn getTexLevelParameterfv(_target: GLenum, _level: GLint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTexLevelParameterfv, .{_target, _level, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTexLevelParameterfv, .{_target, _level, _pname, _params});
 }
 
 pub fn getTexLevelParameteriv(_target: GLenum, _level: GLint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTexLevelParameteriv, .{_target, _level, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTexLevelParameteriv, .{_target, _level, _pname, _params});
 }
 
 pub fn isEnabled(_cap: GLenum) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsEnabled, .{_cap});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsEnabled, .{_cap});
 }
 
 pub fn depthRange(_n: GLdouble, _f: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDepthRange, .{_n, _f});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDepthRange, .{_n, _f});
 }
 
 pub fn viewport(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glViewport, .{_x, _y, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glViewport, .{_x, _y, _width, _height});
 }
 
 pub fn texStorage2DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexStorage2DMultisample, .{_target, _samples, _internalformat, _width, _height, _fixedsamplelocations});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexStorage2DMultisample, .{_target, _samples, _internalformat, _width, _height, _fixedsamplelocations});
 }
 
 pub fn texBufferRange(_target: GLenum, _internalformat: GLenum, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexBufferRange, .{_target, _internalformat, _buffer, _offset, _size});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexBufferRange, .{_target, _internalformat, _buffer, _offset, _size});
 }
 
 pub fn shaderStorageBlockBinding(_program: GLuint, _storageBlockIndex: GLuint, _storageBlockBinding: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glShaderStorageBlockBinding, .{_program, _storageBlockIndex, _storageBlockBinding});
+    return @call(.{.modifier = .always_tail}, function_pointers.glShaderStorageBlockBinding, .{_program, _storageBlockIndex, _storageBlockBinding});
 }
 
 pub fn getProgramResourceLocationIndex(_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.C) GLint {
-    return @call(.always_tail, function_pointers.glGetProgramResourceLocationIndex, .{_program, _programInterface, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramResourceLocationIndex, .{_program, _programInterface, _name});
 }
 
 pub fn getProgramResourceLocation(_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.C) GLint {
-    return @call(.always_tail, function_pointers.glGetProgramResourceLocation, .{_program, _programInterface, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramResourceLocation, .{_program, _programInterface, _name});
 }
 
 pub fn getProgramResourceiv(_program: GLuint, _programInterface: GLenum, _index: GLuint, _propCount: GLsizei, _props: [*c]const GLenum, _count: GLsizei, _length: [*c]GLsizei, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetProgramResourceiv, .{_program, _programInterface, _index, _propCount, _props, _count, _length, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramResourceiv, .{_program, _programInterface, _index, _propCount, _props, _count, _length, _params});
 }
 
 pub fn getProgramResourceName(_program: GLuint, _programInterface: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetProgramResourceName, .{_program, _programInterface, _index, _bufSize, _length, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramResourceName, .{_program, _programInterface, _index, _bufSize, _length, _name});
 }
 
 pub fn getProgramResourceIndex(_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.C) GLuint {
-    return @call(.always_tail, function_pointers.glGetProgramResourceIndex, .{_program, _programInterface, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramResourceIndex, .{_program, _programInterface, _name});
 }
 
 pub fn getProgramInterfaceiv(_program: GLuint, _programInterface: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetProgramInterfaceiv, .{_program, _programInterface, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramInterfaceiv, .{_program, _programInterface, _pname, _params});
 }
 
 pub fn multiDrawElementsIndirect(_mode: GLenum, _type: GLenum, _indirect: ?*const anyopaque, _drawcount: GLsizei, _stride: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glMultiDrawElementsIndirect, .{_mode, _type, _indirect, _drawcount, _stride});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMultiDrawElementsIndirect, .{_mode, _type, _indirect, _drawcount, _stride});
 }
 
 pub fn multiDrawArraysIndirect(_mode: GLenum, _indirect: ?*const anyopaque, _drawcount: GLsizei, _stride: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glMultiDrawArraysIndirect, .{_mode, _indirect, _drawcount, _stride});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMultiDrawArraysIndirect, .{_mode, _indirect, _drawcount, _stride});
 }
 
 pub fn invalidateSubFramebuffer(_target: GLenum, _numAttachments: GLsizei, _attachments: [*c]const GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glInvalidateSubFramebuffer, .{_target, _numAttachments, _attachments, _x, _y, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glInvalidateSubFramebuffer, .{_target, _numAttachments, _attachments, _x, _y, _width, _height});
 }
 
 pub fn invalidateFramebuffer(_target: GLenum, _numAttachments: GLsizei, _attachments: [*c]const GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glInvalidateFramebuffer, .{_target, _numAttachments, _attachments});
+    return @call(.{.modifier = .always_tail}, function_pointers.glInvalidateFramebuffer, .{_target, _numAttachments, _attachments});
 }
 
 pub fn invalidateBufferData(_buffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glInvalidateBufferData, .{_buffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glInvalidateBufferData, .{_buffer});
 }
 
 pub fn invalidateBufferSubData(_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glInvalidateBufferSubData, .{_buffer, _offset, _length});
+    return @call(.{.modifier = .always_tail}, function_pointers.glInvalidateBufferSubData, .{_buffer, _offset, _length});
 }
 
 pub fn invalidateTexImage(_texture: GLuint, _level: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glInvalidateTexImage, .{_texture, _level});
+    return @call(.{.modifier = .always_tail}, function_pointers.glInvalidateTexImage, .{_texture, _level});
 }
 
 pub fn invalidateTexSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glInvalidateTexSubImage, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth});
+    return @call(.{.modifier = .always_tail}, function_pointers.glInvalidateTexSubImage, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth});
 }
 
 pub fn getInternalformati64v(_target: GLenum, _internalformat: GLenum, _pname: GLenum, _count: GLsizei, _params: [*c]GLint64) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetInternalformati64v, .{_target, _internalformat, _pname, _count, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetInternalformati64v, .{_target, _internalformat, _pname, _count, _params});
 }
 
 pub fn getFramebufferParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetFramebufferParameteriv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetFramebufferParameteriv, .{_target, _pname, _params});
 }
 
 pub fn framebufferParameteri(_target: GLenum, _pname: GLenum, _param: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFramebufferParameteri, .{_target, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFramebufferParameteri, .{_target, _pname, _param});
 }
 
 pub fn copyImageSubData(_srcName: GLuint, _srcTarget: GLenum, _srcLevel: GLint, _srcX: GLint, _srcY: GLint, _srcZ: GLint, _dstName: GLuint, _dstTarget: GLenum, _dstLevel: GLint, _dstX: GLint, _dstY: GLint, _dstZ: GLint, _srcWidth: GLsizei, _srcHeight: GLsizei, _srcDepth: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyImageSubData, .{_srcName, _srcTarget, _srcLevel, _srcX, _srcY, _srcZ, _dstName, _dstTarget, _dstLevel, _dstX, _dstY, _dstZ, _srcWidth, _srcHeight, _srcDepth});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyImageSubData, .{_srcName, _srcTarget, _srcLevel, _srcX, _srcY, _srcZ, _dstName, _dstTarget, _dstLevel, _dstX, _dstY, _dstZ, _srcWidth, _srcHeight, _srcDepth});
 }
 
 pub fn dispatchComputeIndirect(_indirect: GLintptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDispatchComputeIndirect, .{_indirect});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDispatchComputeIndirect, .{_indirect});
 }
 
 pub fn dispatchCompute(_num_groups_x: GLuint, _num_groups_y: GLuint, _num_groups_z: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDispatchCompute, .{_num_groups_x, _num_groups_y, _num_groups_z});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDispatchCompute, .{_num_groups_x, _num_groups_y, _num_groups_z});
 }
 
 pub fn clearBufferSubData(_target: GLenum, _internalformat: GLenum, _offset: GLintptr, _size: GLsizeiptr, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearBufferSubData, .{_target, _internalformat, _offset, _size, _format, _type, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearBufferSubData, .{_target, _internalformat, _offset, _size, _format, _type, _data});
 }
 
 pub fn clearBufferData(_target: GLenum, _internalformat: GLenum, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearBufferData, .{_target, _internalformat, _format, _type, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearBufferData, .{_target, _internalformat, _format, _type, _data});
 }
 
 pub fn getProgramPipelineInfoLog(_pipeline: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetProgramPipelineInfoLog, .{_pipeline, _bufSize, _length, _infoLog});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramPipelineInfoLog, .{_pipeline, _bufSize, _length, _infoLog});
 }
 
 pub fn programUniform2uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform2uiv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform2uiv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform2ui(_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform2ui, .{_program, _location, _v0, _v1});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform2ui, .{_program, _location, _v0, _v1});
 }
 
 pub fn programUniform2dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform2dv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform2dv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform2d(_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform2d, .{_program, _location, _v0, _v1});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform2d, .{_program, _location, _v0, _v1});
 }
 
 pub fn programUniform2fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform2fv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform2fv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform2f(_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform2f, .{_program, _location, _v0, _v1});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform2f, .{_program, _location, _v0, _v1});
 }
 
 pub fn programUniform2iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform2iv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform2iv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform2i(_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform2i, .{_program, _location, _v0, _v1});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform2i, .{_program, _location, _v0, _v1});
 }
 
 pub fn programUniform1uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform1uiv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform1uiv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform1ui(_program: GLuint, _location: GLint, _v0: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform1ui, .{_program, _location, _v0});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform1ui, .{_program, _location, _v0});
 }
 
 pub fn programUniform1dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform1dv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform1dv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform1d(_program: GLuint, _location: GLint, _v0: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform1d, .{_program, _location, _v0});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform1d, .{_program, _location, _v0});
 }
 
 pub fn programUniform1fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform1fv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform1fv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform1f(_program: GLuint, _location: GLint, _v0: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform1f, .{_program, _location, _v0});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform1f, .{_program, _location, _v0});
 }
 
 pub fn programUniform1iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform1iv, .{_program, _location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform1iv, .{_program, _location, _count, _value});
 }
 
 pub fn programUniform1i(_program: GLuint, _location: GLint, _v0: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramUniform1i, .{_program, _location, _v0});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramUniform1i, .{_program, _location, _v0});
 }
 
 pub fn getProgramPipelineiv(_pipeline: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetProgramPipelineiv, .{_pipeline, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramPipelineiv, .{_pipeline, _pname, _params});
 }
 
 pub fn isProgramPipeline(_pipeline: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsProgramPipeline, .{_pipeline});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsProgramPipeline, .{_pipeline});
 }
 
 pub fn genProgramPipelines(_n: GLsizei, _pipelines: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenProgramPipelines, .{_n, _pipelines});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenProgramPipelines, .{_n, _pipelines});
 }
 
 pub fn deleteProgramPipelines(_n: GLsizei, _pipelines: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteProgramPipelines, .{_n, _pipelines});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteProgramPipelines, .{_n, _pipelines});
 }
 
 pub fn bindProgramPipeline(_pipeline: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindProgramPipeline, .{_pipeline});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindProgramPipeline, .{_pipeline});
 }
 
 pub fn createShaderProgramv(_type: GLenum, _count: GLsizei, _strings: [*c]const [*c]const GLchar) callconv(.C) GLuint {
-    return @call(.always_tail, function_pointers.glCreateShaderProgramv, .{_type, _count, _strings});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateShaderProgramv, .{_type, _count, _strings});
 }
 
 pub fn activeShaderProgram(_pipeline: GLuint, _program: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glActiveShaderProgram, .{_pipeline, _program});
+    return @call(.{.modifier = .always_tail}, function_pointers.glActiveShaderProgram, .{_pipeline, _program});
 }
 
 pub fn programBinary(_program: GLuint, _binaryFormat: GLenum, _binary: ?*const anyopaque, _length: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProgramBinary, .{_program, _binaryFormat, _binary, _length});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProgramBinary, .{_program, _binaryFormat, _binary, _length});
 }
 
 pub fn getProgramBinary(_program: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _binaryFormat: [*c]GLenum, _binary: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetProgramBinary, .{_program, _bufSize, _length, _binaryFormat, _binary});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramBinary, .{_program, _bufSize, _length, _binaryFormat, _binary});
 }
 
 pub fn clearDepthf(_d: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearDepthf, .{_d});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearDepthf, .{_d});
 }
 
 pub fn depthRangef(_n: GLfloat, _f: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDepthRangef, .{_n, _f});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDepthRangef, .{_n, _f});
 }
 
 pub fn isTransformFeedback(_id: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsTransformFeedback, .{_id});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsTransformFeedback, .{_id});
 }
 
 pub fn genTransformFeedbacks(_n: GLsizei, _ids: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenTransformFeedbacks, .{_n, _ids});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenTransformFeedbacks, .{_n, _ids});
 }
 
 pub fn deleteTransformFeedbacks(_n: GLsizei, _ids: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteTransformFeedbacks, .{_n, _ids});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteTransformFeedbacks, .{_n, _ids});
 }
 
 pub fn bindTransformFeedback(_target: GLenum, _id: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindTransformFeedback, .{_target, _id});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindTransformFeedback, .{_target, _id});
 }
 
 pub fn patchParameterfv(_pname: GLenum, _values: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPatchParameterfv, .{_pname, _values});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPatchParameterfv, .{_pname, _values});
 }
 
 pub fn patchParameteri(_pname: GLenum, _value: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPatchParameteri, .{_pname, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPatchParameteri, .{_pname, _value});
 }
 
 pub fn drawArrays(_mode: GLenum, _first: GLint, _count: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawArrays, .{_mode, _first, _count});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawArrays, .{_mode, _first, _count});
 }
 
 pub fn drawElements(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawElements, .{_mode, _count, _type, _indices});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawElements, .{_mode, _count, _type, _indices});
 }
 
 pub fn polygonOffset(_factor: GLfloat, _units: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPolygonOffset, .{_factor, _units});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPolygonOffset, .{_factor, _units});
 }
 
 pub fn copyTexImage1D(_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _border: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyTexImage1D, .{_target, _level, _internalformat, _x, _y, _width, _border});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyTexImage1D, .{_target, _level, _internalformat, _x, _y, _width, _border});
 }
 
 pub fn copyTexImage2D(_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _border: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyTexImage2D, .{_target, _level, _internalformat, _x, _y, _width, _height, _border});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyTexImage2D, .{_target, _level, _internalformat, _x, _y, _width, _height, _border});
 }
 
 pub fn copyTexSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyTexSubImage1D, .{_target, _level, _xoffset, _x, _y, _width});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyTexSubImage1D, .{_target, _level, _xoffset, _x, _y, _width});
 }
 
 pub fn copyTexSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyTexSubImage2D, .{_target, _level, _xoffset, _yoffset, _x, _y, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyTexSubImage2D, .{_target, _level, _xoffset, _yoffset, _x, _y, _width, _height});
 }
 
 pub fn texSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexSubImage1D, .{_target, _level, _xoffset, _width, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexSubImage1D, .{_target, _level, _xoffset, _width, _format, _type, _pixels});
 }
 
 pub fn texSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexSubImage2D, .{_target, _level, _xoffset, _yoffset, _width, _height, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexSubImage2D, .{_target, _level, _xoffset, _yoffset, _width, _height, _format, _type, _pixels});
 }
 
 pub fn bindTexture(_target: GLenum, _texture: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindTexture, .{_target, _texture});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindTexture, .{_target, _texture});
 }
 
 pub fn deleteTextures(_n: GLsizei, _textures: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteTextures, .{_n, _textures});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteTextures, .{_n, _textures});
 }
 
 pub fn genTextures(_n: GLsizei, _textures: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenTextures, .{_n, _textures});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenTextures, .{_n, _textures});
 }
 
 pub fn isTexture(_texture: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsTexture, .{_texture});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsTexture, .{_texture});
 }
 
 pub fn getActiveSubroutineUniformName(_program: GLuint, _shadertype: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetActiveSubroutineUniformName, .{_program, _shadertype, _index, _bufSize, _length, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetActiveSubroutineUniformName, .{_program, _shadertype, _index, _bufSize, _length, _name});
 }
 
 pub fn getActiveSubroutineUniformiv(_program: GLuint, _shadertype: GLenum, _index: GLuint, _pname: GLenum, _values: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetActiveSubroutineUniformiv, .{_program, _shadertype, _index, _pname, _values});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetActiveSubroutineUniformiv, .{_program, _shadertype, _index, _pname, _values});
 }
 
 pub fn getSubroutineIndex(_program: GLuint, _shadertype: GLenum, _name: [*c]const GLchar) callconv(.C) GLuint {
-    return @call(.always_tail, function_pointers.glGetSubroutineIndex, .{_program, _shadertype, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetSubroutineIndex, .{_program, _shadertype, _name});
 }
 
 pub fn getSubroutineUniformLocation(_program: GLuint, _shadertype: GLenum, _name: [*c]const GLchar) callconv(.C) GLint {
-    return @call(.always_tail, function_pointers.glGetSubroutineUniformLocation, .{_program, _shadertype, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetSubroutineUniformLocation, .{_program, _shadertype, _name});
 }
 
 pub fn getUniformdv(_program: GLuint, _location: GLint, _params: [*c]GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetUniformdv, .{_program, _location, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetUniformdv, .{_program, _location, _params});
 }
 
 pub fn uniformMatrix4x3dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix4x3dv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix4x3dv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix4x2dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix4x2dv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix4x2dv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix3x4dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix3x4dv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix3x4dv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix3x2dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix3x2dv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix3x2dv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix2x4dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix2x4dv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix2x4dv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix2x3dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix2x3dv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix2x3dv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix4dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix4dv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix4dv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix3dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix3dv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix3dv, .{_location, _count, _transpose, _value});
 }
 
 pub fn drawRangeElements(_mode: GLenum, _start: GLuint, _end: GLuint, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawRangeElements, .{_mode, _start, _end, _count, _type, _indices});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawRangeElements, .{_mode, _start, _end, _count, _type, _indices});
 }
 
 pub fn texImage3D(_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexImage3D, .{_target, _level, _internalformat, _width, _height, _depth, _border, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexImage3D, .{_target, _level, _internalformat, _width, _height, _depth, _border, _format, _type, _pixels});
 }
 
 pub fn texSubImage3D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexSubImage3D, .{_target, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexSubImage3D, .{_target, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _pixels});
 }
 
 pub fn copyTexSubImage3D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyTexSubImage3D, .{_target, _level, _xoffset, _yoffset, _zoffset, _x, _y, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyTexSubImage3D, .{_target, _level, _xoffset, _yoffset, _zoffset, _x, _y, _width, _height});
 }
 
 pub fn uniformMatrix2dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix2dv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix2dv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniform4dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform4dv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform4dv, .{_location, _count, _value});
 }
 
 pub fn uniform3dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform3dv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform3dv, .{_location, _count, _value});
 }
 
 pub fn uniform2dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform2dv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform2dv, .{_location, _count, _value});
 }
 
 pub fn uniform1dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform1dv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform1dv, .{_location, _count, _value});
 }
 
 pub fn uniform4d(_location: GLint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform4d, .{_location, _x, _y, _z, _w});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform4d, .{_location, _x, _y, _z, _w});
 }
 
 pub fn uniform3d(_location: GLint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform3d, .{_location, _x, _y, _z});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform3d, .{_location, _x, _y, _z});
 }
 
 pub fn uniform2d(_location: GLint, _x: GLdouble, _y: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform2d, .{_location, _x, _y});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform2d, .{_location, _x, _y});
 }
 
 pub fn uniform1d(_location: GLint, _x: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform1d, .{_location, _x});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform1d, .{_location, _x});
 }
 
 pub fn drawElementsIndirect(_mode: GLenum, _type: GLenum, _indirect: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawElementsIndirect, .{_mode, _type, _indirect});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawElementsIndirect, .{_mode, _type, _indirect});
 }
 
 pub fn drawArraysIndirect(_mode: GLenum, _indirect: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawArraysIndirect, .{_mode, _indirect});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawArraysIndirect, .{_mode, _indirect});
 }
 
 pub fn blendFuncSeparatei(_buf: GLuint, _srcRGB: GLenum, _dstRGB: GLenum, _srcAlpha: GLenum, _dstAlpha: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlendFuncSeparatei, .{_buf, _srcRGB, _dstRGB, _srcAlpha, _dstAlpha});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlendFuncSeparatei, .{_buf, _srcRGB, _dstRGB, _srcAlpha, _dstAlpha});
 }
 
 pub fn blendFunci(_buf: GLuint, _src: GLenum, _dst: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlendFunci, .{_buf, _src, _dst});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlendFunci, .{_buf, _src, _dst});
 }
 
 pub fn blendEquationSeparatei(_buf: GLuint, _modeRGB: GLenum, _modeAlpha: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlendEquationSeparatei, .{_buf, _modeRGB, _modeAlpha});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlendEquationSeparatei, .{_buf, _modeRGB, _modeAlpha});
 }
 
 pub fn blendEquationi(_buf: GLuint, _mode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlendEquationi, .{_buf, _mode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlendEquationi, .{_buf, _mode});
 }
 
 pub fn minSampleShading(_value: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glMinSampleShading, .{_value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMinSampleShading, .{_value});
 }
 
 pub fn activeTexture(_texture: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glActiveTexture, .{_texture});
+    return @call(.{.modifier = .always_tail}, function_pointers.glActiveTexture, .{_texture});
 }
 
 pub fn sampleCoverage(_value: GLfloat, _invert: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glSampleCoverage, .{_value, _invert});
+    return @call(.{.modifier = .always_tail}, function_pointers.glSampleCoverage, .{_value, _invert});
 }
 
 pub fn compressedTexImage3D(_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCompressedTexImage3D, .{_target, _level, _internalformat, _width, _height, _depth, _border, _imageSize, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCompressedTexImage3D, .{_target, _level, _internalformat, _width, _height, _depth, _border, _imageSize, _data});
 }
 
 pub fn compressedTexImage2D(_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCompressedTexImage2D, .{_target, _level, _internalformat, _width, _height, _border, _imageSize, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCompressedTexImage2D, .{_target, _level, _internalformat, _width, _height, _border, _imageSize, _data});
 }
 
 pub fn compressedTexImage1D(_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCompressedTexImage1D, .{_target, _level, _internalformat, _width, _border, _imageSize, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCompressedTexImage1D, .{_target, _level, _internalformat, _width, _border, _imageSize, _data});
 }
 
 pub fn compressedTexSubImage3D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCompressedTexSubImage3D, .{_target, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _imageSize, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCompressedTexSubImage3D, .{_target, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _imageSize, _data});
 }
 
 pub fn compressedTexSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCompressedTexSubImage2D, .{_target, _level, _xoffset, _yoffset, _width, _height, _format, _imageSize, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCompressedTexSubImage2D, .{_target, _level, _xoffset, _yoffset, _width, _height, _format, _imageSize, _data});
 }
 
 pub fn compressedTexSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCompressedTexSubImage1D, .{_target, _level, _xoffset, _width, _format, _imageSize, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCompressedTexSubImage1D, .{_target, _level, _xoffset, _width, _format, _imageSize, _data});
 }
 
 pub fn getCompressedTexImage(_target: GLenum, _level: GLint, _img: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetCompressedTexImage, .{_target, _level, _img});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetCompressedTexImage, .{_target, _level, _img});
 }
 
 pub fn vertexAttribP4uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribP4uiv, .{_index, _type, _normalized, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribP4uiv, .{_index, _type, _normalized, _value});
 }
 
 pub fn vertexAttribP4ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribP4ui, .{_index, _type, _normalized, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribP4ui, .{_index, _type, _normalized, _value});
 }
 
 pub fn vertexAttribP3uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribP3uiv, .{_index, _type, _normalized, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribP3uiv, .{_index, _type, _normalized, _value});
 }
 
 pub fn vertexAttribP3ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribP3ui, .{_index, _type, _normalized, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribP3ui, .{_index, _type, _normalized, _value});
 }
 
 pub fn vertexAttribP2uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribP2uiv, .{_index, _type, _normalized, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribP2uiv, .{_index, _type, _normalized, _value});
 }
 
 pub fn vertexAttribP2ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribP2ui, .{_index, _type, _normalized, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribP2ui, .{_index, _type, _normalized, _value});
 }
 
 pub fn vertexAttribP1uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribP1uiv, .{_index, _type, _normalized, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribP1uiv, .{_index, _type, _normalized, _value});
 }
 
 pub fn vertexAttribP1ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribP1ui, .{_index, _type, _normalized, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribP1ui, .{_index, _type, _normalized, _value});
 }
 
 pub fn vertexAttribDivisor(_index: GLuint, _divisor: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribDivisor, .{_index, _divisor});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribDivisor, .{_index, _divisor});
 }
 
 pub fn getQueryObjectui64v(_id: GLuint, _pname: GLenum, _params: [*c]GLuint64) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetQueryObjectui64v, .{_id, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetQueryObjectui64v, .{_id, _pname, _params});
 }
 
 pub fn getQueryObjecti64v(_id: GLuint, _pname: GLenum, _params: [*c]GLint64) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetQueryObjecti64v, .{_id, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetQueryObjecti64v, .{_id, _pname, _params});
 }
 
 pub fn queryCounter(_id: GLuint, _target: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glQueryCounter, .{_id, _target});
+    return @call(.{.modifier = .always_tail}, function_pointers.glQueryCounter, .{_id, _target});
 }
 
 pub fn getSamplerParameterIuiv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetSamplerParameterIuiv, .{_sampler, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetSamplerParameterIuiv, .{_sampler, _pname, _params});
 }
 
 pub fn getSamplerParameterfv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetSamplerParameterfv, .{_sampler, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetSamplerParameterfv, .{_sampler, _pname, _params});
 }
 
 pub fn getSamplerParameterIiv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetSamplerParameterIiv, .{_sampler, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetSamplerParameterIiv, .{_sampler, _pname, _params});
 }
 
 pub fn getSamplerParameteriv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetSamplerParameteriv, .{_sampler, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetSamplerParameteriv, .{_sampler, _pname, _params});
 }
 
 pub fn samplerParameterIuiv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glSamplerParameterIuiv, .{_sampler, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glSamplerParameterIuiv, .{_sampler, _pname, _param});
 }
 
 pub fn samplerParameterIiv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glSamplerParameterIiv, .{_sampler, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glSamplerParameterIiv, .{_sampler, _pname, _param});
 }
 
 pub fn samplerParameterfv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glSamplerParameterfv, .{_sampler, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glSamplerParameterfv, .{_sampler, _pname, _param});
 }
 
 pub fn samplerParameterf(_sampler: GLuint, _pname: GLenum, _param: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glSamplerParameterf, .{_sampler, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glSamplerParameterf, .{_sampler, _pname, _param});
 }
 
 pub fn samplerParameteriv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glSamplerParameteriv, .{_sampler, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glSamplerParameteriv, .{_sampler, _pname, _param});
 }
 
 pub fn samplerParameteri(_sampler: GLuint, _pname: GLenum, _param: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glSamplerParameteri, .{_sampler, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glSamplerParameteri, .{_sampler, _pname, _param});
 }
 
 pub fn bindSampler(_unit: GLuint, _sampler: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindSampler, .{_unit, _sampler});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindSampler, .{_unit, _sampler});
 }
 
 pub fn isSampler(_sampler: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsSampler, .{_sampler});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsSampler, .{_sampler});
 }
 
 pub fn deleteSamplers(_count: GLsizei, _samplers: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteSamplers, .{_count, _samplers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteSamplers, .{_count, _samplers});
 }
 
 pub fn genSamplers(_count: GLsizei, _samplers: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenSamplers, .{_count, _samplers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenSamplers, .{_count, _samplers});
 }
 
 pub fn getFragDataIndex(_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint {
-    return @call(.always_tail, function_pointers.glGetFragDataIndex, .{_program, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetFragDataIndex, .{_program, _name});
 }
 
 pub fn bindFragDataLocationIndexed(_program: GLuint, _colorNumber: GLuint, _index: GLuint, _name: [*c]const GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindFragDataLocationIndexed, .{_program, _colorNumber, _index, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindFragDataLocationIndexed, .{_program, _colorNumber, _index, _name});
 }
 
 pub fn sampleMaski(_maskNumber: GLuint, _mask: GLbitfield) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glSampleMaski, .{_maskNumber, _mask});
+    return @call(.{.modifier = .always_tail}, function_pointers.glSampleMaski, .{_maskNumber, _mask});
 }
 
 pub fn getMultisamplefv(_pname: GLenum, _index: GLuint, _val: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetMultisamplefv, .{_pname, _index, _val});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetMultisamplefv, .{_pname, _index, _val});
 }
 
 pub fn texImage3DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexImage3DMultisample, .{_target, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexImage3DMultisample, .{_target, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations});
 }
 
 pub fn texImage2DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexImage2DMultisample, .{_target, _samples, _internalformat, _width, _height, _fixedsamplelocations});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexImage2DMultisample, .{_target, _samples, _internalformat, _width, _height, _fixedsamplelocations});
 }
 
 pub fn framebufferTexture(_target: GLenum, _attachment: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFramebufferTexture, .{_target, _attachment, _texture, _level});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFramebufferTexture, .{_target, _attachment, _texture, _level});
 }
 
 pub fn getBufferParameteri64v(_target: GLenum, _pname: GLenum, _params: [*c]GLint64) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetBufferParameteri64v, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetBufferParameteri64v, .{_target, _pname, _params});
 }
 
 pub fn blendFuncSeparate(_sfactorRGB: GLenum, _dfactorRGB: GLenum, _sfactorAlpha: GLenum, _dfactorAlpha: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlendFuncSeparate, .{_sfactorRGB, _dfactorRGB, _sfactorAlpha, _dfactorAlpha});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlendFuncSeparate, .{_sfactorRGB, _dfactorRGB, _sfactorAlpha, _dfactorAlpha});
 }
 
 pub fn multiDrawArrays(_mode: GLenum, _first: [*c]const GLint, _count: [*c]const GLsizei, _drawcount: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glMultiDrawArrays, .{_mode, _first, _count, _drawcount});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMultiDrawArrays, .{_mode, _first, _count, _drawcount});
 }
 
 pub fn multiDrawElements(_mode: GLenum, _count: [*c]const GLsizei, _type: GLenum, _indices: [*c]const ?*const anyopaque, _drawcount: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glMultiDrawElements, .{_mode, _count, _type, _indices, _drawcount});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMultiDrawElements, .{_mode, _count, _type, _indices, _drawcount});
 }
 
 pub fn pointParameterf(_pname: GLenum, _param: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPointParameterf, .{_pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPointParameterf, .{_pname, _param});
 }
 
 pub fn pointParameterfv(_pname: GLenum, _params: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPointParameterfv, .{_pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPointParameterfv, .{_pname, _params});
 }
 
 pub fn pointParameteri(_pname: GLenum, _param: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPointParameteri, .{_pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPointParameteri, .{_pname, _param});
 }
 
 pub fn pointParameteriv(_pname: GLenum, _params: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPointParameteriv, .{_pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPointParameteriv, .{_pname, _params});
 }
 
 pub fn getInteger64i_v(_target: GLenum, _index: GLuint, _data: [*c]GLint64) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetInteger64i_v, .{_target, _index, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetInteger64i_v, .{_target, _index, _data});
 }
 
 pub fn getSynciv(_sync: GLsync, _pname: GLenum, _count: GLsizei, _length: [*c]GLsizei, _values: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetSynciv, .{_sync, _pname, _count, _length, _values});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetSynciv, .{_sync, _pname, _count, _length, _values});
 }
 
 pub fn getInteger64v(_pname: GLenum, _data: [*c]GLint64) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetInteger64v, .{_pname, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetInteger64v, .{_pname, _data});
 }
 
 pub fn waitSync(_sync: GLsync, _flags: GLbitfield, _timeout: GLuint64) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glWaitSync, .{_sync, _flags, _timeout});
+    return @call(.{.modifier = .always_tail}, function_pointers.glWaitSync, .{_sync, _flags, _timeout});
 }
 
 pub fn clientWaitSync(_sync: GLsync, _flags: GLbitfield, _timeout: GLuint64) callconv(.C) GLenum {
-    return @call(.always_tail, function_pointers.glClientWaitSync, .{_sync, _flags, _timeout});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClientWaitSync, .{_sync, _flags, _timeout});
 }
 
 pub fn deleteSync(_sync: GLsync) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteSync, .{_sync});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteSync, .{_sync});
 }
 
 pub fn isSync(_sync: GLsync) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsSync, .{_sync});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsSync, .{_sync});
 }
 
 pub fn fenceSync(_condition: GLenum, _flags: GLbitfield) callconv(.C) GLsync {
-    return @call(.always_tail, function_pointers.glFenceSync, .{_condition, _flags});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFenceSync, .{_condition, _flags});
 }
 
 pub fn blendColor(_red: GLfloat, _green: GLfloat, _blue: GLfloat, _alpha: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlendColor, .{_red, _green, _blue, _alpha});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlendColor, .{_red, _green, _blue, _alpha});
 }
 
 pub fn blendEquation(_mode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlendEquation, .{_mode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlendEquation, .{_mode});
 }
 
 pub fn provokingVertex(_mode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glProvokingVertex, .{_mode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glProvokingVertex, .{_mode});
 }
 
 pub fn multiDrawElementsBaseVertex(_mode: GLenum, _count: [*c]const GLsizei, _type: GLenum, _indices: [*c]const ?*const anyopaque, _drawcount: GLsizei, _basevertex: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glMultiDrawElementsBaseVertex, .{_mode, _count, _type, _indices, _drawcount, _basevertex});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMultiDrawElementsBaseVertex, .{_mode, _count, _type, _indices, _drawcount, _basevertex});
 }
 
 pub fn drawElementsInstancedBaseVertex(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _basevertex: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawElementsInstancedBaseVertex, .{_mode, _count, _type, _indices, _instancecount, _basevertex});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawElementsInstancedBaseVertex, .{_mode, _count, _type, _indices, _instancecount, _basevertex});
 }
 
 pub fn drawRangeElementsBaseVertex(_mode: GLenum, _start: GLuint, _end: GLuint, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _basevertex: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawRangeElementsBaseVertex, .{_mode, _start, _end, _count, _type, _indices, _basevertex});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawRangeElementsBaseVertex, .{_mode, _start, _end, _count, _type, _indices, _basevertex});
 }
 
 pub fn drawElementsBaseVertex(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _basevertex: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawElementsBaseVertex, .{_mode, _count, _type, _indices, _basevertex});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawElementsBaseVertex, .{_mode, _count, _type, _indices, _basevertex});
 }
 
 pub fn genQueries(_n: GLsizei, _ids: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenQueries, .{_n, _ids});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenQueries, .{_n, _ids});
 }
 
 pub fn deleteQueries(_n: GLsizei, _ids: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteQueries, .{_n, _ids});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteQueries, .{_n, _ids});
 }
 
 pub fn isQuery(_id: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsQuery, .{_id});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsQuery, .{_id});
 }
 
 pub fn beginQuery(_target: GLenum, _id: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBeginQuery, .{_target, _id});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBeginQuery, .{_target, _id});
 }
 
 pub fn endQuery(_target: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glEndQuery, .{_target});
+    return @call(.{.modifier = .always_tail}, function_pointers.glEndQuery, .{_target});
 }
 
 pub fn getQueryiv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetQueryiv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetQueryiv, .{_target, _pname, _params});
 }
 
 pub fn getQueryObjectiv(_id: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetQueryObjectiv, .{_id, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetQueryObjectiv, .{_id, _pname, _params});
 }
 
 pub fn getQueryObjectuiv(_id: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetQueryObjectuiv, .{_id, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetQueryObjectuiv, .{_id, _pname, _params});
 }
 
 pub fn bindBuffer(_target: GLenum, _buffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindBuffer, .{_target, _buffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindBuffer, .{_target, _buffer});
 }
 
 pub fn deleteBuffers(_n: GLsizei, _buffers: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteBuffers, .{_n, _buffers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteBuffers, .{_n, _buffers});
 }
 
 pub fn genBuffers(_n: GLsizei, _buffers: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenBuffers, .{_n, _buffers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenBuffers, .{_n, _buffers});
 }
 
 pub fn isBuffer(_buffer: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsBuffer, .{_buffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsBuffer, .{_buffer});
 }
 
 pub fn bufferData(_target: GLenum, _size: GLsizeiptr, _data: ?*const anyopaque, _usage: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBufferData, .{_target, _size, _data, _usage});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBufferData, .{_target, _size, _data, _usage});
 }
 
 pub fn bufferSubData(_target: GLenum, _offset: GLintptr, _size: GLsizeiptr, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBufferSubData, .{_target, _offset, _size, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBufferSubData, .{_target, _offset, _size, _data});
 }
 
 pub fn getBufferSubData(_target: GLenum, _offset: GLintptr, _size: GLsizeiptr, _data: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetBufferSubData, .{_target, _offset, _size, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetBufferSubData, .{_target, _offset, _size, _data});
 }
 
 pub fn mapBuffer(_target: GLenum, _access: GLenum) callconv(.C) ?*anyopaque {
-    return @call(.always_tail, function_pointers.glMapBuffer, .{_target, _access});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMapBuffer, .{_target, _access});
 }
 
 pub fn unmapBuffer(_target: GLenum) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glUnmapBuffer, .{_target});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUnmapBuffer, .{_target});
 }
 
 pub fn getBufferParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetBufferParameteriv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetBufferParameteriv, .{_target, _pname, _params});
 }
 
 pub fn getBufferPointerv(_target: GLenum, _pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetBufferPointerv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetBufferPointerv, .{_target, _pname, _params});
 }
 
 pub fn blendEquationSeparate(_modeRGB: GLenum, _modeAlpha: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlendEquationSeparate, .{_modeRGB, _modeAlpha});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlendEquationSeparate, .{_modeRGB, _modeAlpha});
 }
 
 pub fn drawBuffers(_n: GLsizei, _bufs: [*c]const GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawBuffers, .{_n, _bufs});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawBuffers, .{_n, _bufs});
 }
 
 pub fn stencilOpSeparate(_face: GLenum, _sfail: GLenum, _dpfail: GLenum, _dppass: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glStencilOpSeparate, .{_face, _sfail, _dpfail, _dppass});
+    return @call(.{.modifier = .always_tail}, function_pointers.glStencilOpSeparate, .{_face, _sfail, _dpfail, _dppass});
 }
 
 pub fn stencilFuncSeparate(_face: GLenum, _func: GLenum, _ref: GLint, _mask: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glStencilFuncSeparate, .{_face, _func, _ref, _mask});
+    return @call(.{.modifier = .always_tail}, function_pointers.glStencilFuncSeparate, .{_face, _func, _ref, _mask});
 }
 
 pub fn stencilMaskSeparate(_face: GLenum, _mask: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glStencilMaskSeparate, .{_face, _mask});
+    return @call(.{.modifier = .always_tail}, function_pointers.glStencilMaskSeparate, .{_face, _mask});
 }
 
 pub fn attachShader(_program: GLuint, _shader: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glAttachShader, .{_program, _shader});
+    return @call(.{.modifier = .always_tail}, function_pointers.glAttachShader, .{_program, _shader});
 }
 
 pub fn bindAttribLocation(_program: GLuint, _index: GLuint, _name: [*c]const GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindAttribLocation, .{_program, _index, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindAttribLocation, .{_program, _index, _name});
 }
 
 pub fn compileShader(_shader: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCompileShader, .{_shader});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCompileShader, .{_shader});
 }
 
 pub fn createProgram() callconv(.C) GLuint {
-    return @call(.always_tail, function_pointers.glCreateProgram, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateProgram, .{});
 }
 
 pub fn createShader(_type: GLenum) callconv(.C) GLuint {
-    return @call(.always_tail, function_pointers.glCreateShader, .{_type});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateShader, .{_type});
 }
 
 pub fn deleteProgram(_program: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteProgram, .{_program});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteProgram, .{_program});
 }
 
 pub fn deleteShader(_shader: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteShader, .{_shader});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteShader, .{_shader});
 }
 
 pub fn detachShader(_program: GLuint, _shader: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDetachShader, .{_program, _shader});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDetachShader, .{_program, _shader});
 }
 
 pub fn disableVertexAttribArray(_index: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDisableVertexAttribArray, .{_index});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDisableVertexAttribArray, .{_index});
 }
 
 pub fn enableVertexAttribArray(_index: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glEnableVertexAttribArray, .{_index});
+    return @call(.{.modifier = .always_tail}, function_pointers.glEnableVertexAttribArray, .{_index});
 }
 
 pub fn getActiveAttrib(_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLint, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetActiveAttrib, .{_program, _index, _bufSize, _length, _size, _type, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetActiveAttrib, .{_program, _index, _bufSize, _length, _size, _type, _name});
 }
 
 pub fn getActiveUniform(_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLint, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetActiveUniform, .{_program, _index, _bufSize, _length, _size, _type, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetActiveUniform, .{_program, _index, _bufSize, _length, _size, _type, _name});
 }
 
 pub fn getAttachedShaders(_program: GLuint, _maxCount: GLsizei, _count: [*c]GLsizei, _shaders: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetAttachedShaders, .{_program, _maxCount, _count, _shaders});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetAttachedShaders, .{_program, _maxCount, _count, _shaders});
 }
 
 pub fn getAttribLocation(_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint {
-    return @call(.always_tail, function_pointers.glGetAttribLocation, .{_program, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetAttribLocation, .{_program, _name});
 }
 
 pub fn getProgramiv(_program: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetProgramiv, .{_program, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramiv, .{_program, _pname, _params});
 }
 
 pub fn getProgramInfoLog(_program: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetProgramInfoLog, .{_program, _bufSize, _length, _infoLog});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetProgramInfoLog, .{_program, _bufSize, _length, _infoLog});
 }
 
 pub fn getShaderiv(_shader: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetShaderiv, .{_shader, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetShaderiv, .{_shader, _pname, _params});
 }
 
 pub fn getShaderInfoLog(_shader: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetShaderInfoLog, .{_shader, _bufSize, _length, _infoLog});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetShaderInfoLog, .{_shader, _bufSize, _length, _infoLog});
 }
 
 pub fn getShaderSource(_shader: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _source: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetShaderSource, .{_shader, _bufSize, _length, _source});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetShaderSource, .{_shader, _bufSize, _length, _source});
 }
 
 pub fn getUniformLocation(_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint {
-    return @call(.always_tail, function_pointers.glGetUniformLocation, .{_program, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetUniformLocation, .{_program, _name});
 }
 
 pub fn getUniformfv(_program: GLuint, _location: GLint, _params: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetUniformfv, .{_program, _location, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetUniformfv, .{_program, _location, _params});
 }
 
 pub fn getUniformiv(_program: GLuint, _location: GLint, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetUniformiv, .{_program, _location, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetUniformiv, .{_program, _location, _params});
 }
 
 pub fn getVertexAttribdv(_index: GLuint, _pname: GLenum, _params: [*c]GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetVertexAttribdv, .{_index, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetVertexAttribdv, .{_index, _pname, _params});
 }
 
 pub fn getVertexAttribfv(_index: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetVertexAttribfv, .{_index, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetVertexAttribfv, .{_index, _pname, _params});
 }
 
 pub fn getVertexAttribiv(_index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetVertexAttribiv, .{_index, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetVertexAttribiv, .{_index, _pname, _params});
 }
 
 pub fn getVertexAttribPointerv(_index: GLuint, _pname: GLenum, _pointer: ?*?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetVertexAttribPointerv, .{_index, _pname, _pointer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetVertexAttribPointerv, .{_index, _pname, _pointer});
 }
 
 pub fn isProgram(_program: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsProgram, .{_program});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsProgram, .{_program});
 }
 
 pub fn isShader(_shader: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsShader, .{_shader});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsShader, .{_shader});
 }
 
 pub fn linkProgram(_program: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glLinkProgram, .{_program});
+    return @call(.{.modifier = .always_tail}, function_pointers.glLinkProgram, .{_program});
 }
 
 pub fn shaderSource(_shader: GLuint, _count: GLsizei, _string: [*c]const [*c]const GLchar, _length: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glShaderSource, .{_shader, _count, _string, _length});
+    return @call(.{.modifier = .always_tail}, function_pointers.glShaderSource, .{_shader, _count, _string, _length});
 }
 
 pub fn useProgram(_program: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUseProgram, .{_program});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUseProgram, .{_program});
 }
 
 pub fn uniform1f(_location: GLint, _v0: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform1f, .{_location, _v0});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform1f, .{_location, _v0});
 }
 
 pub fn uniform2f(_location: GLint, _v0: GLfloat, _v1: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform2f, .{_location, _v0, _v1});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform2f, .{_location, _v0, _v1});
 }
 
 pub fn uniform3f(_location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform3f, .{_location, _v0, _v1, _v2});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform3f, .{_location, _v0, _v1, _v2});
 }
 
 pub fn uniform4f(_location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat, _v3: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform4f, .{_location, _v0, _v1, _v2, _v3});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform4f, .{_location, _v0, _v1, _v2, _v3});
 }
 
 pub fn uniform1i(_location: GLint, _v0: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform1i, .{_location, _v0});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform1i, .{_location, _v0});
 }
 
 pub fn uniform2i(_location: GLint, _v0: GLint, _v1: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform2i, .{_location, _v0, _v1});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform2i, .{_location, _v0, _v1});
 }
 
 pub fn uniform3i(_location: GLint, _v0: GLint, _v1: GLint, _v2: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform3i, .{_location, _v0, _v1, _v2});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform3i, .{_location, _v0, _v1, _v2});
 }
 
 pub fn uniform4i(_location: GLint, _v0: GLint, _v1: GLint, _v2: GLint, _v3: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform4i, .{_location, _v0, _v1, _v2, _v3});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform4i, .{_location, _v0, _v1, _v2, _v3});
 }
 
 pub fn uniform1fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform1fv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform1fv, .{_location, _count, _value});
 }
 
 pub fn uniform2fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform2fv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform2fv, .{_location, _count, _value});
 }
 
 pub fn uniform3fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform3fv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform3fv, .{_location, _count, _value});
 }
 
 pub fn uniform4fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform4fv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform4fv, .{_location, _count, _value});
 }
 
 pub fn uniform1iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform1iv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform1iv, .{_location, _count, _value});
 }
 
 pub fn uniform2iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform2iv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform2iv, .{_location, _count, _value});
 }
 
 pub fn uniform3iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform3iv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform3iv, .{_location, _count, _value});
 }
 
 pub fn uniform4iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform4iv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform4iv, .{_location, _count, _value});
 }
 
 pub fn uniformMatrix2fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix2fv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix2fv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix3fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix3fv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix3fv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix4fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix4fv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix4fv, .{_location, _count, _transpose, _value});
 }
 
 pub fn validateProgram(_program: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glValidateProgram, .{_program});
+    return @call(.{.modifier = .always_tail}, function_pointers.glValidateProgram, .{_program});
 }
 
 pub fn vertexAttrib1d(_index: GLuint, _x: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib1d, .{_index, _x});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib1d, .{_index, _x});
 }
 
 pub fn vertexAttrib1dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib1dv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib1dv, .{_index, _v});
 }
 
 pub fn vertexAttrib1f(_index: GLuint, _x: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib1f, .{_index, _x});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib1f, .{_index, _x});
 }
 
 pub fn vertexAttrib1fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib1fv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib1fv, .{_index, _v});
 }
 
 pub fn vertexAttrib1s(_index: GLuint, _x: GLshort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib1s, .{_index, _x});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib1s, .{_index, _x});
 }
 
 pub fn vertexAttrib1sv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib1sv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib1sv, .{_index, _v});
 }
 
 pub fn vertexAttrib2d(_index: GLuint, _x: GLdouble, _y: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib2d, .{_index, _x, _y});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib2d, .{_index, _x, _y});
 }
 
 pub fn vertexAttrib2dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib2dv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib2dv, .{_index, _v});
 }
 
 pub fn vertexAttrib2f(_index: GLuint, _x: GLfloat, _y: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib2f, .{_index, _x, _y});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib2f, .{_index, _x, _y});
 }
 
 pub fn vertexAttrib2fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib2fv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib2fv, .{_index, _v});
 }
 
 pub fn vertexAttrib2s(_index: GLuint, _x: GLshort, _y: GLshort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib2s, .{_index, _x, _y});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib2s, .{_index, _x, _y});
 }
 
 pub fn vertexAttrib2sv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib2sv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib2sv, .{_index, _v});
 }
 
 pub fn vertexAttrib3d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib3d, .{_index, _x, _y, _z});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib3d, .{_index, _x, _y, _z});
 }
 
 pub fn vertexAttrib3dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib3dv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib3dv, .{_index, _v});
 }
 
 pub fn vertexAttrib3f(_index: GLuint, _x: GLfloat, _y: GLfloat, _z: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib3f, .{_index, _x, _y, _z});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib3f, .{_index, _x, _y, _z});
 }
 
 pub fn vertexAttrib3fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib3fv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib3fv, .{_index, _v});
 }
 
 pub fn vertexAttrib3s(_index: GLuint, _x: GLshort, _y: GLshort, _z: GLshort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib3s, .{_index, _x, _y, _z});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib3s, .{_index, _x, _y, _z});
 }
 
 pub fn vertexAttrib3sv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib3sv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib3sv, .{_index, _v});
 }
 
 pub fn vertexAttrib4Nbv(_index: GLuint, _v: [*c]const GLbyte) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4Nbv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4Nbv, .{_index, _v});
 }
 
 pub fn vertexAttrib4Niv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4Niv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4Niv, .{_index, _v});
 }
 
 pub fn vertexAttrib4Nsv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4Nsv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4Nsv, .{_index, _v});
 }
 
 pub fn vertexAttrib4Nub(_index: GLuint, _x: GLubyte, _y: GLubyte, _z: GLubyte, _w: GLubyte) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4Nub, .{_index, _x, _y, _z, _w});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4Nub, .{_index, _x, _y, _z, _w});
 }
 
 pub fn vertexAttrib4Nubv(_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4Nubv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4Nubv, .{_index, _v});
 }
 
 pub fn vertexAttrib4Nuiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4Nuiv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4Nuiv, .{_index, _v});
 }
 
 pub fn vertexAttrib4Nusv(_index: GLuint, _v: [*c]const GLushort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4Nusv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4Nusv, .{_index, _v});
 }
 
 pub fn vertexAttrib4bv(_index: GLuint, _v: [*c]const GLbyte) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4bv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4bv, .{_index, _v});
 }
 
 pub fn vertexAttrib4d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4d, .{_index, _x, _y, _z, _w});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4d, .{_index, _x, _y, _z, _w});
 }
 
 pub fn vertexAttrib4dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4dv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4dv, .{_index, _v});
 }
 
 pub fn vertexAttrib4f(_index: GLuint, _x: GLfloat, _y: GLfloat, _z: GLfloat, _w: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4f, .{_index, _x, _y, _z, _w});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4f, .{_index, _x, _y, _z, _w});
 }
 
 pub fn vertexAttrib4fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4fv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4fv, .{_index, _v});
 }
 
 pub fn vertexAttrib4iv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4iv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4iv, .{_index, _v});
 }
 
 pub fn vertexAttrib4s(_index: GLuint, _x: GLshort, _y: GLshort, _z: GLshort, _w: GLshort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4s, .{_index, _x, _y, _z, _w});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4s, .{_index, _x, _y, _z, _w});
 }
 
 pub fn vertexAttrib4sv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4sv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4sv, .{_index, _v});
 }
 
 pub fn vertexAttrib4ubv(_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4ubv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4ubv, .{_index, _v});
 }
 
 pub fn vertexAttrib4uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4uiv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4uiv, .{_index, _v});
 }
 
 pub fn vertexAttrib4usv(_index: GLuint, _v: [*c]const GLushort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttrib4usv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttrib4usv, .{_index, _v});
 }
 
 pub fn vertexAttribPointer(_index: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribPointer, .{_index, _size, _type, _normalized, _stride, _pointer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribPointer, .{_index, _size, _type, _normalized, _stride, _pointer});
 }
 
 pub fn uniformMatrix2x3fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix2x3fv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix2x3fv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix3x2fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix3x2fv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix3x2fv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix2x4fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix2x4fv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix2x4fv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix4x2fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix4x2fv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix4x2fv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix3x4fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix3x4fv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix3x4fv, .{_location, _count, _transpose, _value});
 }
 
 pub fn uniformMatrix4x3fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformMatrix4x3fv, .{_location, _count, _transpose, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformMatrix4x3fv, .{_location, _count, _transpose, _value});
 }
 
 pub fn colorMaski(_index: GLuint, _r: GLboolean, _g: GLboolean, _b: GLboolean, _a: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glColorMaski, .{_index, _r, _g, _b, _a});
+    return @call(.{.modifier = .always_tail}, function_pointers.glColorMaski, .{_index, _r, _g, _b, _a});
 }
 
 pub fn getBooleani_v(_target: GLenum, _index: GLuint, _data: [*c]GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetBooleani_v, .{_target, _index, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetBooleani_v, .{_target, _index, _data});
 }
 
 pub fn getIntegeri_v(_target: GLenum, _index: GLuint, _data: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetIntegeri_v, .{_target, _index, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetIntegeri_v, .{_target, _index, _data});
 }
 
 pub fn enablei(_target: GLenum, _index: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glEnablei, .{_target, _index});
+    return @call(.{.modifier = .always_tail}, function_pointers.glEnablei, .{_target, _index});
 }
 
 pub fn disablei(_target: GLenum, _index: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDisablei, .{_target, _index});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDisablei, .{_target, _index});
 }
 
 pub fn isEnabledi(_target: GLenum, _index: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsEnabledi, .{_target, _index});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsEnabledi, .{_target, _index});
 }
 
 pub fn beginTransformFeedback(_primitiveMode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBeginTransformFeedback, .{_primitiveMode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBeginTransformFeedback, .{_primitiveMode});
 }
 
 pub fn endTransformFeedback() callconv(.C) void {
-    return @call(.always_tail, function_pointers.glEndTransformFeedback, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glEndTransformFeedback, .{});
 }
 
 pub fn bindBufferRange(_target: GLenum, _index: GLuint, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindBufferRange, .{_target, _index, _buffer, _offset, _size});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindBufferRange, .{_target, _index, _buffer, _offset, _size});
 }
 
 pub fn bindBufferBase(_target: GLenum, _index: GLuint, _buffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindBufferBase, .{_target, _index, _buffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindBufferBase, .{_target, _index, _buffer});
 }
 
 pub fn transformFeedbackVaryings(_program: GLuint, _count: GLsizei, _varyings: [*c]const [*c]const GLchar, _bufferMode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTransformFeedbackVaryings, .{_program, _count, _varyings, _bufferMode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTransformFeedbackVaryings, .{_program, _count, _varyings, _bufferMode});
 }
 
 pub fn getTransformFeedbackVarying(_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLsizei, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTransformFeedbackVarying, .{_program, _index, _bufSize, _length, _size, _type, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTransformFeedbackVarying, .{_program, _index, _bufSize, _length, _size, _type, _name});
 }
 
 pub fn clampColor(_target: GLenum, _clamp: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClampColor, .{_target, _clamp});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClampColor, .{_target, _clamp});
 }
 
 pub fn beginConditionalRender(_id: GLuint, _mode: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBeginConditionalRender, .{_id, _mode});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBeginConditionalRender, .{_id, _mode});
 }
 
 pub fn endConditionalRender() callconv(.C) void {
-    return @call(.always_tail, function_pointers.glEndConditionalRender, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glEndConditionalRender, .{});
 }
 
 pub fn vertexAttribIPointer(_index: GLuint, _size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribIPointer, .{_index, _size, _type, _stride, _pointer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribIPointer, .{_index, _size, _type, _stride, _pointer});
 }
 
 pub fn getVertexAttribIiv(_index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetVertexAttribIiv, .{_index, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetVertexAttribIiv, .{_index, _pname, _params});
 }
 
 pub fn getVertexAttribIuiv(_index: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetVertexAttribIuiv, .{_index, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetVertexAttribIuiv, .{_index, _pname, _params});
 }
 
 pub fn vertexAttribI1i(_index: GLuint, _x: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI1i, .{_index, _x});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI1i, .{_index, _x});
 }
 
 pub fn vertexAttribI2i(_index: GLuint, _x: GLint, _y: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI2i, .{_index, _x, _y});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI2i, .{_index, _x, _y});
 }
 
 pub fn vertexAttribI3i(_index: GLuint, _x: GLint, _y: GLint, _z: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI3i, .{_index, _x, _y, _z});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI3i, .{_index, _x, _y, _z});
 }
 
 pub fn vertexAttribI4i(_index: GLuint, _x: GLint, _y: GLint, _z: GLint, _w: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI4i, .{_index, _x, _y, _z, _w});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI4i, .{_index, _x, _y, _z, _w});
 }
 
 pub fn vertexAttribI1ui(_index: GLuint, _x: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI1ui, .{_index, _x});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI1ui, .{_index, _x});
 }
 
 pub fn vertexAttribI2ui(_index: GLuint, _x: GLuint, _y: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI2ui, .{_index, _x, _y});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI2ui, .{_index, _x, _y});
 }
 
 pub fn vertexAttribI3ui(_index: GLuint, _x: GLuint, _y: GLuint, _z: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI3ui, .{_index, _x, _y, _z});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI3ui, .{_index, _x, _y, _z});
 }
 
 pub fn vertexAttribI4ui(_index: GLuint, _x: GLuint, _y: GLuint, _z: GLuint, _w: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI4ui, .{_index, _x, _y, _z, _w});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI4ui, .{_index, _x, _y, _z, _w});
 }
 
 pub fn vertexAttribI1iv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI1iv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI1iv, .{_index, _v});
 }
 
 pub fn vertexAttribI2iv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI2iv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI2iv, .{_index, _v});
 }
 
 pub fn vertexAttribI3iv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI3iv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI3iv, .{_index, _v});
 }
 
 pub fn vertexAttribI4iv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI4iv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI4iv, .{_index, _v});
 }
 
 pub fn vertexAttribI1uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI1uiv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI1uiv, .{_index, _v});
 }
 
 pub fn vertexAttribI2uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI2uiv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI2uiv, .{_index, _v});
 }
 
 pub fn vertexAttribI3uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI3uiv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI3uiv, .{_index, _v});
 }
 
 pub fn vertexAttribI4uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI4uiv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI4uiv, .{_index, _v});
 }
 
 pub fn vertexAttribI4bv(_index: GLuint, _v: [*c]const GLbyte) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI4bv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI4bv, .{_index, _v});
 }
 
 pub fn vertexAttribI4sv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI4sv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI4sv, .{_index, _v});
 }
 
 pub fn vertexAttribI4ubv(_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI4ubv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI4ubv, .{_index, _v});
 }
 
 pub fn vertexAttribI4usv(_index: GLuint, _v: [*c]const GLushort) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribI4usv, .{_index, _v});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribI4usv, .{_index, _v});
 }
 
 pub fn getUniformuiv(_program: GLuint, _location: GLint, _params: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetUniformuiv, .{_program, _location, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetUniformuiv, .{_program, _location, _params});
 }
 
 pub fn bindFragDataLocation(_program: GLuint, _color: GLuint, _name: [*c]const GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindFragDataLocation, .{_program, _color, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindFragDataLocation, .{_program, _color, _name});
 }
 
 pub fn getFragDataLocation(_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint {
-    return @call(.always_tail, function_pointers.glGetFragDataLocation, .{_program, _name});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetFragDataLocation, .{_program, _name});
 }
 
 pub fn uniform1ui(_location: GLint, _v0: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform1ui, .{_location, _v0});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform1ui, .{_location, _v0});
 }
 
 pub fn uniform2ui(_location: GLint, _v0: GLuint, _v1: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform2ui, .{_location, _v0, _v1});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform2ui, .{_location, _v0, _v1});
 }
 
 pub fn uniform3ui(_location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform3ui, .{_location, _v0, _v1, _v2});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform3ui, .{_location, _v0, _v1, _v2});
 }
 
 pub fn uniform4ui(_location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint, _v3: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform4ui, .{_location, _v0, _v1, _v2, _v3});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform4ui, .{_location, _v0, _v1, _v2, _v3});
 }
 
 pub fn uniform1uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform1uiv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform1uiv, .{_location, _count, _value});
 }
 
 pub fn uniform2uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform2uiv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform2uiv, .{_location, _count, _value});
 }
 
 pub fn uniform3uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform3uiv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform3uiv, .{_location, _count, _value});
 }
 
 pub fn uniform4uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniform4uiv, .{_location, _count, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniform4uiv, .{_location, _count, _value});
 }
 
 pub fn texParameterIiv(_target: GLenum, _pname: GLenum, _params: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexParameterIiv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexParameterIiv, .{_target, _pname, _params});
 }
 
 pub fn texParameterIuiv(_target: GLenum, _pname: GLenum, _params: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexParameterIuiv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexParameterIuiv, .{_target, _pname, _params});
 }
 
 pub fn getTexParameterIiv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTexParameterIiv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTexParameterIiv, .{_target, _pname, _params});
 }
 
 pub fn getTexParameterIuiv(_target: GLenum, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTexParameterIuiv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTexParameterIuiv, .{_target, _pname, _params});
 }
 
 pub fn clearBufferiv(_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearBufferiv, .{_buffer, _drawbuffer, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearBufferiv, .{_buffer, _drawbuffer, _value});
 }
 
 pub fn clearBufferuiv(_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearBufferuiv, .{_buffer, _drawbuffer, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearBufferuiv, .{_buffer, _drawbuffer, _value});
 }
 
 pub fn clearBufferfv(_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearBufferfv, .{_buffer, _drawbuffer, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearBufferfv, .{_buffer, _drawbuffer, _value});
 }
 
 pub fn clearBufferfi(_buffer: GLenum, _drawbuffer: GLint, _depth: GLfloat, _stencil: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearBufferfi, .{_buffer, _drawbuffer, _depth, _stencil});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearBufferfi, .{_buffer, _drawbuffer, _depth, _stencil});
 }
 
 pub fn getStringi(_name: GLenum, _index: GLuint) callconv(.C) ?[*:0]const GLubyte {
-    return @call(.always_tail, function_pointers.glGetStringi, .{_name, _index});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetStringi, .{_name, _index});
 }
 
 pub fn isRenderbuffer(_renderbuffer: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsRenderbuffer, .{_renderbuffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsRenderbuffer, .{_renderbuffer});
 }
 
 pub fn bindRenderbuffer(_target: GLenum, _renderbuffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindRenderbuffer, .{_target, _renderbuffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindRenderbuffer, .{_target, _renderbuffer});
 }
 
 pub fn deleteRenderbuffers(_n: GLsizei, _renderbuffers: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteRenderbuffers, .{_n, _renderbuffers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteRenderbuffers, .{_n, _renderbuffers});
 }
 
 pub fn genRenderbuffers(_n: GLsizei, _renderbuffers: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenRenderbuffers, .{_n, _renderbuffers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenRenderbuffers, .{_n, _renderbuffers});
 }
 
 pub fn renderbufferStorage(_target: GLenum, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glRenderbufferStorage, .{_target, _internalformat, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glRenderbufferStorage, .{_target, _internalformat, _width, _height});
 }
 
 pub fn getRenderbufferParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetRenderbufferParameteriv, .{_target, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetRenderbufferParameteriv, .{_target, _pname, _params});
 }
 
 pub fn isFramebuffer(_framebuffer: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsFramebuffer, .{_framebuffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsFramebuffer, .{_framebuffer});
 }
 
 pub fn bindFramebuffer(_target: GLenum, _framebuffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindFramebuffer, .{_target, _framebuffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindFramebuffer, .{_target, _framebuffer});
 }
 
 pub fn deleteFramebuffers(_n: GLsizei, _framebuffers: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteFramebuffers, .{_n, _framebuffers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteFramebuffers, .{_n, _framebuffers});
 }
 
 pub fn genFramebuffers(_n: GLsizei, _framebuffers: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenFramebuffers, .{_n, _framebuffers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenFramebuffers, .{_n, _framebuffers});
 }
 
 pub fn checkFramebufferStatus(_target: GLenum) callconv(.C) GLenum {
-    return @call(.always_tail, function_pointers.glCheckFramebufferStatus, .{_target});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCheckFramebufferStatus, .{_target});
 }
 
 pub fn framebufferTexture1D(_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFramebufferTexture1D, .{_target, _attachment, _textarget, _texture, _level});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFramebufferTexture1D, .{_target, _attachment, _textarget, _texture, _level});
 }
 
 pub fn framebufferTexture2D(_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFramebufferTexture2D, .{_target, _attachment, _textarget, _texture, _level});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFramebufferTexture2D, .{_target, _attachment, _textarget, _texture, _level});
 }
 
 pub fn framebufferTexture3D(_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint, _zoffset: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFramebufferTexture3D, .{_target, _attachment, _textarget, _texture, _level, _zoffset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFramebufferTexture3D, .{_target, _attachment, _textarget, _texture, _level, _zoffset});
 }
 
 pub fn framebufferRenderbuffer(_target: GLenum, _attachment: GLenum, _renderbuffertarget: GLenum, _renderbuffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFramebufferRenderbuffer, .{_target, _attachment, _renderbuffertarget, _renderbuffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFramebufferRenderbuffer, .{_target, _attachment, _renderbuffertarget, _renderbuffer});
 }
 
 pub fn getFramebufferAttachmentParameteriv(_target: GLenum, _attachment: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetFramebufferAttachmentParameteriv, .{_target, _attachment, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetFramebufferAttachmentParameteriv, .{_target, _attachment, _pname, _params});
 }
 
 pub fn generateMipmap(_target: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenerateMipmap, .{_target});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenerateMipmap, .{_target});
 }
 
 pub fn blitFramebuffer(_srcX0: GLint, _srcY0: GLint, _srcX1: GLint, _srcY1: GLint, _dstX0: GLint, _dstY0: GLint, _dstX1: GLint, _dstY1: GLint, _mask: GLbitfield, _filter: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlitFramebuffer, .{_srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlitFramebuffer, .{_srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter});
 }
 
 pub fn renderbufferStorageMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glRenderbufferStorageMultisample, .{_target, _samples, _internalformat, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glRenderbufferStorageMultisample, .{_target, _samples, _internalformat, _width, _height});
 }
 
 pub fn framebufferTextureLayer(_target: GLenum, _attachment: GLenum, _texture: GLuint, _level: GLint, _layer: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFramebufferTextureLayer, .{_target, _attachment, _texture, _level, _layer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFramebufferTextureLayer, .{_target, _attachment, _texture, _level, _layer});
 }
 
 pub fn mapBufferRange(_target: GLenum, _offset: GLintptr, _length: GLsizeiptr, _access: GLbitfield) callconv(.C) ?*anyopaque {
-    return @call(.always_tail, function_pointers.glMapBufferRange, .{_target, _offset, _length, _access});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMapBufferRange, .{_target, _offset, _length, _access});
 }
 
 pub fn flushMappedBufferRange(_target: GLenum, _offset: GLintptr, _length: GLsizeiptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFlushMappedBufferRange, .{_target, _offset, _length});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFlushMappedBufferRange, .{_target, _offset, _length});
 }
 
 pub fn bindVertexArray(_array: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindVertexArray, .{_array});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindVertexArray, .{_array});
 }
 
 pub fn deleteVertexArrays(_n: GLsizei, _arrays: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDeleteVertexArrays, .{_n, _arrays});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDeleteVertexArrays, .{_n, _arrays});
 }
 
 pub fn genVertexArrays(_n: GLsizei, _arrays: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenVertexArrays, .{_n, _arrays});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenVertexArrays, .{_n, _arrays});
 }
 
 pub fn isVertexArray(_array: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glIsVertexArray, .{_array});
+    return @call(.{.modifier = .always_tail}, function_pointers.glIsVertexArray, .{_array});
 }
 
 pub fn drawArraysInstanced(_mode: GLenum, _first: GLint, _count: GLsizei, _instancecount: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawArraysInstanced, .{_mode, _first, _count, _instancecount});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawArraysInstanced, .{_mode, _first, _count, _instancecount});
 }
 
 pub fn drawElementsInstanced(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDrawElementsInstanced, .{_mode, _count, _type, _indices, _instancecount});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDrawElementsInstanced, .{_mode, _count, _type, _indices, _instancecount});
 }
 
 pub fn texBuffer(_target: GLenum, _internalformat: GLenum, _buffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexBuffer, .{_target, _internalformat, _buffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexBuffer, .{_target, _internalformat, _buffer});
 }
 
 pub fn primitiveRestartIndex(_index: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPrimitiveRestartIndex, .{_index});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPrimitiveRestartIndex, .{_index});
 }
 
 pub fn copyBufferSubData(_readTarget: GLenum, _writeTarget: GLenum, _readOffset: GLintptr, _writeOffset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyBufferSubData, .{_readTarget, _writeTarget, _readOffset, _writeOffset, _size});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyBufferSubData, .{_readTarget, _writeTarget, _readOffset, _writeOffset, _size});
 }
 
 pub fn getUniformIndices(_program: GLuint, _uniformCount: GLsizei, _uniformNames: [*c]const [*c]const GLchar, _uniformIndices: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetUniformIndices, .{_program, _uniformCount, _uniformNames, _uniformIndices});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetUniformIndices, .{_program, _uniformCount, _uniformNames, _uniformIndices});
 }
 
 pub fn getActiveUniformsiv(_program: GLuint, _uniformCount: GLsizei, _uniformIndices: [*c]const GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetActiveUniformsiv, .{_program, _uniformCount, _uniformIndices, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetActiveUniformsiv, .{_program, _uniformCount, _uniformIndices, _pname, _params});
 }
 
 pub fn getActiveUniformName(_program: GLuint, _uniformIndex: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _uniformName: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetActiveUniformName, .{_program, _uniformIndex, _bufSize, _length, _uniformName});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetActiveUniformName, .{_program, _uniformIndex, _bufSize, _length, _uniformName});
 }
 
 pub fn getUniformBlockIndex(_program: GLuint, _uniformBlockName: [*c]const GLchar) callconv(.C) GLuint {
-    return @call(.always_tail, function_pointers.glGetUniformBlockIndex, .{_program, _uniformBlockName});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetUniformBlockIndex, .{_program, _uniformBlockName});
 }
 
 pub fn getActiveUniformBlockiv(_program: GLuint, _uniformBlockIndex: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetActiveUniformBlockiv, .{_program, _uniformBlockIndex, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetActiveUniformBlockiv, .{_program, _uniformBlockIndex, _pname, _params});
 }
 
 pub fn getActiveUniformBlockName(_program: GLuint, _uniformBlockIndex: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _uniformBlockName: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetActiveUniformBlockName, .{_program, _uniformBlockIndex, _bufSize, _length, _uniformBlockName});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetActiveUniformBlockName, .{_program, _uniformBlockIndex, _bufSize, _length, _uniformBlockName});
 }
 
 pub fn uniformBlockBinding(_program: GLuint, _uniformBlockIndex: GLuint, _uniformBlockBinding: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glUniformBlockBinding, .{_program, _uniformBlockIndex, _uniformBlockBinding});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUniformBlockBinding, .{_program, _uniformBlockIndex, _uniformBlockBinding});
 }
 
 pub fn texStorage3DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTexStorage3DMultisample, .{_target, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTexStorage3DMultisample, .{_target, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations});
 }
 
 pub fn textureView(_texture: GLuint, _target: GLenum, _origtexture: GLuint, _internalformat: GLenum, _minlevel: GLuint, _numlevels: GLuint, _minlayer: GLuint, _numlayers: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureView, .{_texture, _target, _origtexture, _internalformat, _minlevel, _numlevels, _minlayer, _numlayers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureView, .{_texture, _target, _origtexture, _internalformat, _minlevel, _numlevels, _minlayer, _numlayers});
 }
 
 pub fn bindVertexBuffer(_bindingindex: GLuint, _buffer: GLuint, _offset: GLintptr, _stride: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindVertexBuffer, .{_bindingindex, _buffer, _offset, _stride});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindVertexBuffer, .{_bindingindex, _buffer, _offset, _stride});
 }
 
 pub fn vertexAttribFormat(_attribindex: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _relativeoffset: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribFormat, .{_attribindex, _size, _type, _normalized, _relativeoffset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribFormat, .{_attribindex, _size, _type, _normalized, _relativeoffset});
 }
 
 pub fn vertexAttribIFormat(_attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribIFormat, .{_attribindex, _size, _type, _relativeoffset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribIFormat, .{_attribindex, _size, _type, _relativeoffset});
 }
 
 pub fn vertexAttribLFormat(_attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribLFormat, .{_attribindex, _size, _type, _relativeoffset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribLFormat, .{_attribindex, _size, _type, _relativeoffset});
 }
 
 pub fn vertexAttribBinding(_attribindex: GLuint, _bindingindex: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexAttribBinding, .{_attribindex, _bindingindex});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexAttribBinding, .{_attribindex, _bindingindex});
 }
 
 pub fn vertexBindingDivisor(_bindingindex: GLuint, _divisor: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexBindingDivisor, .{_bindingindex, _divisor});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexBindingDivisor, .{_bindingindex, _divisor});
 }
 
 pub fn debugMessageControl(_source: GLenum, _type: GLenum, _severity: GLenum, _count: GLsizei, _ids: [*c]const GLuint, _enabled: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDebugMessageControl, .{_source, _type, _severity, _count, _ids, _enabled});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDebugMessageControl, .{_source, _type, _severity, _count, _ids, _enabled});
 }
 
 pub fn debugMessageInsert(_source: GLenum, _type: GLenum, _id: GLuint, _severity: GLenum, _length: GLsizei, _buf: [*c]const GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDebugMessageInsert, .{_source, _type, _id, _severity, _length, _buf});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDebugMessageInsert, .{_source, _type, _id, _severity, _length, _buf});
 }
 
 pub fn debugMessageCallback(_callback: GLDEBUGPROC, _userParam: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDebugMessageCallback, .{_callback, _userParam});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDebugMessageCallback, .{_callback, _userParam});
 }
 
 pub fn getDebugMessageLog(_count: GLuint, _bufSize: GLsizei, _sources: [*c]GLenum, _types: [*c]GLenum, _ids: [*c]GLuint, _severities: [*c]GLenum, _lengths: [*c]GLsizei, _messageLog: [*c]GLchar) callconv(.C) GLuint {
-    return @call(.always_tail, function_pointers.glGetDebugMessageLog, .{_count, _bufSize, _sources, _types, _ids, _severities, _lengths, _messageLog});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetDebugMessageLog, .{_count, _bufSize, _sources, _types, _ids, _severities, _lengths, _messageLog});
 }
 
 pub fn pushDebugGroup(_source: GLenum, _id: GLuint, _length: GLsizei, _message: [*c]const GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPushDebugGroup, .{_source, _id, _length, _message});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPushDebugGroup, .{_source, _id, _length, _message});
 }
 
 pub fn popDebugGroup() callconv(.C) void {
-    return @call(.always_tail, function_pointers.glPopDebugGroup, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glPopDebugGroup, .{});
 }
 
 pub fn objectLabel(_identifier: GLenum, _name: GLuint, _length: GLsizei, _label: [*c]const GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glObjectLabel, .{_identifier, _name, _length, _label});
+    return @call(.{.modifier = .always_tail}, function_pointers.glObjectLabel, .{_identifier, _name, _length, _label});
 }
 
 pub fn getObjectLabel(_identifier: GLenum, _name: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _label: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetObjectLabel, .{_identifier, _name, _bufSize, _length, _label});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetObjectLabel, .{_identifier, _name, _bufSize, _length, _label});
 }
 
 pub fn objectPtrLabel(_ptr: ?*const anyopaque, _length: GLsizei, _label: [*c]const GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glObjectPtrLabel, .{_ptr, _length, _label});
+    return @call(.{.modifier = .always_tail}, function_pointers.glObjectPtrLabel, .{_ptr, _length, _label});
 }
 
 pub fn getObjectPtrLabel(_ptr: ?*const anyopaque, _bufSize: GLsizei, _length: [*c]GLsizei, _label: [*c]GLchar) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetObjectPtrLabel, .{_ptr, _bufSize, _length, _label});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetObjectPtrLabel, .{_ptr, _bufSize, _length, _label});
 }
 
 pub fn getPointerv(_pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetPointerv, .{_pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetPointerv, .{_pname, _params});
 }
 
 pub fn bufferStorage(_target: GLenum, _size: GLsizeiptr, _data: ?*const anyopaque, _flags: GLbitfield) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBufferStorage, .{_target, _size, _data, _flags});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBufferStorage, .{_target, _size, _data, _flags});
 }
 
 pub fn clearTexImage(_texture: GLuint, _level: GLint, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearTexImage, .{_texture, _level, _format, _type, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearTexImage, .{_texture, _level, _format, _type, _data});
 }
 
 pub fn clearTexSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearTexSubImage, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearTexSubImage, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _data});
 }
 
 pub fn bindBuffersBase(_target: GLenum, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindBuffersBase, .{_target, _first, _count, _buffers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindBuffersBase, .{_target, _first, _count, _buffers});
 }
 
 pub fn bindBuffersRange(_target: GLenum, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _sizes: [*c]const GLsizeiptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindBuffersRange, .{_target, _first, _count, _buffers, _offsets, _sizes});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindBuffersRange, .{_target, _first, _count, _buffers, _offsets, _sizes});
 }
 
 pub fn bindTextures(_first: GLuint, _count: GLsizei, _textures: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindTextures, .{_first, _count, _textures});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindTextures, .{_first, _count, _textures});
 }
 
 pub fn bindSamplers(_first: GLuint, _count: GLsizei, _samplers: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindSamplers, .{_first, _count, _samplers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindSamplers, .{_first, _count, _samplers});
 }
 
 pub fn bindImageTextures(_first: GLuint, _count: GLsizei, _textures: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindImageTextures, .{_first, _count, _textures});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindImageTextures, .{_first, _count, _textures});
 }
 
 pub fn bindVertexBuffers(_first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _strides: [*c]const GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindVertexBuffers, .{_first, _count, _buffers, _offsets, _strides});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindVertexBuffers, .{_first, _count, _buffers, _offsets, _strides});
 }
 
 pub fn clipControl(_origin: GLenum, _depth: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClipControl, .{_origin, _depth});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClipControl, .{_origin, _depth});
 }
 
 pub fn createTransformFeedbacks(_n: GLsizei, _ids: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCreateTransformFeedbacks, .{_n, _ids});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateTransformFeedbacks, .{_n, _ids});
 }
 
 pub fn transformFeedbackBufferBase(_xfb: GLuint, _index: GLuint, _buffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTransformFeedbackBufferBase, .{_xfb, _index, _buffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTransformFeedbackBufferBase, .{_xfb, _index, _buffer});
 }
 
 pub fn transformFeedbackBufferRange(_xfb: GLuint, _index: GLuint, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTransformFeedbackBufferRange, .{_xfb, _index, _buffer, _offset, _size});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTransformFeedbackBufferRange, .{_xfb, _index, _buffer, _offset, _size});
 }
 
 pub fn getTransformFeedbackiv(_xfb: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTransformFeedbackiv, .{_xfb, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTransformFeedbackiv, .{_xfb, _pname, _param});
 }
 
 pub fn getTransformFeedbacki_v(_xfb: GLuint, _pname: GLenum, _index: GLuint, _param: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTransformFeedbacki_v, .{_xfb, _pname, _index, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTransformFeedbacki_v, .{_xfb, _pname, _index, _param});
 }
 
 pub fn getTransformFeedbacki64_v(_xfb: GLuint, _pname: GLenum, _index: GLuint, _param: [*c]GLint64) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTransformFeedbacki64_v, .{_xfb, _pname, _index, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTransformFeedbacki64_v, .{_xfb, _pname, _index, _param});
 }
 
 pub fn createBuffers(_n: GLsizei, _buffers: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCreateBuffers, .{_n, _buffers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateBuffers, .{_n, _buffers});
 }
 
 pub fn namedBufferStorage(_buffer: GLuint, _size: GLsizeiptr, _data: ?*const anyopaque, _flags: GLbitfield) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedBufferStorage, .{_buffer, _size, _data, _flags});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedBufferStorage, .{_buffer, _size, _data, _flags});
 }
 
 pub fn namedBufferData(_buffer: GLuint, _size: GLsizeiptr, _data: ?*const anyopaque, _usage: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedBufferData, .{_buffer, _size, _data, _usage});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedBufferData, .{_buffer, _size, _data, _usage});
 }
 
 pub fn namedBufferSubData(_buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedBufferSubData, .{_buffer, _offset, _size, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedBufferSubData, .{_buffer, _offset, _size, _data});
 }
 
 pub fn copyNamedBufferSubData(_readBuffer: GLuint, _writeBuffer: GLuint, _readOffset: GLintptr, _writeOffset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyNamedBufferSubData, .{_readBuffer, _writeBuffer, _readOffset, _writeOffset, _size});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyNamedBufferSubData, .{_readBuffer, _writeBuffer, _readOffset, _writeOffset, _size});
 }
 
 pub fn clearNamedBufferData(_buffer: GLuint, _internalformat: GLenum, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearNamedBufferData, .{_buffer, _internalformat, _format, _type, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearNamedBufferData, .{_buffer, _internalformat, _format, _type, _data});
 }
 
 pub fn clearNamedBufferSubData(_buffer: GLuint, _internalformat: GLenum, _offset: GLintptr, _size: GLsizeiptr, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearNamedBufferSubData, .{_buffer, _internalformat, _offset, _size, _format, _type, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearNamedBufferSubData, .{_buffer, _internalformat, _offset, _size, _format, _type, _data});
 }
 
 pub fn mapNamedBuffer(_buffer: GLuint, _access: GLenum) callconv(.C) ?*anyopaque {
-    return @call(.always_tail, function_pointers.glMapNamedBuffer, .{_buffer, _access});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMapNamedBuffer, .{_buffer, _access});
 }
 
 pub fn mapNamedBufferRange(_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr, _access: GLbitfield) callconv(.C) ?*anyopaque {
-    return @call(.always_tail, function_pointers.glMapNamedBufferRange, .{_buffer, _offset, _length, _access});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMapNamedBufferRange, .{_buffer, _offset, _length, _access});
 }
 
 pub fn unmapNamedBuffer(_buffer: GLuint) callconv(.C) GLboolean {
-    return @call(.always_tail, function_pointers.glUnmapNamedBuffer, .{_buffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glUnmapNamedBuffer, .{_buffer});
 }
 
 pub fn flushMappedNamedBufferRange(_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glFlushMappedNamedBufferRange, .{_buffer, _offset, _length});
+    return @call(.{.modifier = .always_tail}, function_pointers.glFlushMappedNamedBufferRange, .{_buffer, _offset, _length});
 }
 
 pub fn getNamedBufferParameteriv(_buffer: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetNamedBufferParameteriv, .{_buffer, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetNamedBufferParameteriv, .{_buffer, _pname, _params});
 }
 
 pub fn getNamedBufferParameteri64v(_buffer: GLuint, _pname: GLenum, _params: [*c]GLint64) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetNamedBufferParameteri64v, .{_buffer, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetNamedBufferParameteri64v, .{_buffer, _pname, _params});
 }
 
 pub fn getNamedBufferPointerv(_buffer: GLuint, _pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetNamedBufferPointerv, .{_buffer, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetNamedBufferPointerv, .{_buffer, _pname, _params});
 }
 
 pub fn getNamedBufferSubData(_buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr, _data: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetNamedBufferSubData, .{_buffer, _offset, _size, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetNamedBufferSubData, .{_buffer, _offset, _size, _data});
 }
 
 pub fn createFramebuffers(_n: GLsizei, _framebuffers: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCreateFramebuffers, .{_n, _framebuffers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateFramebuffers, .{_n, _framebuffers});
 }
 
 pub fn namedFramebufferRenderbuffer(_framebuffer: GLuint, _attachment: GLenum, _renderbuffertarget: GLenum, _renderbuffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedFramebufferRenderbuffer, .{_framebuffer, _attachment, _renderbuffertarget, _renderbuffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedFramebufferRenderbuffer, .{_framebuffer, _attachment, _renderbuffertarget, _renderbuffer});
 }
 
 pub fn namedFramebufferParameteri(_framebuffer: GLuint, _pname: GLenum, _param: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedFramebufferParameteri, .{_framebuffer, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedFramebufferParameteri, .{_framebuffer, _pname, _param});
 }
 
 pub fn namedFramebufferTexture(_framebuffer: GLuint, _attachment: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedFramebufferTexture, .{_framebuffer, _attachment, _texture, _level});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedFramebufferTexture, .{_framebuffer, _attachment, _texture, _level});
 }
 
 pub fn namedFramebufferTextureLayer(_framebuffer: GLuint, _attachment: GLenum, _texture: GLuint, _level: GLint, _layer: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedFramebufferTextureLayer, .{_framebuffer, _attachment, _texture, _level, _layer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedFramebufferTextureLayer, .{_framebuffer, _attachment, _texture, _level, _layer});
 }
 
 pub fn namedFramebufferDrawBuffer(_framebuffer: GLuint, _buf: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedFramebufferDrawBuffer, .{_framebuffer, _buf});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedFramebufferDrawBuffer, .{_framebuffer, _buf});
 }
 
 pub fn namedFramebufferDrawBuffers(_framebuffer: GLuint, _n: GLsizei, _bufs: [*c]const GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedFramebufferDrawBuffers, .{_framebuffer, _n, _bufs});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedFramebufferDrawBuffers, .{_framebuffer, _n, _bufs});
 }
 
 pub fn namedFramebufferReadBuffer(_framebuffer: GLuint, _src: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedFramebufferReadBuffer, .{_framebuffer, _src});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedFramebufferReadBuffer, .{_framebuffer, _src});
 }
 
 pub fn invalidateNamedFramebufferData(_framebuffer: GLuint, _numAttachments: GLsizei, _attachments: [*c]const GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glInvalidateNamedFramebufferData, .{_framebuffer, _numAttachments, _attachments});
+    return @call(.{.modifier = .always_tail}, function_pointers.glInvalidateNamedFramebufferData, .{_framebuffer, _numAttachments, _attachments});
 }
 
 pub fn invalidateNamedFramebufferSubData(_framebuffer: GLuint, _numAttachments: GLsizei, _attachments: [*c]const GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glInvalidateNamedFramebufferSubData, .{_framebuffer, _numAttachments, _attachments, _x, _y, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glInvalidateNamedFramebufferSubData, .{_framebuffer, _numAttachments, _attachments, _x, _y, _width, _height});
 }
 
 pub fn clearNamedFramebufferiv(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearNamedFramebufferiv, .{_framebuffer, _buffer, _drawbuffer, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearNamedFramebufferiv, .{_framebuffer, _buffer, _drawbuffer, _value});
 }
 
 pub fn clearNamedFramebufferuiv(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearNamedFramebufferuiv, .{_framebuffer, _buffer, _drawbuffer, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearNamedFramebufferuiv, .{_framebuffer, _buffer, _drawbuffer, _value});
 }
 
 pub fn clearNamedFramebufferfv(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearNamedFramebufferfv, .{_framebuffer, _buffer, _drawbuffer, _value});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearNamedFramebufferfv, .{_framebuffer, _buffer, _drawbuffer, _value});
 }
 
 pub fn clearNamedFramebufferfi(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _depth: GLfloat, _stencil: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glClearNamedFramebufferfi, .{_framebuffer, _buffer, _drawbuffer, _depth, _stencil});
+    return @call(.{.modifier = .always_tail}, function_pointers.glClearNamedFramebufferfi, .{_framebuffer, _buffer, _drawbuffer, _depth, _stencil});
 }
 
 pub fn blitNamedFramebuffer(_readFramebuffer: GLuint, _drawFramebuffer: GLuint, _srcX0: GLint, _srcY0: GLint, _srcX1: GLint, _srcY1: GLint, _dstX0: GLint, _dstY0: GLint, _dstX1: GLint, _dstY1: GLint, _mask: GLbitfield, _filter: GLenum) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBlitNamedFramebuffer, .{_readFramebuffer, _drawFramebuffer, _srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBlitNamedFramebuffer, .{_readFramebuffer, _drawFramebuffer, _srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter});
 }
 
 pub fn checkNamedFramebufferStatus(_framebuffer: GLuint, _target: GLenum) callconv(.C) GLenum {
-    return @call(.always_tail, function_pointers.glCheckNamedFramebufferStatus, .{_framebuffer, _target});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCheckNamedFramebufferStatus, .{_framebuffer, _target});
 }
 
 pub fn getNamedFramebufferParameteriv(_framebuffer: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetNamedFramebufferParameteriv, .{_framebuffer, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetNamedFramebufferParameteriv, .{_framebuffer, _pname, _param});
 }
 
 pub fn getNamedFramebufferAttachmentParameteriv(_framebuffer: GLuint, _attachment: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetNamedFramebufferAttachmentParameteriv, .{_framebuffer, _attachment, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetNamedFramebufferAttachmentParameteriv, .{_framebuffer, _attachment, _pname, _params});
 }
 
 pub fn createRenderbuffers(_n: GLsizei, _renderbuffers: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCreateRenderbuffers, .{_n, _renderbuffers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateRenderbuffers, .{_n, _renderbuffers});
 }
 
 pub fn namedRenderbufferStorage(_renderbuffer: GLuint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedRenderbufferStorage, .{_renderbuffer, _internalformat, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedRenderbufferStorage, .{_renderbuffer, _internalformat, _width, _height});
 }
 
 pub fn namedRenderbufferStorageMultisample(_renderbuffer: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glNamedRenderbufferStorageMultisample, .{_renderbuffer, _samples, _internalformat, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glNamedRenderbufferStorageMultisample, .{_renderbuffer, _samples, _internalformat, _width, _height});
 }
 
 pub fn getNamedRenderbufferParameteriv(_renderbuffer: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetNamedRenderbufferParameteriv, .{_renderbuffer, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetNamedRenderbufferParameteriv, .{_renderbuffer, _pname, _params});
 }
 
 pub fn createTextures(_target: GLenum, _n: GLsizei, _textures: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCreateTextures, .{_target, _n, _textures});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateTextures, .{_target, _n, _textures});
 }
 
 pub fn textureBuffer(_texture: GLuint, _internalformat: GLenum, _buffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureBuffer, .{_texture, _internalformat, _buffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureBuffer, .{_texture, _internalformat, _buffer});
 }
 
 pub fn textureBufferRange(_texture: GLuint, _internalformat: GLenum, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureBufferRange, .{_texture, _internalformat, _buffer, _offset, _size});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureBufferRange, .{_texture, _internalformat, _buffer, _offset, _size});
 }
 
 pub fn textureStorage1D(_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureStorage1D, .{_texture, _levels, _internalformat, _width});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureStorage1D, .{_texture, _levels, _internalformat, _width});
 }
 
 pub fn textureStorage2D(_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureStorage2D, .{_texture, _levels, _internalformat, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureStorage2D, .{_texture, _levels, _internalformat, _width, _height});
 }
 
 pub fn textureStorage3D(_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureStorage3D, .{_texture, _levels, _internalformat, _width, _height, _depth});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureStorage3D, .{_texture, _levels, _internalformat, _width, _height, _depth});
 }
 
 pub fn textureStorage2DMultisample(_texture: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureStorage2DMultisample, .{_texture, _samples, _internalformat, _width, _height, _fixedsamplelocations});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureStorage2DMultisample, .{_texture, _samples, _internalformat, _width, _height, _fixedsamplelocations});
 }
 
 pub fn textureStorage3DMultisample(_texture: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureStorage3DMultisample, .{_texture, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureStorage3DMultisample, .{_texture, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations});
 }
 
 pub fn textureSubImage1D(_texture: GLuint, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureSubImage1D, .{_texture, _level, _xoffset, _width, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureSubImage1D, .{_texture, _level, _xoffset, _width, _format, _type, _pixels});
 }
 
 pub fn textureSubImage2D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureSubImage2D, .{_texture, _level, _xoffset, _yoffset, _width, _height, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureSubImage2D, .{_texture, _level, _xoffset, _yoffset, _width, _height, _format, _type, _pixels});
 }
 
 pub fn textureSubImage3D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureSubImage3D, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureSubImage3D, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _pixels});
 }
 
 pub fn compressedTextureSubImage1D(_texture: GLuint, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCompressedTextureSubImage1D, .{_texture, _level, _xoffset, _width, _format, _imageSize, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCompressedTextureSubImage1D, .{_texture, _level, _xoffset, _width, _format, _imageSize, _data});
 }
 
 pub fn compressedTextureSubImage2D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCompressedTextureSubImage2D, .{_texture, _level, _xoffset, _yoffset, _width, _height, _format, _imageSize, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCompressedTextureSubImage2D, .{_texture, _level, _xoffset, _yoffset, _width, _height, _format, _imageSize, _data});
 }
 
 pub fn compressedTextureSubImage3D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCompressedTextureSubImage3D, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _imageSize, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCompressedTextureSubImage3D, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _imageSize, _data});
 }
 
 pub fn copyTextureSubImage1D(_texture: GLuint, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyTextureSubImage1D, .{_texture, _level, _xoffset, _x, _y, _width});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyTextureSubImage1D, .{_texture, _level, _xoffset, _x, _y, _width});
 }
 
 pub fn copyTextureSubImage2D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyTextureSubImage2D, .{_texture, _level, _xoffset, _yoffset, _x, _y, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyTextureSubImage2D, .{_texture, _level, _xoffset, _yoffset, _x, _y, _width, _height});
 }
 
 pub fn copyTextureSubImage3D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCopyTextureSubImage3D, .{_texture, _level, _xoffset, _yoffset, _zoffset, _x, _y, _width, _height});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCopyTextureSubImage3D, .{_texture, _level, _xoffset, _yoffset, _zoffset, _x, _y, _width, _height});
 }
 
 pub fn textureParameterf(_texture: GLuint, _pname: GLenum, _param: GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureParameterf, .{_texture, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureParameterf, .{_texture, _pname, _param});
 }
 
 pub fn textureParameterfv(_texture: GLuint, _pname: GLenum, _param: [*c]const GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureParameterfv, .{_texture, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureParameterfv, .{_texture, _pname, _param});
 }
 
 pub fn textureParameteri(_texture: GLuint, _pname: GLenum, _param: GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureParameteri, .{_texture, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureParameteri, .{_texture, _pname, _param});
 }
 
 pub fn textureParameterIiv(_texture: GLuint, _pname: GLenum, _params: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureParameterIiv, .{_texture, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureParameterIiv, .{_texture, _pname, _params});
 }
 
 pub fn textureParameterIuiv(_texture: GLuint, _pname: GLenum, _params: [*c]const GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureParameterIuiv, .{_texture, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureParameterIuiv, .{_texture, _pname, _params});
 }
 
 pub fn textureParameteriv(_texture: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureParameteriv, .{_texture, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureParameteriv, .{_texture, _pname, _param});
 }
 
 pub fn generateTextureMipmap(_texture: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGenerateTextureMipmap, .{_texture});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGenerateTextureMipmap, .{_texture});
 }
 
 pub fn bindTextureUnit(_unit: GLuint, _texture: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glBindTextureUnit, .{_unit, _texture});
+    return @call(.{.modifier = .always_tail}, function_pointers.glBindTextureUnit, .{_unit, _texture});
 }
 
 pub fn getTextureImage(_texture: GLuint, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTextureImage, .{_texture, _level, _format, _type, _bufSize, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTextureImage, .{_texture, _level, _format, _type, _bufSize, _pixels});
 }
 
 pub fn getCompressedTextureImage(_texture: GLuint, _level: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetCompressedTextureImage, .{_texture, _level, _bufSize, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetCompressedTextureImage, .{_texture, _level, _bufSize, _pixels});
 }
 
 pub fn getTextureLevelParameterfv(_texture: GLuint, _level: GLint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTextureLevelParameterfv, .{_texture, _level, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTextureLevelParameterfv, .{_texture, _level, _pname, _params});
 }
 
 pub fn getTextureLevelParameteriv(_texture: GLuint, _level: GLint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTextureLevelParameteriv, .{_texture, _level, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTextureLevelParameteriv, .{_texture, _level, _pname, _params});
 }
 
 pub fn getTextureParameterfv(_texture: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTextureParameterfv, .{_texture, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTextureParameterfv, .{_texture, _pname, _params});
 }
 
 pub fn getTextureParameterIiv(_texture: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTextureParameterIiv, .{_texture, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTextureParameterIiv, .{_texture, _pname, _params});
 }
 
 pub fn getTextureParameterIuiv(_texture: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTextureParameterIuiv, .{_texture, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTextureParameterIuiv, .{_texture, _pname, _params});
 }
 
 pub fn getTextureParameteriv(_texture: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTextureParameteriv, .{_texture, _pname, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTextureParameteriv, .{_texture, _pname, _params});
 }
 
 pub fn createVertexArrays(_n: GLsizei, _arrays: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCreateVertexArrays, .{_n, _arrays});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateVertexArrays, .{_n, _arrays});
 }
 
 pub fn disableVertexArrayAttrib(_vaobj: GLuint, _index: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glDisableVertexArrayAttrib, .{_vaobj, _index});
+    return @call(.{.modifier = .always_tail}, function_pointers.glDisableVertexArrayAttrib, .{_vaobj, _index});
 }
 
 pub fn enableVertexArrayAttrib(_vaobj: GLuint, _index: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glEnableVertexArrayAttrib, .{_vaobj, _index});
+    return @call(.{.modifier = .always_tail}, function_pointers.glEnableVertexArrayAttrib, .{_vaobj, _index});
 }
 
 pub fn vertexArrayElementBuffer(_vaobj: GLuint, _buffer: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexArrayElementBuffer, .{_vaobj, _buffer});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexArrayElementBuffer, .{_vaobj, _buffer});
 }
 
 pub fn vertexArrayVertexBuffer(_vaobj: GLuint, _bindingindex: GLuint, _buffer: GLuint, _offset: GLintptr, _stride: GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexArrayVertexBuffer, .{_vaobj, _bindingindex, _buffer, _offset, _stride});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexArrayVertexBuffer, .{_vaobj, _bindingindex, _buffer, _offset, _stride});
 }
 
 pub fn vertexArrayVertexBuffers(_vaobj: GLuint, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _strides: [*c]const GLsizei) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexArrayVertexBuffers, .{_vaobj, _first, _count, _buffers, _offsets, _strides});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexArrayVertexBuffers, .{_vaobj, _first, _count, _buffers, _offsets, _strides});
 }
 
 pub fn vertexArrayAttribBinding(_vaobj: GLuint, _attribindex: GLuint, _bindingindex: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexArrayAttribBinding, .{_vaobj, _attribindex, _bindingindex});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexArrayAttribBinding, .{_vaobj, _attribindex, _bindingindex});
 }
 
 pub fn vertexArrayAttribFormat(_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _relativeoffset: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexArrayAttribFormat, .{_vaobj, _attribindex, _size, _type, _normalized, _relativeoffset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexArrayAttribFormat, .{_vaobj, _attribindex, _size, _type, _normalized, _relativeoffset});
 }
 
 pub fn vertexArrayAttribIFormat(_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexArrayAttribIFormat, .{_vaobj, _attribindex, _size, _type, _relativeoffset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexArrayAttribIFormat, .{_vaobj, _attribindex, _size, _type, _relativeoffset});
 }
 
 pub fn vertexArrayAttribLFormat(_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexArrayAttribLFormat, .{_vaobj, _attribindex, _size, _type, _relativeoffset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexArrayAttribLFormat, .{_vaobj, _attribindex, _size, _type, _relativeoffset});
 }
 
 pub fn vertexArrayBindingDivisor(_vaobj: GLuint, _bindingindex: GLuint, _divisor: GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glVertexArrayBindingDivisor, .{_vaobj, _bindingindex, _divisor});
+    return @call(.{.modifier = .always_tail}, function_pointers.glVertexArrayBindingDivisor, .{_vaobj, _bindingindex, _divisor});
 }
 
 pub fn getVertexArrayiv(_vaobj: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetVertexArrayiv, .{_vaobj, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetVertexArrayiv, .{_vaobj, _pname, _param});
 }
 
 pub fn getVertexArrayIndexediv(_vaobj: GLuint, _index: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetVertexArrayIndexediv, .{_vaobj, _index, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetVertexArrayIndexediv, .{_vaobj, _index, _pname, _param});
 }
 
 pub fn getVertexArrayIndexed64iv(_vaobj: GLuint, _index: GLuint, _pname: GLenum, _param: [*c]GLint64) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetVertexArrayIndexed64iv, .{_vaobj, _index, _pname, _param});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetVertexArrayIndexed64iv, .{_vaobj, _index, _pname, _param});
 }
 
 pub fn createSamplers(_n: GLsizei, _samplers: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCreateSamplers, .{_n, _samplers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateSamplers, .{_n, _samplers});
 }
 
 pub fn createProgramPipelines(_n: GLsizei, _pipelines: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCreateProgramPipelines, .{_n, _pipelines});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateProgramPipelines, .{_n, _pipelines});
 }
 
 pub fn createQueries(_target: GLenum, _n: GLsizei, _ids: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glCreateQueries, .{_target, _n, _ids});
+    return @call(.{.modifier = .always_tail}, function_pointers.glCreateQueries, .{_target, _n, _ids});
 }
 
 pub fn getQueryBufferObjecti64v(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetQueryBufferObjecti64v, .{_id, _buffer, _pname, _offset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetQueryBufferObjecti64v, .{_id, _buffer, _pname, _offset});
 }
 
 pub fn getQueryBufferObjectiv(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetQueryBufferObjectiv, .{_id, _buffer, _pname, _offset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetQueryBufferObjectiv, .{_id, _buffer, _pname, _offset});
 }
 
 pub fn getQueryBufferObjectui64v(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetQueryBufferObjectui64v, .{_id, _buffer, _pname, _offset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetQueryBufferObjectui64v, .{_id, _buffer, _pname, _offset});
 }
 
 pub fn getQueryBufferObjectuiv(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetQueryBufferObjectuiv, .{_id, _buffer, _pname, _offset});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetQueryBufferObjectuiv, .{_id, _buffer, _pname, _offset});
 }
 
 pub fn memoryBarrierByRegion(_barriers: GLbitfield) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glMemoryBarrierByRegion, .{_barriers});
+    return @call(.{.modifier = .always_tail}, function_pointers.glMemoryBarrierByRegion, .{_barriers});
 }
 
 pub fn getTextureSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetTextureSubImage, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _bufSize, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetTextureSubImage, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _bufSize, _pixels});
 }
 
 pub fn getCompressedTextureSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetCompressedTextureSubImage, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _bufSize, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetCompressedTextureSubImage, .{_texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _bufSize, _pixels});
 }
 
 pub fn getGraphicsResetStatus() callconv(.C) GLenum {
-    return @call(.always_tail, function_pointers.glGetGraphicsResetStatus, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetGraphicsResetStatus, .{});
 }
 
 pub fn getnCompressedTexImage(_target: GLenum, _lod: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetnCompressedTexImage, .{_target, _lod, _bufSize, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetnCompressedTexImage, .{_target, _lod, _bufSize, _pixels});
 }
 
 pub fn getnTexImage(_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetnTexImage, .{_target, _level, _format, _type, _bufSize, _pixels});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetnTexImage, .{_target, _level, _format, _type, _bufSize, _pixels});
 }
 
 pub fn getnUniformdv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLdouble) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetnUniformdv, .{_program, _location, _bufSize, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetnUniformdv, .{_program, _location, _bufSize, _params});
 }
 
 pub fn getnUniformfv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLfloat) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetnUniformfv, .{_program, _location, _bufSize, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetnUniformfv, .{_program, _location, _bufSize, _params});
 }
 
 pub fn getnUniformiv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetnUniformiv, .{_program, _location, _bufSize, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetnUniformiv, .{_program, _location, _bufSize, _params});
 }
 
 pub fn getnUniformuiv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLuint) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glGetnUniformuiv, .{_program, _location, _bufSize, _params});
+    return @call(.{.modifier = .always_tail}, function_pointers.glGetnUniformuiv, .{_program, _location, _bufSize, _params});
 }
 
 pub fn readnPixels(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _data: ?*anyopaque) callconv(.C) void {
-    return @call(.always_tail, function_pointers.glReadnPixels, .{_x, _y, _width, _height, _format, _type, _bufSize, _data});
+    return @call(.{.modifier = .always_tail}, function_pointers.glReadnPixels, .{_x, _y, _width, _height, _format, _type, _bufSize, _data});
 }
 
 pub fn textureBarrier() callconv(.C) void {
-    return @call(.always_tail, function_pointers.glTextureBarrier, .{});
+    return @call(.{.modifier = .always_tail}, function_pointers.glTextureBarrier, .{});
 }
 // Extensions:
 
