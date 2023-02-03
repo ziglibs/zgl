@@ -615,7 +615,11 @@ pub fn bufferUninitialized(target: BufferTarget, comptime T: type, count: usize,
 }
 
 pub fn bufferSubData(target: BufferTarget, offset: usize, comptime T: type, items: []align(1) const T) void {
-    binding.bufferSubData(@enumToInt(target), cs2gl(offset), cs2gl(@sizeOf(T) * items.len), items.ptr);
+    binding.bufferSubData(
+        @enumToInt(target), 
+        @intCast(binding.GLintptr, offset), 
+        cs2gl(@sizeOf(T) * items.len), items.ptr
+    );
     checkError();
 }
 
