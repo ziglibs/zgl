@@ -478,12 +478,12 @@ pub fn vertexArrayAttribBinding(vertexArray: types.VertexArray, attribindex: u32
 }
 
 pub fn bindVertexBuffer(bindingindex: u32, buffer: types.Buffer, offset: usize, stride: usize) void {
-    binding.bindVertexBuffer(bindingindex, @enumToInt(buffer), cs2gl(offset), cs2gl(stride));
+    binding.bindVertexBuffer(bindingindex, @enumToInt(buffer), offset, cs2gl(stride));
     checkError();
 }
 
 pub fn vertexArrayVertexBuffer(vertexArray: types.VertexArray, bindingindex: u32, buffer: types.Buffer, offset: usize, stride: usize) void {
-    binding.vertexArrayVertexBuffer(@enumToInt(vertexArray), bindingindex, @enumToInt(buffer), cs2gl(offset), cs2gl(stride));
+    binding.vertexArrayVertexBuffer(@enumToInt(vertexArray), bindingindex, @enumToInt(buffer), offset, cs2gl(stride));
     checkError();
 }
 
