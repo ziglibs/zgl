@@ -625,10 +625,12 @@ pub fn bufferSubData(target: BufferTarget, offset: usize, comptime T: type, item
 
 pub fn bindBufferBase(target: BufferTarget, index: u32, buffer: types.Buffer) void {
     binding.bindBufferBase(@enumToInt(target), index, @enumToInt(buffer));
+    checkError();
 }
 
 pub fn bindBufferRange(target: BufferTarget, index: u32, buffer: types.Buffer, offset: u32, size: u32) void {
     binding.bindBufferRange(@enumToInt(target), index, @enumToInt(buffer), offset, size);
+    checkError();
 }
 
 pub const BufferStorageFlags = packed struct {
