@@ -1346,6 +1346,16 @@ pub fn depthFunc(func: DepthFunc) void {
     checkError();
 }
 
+pub const Face = enum(types.Enum) {
+    cw = binding.CW,
+    ccw = binding.CCW,
+};
+
+pub fn frontFace(mode: Face) void {
+    binding.frontFace(@enumToInt(mode));
+    checkError();
+}
+
 pub fn stencilMask(mask: u32) void {
     binding.stencilMask(mask);
     checkError();
