@@ -623,6 +623,14 @@ pub fn bufferSubData(target: BufferTarget, offset: usize, comptime T: type, item
     checkError();
 }
 
+pub fn bindBufferBase(target: BufferTarget, index: u32, buffer: types.Buffer) void {
+    binding.bindBufferBase(@enumToInt(target), index, @enumToInt(buffer));
+}
+
+pub fn bindBufferRange(target: BufferTarget, index: u32, buffer: types.Buffer, offset: u32, size: u32) void {
+    binding.bindBufferRange(@enumToInt(target), index, @enumToInt(buffer), offset, size);
+}
+
 pub const BufferStorageFlags = packed struct {
     dynamic_storage: bool = false,
     map_read: bool = false,
@@ -900,6 +908,10 @@ pub fn getAttribLocation(program: types.Program, name: [:0]const u8) ?u32 {
 pub fn bindAttribLocation(program: types.Program, attribute: u32, name: [:0]const u8) void {
     binding.bindAttribLocation(@enumToInt(program), attribute, name.ptr);
     checkError();
+}
+
+pub fn uniformBlockBinding(program: types.Program, index: u32, value: u32) void {
+    binding.uniformBlockBinding(@enumToInt(program), index, value);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
