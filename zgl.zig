@@ -774,13 +774,13 @@ pub fn compileShader(shader: types.Shader) void {
 
 pub fn shaderSource(shader: types.Shader, comptime N: comptime_int, sources: *const [N][]const u8) void {
     var lengths: [N]types.Int = undefined;
-    for (lengths) |*len, i| {
-        len.* = @intCast(types.Int, sources[i].len);
+    for (&lengths, sources) |*len, src| {
+        len.* = @intCast(types.Int, src.len);
     }
 
     var ptrs: [N]*const types.Char = undefined;
-    for (ptrs) |*ptr, i| {
-        ptr.* = @ptrCast(*const types.Char, sources[i].ptr);
+    for (&ptrs, sources) |*ptr, src| {
+        ptr.* = @ptrCast(*const types.Char, src.ptr);
     }
 
     binding.shaderSource(@enumToInt(shader), N, &ptrs, &lengths);
@@ -2374,8 +2374,7 @@ pub fn getString(parameter: StringParameter) ?[:0]const u8 {
 
 pub fn hasExtension(extension: [:0]const u8) bool {
     const count = getInteger(.num_extensions);
-    var i: u32 = 0;
-    while (i < count) : (i += 1) {
+    for (0..count) |i| {
         const ext = getStringi(.extensions, i) orelse return false;
         if (std.mem.eql(u8, ext, extension)) {
             return true;
