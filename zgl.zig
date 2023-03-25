@@ -230,6 +230,15 @@ pub fn clear(mask: struct { color: bool = false, depth: bool = false, stencil: b
     checkError();
 }
 
+pub fn flush() void {
+    binding.flush();
+    checkError();
+}
+
+pub fn colorMask(r: bool, g: bool, b: bool, a: bool) void {
+    binding.colorMask(b2gl(r), b2gl(g), b2gl(b), b2gl(a));
+}
+
 pub const ColorBuffer = enum(types.Enum) {
     none = binding.NONE,
     front = binding.FRONT,
@@ -642,6 +651,24 @@ pub const BufferStorageFlags = packed struct {
     client_storage: bool = false,
 };
 
+pub fn bufferStorage(target: BufferTarget, comptime T: type, count: usize, items: ?[*]align(1) const T, flags: BufferStorageFlags) void {
+    var flag_bits: binding.GLbitfield = 0;
+    if (flags.dynamic_storage) flag_bits |= binding.DYNAMIC_STORAGE_BIT;
+    if (flags.map_read) flag_bits |= binding.MAP_READ_BIT;
+    if (flags.map_write) flag_bits |= binding.MAP_WRITE_BIT;
+    if (flags.map_persistent) flag_bits |= binding.MAP_PERSISTENT_BIT;
+    if (flags.map_coherent) flag_bits |= binding.MAP_COHERENT_BIT;
+    if (flags.client_storage) flag_bits |= binding.CLIENT_STORAGE_BIT;
+
+    binding.bufferStorage(
+        @enumToInt(target),
+        cs2gl(@sizeOf(T) * count),
+        items,
+        flag_bits,
+    );
+    checkError();
+}
+
 pub fn namedBufferStorage(buf: types.Buffer, comptime T: type, count: usize, items: ?[*]align(1) const T, flags: BufferStorageFlags) void {
     var flag_bits: binding.GLbitfield = 0;
     if (flags.dynamic_storage) flag_bits |= binding.DYNAMIC_STORAGE_BIT;
@@ -710,6 +737,31 @@ pub const BufferMapFlags = packed struct {
     coherent: bool = false,
 };
 
+pub fn mapBufferRange(
+    target: BufferTarget,
+    comptime T: type,
+    offset: usize,
+    count: usize,
+    flags: BufferMapFlags,
+) []align(1) T {
+    var flag_bits: binding.GLbitfield = 0;
+    if (flags.read) flag_bits |= binding.MAP_READ_BIT;
+    if (flags.write) flag_bits |= binding.MAP_WRITE_BIT;
+    if (flags.persistent) flag_bits |= binding.MAP_PERSISTENT_BIT;
+    if (flags.coherent) flag_bits |= binding.MAP_COHERENT_BIT;
+
+    const ptr = binding.mapBufferRange(
+        @enumToInt(target),
+        @intCast(binding.GLintptr, offset),
+        @intCast(binding.GLsizeiptr, @sizeOf(T) * count),
+        flag_bits,
+    );
+    checkError();
+
+    const values = @ptrCast([*]align(1) T, ptr);
+    return values[0..count];
+}
+
 pub fn mapNamedBufferRange(
     buf: types.Buffer,
     comptime T: type,
@@ -739,6 +791,24 @@ pub fn unmapNamedBuffer(buf: types.Buffer) bool {
     const ok = binding.unmapNamedBuffer(@enumToInt(buf));
     checkError();
     return ok != 0;
+}
+
+pub fn copyBufferSubData(
+    read_target: BufferTarget,
+    write_target: BufferTarget,
+    comptime T: type,
+    read_offset: usize,
+    write_offset: usize,
+    count: usize,
+) void {
+    binding.copyBufferSubData(
+        @enumToInt(read_target),
+        @enumToInt(write_target),
+        @intCast(binding.GLintptr, read_offset),
+        @intCast(binding.GLintptr, write_offset),
+        @intCast(binding.GLsizeiptr, @sizeOf(T) * count),
+    );
+    checkError();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1256,6 +1326,16 @@ pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element
         @enumToInt(element_type),
         @intToPtr(*allowzero const anyopaque, indices),
         cs2gl(instance_count),
+    );
+    checkError();
+}
+
+pub fn multiDrawArrays(primitiveType: PrimitiveType, first: []types.Int, count: []types.SizeI, drawcount: usize) void {
+    binding.multiDrawArrays(
+        @enumToInt(primitiveType),
+        @ptrCast([*]const types.Int, first.ptr),
+        @ptrCast([*]const types.SizeI, count.ptr),
+        cs2gl(drawcount),
     );
     checkError();
 }
@@ -1941,6 +2021,77 @@ pub fn texSubImage3D(
     checkError();
 }
 
+pub fn getTexImage(
+    textureTarget: TextureTarget,
+    level: usize,
+    pixel_format: PixelFormat,
+    pixel_type: PixelType,
+    data: [*]u8,
+) void {
+    binding.getTexImage(
+        @enumToInt(textureTarget),
+        @intCast(types.Int, level),
+        @enumToInt(pixel_format),
+        @enumToInt(pixel_type),
+        data,
+    );
+    checkError();
+}
+
+pub fn getTextureSubImage(
+    texture: types.Texture,
+    level: usize,
+    xoffset: usize,
+    yoffset: usize,
+    zoffset: usize,
+    width: usize,
+    height: usize,
+    depth: usize,
+    pixel_format: PixelFormat,
+    pixel_type: PixelType,
+    size: usize,
+    data: [*]u8,
+) void {
+    binding.getTextureSubImage(
+        @enumToInt(texture),
+        @intCast(types.Int, level),
+        @intCast(types.Int, xoffset),
+        @intCast(types.Int, yoffset),
+        @intCast(types.Int, zoffset),
+        @intCast(types.SizeI, width),
+        @intCast(types.SizeI, height),
+        @intCast(types.SizeI, depth),
+        @enumToInt(pixel_format),
+        @enumToInt(pixel_type),
+        @intCast(types.SizeI, size),
+        data,
+    );
+    checkError();
+}
+
+pub fn copyTexSubImage2D(
+    target: TextureTarget,
+    level: usize,
+    xoffset: usize,
+    yoffset: usize,
+    x: usize,
+    y: usize,
+    width: usize,
+    height: usize,
+) void {
+    binding.copyTexSubImage2D(
+        @enumToInt(target),
+        @intCast(types.Int, level),
+        @intCast(types.Int, xoffset),
+        @intCast(types.Int, yoffset),
+        @intCast(types.Int, x),
+        @intCast(types.Int, y),
+        @intCast(types.SizeI, width),
+        @intCast(types.SizeI, height),
+    );
+    checkError();
+}
+
 pub const PixelStoreParameter = enum(types.Enum) {
     pack_swap_bytes = binding.PACK_SWAP_BYTES,
     pack_lsb_first = binding.PACK_LSB_FIRST,
@@ -2163,6 +2314,19 @@ pub fn blitFramebuffer(
             @as(types.BitField, if (mask.stencil) binding.STENCIL_BUFFER_BIT else 0),
         @enumToInt(filter),
     );
+    checkError();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Invalidation
+pub fn invalidateTexImage(texture: types.Texture, level: types.Int) void {
+    binding.invalidateTexImage(@enumToInt(texture), level);
+    checkError();
+}
+
+pub fn invalidateFramebuffer(target: FramebufferTarget, attachments: []const FramebufferAttachment) void {
+    binding.invalidateFramebuffer(@enumToInt(target), cs2gl(attachments.len), @ptrCast([*]const types.Enum, attachments.ptr));
+    checkError();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
