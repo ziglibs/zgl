@@ -2183,7 +2183,7 @@ pub fn renderbufferStorageMultisample(
     height: usize,
 ) void {
     buf.bind(.buffer);
-    binding.renderbufferStorageMultisample(@enumToInt(target), samples, @enumToInt(pixel_internal_format), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
+    binding.renderbufferStorageMultisample(@enumToInt(target), @intCast(types.SizeI, samples), @enumToInt(pixel_internal_format), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
     checkError();
 }
 
@@ -2537,9 +2537,9 @@ pub fn getString(parameter: StringParameter) ?[:0]const u8 {
 }
 
 pub fn hasExtension(extension: [:0]const u8) bool {
-    const count = getInteger(.num_extensions);
+    const count = @intCast(usize, getInteger(.num_extensions));
     for (0..count) |i| {
-        const ext = getStringi(.extensions, i) orelse return false;
+        const ext = getStringi(.extensions, @intCast(u32, i)) orelse return false;
         if (std.mem.eql(u8, ext, extension)) {
             return true;
         }
