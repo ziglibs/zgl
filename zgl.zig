@@ -582,8 +582,7 @@ pub const BufferUsage = enum(types.Enum) {
     dynamic_copy = binding.DYNAMIC_COPY,
 };
 
-// using align(1) as we are not required to have aligned data here
-pub fn namedBufferData(buf: types.Buffer, comptime T: type, items: []align(1) const T, usage: BufferUsage) void {
+pub fn namedBufferData(buf: types.Buffer, comptime T: type, items: []const T, usage: BufferUsage) void {
     binding.namedBufferData(
         @enumToInt(buf),
         cs2gl(@sizeOf(T) * items.len),
