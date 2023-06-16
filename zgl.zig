@@ -1783,6 +1783,23 @@ pub const TextureInternalFormat = enum(types.Enum) {
     depth_component16 = binding.DEPTH_COMPONENT16,
 };
 
+pub fn texStorage2D(
+    target: TextureTarget,
+    levels: usize,
+    internalformat: TextureInternalFormat,
+    width: usize,
+    height: usize,
+) void {
+    binding.texStorage2D(
+        @enumToInt(target),
+        @intCast(types.SizeI, levels),
+        @enumToInt(internalformat),
+        @intCast(types.SizeI, width),
+        @intCast(types.SizeI, height),
+    );
+    checkError();
+}
+
 pub fn textureStorage2D(
     texture: types.Texture,
     levels: usize,
@@ -1796,6 +1813,25 @@ pub fn textureStorage2D(
         @enumToInt(internalformat),
         @intCast(types.SizeI, width),
         @intCast(types.SizeI, height),
+    );
+    checkError();
+}
+
+pub fn texStorage3D(
+    target: TextureTarget,
+    levels: usize,
+    internalformat: TextureInternalFormat,
+    width: usize,
+    height: usize,
+    depth: usize
+) void {
+    binding.texStorage3D(
+        @enumToInt(target),
+        @intCast(types.SizeI, levels),
+        @enumToInt(internalformat),
+        @intCast(types.SizeI, width),
+        @intCast(types.SizeI, height),
+        @intCast(types.SizeI, depth)
     );
     checkError();
 }
