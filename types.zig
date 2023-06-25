@@ -150,4 +150,3 @@ pub const Framebuffer = enum(UInt) {
     pub const renderbuffer = gl.framebufferRenderbuffer;
     pub const checkStatus = gl.checkFramebufferStatus;
 };
-
