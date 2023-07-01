@@ -62,11 +62,11 @@ fn checkError() void {
 
 /// Integer conversion helper.
 fn cs2gl(size: usize) types.SizeI {
-    return @intCast(types.SizeI, size);
+    return @as(types.SizeI, @intCast(size));
 }
 
 fn ui2gl(val: usize) types.UInt {
-    return @intCast(types.UInt, val);
+    return @as(types.UInt, @intCast(val));
 }
 
 fn b2gl(b: bool) types.Boolean {
@@ -196,12 +196,12 @@ pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCall
             const msg_type = translateMessageType(c_msg_type);
             const severity = translateSeverity(c_severity);
 
-            const message = c_message[0..@intCast(usize, length)];
+            const message = c_message[0..@as(usize, @intCast(length))];
 
             if (is_void) {
                 handler(debug_source, msg_type, id, severity, message);
             } else {
-                handler(@ptrFromInt(Context, @intFromPtr(userParam)), debug_source, msg_type, id, severity, message);
+                handler(@as(Context, @ptrFromInt(@intFromPtr(userParam))), debug_source, msg_type, id, severity, message);
             }
         }
     };
@@ -209,7 +209,7 @@ pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCall
     if (is_void)
         binding.debugMessageCallback(H.callback, null)
     else
-        binding.debugMessageCallback(H.callback, @ptrCast(?*const anyopaque, context));
+        binding.debugMessageCallback(H.callback, @as(?*const anyopaque, @ptrCast(context)));
     checkError();
 }
 
@@ -279,10 +279,10 @@ pub fn readPixels(
     data: *anyopaque,
 ) void {
     binding.readPixels(
-        @intCast(types.Int, x),
-        @intCast(types.Int, y),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
+        @as(types.Int, @intCast(x)),
+        @as(types.Int, @intCast(y)),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
         @intFromEnum(format),
         @intFromEnum(pixel_type),
         data,
@@ -293,24 +293,24 @@ pub fn readPixels(
 // Vertex Arrays
 
 pub fn createVertexArrays(items: []types.VertexArray) void {
-    binding.createVertexArrays(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
+    binding.createVertexArrays(cs2gl(items.len), @as([*]types.UInt, @ptrCast(items.ptr)));
     checkError();
 }
 
 pub fn createVertexArray() types.VertexArray {
     var vao: types.VertexArray = undefined;
-    createVertexArrays(@ptrCast([*]types.VertexArray, &vao)[0..1]);
+    createVertexArrays(@as([*]types.VertexArray, @ptrCast(&vao))[0..1]);
     return vao;
 }
 
 pub fn genVertexArrays(items: []types.VertexArray) void {
-    binding.genVertexArrays(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
+    binding.genVertexArrays(cs2gl(items.len), @as([*]types.UInt, @ptrCast(items.ptr)));
     checkError();
 }
 
 pub fn genVertexArray() types.VertexArray {
     var vao: types.VertexArray = undefined;
-    genVertexArrays(@ptrCast([*]types.VertexArray, &vao)[0..1]);
+    genVertexArrays(@as([*]types.VertexArray, @ptrCast(&vao))[0..1]);
     return vao;
 }
 
@@ -320,11 +320,11 @@ pub fn bindVertexArray(vao: types.VertexArray) void {
 }
 
 pub fn deleteVertexArrays(items: []const types.VertexArray) void {
-    binding.deleteVertexArrays(cs2gl(items.len), @ptrCast([*]const types.UInt, items.ptr));
+    binding.deleteVertexArrays(cs2gl(items.len), @as([*]const types.UInt, @ptrCast(items.ptr)));
 }
 
 pub fn deleteVertexArray(vao: types.VertexArray) void {
-    deleteVertexArrays(@ptrCast([*]const types.VertexArray, &vao)[0..1]);
+    deleteVertexArrays(@as([*]const types.VertexArray, @ptrCast(&vao))[0..1]);
 }
 
 pub fn enableVertexAttribArray(index: u32) void {
@@ -371,7 +371,7 @@ pub const Type = enum(types.Enum) {
 pub fn vertexAttribFormat(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, relativeoffset: usize) void {
     binding.vertexAttribFormat(
         attribindex,
-        @intCast(types.Int, size),
+        @as(types.Int, @intCast(size)),
         @intFromEnum(attribute_type),
         b2gl(normalized),
         ui2gl(relativeoffset),
@@ -382,7 +382,7 @@ pub fn vertexAttribFormat(attribindex: u32, size: u32, attribute_type: Type, nor
 pub fn vertexAttribIFormat(attribindex: u32, size: u32, attribute_type: Type, relativeoffset: usize) void {
     binding.vertexAttribIFormat(
         attribindex,
-        @intCast(types.Int, size),
+        @as(types.Int, @intCast(size)),
         @intFromEnum(attribute_type),
         ui2gl(relativeoffset),
     );
@@ -392,7 +392,7 @@ pub fn vertexAttribIFormat(attribindex: u32, size: u32, attribute_type: Type, re
 pub fn vertexAttribLFormat(attribindex: u32, size: u32, attribute_type: Type, relativeoffset: usize) void {
     binding.vertexAttribLFormat(
         attribindex,
-        @intCast(types.Int, size),
+        @as(types.Int, @intCast(size)),
         @intFromEnum(attribute_type),
         ui2gl(relativeoffset),
     );
@@ -403,11 +403,11 @@ pub fn vertexAttribLFormat(attribindex: u32, size: u32, attribute_type: Type, re
 pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, normalized: bool, stride: usize, relativeoffset: usize) void {
     binding.vertexAttribPointer(
         attribindex,
-        @intCast(types.Int, size),
+        @as(types.Int, @intCast(size)),
         @intFromEnum(attribute_type),
         b2gl(normalized),
         cs2gl(stride),
-        @ptrFromInt(*allowzero const anyopaque, relativeoffset),
+        @as(*allowzero const anyopaque, @ptrFromInt(relativeoffset)),
     );
     checkError();
 }
@@ -415,10 +415,10 @@ pub fn vertexAttribPointer(attribindex: u32, size: u32, attribute_type: Type, no
 pub fn vertexAttribIPointer(attribindex: u32, size: u32, attribute_type: Type, stride: usize, relativeoffset: usize) void {
     binding.vertexAttribIPointer(
         attribindex,
-        @intCast(types.Int, size),
+        @as(types.Int, @intCast(size)),
         @intFromEnum(attribute_type),
         cs2gl(stride),
-        @ptrFromInt(*allowzero const anyopaque, relativeoffset),
+        @as(*allowzero const anyopaque, @ptrFromInt(relativeoffset)),
     );
     checkError();
 }
@@ -434,7 +434,7 @@ pub fn vertexArrayAttribFormat(
     binding.vertexArrayAttribFormat(
         @intFromEnum(vertexArray),
         attribindex,
-        @intCast(types.Int, size),
+        @as(types.Int, @intCast(size)),
         @intFromEnum(attribute_type),
         b2gl(normalized),
         ui2gl(relativeoffset),
@@ -446,9 +446,9 @@ pub fn vertexArrayAttribIFormat(vertexArray: types.VertexArray, attribindex: u32
     binding.vertexArrayAttribIFormat(
         @intFromEnum(vertexArray),
         attribindex,
-        @intCast(
+        @as(
             types.Int,
-            size,
+            @intCast(size),
         ),
         @intFromEnum(attribute_type),
         ui2gl(relativeoffset),
@@ -460,12 +460,12 @@ pub fn vertexArrayAttribLFormat(vertexArray: types.VertexArray, attribindex: u32
     binding.vertexArrayAttribLFormat(
         @intFromEnum(vertexArray),
         attribindex,
-        @intCast(
+        @as(
             types.Int,
-            size,
+            @intCast(size),
         ),
         @intFromEnum(attribute_type),
-        @intCast(types.UInt, relativeoffset),
+        @as(types.UInt, @intCast(relativeoffset)),
     );
     checkError();
 }
@@ -536,24 +536,24 @@ pub const BufferTarget = enum(types.Enum) {
 };
 
 pub fn createBuffers(items: []types.Buffer) void {
-    binding.createBuffers(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
+    binding.createBuffers(cs2gl(items.len), @as([*]types.UInt, @ptrCast(items.ptr)));
     checkError();
 }
 
 pub fn createBuffer() types.Buffer {
     var buf: types.Buffer = undefined;
-    createBuffers(@ptrCast([*]types.Buffer, &buf)[0..1]);
+    createBuffers(@as([*]types.Buffer, @ptrCast(&buf))[0..1]);
     return buf;
 }
 
 pub fn genBuffers(items: []types.Buffer) void {
-    binding.genBuffers(cs2gl(items.len), @ptrCast([*]types.UInt, items.ptr));
+    binding.genBuffers(cs2gl(items.len), @as([*]types.UInt, @ptrCast(items.ptr)));
     checkError();
 }
 
 pub fn genBuffer() types.Buffer {
     var buf: types.Buffer = undefined;
-    genBuffers(@ptrCast([*]types.Buffer, &buf)[0..1]);
+    genBuffers(@as([*]types.Buffer, @ptrCast(&buf))[0..1]);
     return buf;
 }
 
@@ -563,11 +563,11 @@ pub fn bindBuffer(buf: types.Buffer, target: BufferTarget) void {
 }
 
 pub fn deleteBuffers(items: []const types.Buffer) void {
-    binding.deleteBuffers(cs2gl(items.len), @ptrCast([*]const types.UInt, items.ptr));
+    binding.deleteBuffers(cs2gl(items.len), @as([*]const types.UInt, @ptrCast(items.ptr)));
 }
 
 pub fn deleteBuffer(buf: types.Buffer) void {
-    deleteBuffers(@ptrCast([*]const types.Buffer, &buf)[0..1]);
+    deleteBuffers(@as([*]const types.Buffer, @ptrCast(&buf))[0..1]);
 }
 
 pub const BufferUsage = enum(types.Enum) {
@@ -624,7 +624,7 @@ pub fn bufferUninitialized(target: BufferTarget, comptime T: type, count: usize,
 }
 
 pub fn bufferSubData(target: BufferTarget, offset: usize, comptime T: type, items: []align(1) const T) void {
-    binding.bufferSubData(@intFromEnum(target), @intCast(binding.GLintptr, offset), cs2gl(@sizeOf(T) * items.len), items.ptr);
+    binding.bufferSubData(@intFromEnum(target), @as(binding.GLintptr, @intCast(offset)), cs2gl(@sizeOf(T) * items.len), items.ptr);
     checkError();
 }
 
@@ -717,7 +717,7 @@ pub fn mapBuffer(
     );
 
     checkError();
-    return @ptrCast([*]align(1) T, ptr);
+    return @as([*]align(1) T, @ptrCast(ptr));
 }
 
 pub fn unmapBuffer(target: BufferMapTarget) bool {
@@ -748,13 +748,13 @@ pub fn mapBufferRange(
 
     const ptr = binding.mapBufferRange(
         @intFromEnum(target),
-        @intCast(binding.GLintptr, offset),
-        @intCast(binding.GLsizeiptr, @sizeOf(T) * count),
+        @as(binding.GLintptr, @intCast(offset)),
+        @as(binding.GLsizeiptr, @intCast(@sizeOf(T) * count)),
         flag_bits,
     );
     checkError();
 
-    const values = @ptrCast([*]align(1) T, ptr);
+    const values = @as([*]align(1) T, @ptrCast(ptr));
     return values[0..count];
 }
 
@@ -773,13 +773,13 @@ pub fn mapNamedBufferRange(
 
     const ptr = binding.mapNamedBufferRange(
         @intFromEnum(buf),
-        @intCast(binding.GLintptr, offset),
-        @intCast(binding.GLsizeiptr, @sizeOf(T) * count),
+        @as(binding.GLintptr, @intCast(offset)),
+        @as(binding.GLsizeiptr, @intCast(@sizeOf(T) * count)),
         flag_bits,
     );
     checkError();
 
-    const values = @ptrCast([*]align(1) T, ptr);
+    const values = @as([*]align(1) T, @ptrCast(ptr));
     return values[0..count];
 }
 
@@ -800,9 +800,9 @@ pub fn copyBufferSubData(
     binding.copyBufferSubData(
         @intFromEnum(read_target),
         @intFromEnum(write_target),
-        @intCast(binding.GLintptr, read_offset),
-        @intCast(binding.GLintptr, write_offset),
-        @intCast(binding.GLsizeiptr, @sizeOf(T) * count),
+        @as(binding.GLintptr, @intCast(read_offset)),
+        @as(binding.GLintptr, @intCast(write_offset)),
+        @as(binding.GLsizeiptr, @intCast(@sizeOf(T) * count)),
     );
     checkError();
 }
@@ -820,7 +820,7 @@ pub const ShaderType = enum(types.Enum) {
 };
 
 pub fn createShader(shaderType: ShaderType) types.Shader {
-    const shader = @enumFromInt(types.Shader, binding.createShader(@intFromEnum(shaderType)));
+    const shader = @as(types.Shader, @enumFromInt(binding.createShader(@intFromEnum(shaderType))));
     if (shader == .invalid) {
         checkError();
         unreachable;
@@ -841,12 +841,12 @@ pub fn compileShader(shader: types.Shader) void {
 pub fn shaderSource(shader: types.Shader, comptime N: comptime_int, sources: *const [N][]const u8) void {
     var lengths: [N]types.Int = undefined;
     for (&lengths, sources) |*len, src| {
-        len.* = @intCast(types.Int, src.len);
+        len.* = @as(types.Int, @intCast(src.len));
     }
 
     var ptrs: [N]*const types.Char = undefined;
     for (&ptrs, sources) |*ptr, src| {
-        ptr.* = @ptrCast(*const types.Char, src.ptr);
+        ptr.* = @as(*const types.Char, @ptrCast(src.ptr));
     }
 
     binding.shaderSource(@intFromEnum(shader), N, &ptrs, &lengths);
@@ -871,7 +871,7 @@ pub fn getShader(shader: types.Shader, parameter: ShaderParameter) types.Int {
 
 pub fn getShaderInfoLog(shader: types.Shader, allocator: std.mem.Allocator) ![:0]const u8 {
     const length = getShader(shader, .info_log_length);
-    const log = try allocator.allocSentinel(u8, @intCast(usize, length), 0);
+    const log = try allocator.allocSentinel(u8, @as(usize, @intCast(length)), 0);
     errdefer allocator.free(log);
 
     binding.getShaderInfoLog(@intFromEnum(shader), cs2gl(log.len), null, log.ptr);
@@ -884,7 +884,7 @@ pub fn getShaderInfoLog(shader: types.Shader, allocator: std.mem.Allocator) ![:0
 // Program
 
 pub fn createProgram() types.Program {
-    const program = @enumFromInt(types.Program, binding.createProgram());
+    const program = @as(types.Program, @enumFromInt(binding.createProgram()));
     if (program == .invalid) {
         checkError();
         unreachable;
@@ -949,7 +949,7 @@ pub fn getProgram(program: types.Program, parameter: ProgramParameter) types.Int
 
 pub fn getProgramInfoLog(program: types.Program, allocator: std.mem.Allocator) ![:0]const u8 {
     const length = getProgram(program, .info_log_length);
-    const log = try allocator.allocSentinel(u8, @intCast(usize, length), 0);
+    const log = try allocator.allocSentinel(u8, @as(usize, @intCast(length)), 0);
     errdefer allocator.free(log);
 
     binding.getProgramInfoLog(@intFromEnum(program), cs2gl(log.len), null, log.ptr);
@@ -963,7 +963,7 @@ pub fn getUniformLocation(program: types.Program, name: [:0]const u8) ?u32 {
     checkError();
     if (loc < 0)
         return null;
-    return @intCast(u32, loc);
+    return @as(u32, @intCast(loc));
 }
 
 pub fn getAttribLocation(program: types.Program, name: [:0]const u8) ?u32 {
@@ -971,7 +971,7 @@ pub fn getAttribLocation(program: types.Program, name: [:0]const u8) ?u32 {
     checkError();
     if (loc < 0)
         return null;
-    return @intCast(u32, loc);
+    return @as(u32, @intCast(loc));
 }
 pub fn bindAttribLocation(program: types.Program, attribute: u32, name: [:0]const u8) void {
     binding.bindAttribLocation(@intFromEnum(program), attribute, name.ptr);
@@ -987,63 +987,63 @@ pub fn uniformBlockBinding(program: types.Program, index: u32, value: u32) void 
 
 pub fn programUniform1ui(program: types.Program, location: ?u32, value: u32) void {
     if (location) |loc| {
-        binding.programUniform1ui(@intFromEnum(program), @intCast(types.Int, loc), value);
+        binding.programUniform1ui(@intFromEnum(program), @as(types.Int, @intCast(loc)), value);
         checkError();
     }
 }
 
 pub fn programUniform1i(program: types.Program, location: ?u32, value: i32) void {
     if (location) |loc| {
-        binding.programUniform1i(@intFromEnum(program), @intCast(types.Int, loc), value);
+        binding.programUniform1i(@intFromEnum(program), @as(types.Int, @intCast(loc)), value);
         checkError();
     }
 }
 
 pub fn programUniform3ui(program: types.Program, location: ?u32, x: u32, y: u32, z: u32) void {
     if (location) |loc| {
-        binding.programUniform3ui(@intFromEnum(program), @intCast(types.Int, loc), x, y, z);
+        binding.programUniform3ui(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y, z);
         checkError();
     }
 }
 
 pub fn programUniform3i(program: types.Program, location: ?u32, x: i32, y: i32, z: i32) void {
     if (location) |loc| {
-        binding.programUniform3i(@intFromEnum(program), @intCast(types.Int, loc), x, y, z);
+        binding.programUniform3i(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y, z);
         checkError();
     }
 }
 
 pub fn programUniform2i(program: types.Program, location: ?u32, v0: i32, v1: i32) void {
     if (location) |loc| {
-        binding.programUniform2i(@intFromEnum(program), @intCast(types.Int, loc), v0, v1);
+        binding.programUniform2i(@intFromEnum(program), @as(types.Int, @intCast(loc)), v0, v1);
         checkError();
     }
 }
 
 pub fn programUniform1f(program: types.Program, location: ?u32, value: f32) void {
     if (location) |loc| {
-        binding.programUniform1f(@intFromEnum(program), @intCast(types.Int, loc), value);
+        binding.programUniform1f(@intFromEnum(program), @as(types.Int, @intCast(loc)), value);
         checkError();
     }
 }
 
 pub fn programUniform2f(program: types.Program, location: ?u32, x: f32, y: f32) void {
     if (location) |loc| {
-        binding.programUniform2f(@intFromEnum(program), @intCast(types.Int, loc), x, y);
+        binding.programUniform2f(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y);
         checkError();
     }
 }
 
 pub fn programUniform3f(program: types.Program, location: ?u32, x: f32, y: f32, z: f32) void {
     if (location) |loc| {
-        binding.programUniform3f(@intFromEnum(program), @intCast(types.Int, loc), x, y, z);
+        binding.programUniform3f(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y, z);
         checkError();
     }
 }
 
 pub fn programUniform4f(program: types.Program, location: ?u32, x: f32, y: f32, z: f32, w: f32) void {
     if (location) |loc| {
-        binding.programUniform4f(@intFromEnum(program), @intCast(types.Int, loc), x, y, z, w);
+        binding.programUniform4f(@intFromEnum(program), @as(types.Int, @intCast(loc)), x, y, z, w);
         checkError();
     }
 }
@@ -1052,11 +1052,11 @@ pub fn programUniformMatrix4(program: types.Program, location: ?u32, transpose: 
     if (location) |loc| {
         binding.programUniformMatrix4fv(
             @intFromEnum(program),
-            @intCast(types.Int, loc),
+            @as(types.Int, @intCast(loc)),
             cs2gl(items.len),
             b2gl(transpose),
 
-            @ptrCast(*const f32, items.ptr),
+            @as(*const f32, @ptrCast(items.ptr)),
         );
         checkError();
     }
@@ -1064,196 +1064,196 @@ pub fn programUniformMatrix4(program: types.Program, location: ?u32, transpose: 
 
 pub fn uniform1f(location: ?u32, v0: f32) void {
     if (location) |loc| {
-        binding.uniform1f(@intCast(types.Int, loc), v0);
+        binding.uniform1f(@as(types.Int, @intCast(loc)), v0);
         checkError();
     }
 }
 
 pub fn uniform2f(location: ?u32, v0: f32, v1: f32) void {
     if (location) |loc| {
-        binding.uniform2f(@intCast(types.Int, loc), v0, v1);
+        binding.uniform2f(@as(types.Int, @intCast(loc)), v0, v1);
         checkError();
     }
 }
 
 pub fn uniform3f(location: ?u32, v0: f32, v1: f32, v2: f32) void {
     if (location) |loc| {
-        binding.uniform3f(@intCast(types.Int, loc), v0, v1, v2);
+        binding.uniform3f(@as(types.Int, @intCast(loc)), v0, v1, v2);
         checkError();
     }
 }
 
 pub fn uniform4f(location: ?u32, v0: f32, v1: f32, v2: f32, v3: f32) void {
     if (location) |loc| {
-        binding.uniform4f(@intCast(types.Int, loc), v0, v1, v2, v3);
+        binding.uniform4f(@as(types.Int, @intCast(loc)), v0, v1, v2, v3);
         checkError();
     }
 }
 
 pub fn uniform1i(location: ?u32, v0: i32) void {
     if (location) |loc| {
-        binding.uniform1i(@intCast(types.Int, loc), v0);
+        binding.uniform1i(@as(types.Int, @intCast(loc)), v0);
         checkError();
     }
 }
 
 pub fn uniform2i(location: ?u32, v0: i32, v1: i32) void {
     if (location) |loc| {
-        binding.uniform2i(@intCast(types.Int, loc), v0, v1);
+        binding.uniform2i(@as(types.Int, @intCast(loc)), v0, v1);
         checkError();
     }
 }
 
 pub fn uniform3i(location: ?u32, v0: i32, v1: i32, v2: i32) void {
     if (location) |loc| {
-        binding.uniform3i(@intCast(types.Int, loc), v0, v1, v2);
+        binding.uniform3i(@as(types.Int, @intCast(loc)), v0, v1, v2);
         checkError();
     }
 }
 
 pub fn uniform4i(location: ?u32, v0: i32, v1: i32, v2: i32, v3: i32) void {
     if (location) |loc| {
-        binding.uniform4i(@intCast(types.Int, loc), v0, v1, v2, v3);
+        binding.uniform4i(@as(types.Int, @intCast(loc)), v0, v1, v2, v3);
         checkError();
     }
 }
 
 pub fn uniform1ui(location: ?u32, v0: u32) void {
     if (location) |loc| {
-        binding.uniform1ui(@intCast(types.Int, loc), v0);
+        binding.uniform1ui(@as(types.Int, @intCast(loc)), v0);
         checkError();
     }
 }
 
 pub fn uniform2ui(location: ?u32, v0: u32, v1: u32) void {
     if (location) |loc| {
-        binding.uniform2ui(@intCast(types.Int, loc), v0, v1);
+        binding.uniform2ui(@as(types.Int, @intCast(loc)), v0, v1);
         checkError();
     }
 }
 
 pub fn uniform3ui(location: ?u32, v0: u32, v1: u32, v2: u32) void {
     if (location) |loc| {
-        binding.uniform3ui(@intCast(types.Int, loc), v0, v1, v2);
+        binding.uniform3ui(@as(types.Int, @intCast(loc)), v0, v1, v2);
         checkError();
     }
 }
 
 pub fn uniform4ui(location: ?u32, v0: u32, v1: u32, v2: u32, v3: u32) void {
     if (location) |loc| {
-        binding.uniform4ui(@intCast(types.Int, loc), v0, v1, v2, v3);
+        binding.uniform4ui(@as(types.Int, @intCast(loc)), v0, v1, v2, v3);
         checkError();
     }
 }
 
 pub fn uniform1fv(location: ?u32, items: []const f32) void {
     if (location) |loc| {
-        binding.uniform1fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        binding.uniform1fv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const f32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform2fv(location: ?u32, items: []const [2]f32) void {
     if (location) |loc| {
-        binding.uniform2fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        binding.uniform2fv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const f32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform3fv(location: ?u32, items: []const [3]f32) void {
     if (location) |loc| {
-        binding.uniform3fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        binding.uniform3fv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const f32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform4fv(location: ?u32, items: []const [4]f32) void {
     if (location) |loc| {
-        binding.uniform4fv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const f32, items.ptr));
+        binding.uniform4fv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const f32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform1iv(location: ?u32, items: []const i32) void {
     if (location) |loc| {
-        binding.uniform1iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        binding.uniform1iv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const i32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform2iv(location: ?u32, items: []const [2]i32) void {
     if (location) |loc| {
-        binding.uniform2iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        binding.uniform2iv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const i32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform3iv(location: ?u32, items: []const [3]i32) void {
     if (location) |loc| {
-        binding.uniform3iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        binding.uniform3iv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const i32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform4iv(location: ?u32, items: []const [4]i32) void {
     if (location) |loc| {
-        binding.uniform4iv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const i32, items.ptr));
+        binding.uniform4iv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const i32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform1uiv(location: ?u32, items: []const u32) void {
     if (location) |loc| {
-        binding.uniform1uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        binding.uniform1uiv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const u32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform2uiv(location: ?u32, items: []const [2]u32) void {
     if (location) |loc| {
-        binding.uniform2uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        binding.uniform2uiv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const u32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform3uiv(location: ?u32, items: []const [3]u32) void {
     if (location) |loc| {
-        binding.uniform3uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        binding.uniform3uiv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const u32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform4uiv(location: ?u32, items: []const [4]u32) void {
     if (location) |loc| {
-        binding.uniform4uiv(@intCast(types.Int, loc), cs2gl(items.len), @ptrCast(*const u32, items.ptr));
+        binding.uniform4uiv(@as(types.Int, @intCast(loc)), cs2gl(items.len), @as(*const u32, @ptrCast(items.ptr)));
         checkError();
     }
 }
 
 pub fn uniform1i64(location: ?u32, v0: i64) void {
     if (location) |loc| {
-        binding.uniform1i64ARB(@intCast(types.Int, loc), v0);
+        binding.uniform1i64ARB(@as(types.Int, @intCast(loc)), v0);
         checkError();
     }
 }
 
 pub fn uniform2i64(location: ?u32, v0: i64, v1: i64) void {
     if (location) |loc| {
-        binding.uniform2i64ARB(@intCast(types.Int, loc), v0, v1);
+        binding.uniform2i64ARB(@as(types.Int, @intCast(loc)), v0, v1);
         checkError();
     }
 }
 
 pub fn uniform3i64(location: ?u32, v0: i64, v1: i64, v2: i64) void {
     if (location) |loc| {
-        binding.uniform3i64ARB(@intCast(types.Int, loc), v0, v1, v2);
+        binding.uniform3i64ARB(@as(types.Int, @intCast(loc)), v0, v1, v2);
         checkError();
     }
 }
 
 pub fn uniform4i64(location: ?u32, v0: i64, v1: i64, v2: i64, v3: i64) void {
     if (location) |loc| {
-        binding.uniform4i64ARB(@intCast(types.Int, loc), v0, v1, v2, v3);
+        binding.uniform4i64ARB(@as(types.Int, @intCast(loc)), v0, v1, v2, v3);
         checkError();
     }
 }
@@ -1261,11 +1261,11 @@ pub fn uniform4i64(location: ?u32, v0: i64, v1: i64, v2: i64, v3: i64) void {
 pub fn uniformMatrix4fv(location: ?u32, transpose: bool, items: []const [4][4]f32) void {
     if (location) |loc| {
         binding.uniformMatrix4fv(
-            @intCast(types.Int, loc),
+            @as(types.Int, @intCast(loc)),
             cs2gl(items.len),
             b2gl(transpose),
 
-            @ptrCast(*const f32, items.ptr),
+            @as(*const f32, @ptrCast(items.ptr)),
         );
         checkError();
     }
@@ -1310,7 +1310,7 @@ pub fn drawElements(primitiveType: PrimitiveType, count: usize, element_type: El
         @intFromEnum(primitiveType),
         cs2gl(count),
         @intFromEnum(element_type),
-        @ptrFromInt(*allowzero const anyopaque, indices),
+        @as(*allowzero const anyopaque, @ptrFromInt(indices)),
     );
     checkError();
 }
@@ -1320,7 +1320,7 @@ pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element
         @intFromEnum(primitiveType),
         cs2gl(count),
         @intFromEnum(element_type),
-        @ptrFromInt(*allowzero const anyopaque, indices),
+        @as(*allowzero const anyopaque, @ptrFromInt(indices)),
         cs2gl(instance_count),
     );
     checkError();
@@ -1329,8 +1329,8 @@ pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element
 pub fn multiDrawArrays(primitiveType: PrimitiveType, first: []types.Int, count: []types.SizeI, drawcount: usize) void {
     binding.multiDrawArrays(
         @intFromEnum(primitiveType),
-        @ptrCast([*]const types.Int, first.ptr),
-        @ptrCast([*]const types.SizeI, count.ptr),
+        @as([*]const types.Int, @ptrCast(first.ptr)),
+        @as([*]const types.SizeI, @ptrCast(count.ptr)),
         cs2gl(drawcount),
     );
     checkError();
@@ -1554,7 +1554,7 @@ pub fn genTexture() types.Texture {
     var tex_name: types.UInt = undefined;
     binding.genTextures(1, &tex_name);
     checkError();
-    return @enumFromInt(types.Texture, tex_name);
+    return @as(types.Texture, @enumFromInt(tex_name));
 }
 
 pub fn createTexture(texture_target: TextureTarget) types.Texture {
@@ -1563,7 +1563,7 @@ pub fn createTexture(texture_target: TextureTarget) types.Texture {
     binding.createTextures(@intFromEnum(texture_target), 1, &tex_name);
     checkError();
 
-    const texture = @enumFromInt(types.Texture, tex_name);
+    const texture = @as(types.Texture, @enumFromInt(tex_name));
     if (texture == .invalid) {
         checkError();
         unreachable;
@@ -1613,7 +1613,7 @@ pub const TextureUnit = enum(types.Enum) {
     _,
 
     pub fn unit(id: types.Enum) TextureUnit {
-        return @enumFromInt(TextureUnit, @intFromEnum(TextureUnit.texture_0) + id);
+        return @as(TextureUnit, @enumFromInt(@intFromEnum(TextureUnit.texture_0) + id));
     }
 };
 
@@ -1788,10 +1788,10 @@ pub fn texStorage2D(
 ) void {
     binding.texStorage2D(
         @intFromEnum(target),
-        @intCast(types.SizeI, levels),
+        @as(types.SizeI, @intCast(levels)),
         @intFromEnum(internalformat),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
     );
     checkError();
 }
@@ -1805,16 +1805,16 @@ pub fn textureStorage2D(
 ) void {
     binding.textureStorage2D(
         @intFromEnum(texture),
-        @intCast(types.SizeI, levels),
+        @as(types.SizeI, @intCast(levels)),
         @intFromEnum(internalformat),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
     );
     checkError();
 }
 
 pub fn texStorage3D(target: TextureTarget, levels: usize, internalformat: TextureInternalFormat, width: usize, height: usize, depth: usize) void {
-    binding.texStorage3D(@intFromEnum(target), @intCast(types.SizeI, levels), @intFromEnum(internalformat), @intCast(types.SizeI, width), @intCast(types.SizeI, height), @intCast(types.SizeI, depth));
+    binding.texStorage3D(@intFromEnum(target), @as(types.SizeI, @intCast(levels)), @intFromEnum(internalformat), @as(types.SizeI, @intCast(width)), @as(types.SizeI, @intCast(height)), @as(types.SizeI, @intCast(depth)));
     checkError();
 }
 
@@ -1828,11 +1828,11 @@ pub fn textureStorage3D(
 ) void {
     binding.textureStorage3D(
         @intFromEnum(texture),
-        @intCast(types.SizeI, levels),
+        @as(types.SizeI, @intCast(levels)),
         @intFromEnum(internalformat),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
-        @intCast(types.SizeI, depth),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
+        @as(types.SizeI, @intCast(depth)),
     );
     checkError();
 }
@@ -1893,10 +1893,10 @@ pub fn textureImage2D(
 ) void {
     binding.texImage2D(
         @intFromEnum(texture),
-        @intCast(types.Int, level),
-        @intCast(types.Int, @intFromEnum(pixel_internal_format)),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
+        @as(types.Int, @intCast(level)),
+        @as(types.Int, @intCast(@intFromEnum(pixel_internal_format))),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
         0,
         @intFromEnum(pixel_format),
         @intFromEnum(pixel_type),
@@ -1918,11 +1918,11 @@ pub fn texSubImage2D(
 ) void {
     binding.texSubImage2D(
         @intFromEnum(textureTarget),
-        @intCast(types.Int, level),
-        @intCast(types.Int, xoffset),
-        @intCast(types.Int, yoffset),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
+        @as(types.Int, @intCast(level)),
+        @as(types.Int, @intCast(xoffset)),
+        @as(types.Int, @intCast(yoffset)),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
         @intFromEnum(pixel_format),
         @intFromEnum(pixel_type),
         data,
@@ -1943,11 +1943,11 @@ pub fn textureSubImage2D(
 ) void {
     binding.textureSubImage2D(
         @intFromEnum(texture),
-        @intCast(types.Int, level),
-        @intCast(types.Int, xoffset),
-        @intCast(types.Int, yoffset),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
+        @as(types.Int, @intCast(level)),
+        @as(types.Int, @intCast(xoffset)),
+        @as(types.Int, @intCast(yoffset)),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
         @intFromEnum(pixel_format),
         @intFromEnum(pixel_type),
         data,
@@ -1970,13 +1970,13 @@ pub fn textureSubImage3D(
 ) void {
     binding.textureSubImage3D(
         @intFromEnum(texture),
-        @intCast(types.Int, level),
-        @intCast(types.Int, xoffset),
-        @intCast(types.Int, yoffset),
-        @intCast(types.Int, zoffset),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
-        @intCast(types.SizeI, depth),
+        @as(types.Int, @intCast(level)),
+        @as(types.Int, @intCast(xoffset)),
+        @as(types.Int, @intCast(yoffset)),
+        @as(types.Int, @intCast(zoffset)),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
+        @as(types.SizeI, @intCast(depth)),
         @intFromEnum(pixel_format),
         @intFromEnum(pixel_type),
         pixels,
@@ -1997,11 +1997,11 @@ pub fn textureImage3D(
 ) void {
     binding.texImage3D(
         @intFromEnum(texture),
-        @intCast(types.Int, level),
-        @intCast(types.Int, @intFromEnum(pixel_internal_format)),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
-        @intCast(types.SizeI, depth),
+        @as(types.Int, @intCast(level)),
+        @as(types.Int, @intCast(@intFromEnum(pixel_internal_format))),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
+        @as(types.SizeI, @intCast(depth)),
         0,
         @intFromEnum(pixel_format),
         @intFromEnum(pixel_type),
@@ -2025,13 +2025,13 @@ pub fn texSubImage3D(
 ) void {
     binding.texSubImage3D(
         @intFromEnum(textureTarget),
-        @intCast(types.Int, level),
-        @intCast(types.Int, xoffset),
-        @intCast(types.Int, yoffset),
-        @intCast(types.Int, zoffset),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
-        @intCast(types.SizeI, depth),
+        @as(types.Int, @intCast(level)),
+        @as(types.Int, @intCast(xoffset)),
+        @as(types.Int, @intCast(yoffset)),
+        @as(types.Int, @intCast(zoffset)),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
+        @as(types.SizeI, @intCast(depth)),
         @intFromEnum(pixel_format),
         @intFromEnum(pixel_type),
         data,
@@ -2048,7 +2048,7 @@ pub fn getTexImage(
 ) void {
     binding.getTexImage(
         @intFromEnum(textureTarget),
-        @intCast(types.Int, level),
+        @as(types.Int, @intCast(level)),
         @intFromEnum(pixel_format),
         @intFromEnum(pixel_type),
         data,
@@ -2072,16 +2072,16 @@ pub fn getTextureSubImage(
 ) void {
     binding.getTextureSubImage(
         @intFromEnum(texture),
-        @intCast(types.Int, level),
-        @intCast(types.Int, xoffset),
-        @intCast(types.Int, yoffset),
-        @intCast(types.Int, zoffset),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
-        @intCast(types.SizeI, depth),
+        @as(types.Int, @intCast(level)),
+        @as(types.Int, @intCast(xoffset)),
+        @as(types.Int, @intCast(yoffset)),
+        @as(types.Int, @intCast(zoffset)),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
+        @as(types.SizeI, @intCast(depth)),
         @intFromEnum(pixel_format),
         @intFromEnum(pixel_type),
-        @intCast(types.SizeI, size),
+        @as(types.SizeI, @intCast(size)),
         data,
     );
     checkError();
@@ -2099,13 +2099,13 @@ pub fn copyTexSubImage2D(
 ) void {
     binding.copyTexSubImage2D(
         @intFromEnum(target),
-        @intCast(types.Int, level),
-        @intCast(types.Int, xoffset),
-        @intCast(types.Int, yoffset),
-        @intCast(types.Int, x),
-        @intCast(types.Int, y),
-        @intCast(types.SizeI, width),
-        @intCast(types.SizeI, height),
+        @as(types.Int, @intCast(level)),
+        @as(types.Int, @intCast(xoffset)),
+        @as(types.Int, @intCast(yoffset)),
+        @as(types.Int, @intCast(x)),
+        @as(types.Int, @intCast(y)),
+        @as(types.SizeI, @intCast(width)),
+        @as(types.SizeI, @intCast(height)),
     );
     checkError();
 }
@@ -2131,17 +2131,17 @@ pub const PixelStoreParameter = enum(types.Enum) {
 };
 
 pub fn pixelStore(param: PixelStoreParameter, value: usize) void {
-    binding.pixelStorei(@intFromEnum(param), @intCast(types.Int, value));
+    binding.pixelStorei(@intFromEnum(param), @as(types.Int, @intCast(value)));
     checkError();
 }
 
 pub fn viewport(x: i32, y: i32, width: usize, height: usize) void {
-    binding.viewport(@intCast(types.Int, x), @intCast(types.Int, y), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
+    binding.viewport(@as(types.Int, @intCast(x)), @as(types.Int, @intCast(y)), @as(types.SizeI, @intCast(width)), @as(types.SizeI, @intCast(height)));
     checkError();
 }
 
 pub fn scissor(x: i32, y: i32, width: usize, height: usize) void {
-    binding.scissor(@intCast(types.Int, x), @intCast(types.Int, y), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
+    binding.scissor(@as(types.Int, @intCast(x)), @as(types.Int, @intCast(y)), @as(types.SizeI, @intCast(width)), @as(types.SizeI, @intCast(height)));
     checkError();
 }
 
@@ -2153,7 +2153,7 @@ pub fn createRenderbuffer() types.Renderbuffer {
     var rb_name: types.UInt = undefined;
     binding.createRenderbuffers(1, &rb_name);
     checkError();
-    const framebuffer = @enumFromInt(types.Renderbuffer, rb_name);
+    const framebuffer = @as(types.Renderbuffer, @enumFromInt(rb_name));
     if (framebuffer == .invalid) {
         checkError();
         unreachable;
@@ -2165,7 +2165,7 @@ pub fn genRenderbuffer() types.Renderbuffer {
     var rb_name: types.UInt = undefined;
     binding.genRenderbuffers(1, &rb_name);
     checkError();
-    const framebuffer = @enumFromInt(types.Renderbuffer, rb_name);
+    const framebuffer = @as(types.Renderbuffer, @enumFromInt(rb_name));
     if (framebuffer == .invalid) unreachable;
     return framebuffer;
 }
@@ -2188,7 +2188,7 @@ pub fn renderbufferStorage(
     height: usize,
 ) void {
     buf.bind(.buffer);
-    binding.renderbufferStorage(@intFromEnum(target), @intFromEnum(pixel_internal_format), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
+    binding.renderbufferStorage(@intFromEnum(target), @intFromEnum(pixel_internal_format), @as(types.SizeI, @intCast(width)), @as(types.SizeI, @intCast(height)));
     checkError();
 }
 
@@ -2201,7 +2201,7 @@ pub fn renderbufferStorageMultisample(
     height: usize,
 ) void {
     buf.bind(.buffer);
-    binding.renderbufferStorageMultisample(@intFromEnum(target), @intCast(types.SizeI, samples), @intFromEnum(pixel_internal_format), @intCast(types.SizeI, width), @intCast(types.SizeI, height));
+    binding.renderbufferStorageMultisample(@intFromEnum(target), @as(types.SizeI, @intCast(samples)), @intFromEnum(pixel_internal_format), @as(types.SizeI, @intCast(width)), @as(types.SizeI, @intCast(height)));
     checkError();
 }
 
@@ -2215,7 +2215,7 @@ pub fn createFramebuffer() types.Framebuffer {
     var fb_name: types.UInt = undefined;
     binding.createFramebuffers(1, &fb_name);
     checkError();
-    const framebuffer = @enumFromInt(types.Framebuffer, fb_name);
+    const framebuffer = @as(types.Framebuffer, @enumFromInt(fb_name));
     if (framebuffer == .invalid) {
         checkError();
         unreachable;
@@ -2227,7 +2227,7 @@ pub fn genFramebuffer() types.Framebuffer {
     var fb_name: types.UInt = undefined;
     binding.genFramebuffers(1, &fb_name);
     checkError();
-    const framebuffer = @enumFromInt(types.Framebuffer, fb_name);
+    const framebuffer = @as(types.Framebuffer, @enumFromInt(fb_name));
     if (framebuffer == .invalid) unreachable;
     return framebuffer;
 }
@@ -2259,7 +2259,7 @@ pub const FramebufferAttachment = enum(types.Enum) {
 
 pub fn framebufferTexture(buffer: types.Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, texture: types.Texture, level: i32) void {
     buffer.bind(.buffer);
-    binding.framebufferTexture(@intFromEnum(target), @intFromEnum(attachment), @intCast(types.UInt, @intFromEnum(texture)), @intCast(types.Int, level));
+    binding.framebufferTexture(@intFromEnum(target), @intFromEnum(attachment), @as(types.UInt, @intCast(@intFromEnum(texture))), @as(types.Int, @intCast(level)));
     checkError();
 }
 
@@ -2283,13 +2283,13 @@ pub const FramebufferTextureTarget = enum(types.Enum) {
 
 pub fn framebufferTexture2D(buffer: types.Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, textarget: FramebufferTextureTarget, texture: types.Texture, level: i32) void {
     buffer.bind(.buffer);
-    binding.framebufferTexture2D(@intFromEnum(target), @intFromEnum(attachment), @intFromEnum(textarget), @intCast(types.UInt, @intFromEnum(texture)), @intCast(types.Int, level));
+    binding.framebufferTexture2D(@intFromEnum(target), @intFromEnum(attachment), @intFromEnum(textarget), @as(types.UInt, @intCast(@intFromEnum(texture))), @as(types.Int, @intCast(level)));
     checkError();
 }
 
 pub fn framebufferRenderbuffer(buffer: types.Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, rbtarget: RenderbufferTarget, renderbuffer: types.Renderbuffer) void {
     buffer.bind(.buffer);
-    binding.framebufferRenderbuffer(@intFromEnum(target), @intFromEnum(attachment), @intFromEnum(rbtarget), @intCast(types.UInt, @intFromEnum(renderbuffer)));
+    binding.framebufferRenderbuffer(@intFromEnum(target), @intFromEnum(attachment), @intFromEnum(rbtarget), @as(types.UInt, @intCast(@intFromEnum(renderbuffer))));
     checkError();
 }
 
@@ -2298,12 +2298,12 @@ const FramebufferStatus = enum(types.UInt) {
 };
 
 pub fn checkFramebufferStatus(target: FramebufferTarget) FramebufferStatus {
-    const status = @enumFromInt(FramebufferStatus, binding.checkFramebufferStatus(@intFromEnum(target)));
+    const status = @as(FramebufferStatus, @enumFromInt(binding.checkFramebufferStatus(@intFromEnum(target))));
     return status;
 }
 
 pub fn drawBuffers(bufs: []const FramebufferAttachment) void {
-    binding.drawBuffers(cs2gl(bufs.len), @ptrCast([*]const types.UInt, bufs.ptr));
+    binding.drawBuffers(cs2gl(bufs.len), @as([*]const types.UInt, @ptrCast(bufs.ptr)));
 }
 
 pub fn blitFramebuffer(
@@ -2319,14 +2319,14 @@ pub fn blitFramebuffer(
     filter: enum(types.UInt) { nearest = binding.NEAREST, linear = binding.LINEAR },
 ) void {
     binding.blitFramebuffer(
-        @intCast(types.Int, srcX0),
-        @intCast(types.Int, srcY0),
-        @intCast(types.Int, srcX1),
-        @intCast(types.Int, srcY1),
-        @intCast(types.Int, destX0),
-        @intCast(types.Int, destY0),
-        @intCast(types.Int, destX1),
-        @intCast(types.Int, destY1),
+        @as(types.Int, @intCast(srcX0)),
+        @as(types.Int, @intCast(srcY0)),
+        @as(types.Int, @intCast(srcX1)),
+        @as(types.Int, @intCast(srcY1)),
+        @as(types.Int, @intCast(destX0)),
+        @as(types.Int, @intCast(destY0)),
+        @as(types.Int, @intCast(destX1)),
+        @as(types.Int, @intCast(destY1)),
         @as(types.BitField, if (mask.color) binding.COLOR_BUFFER_BIT else 0) |
             @as(types.BitField, if (mask.depth) binding.DEPTH_BUFFER_BIT else 0) |
             @as(types.BitField, if (mask.stencil) binding.STENCIL_BUFFER_BIT else 0),
@@ -2343,7 +2343,7 @@ pub fn invalidateTexImage(texture: types.Texture, level: types.Int) void {
 }
 
 pub fn invalidateFramebuffer(target: FramebufferTarget, attachments: []const FramebufferAttachment) void {
-    binding.invalidateFramebuffer(@intFromEnum(target), cs2gl(attachments.len), @ptrCast([*]const types.Enum, attachments.ptr));
+    binding.invalidateFramebuffer(@intFromEnum(target), cs2gl(attachments.len), @as([*]const types.Enum, @ptrCast(attachments.ptr)));
     checkError();
 }
 
@@ -2555,9 +2555,9 @@ pub fn getString(parameter: StringParameter) ?[:0]const u8 {
 }
 
 pub fn hasExtension(extension: [:0]const u8) bool {
-    const count = @intCast(usize, getInteger(.num_extensions));
+    const count = @as(usize, @intCast(getInteger(.num_extensions)));
     for (0..count) |i| {
-        const ext = getStringi(.extensions, @intCast(u32, i)) orelse return false;
+        const ext = getStringi(.extensions, @as(u32, @intCast(i))) orelse return false;
         if (std.mem.eql(u8, ext, extension)) {
             return true;
         }
