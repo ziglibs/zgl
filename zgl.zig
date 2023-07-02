@@ -683,23 +683,6 @@ pub fn namedBufferStorage(buf: types.Buffer, comptime T: type, count: usize, ite
     checkError();
 }
 
-pub const BufferMapTarget = enum(types.Enum) {
-    array_buffer = binding.ARRAY_BUFFER,
-    atomic_counter_buffer = binding.ATOMIC_COUNTER_BUFFER,
-    copy_read_buffer = binding.COPY_READ_BUFFER,
-    copy_write_buffer = binding.COPY_WRITE_BUFFER,
-    dispatch_indirect_buffer = binding.DISPATCH_INDIRECT_BUFFER,
-    draw_indirect_buffer = binding.DRAW_INDIRECT_BUFFER,
-    element_array_buffer = binding.ELEMENT_ARRAY_BUFFER,
-    pixel_pack_buffer = binding.PIXEL_PACK_BUFFER,
-    pixel_unpack_buffer = binding.PIXEL_UNPACK_BUFFER,
-    query_buffer = binding.QUERY_BUFFER,
-    shader_storage_buffer = binding.SHADER_STORAGE_BUFFER,
-    texture_buffer = binding.TEXTURE_BUFFER,
-    transform_feedback_buffer = binding.TRANSFORM_FEEDBACK_BUFFER,
-    uniform_buffer = binding.UNIFORM_BUFFER,
-};
-
 pub const BufferMapAccess = enum(types.Enum) {
     read_only = binding.READ_ONLY,
     write_only = binding.WRITE_ONLY,
@@ -707,7 +690,7 @@ pub const BufferMapAccess = enum(types.Enum) {
 };
 
 pub fn mapBuffer(
-    target: BufferMapTarget,
+    target: BufferTarget,
     comptime T: type,
     access: BufferMapAccess,
 ) [*]align(1) T {
@@ -720,7 +703,7 @@ pub fn mapBuffer(
     return @as([*]align(1) T, @ptrCast(ptr));
 }
 
-pub fn unmapBuffer(target: BufferMapTarget) bool {
+pub fn unmapBuffer(target: BufferTarget) bool {
     const ok = binding.unmapBuffer(@intFromEnum(target));
     checkError();
     return ok == binding.TRUE;
