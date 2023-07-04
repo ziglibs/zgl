@@ -593,6 +593,16 @@ pub fn namedBufferData(buf: types.Buffer, comptime T: type, items: []align(1) co
     checkError();
 }
 
+pub fn namedBufferSubData(buf: types.Buffer, offset: usize, comptime T: type, items: []align(1) const T) void {
+    binding.namedBufferSubData(
+        @intFromEnum(buf),
+        offset,
+        cs2gl(@sizeOf(T) * items.len),
+        items.ptr,
+    );
+    checkError();
+}
+
 pub fn namedBufferUninitialized(buf: types.Buffer, comptime T: type, count: usize, usage: BufferUsage) void {
     binding.namedBufferData(
         @intFromEnum(buf),
