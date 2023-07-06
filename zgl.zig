@@ -2325,6 +2325,20 @@ pub fn invalidateTexImage(texture: types.Texture, level: types.Int) void {
     checkError();
 }
 
+pub fn invalidateBufferSubData(buffer: types.Buffer, comptime T: type, offset: usize, count: usize) void {
+    binding.invalidateBufferSubData(
+        @intFromEnum(buffer),
+        @as(binding.GLintptr, @intCast(offset)),
+        cs2gl(@sizeOf(T) * count),
+    );
+    checkError();
+}
+
+pub fn invalidateBufferData(buffer: types.Buffer) void {
+    binding.invalidateBufferData(@intFromEnum(buffer));
+    checkError();
+}
+
 pub fn invalidateFramebuffer(target: FramebufferTarget, attachments: []const FramebufferAttachment) void {
     binding.invalidateFramebuffer(@intFromEnum(target), cs2gl(attachments.len), @as([*]const types.Enum, @ptrCast(attachments.ptr)));
     checkError();
