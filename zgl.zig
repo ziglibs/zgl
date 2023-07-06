@@ -276,7 +276,7 @@ pub fn readPixels(
     height: usize,
     format: PixelFormat,
     pixel_type: PixelType,
-    data: *anyopaque,
+    data: ?[*]u8,
 ) void {
     binding.readPixels(
         @as(types.Int, @intCast(x)),
