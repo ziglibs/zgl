@@ -2345,6 +2345,35 @@ pub fn invalidateFramebuffer(target: FramebufferTarget, attachments: []const Fra
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// Syncing
+pub fn fenceSync() types.Sync {
+    const sync = binding.fenceSync(binding.SYNC_GPU_COMMANDS_COMPLETE, 0);
+    checkError();
+    return sync;
+}
+
+pub fn deleteSync(sync: types.Sync) void {
+    binding.deleteSync(sync);
+    checkError();
+}
+
+pub fn clientWaitSync(
+    sync: types.Sync,
+    force_flush: bool,
+    timeout: usize,
+) enum { already_signaled, timeout_expired, condition_satisfied, wait_failed } {
+    const result = binding.clientWaitSync(sync, binding.SYNC_FLUSH_COMMANDS_BIT * @intFromBool(force_flush), @as(types.UInt64, timeout));
+    checkError();
+    return switch (result) {
+        binding.ALREADY_SIGNALED => .already_signaled,
+        binding.TIMEOUT_EXPIRED => .timeout_expired,
+        binding.CONDITION_SATISFIED => .condition_satisfied,
+        binding.WAIT_FAILED => .wait_failed,
+        else => unreachable,
+    };
+}
+
+///////////////////////////////////////////////////////////////////////////////
 // Parameters
 pub const Parameter = enum(types.Enum) {
     active_texture = binding.ACTIVE_TEXTURE,
