@@ -276,7 +276,8 @@ pub fn readPixels(
     height: usize,
     format: PixelFormat,
     pixel_type: PixelType,
-    data: *anyopaque,
+    comptime T: type,
+    items: ?[*]align(1) T,
 ) void {
     binding.readPixels(
         @as(types.Int, @intCast(x)),
@@ -285,7 +286,7 @@ pub fn readPixels(
         @as(types.SizeI, @intCast(height)),
         @intFromEnum(format),
         @intFromEnum(pixel_type),
-        data,
+        items,
     );
 }
 
