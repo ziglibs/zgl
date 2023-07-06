@@ -2325,9 +2325,52 @@ pub fn invalidateTexImage(texture: types.Texture, level: types.Int) void {
     checkError();
 }
 
+pub fn invalidateBufferSubData(buffer: types.Buffer, comptime T: type, offset: usize, count: usize) void {
+    binding.invalidateBufferSubData(
+        @intFromEnum(buffer),
+        @as(binding.GLintptr, @intCast(offset)),
+        cs2gl(@sizeOf(T) * count),
+    );
+    checkError();
+}
+
+pub fn invalidateBufferData(buffer: types.Buffer) void {
+    binding.invalidateBufferData(@intFromEnum(buffer));
+    checkError();
+}
+
 pub fn invalidateFramebuffer(target: FramebufferTarget, attachments: []const FramebufferAttachment) void {
     binding.invalidateFramebuffer(@intFromEnum(target), cs2gl(attachments.len), @as([*]const types.Enum, @ptrCast(attachments.ptr)));
     checkError();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Syncing
+pub fn fenceSync() types.Sync {
+    const sync = binding.fenceSync(binding.SYNC_GPU_COMMANDS_COMPLETE, 0);
+    checkError();
+    return sync;
+}
+
+pub fn deleteSync(sync: types.Sync) void {
+    binding.deleteSync(sync);
+    checkError();
+}
+
+pub fn clientWaitSync(
+    sync: types.Sync,
+    force_flush: bool,
+    timeout: usize,
+) enum { already_signaled, timeout_expired, condition_satisfied, wait_failed } {
+    const result = binding.clientWaitSync(sync, binding.SYNC_FLUSH_COMMANDS_BIT * @intFromBool(force_flush), @as(types.UInt64, timeout));
+    checkError();
+    return switch (result) {
+        binding.ALREADY_SIGNALED => .already_signaled,
+        binding.TIMEOUT_EXPIRED => .timeout_expired,
+        binding.CONDITION_SATISFIED => .condition_satisfied,
+        binding.WAIT_FAILED => .wait_failed,
+        else => unreachable,
+    };
 }
 
 ///////////////////////////////////////////////////////////////////////////////
