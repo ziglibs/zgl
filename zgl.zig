@@ -1889,7 +1889,7 @@ pub fn textureImage2D(
 }
 
 pub fn texSubImage2D(
-    textureTarget: TextureTarget,
+    texture_target: TextureTarget,
     level: usize,
     xoffset: usize,
     yoffset: usize,
@@ -1900,7 +1900,7 @@ pub fn texSubImage2D(
     data: ?[*]const u8,
 ) void {
     binding.texSubImage2D(
-        @intFromEnum(textureTarget),
+        @intFromEnum(texture_target),
         @as(types.Int, @intCast(level)),
         @as(types.Int, @intCast(xoffset)),
         @as(types.Int, @intCast(yoffset)),
@@ -1994,7 +1994,7 @@ pub fn textureImage3D(
 }
 
 pub fn texSubImage3D(
-    textureTarget: TextureTarget,
+    texture_target: TextureTarget,
     level: usize,
     xoffset: usize,
     yoffset: usize,
@@ -2007,7 +2007,7 @@ pub fn texSubImage3D(
     data: ?[*]const u8,
 ) void {
     binding.texSubImage3D(
-        @intFromEnum(textureTarget),
+        @intFromEnum(texture_target),
         @as(types.Int, @intCast(level)),
         @as(types.Int, @intCast(xoffset)),
         @as(types.Int, @intCast(yoffset)),
@@ -2023,14 +2023,14 @@ pub fn texSubImage3D(
 }
 
 pub fn getTexImage(
-    textureTarget: TextureTarget,
+    texture_target: TextureTarget,
     level: usize,
     pixel_format: PixelFormat,
     pixel_type: PixelType,
     data: [*]u8,
 ) void {
     binding.getTexImage(
-        @intFromEnum(textureTarget),
+        @intFromEnum(texture_target),
         @as(types.Int, @intCast(level)),
         @intFromEnum(pixel_format),
         @intFromEnum(pixel_type),
