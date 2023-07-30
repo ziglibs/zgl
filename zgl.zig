@@ -2238,6 +2238,10 @@ pub const FramebufferAttachment = enum(types.Enum) {
     stencil = binding.STENCIL_ATTACHMENT,
     depth_stencil = binding.DEPTH_STENCIL_ATTACHMENT,
     max_color = binding.MAX_COLOR_ATTACHMENTS,
+    /// Could be used for default framebuffer.
+    default_color = binding.COLOR,
+    default_depth = binding.DEPTH,
+    default_stencil = binding.STENCIL,
 };
 
 pub fn framebufferTexture(buffer: types.Framebuffer, target: FramebufferTarget, attachment: FramebufferAttachment, texture: types.Texture, level: i32) void {
