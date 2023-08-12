@@ -19,15 +19,7 @@ const std = @import("std");
 const builtin = @import("builtin");
 const log = std.log.scoped(.OpenGL);
 
-pub const FunctionPointer: type = blk: {
-    const BaseFunc = fn (u32) callconv(.C) u32;
-    const SpecializedFnPtr = *const BaseFunc;
-    const fnptr_type = @typeInfo(SpecializedFnPtr);
-    var generic_type = fnptr_type;
-    std.debug.assert(generic_type.Pointer.size == .One);
-    generic_type.Pointer.child = anyopaque;
-    break :blk @Type(generic_type);
-};
+pub const FunctionPointer: type = *align(@alignOf(fn (u32) callconv(.C) u32)) const anyopaque;
 
 pub const GLenum = c_uint;
 pub const GLboolean = u8;
