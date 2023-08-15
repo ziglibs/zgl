@@ -1,5 +1,5 @@
 const std = @import("std");
-const binding = @import("binding.zig");
+pub const binding = @import("binding.zig");
 
 comptime {
     std.testing.refAllDecls(@This());
