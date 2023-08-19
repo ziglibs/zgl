@@ -1410,7 +1410,7 @@ pub const DepthFunc = enum(types.Enum) {
     less_or_equal = binding.LEQUAL,
     greater = binding.GREATER,
     not_equal = binding.NOTEQUAL,
-    greator_or_equal = binding.GEQUAL,
+    greater_or_equal = binding.GEQUAL,
     always = binding.ALWAYS,
 };
 
@@ -1441,7 +1441,7 @@ pub const StencilFunc = enum(types.Enum) {
     less_or_equal = binding.LEQUAL,
     greater = binding.GREATER,
     not_equal = binding.NOTEQUAL,
-    greator_or_equal = binding.GEQUAL,
+    greater_or_equal = binding.GEQUAL,
     always = binding.ALWAYS,
 };
 
