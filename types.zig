@@ -54,6 +54,7 @@ pub const Buffer = enum(UInt) {
     pub const bind = gl.bindBuffer;
     pub const delete = gl.deleteBuffer;
     pub const data = gl.namedBufferData;
+    pub const subData = gl.namedBufferSubData;
     pub const storage = gl.namedBufferStorage;
     pub const mapRange = gl.mapNamedBufferRange;
     pub const unmap = gl.unmapNamedBuffer;
