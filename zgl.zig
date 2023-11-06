@@ -1308,6 +1308,17 @@ pub fn drawElements(primitiveType: PrimitiveType, count: usize, element_type: El
     checkError();
 }
 
+pub fn drawElementsBaseVertex(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: usize, baseVertex: i32) void {
+    binding.drawElementsBaseVertex(
+        @intFromEnum(primitiveType),
+        cs2gl(count),
+        @intFromEnum(element_type),
+        @as(*allowzero const anyopaque, @ptrFromInt(indices)),
+        baseVertex,
+    );
+    checkError();
+}
+
 pub fn drawElementsInstanced(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: usize, instance_count: usize) void {
     binding.drawElementsInstanced(
         @intFromEnum(primitiveType),
