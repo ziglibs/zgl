@@ -2114,6 +2114,27 @@ pub fn copyTexSubImage2D(
     checkError();
 }
 
+pub fn bindImageTexture(
+    unit: u32,
+    texture: types.Texture,
+    level: usize,
+    layerd: bool,
+    layer: usize,
+    access: BufferMapAccess,
+    format: TextureInternalFormat,
+) void {
+    binding.bindImageTexture(
+        @as(types.UInt, @intCast(unit)),
+        @intFromEnum(texture),
+        @as(types.Int, @intCast(level)),
+        b2gl(layerd),
+        @as(types.Int, @intCast(layer)),
+        @intFromEnum(access),
+        @intFromEnum(format),
+    );
+    checkError();
+}
+
 pub const PixelStoreParameter = enum(types.Enum) {
     pack_swap_bytes = binding.PACK_SWAP_BYTES,
     pack_lsb_first = binding.PACK_LSB_FIRST,
