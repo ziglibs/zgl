@@ -1,0 +1,14 @@
+.{
+    .name = "zgl",
+    .version = "1.1.0",
+
+    .dependencies = .{},
+
+    .paths = .{
+        "src",
+        "build.zig",
+        "build.zig.zon",
+        ".gitignore",
+        "README.md",
+    },
+}

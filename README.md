@@ -14,6 +14,26 @@ var vertex_buffer = gl.Buffer.create();
 defer vertex_buffer.delete();
 ```
 
+## Installation
+
+Add zgl to your `build.zig.zon` with the following command:
+
+`zig fetch --save https://github.com/ziglibs/zgl/archive/[commit_hash].tar.gz`
+
+Replace [commit_hash] with the latest commit or tagged release.
+
+Then add the following to your `build.zig`:
+
+```zig
+const zgl = b.dependency("zgl", .{
+    .target = target,
+    .optimize = optimize,
+});
+exe.root_module.addImport("zgl", zgl.module("zgl"));
+```
+
+Then import it with `const gl = @import("zgl");`, and build as normal with `zig build`.
+
 ## Development Philosophy
 
 This library is developed incrementally. That means that functions and other things will be included on-demand and not just for the sake of completeness.
