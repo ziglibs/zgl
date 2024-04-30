@@ -1640,6 +1640,7 @@ pub const TextureParameter = enum(types.Enum) {
     swizzle_g = binding.TEXTURE_SWIZZLE_G,
     swizzle_b = binding.TEXTURE_SWIZZLE_B,
     swizzle_a = binding.TEXTURE_SWIZZLE_A,
+    swizzle_rgba = binding.TEXTURE_SWIZZLE_RGBA,
     wrap_s = binding.TEXTURE_WRAP_S,
     wrap_t = binding.TEXTURE_WRAP_T,
     wrap_r = binding.TEXTURE_WRAP_R,
