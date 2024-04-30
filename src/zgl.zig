@@ -1735,6 +1735,7 @@ pub const TextureInternalFormat = enum(types.Enum) {
     r3_g3_b2 = binding.R3_G3_B2,
     rgb4 = binding.RGB4,
     rgb5 = binding.RGB5,
+    rgb565 = binding.RGB565,
     rgb8 = binding.RGB8,
     rgb8_snorm = binding.RGB8_SNORM,
     rgb10 = binding.RGB10,
