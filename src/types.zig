@@ -1,5 +1,5 @@
 const binding = @import("binding.zig");
-const gl = @import("zgl");
+const gl = @import("zgl.zig");
 
 pub const Boolean = binding.GLboolean;
 pub const Byte = binding.GLbyte;
