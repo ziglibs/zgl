@@ -1297,9 +1297,9 @@ pub fn drawArraysInstanced(primitiveType: PrimitiveType, first: usize, count: us
 }
 
 pub const ElementType = enum(types.Enum) {
-    u8 = binding.UNSIGNED_BYTE,
-    u16 = binding.UNSIGNED_SHORT,
-    u32 = binding.UNSIGNED_INT,
+    unsigned_byte = binding.UNSIGNED_BYTE,
+    unsigned_short = binding.UNSIGNED_SHORT,
+    unsigned_int = binding.UNSIGNED_INT,
 };
 
 pub fn drawElements(primitiveType: PrimitiveType, count: usize, element_type: ElementType, indices: usize) void {
