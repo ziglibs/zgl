@@ -104,6 +104,11 @@ pub const Program = enum(UInt) {
     pub const uniformLocation = gl.getUniformLocation;
 };
 
+pub const ProgramPipeline = enum(UInt) {
+    invalid = 0,
+    _,
+};
+
 pub const Texture = enum(UInt) {
     invalid = 0,
     _,

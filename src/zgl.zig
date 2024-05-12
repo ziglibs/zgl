@@ -929,6 +929,8 @@ pub const ProgramParameter = enum(types.Enum) {
     active_uniform_max_length = binding.ACTIVE_UNIFORM_MAX_LENGTH,
     compute_work_group_size = binding.COMPUTE_WORK_GROUP_SIZE,
     program_binary_length = binding.PROGRAM_BINARY_LENGTH,
+    program_binary_retrievable_hint = binding.PROGRAM_BINARY_RETRIEVABLE_HINT,
+    program_separable = binding.PROGRAM_SEPARABLE,
     transform_feedback_buffer_mode = binding.TRANSFORM_FEEDBACK_BUFFER_MODE,
     transform_feedback_varyings = binding.TRANSFORM_FEEDBACK_VARYINGS,
     transform_feedback_varying_max_length = binding.TRANSFORM_FEEDBACK_VARYING_MAX_LENGTH,
@@ -955,6 +957,11 @@ pub fn getProgramInfoLog(program: types.Program, allocator: std.mem.Allocator) !
     return log;
 }
 
+pub fn programParameter(program: types.Program, comptime parameter: ProgramParameter, value: types.Int) void {
+    binding.programParameteri(@intFromEnum(program), @intFromEnum(parameter), value);
+    checkError();
+}
+
 pub fn getUniformLocation(program: types.Program, name: [:0]const u8) ?u32 {
     const loc = binding.getUniformLocation(@intFromEnum(program), name.ptr);
     checkError();
@@ -977,6 +984,45 @@ pub fn bindAttribLocation(program: types.Program, attribute: u32, name: [:0]cons
 
 pub fn uniformBlockBinding(program: types.Program, index: u32, value: u32) void {
     binding.uniformBlockBinding(@intFromEnum(program), index, value);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Program pipelines
+
+pub fn genProgramPipeline() types.ProgramPipeline {
+    var pipeline_name: types.UInt = undefined;
+    binding.genProgramPipelines(1, &pipeline_name);
+    checkError();
+    return @enumFromInt(pipeline_name);
+}
+
+pub fn deleteProgramPipeline(pipeline: types.ProgramPipeline) void {
+    var id = @intFromEnum(pipeline);
+    binding.deleteProgramPipelines(1, &id);
+}
+
+pub fn bindProgramPipeline(pipeline: types.ProgramPipeline) void {
+    binding.bindProgramPipeline(@intFromEnum(pipeline));
+}
+
+pub const ProgramStagesFlags = packed struct {
+    vertex_shader: bool = false,
+    tess_control_shader: bool = false,
+    tess_evaluation_shader: bool = false,
+    geometry_shader: bool = false,
+    fragment_shader: bool = false,
+    compute_shader: bool = false,
+};
+
+pub fn useProgramStages(pipeline: types.ProgramPipeline, stages: ProgramStagesFlags, program: types.Program) void {
+    const mask = @as(types.BitField, if (stages.vertex_shader) binding.VERTEX_SHADER_BIT else 0) |
+        @as(types.BitField, if (stages.tess_control_shader) binding.TESS_CONTROL_SHADER_BIT else 0) |
+        @as(types.BitField, if (stages.tess_evaluation_shader) binding.TESS_EVALUATION_SHADER_BIT else 0) |
+        @as(types.BitField, if (stages.geometry_shader) binding.GEOMETRY_SHADER_BIT else 0) |
+        @as(types.BitField, if (stages.fragment_shader) binding.FRAGMENT_SHADER_BIT else 0) |
+        @as(types.BitField, if (stages.compute_shader) binding.COMPUTE_SHADER_BIT else 0);
+    binding.useProgramStages(@intFromEnum(pipeline), mask, @intFromEnum(program));
+    checkError();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
