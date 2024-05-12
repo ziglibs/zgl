@@ -224,7 +224,7 @@ pub fn debugMessageInsert(source: DebugSource, msg_type: DebugMessageType, id: u
         id,
         @intFromEnum(severity),
         @intCast(message.len),
-        message.ptr
+        message.ptr,
     );
     checkError();
 }
@@ -1980,12 +1980,13 @@ pub const PixelType = enum(types.Enum) {
 pub fn texBuffer(
     texture_target: TextureTarget,
     pixel_internal_format: TextureInternalFormat,
-    buffer : types.Buffer
+    buffer: types.Buffer,
 ) void {
     binding.texBuffer(
         @intFromEnum(texture_target),
         @intFromEnum(pixel_internal_format),
-        @intFromEnum(buffer));
+        @intFromEnum(buffer),
+    );
     checkError();
 }
 
