@@ -217,6 +217,18 @@ pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCall
     checkError();
 }
 
+pub fn debugMessageInsert(source: DebugSource, msg_type: DebugMessageType, id: u32, severity: DebugSeverity, message: []const u8) void {
+    binding.debugMessageInsert(
+        @intFromEnum(source),
+        @intFromEnum(msg_type),
+        id,
+        @intFromEnum(severity),
+        @intCast(message.len),
+        message.ptr,
+    );
+    checkError();
+}
+
 pub fn clearColor(r: f32, g: f32, b: f32, a: f32) void {
     binding.clearColor(r, g, b, a);
     checkError();
@@ -1552,6 +1564,11 @@ pub const BlendFactor = enum(types.Enum) {
     one_minus_constant_color = binding.ONE_MINUS_CONSTANT_COLOR,
     constant_alpha = binding.CONSTANT_ALPHA,
     one_minus_constant_alpha = binding.ONE_MINUS_CONSTANT_ALPHA,
+    src_alpha_saturate = binding.SRC_ALPHA_SATURATE,
+    src1_color = binding.SRC1_COLOR,
+    one_minus_src1_color = binding.ONE_MINUS_SRC1_COLOR,
+    src1_alpha = binding.SRC1_ALPHA,
+    one_minus_src1_alpha = binding.ONE_MINUS_SRC1_ALPHA,
 };
 
 pub fn blendFunc(sfactor: BlendFactor, dfactor: BlendFactor) void {
@@ -1561,6 +1578,29 @@ pub fn blendFunc(sfactor: BlendFactor, dfactor: BlendFactor) void {
 
 pub fn blendFuncSeparate(srcRGB: BlendFactor, dstRGB: BlendFactor, srcAlpha: BlendFactor, dstAlpha: BlendFactor) void {
     binding.blendFuncSeparate(@intFromEnum(srcRGB), @intFromEnum(dstRGB), @intFromEnum(srcAlpha), @intFromEnum(dstAlpha));
+    checkError();
+}
+
+pub const BlendEquation = enum(types.Enum) {
+    add = binding.FUNC_ADD,
+    subtract = binding.FUNC_SUBTRACT,
+    reverse_subtract = binding.FUNC_REVERSE_SUBTRACT,
+    min = binding.MIN,
+    max = binding.MAX,
+};
+
+pub fn blendEquation(equation: BlendEquation) void {
+    binding.blendEquation(@intFromEnum(equation));
+    checkError();
+}
+
+pub fn blendEquationi(buf: u32, equation: BlendEquation) void {
+    binding.blendEquationi(buf, @intFromEnum(equation));
+    checkError();
+}
+
+pub fn blendEquationSeparate(equationRgb: BlendEquation, equationAlpha: BlendEquation) void {
+    binding.blendEquationSeparate(@intFromEnum(equationRgb), @intFromEnum(equationAlpha));
     checkError();
 }
 
@@ -1936,6 +1976,19 @@ pub const PixelType = enum(types.Enum) {
     unsigned_int_10_10_10_2 = binding.UNSIGNED_INT_10_10_10_2,
     unsigned_int_2_10_10_10_rev = binding.UNSIGNED_INT_2_10_10_10_REV,
 };
+
+pub fn texBuffer(
+    texture_target: TextureTarget,
+    pixel_internal_format: TextureInternalFormat,
+    buffer: types.Buffer,
+) void {
+    binding.texBuffer(
+        @intFromEnum(texture_target),
+        @intFromEnum(pixel_internal_format),
+        @intFromEnum(buffer),
+    );
+    checkError();
+}
 
 pub fn textureImage2D(
     texture: TextureTarget,
