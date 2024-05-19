@@ -80,29 +80,29 @@ fn b2gl(b: bool) types.Boolean {
         binding.FALSE;
 }
 
-pub const DebugSource = enum {
-    api,
-    window_system,
-    shader_compiler,
-    third_party,
-    application,
-    other,
+pub const DebugSource = enum(types.Enum) {
+    api = binding.DEBUG_SOURCE_API,
+    window_system = binding.DEBUG_SOURCE_WINDOW_SYSTEM,
+    shader_compiler = binding.DEBUG_SOURCE_SHADER_COMPILER,
+    third_party = binding.DEBUG_SOURCE_THIRD_PARTY,
+    application = binding.DEBUG_SOURCE_APPLICATION,
+    other = binding.DEBUG_SOURCE_OTHER,
 };
 
-pub const DebugMessageType = enum {
-    @"error",
-    deprecated_behavior,
-    undefined_behavior,
-    portability,
-    performance,
-    other,
+pub const DebugMessageType = enum(types.Enum) {
+    @"error" = binding.DEBUG_TYPE_ERROR,
+    deprecated_behavior = binding.DEBUG_TYPE_DEPRECATED_BEHAVIOR,
+    undefined_behavior = binding.DEBUG_TYPE_UNDEFINED_BEHAVIOR,
+    portability = binding.DEBUG_TYPE_PORTABILITY,
+    performance = binding.DEBUG_TYPE_PERFORMANCE,
+    other = binding.DEBUG_TYPE_OTHER,
 };
 
-pub const DebugSeverity = enum {
-    high,
-    medium,
-    low,
-    notification,
+pub const DebugSeverity = enum(types.Enum) {
+    high = binding.DEBUG_SEVERITY_HIGH,
+    medium = binding.DEBUG_SEVERITY_MEDIUM,
+    low = binding.DEBUG_SEVERITY_LOW,
+    notification = binding.DEBUG_SEVERITY_NOTIFICATION,
 };
 
 fn DebugMessageCallbackHandler(comptime Context: type) type {
