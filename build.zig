@@ -5,7 +5,7 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
 
     _ = b.addModule("zgl", .{
-        .root_source_file = .{ .path = "src/zgl.zig" },
+        .root_source_file = b.path("src/zgl.zig"),
         .target = target,
         .optimize = optimize,
     });
