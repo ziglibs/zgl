@@ -1285,34 +1285,6 @@ pub fn uniform4uiv(location: ?u32, items: []const [4]u32) void {
     }
 }
 
-pub fn uniform1i64(location: ?u32, v0: i64) void {
-    if (location) |loc| {
-        binding.uniform1i64ARB(@as(types.Int, @intCast(loc)), v0);
-        checkError();
-    }
-}
-
-pub fn uniform2i64(location: ?u32, v0: i64, v1: i64) void {
-    if (location) |loc| {
-        binding.uniform2i64ARB(@as(types.Int, @intCast(loc)), v0, v1);
-        checkError();
-    }
-}
-
-pub fn uniform3i64(location: ?u32, v0: i64, v1: i64, v2: i64) void {
-    if (location) |loc| {
-        binding.uniform3i64ARB(@as(types.Int, @intCast(loc)), v0, v1, v2);
-        checkError();
-    }
-}
-
-pub fn uniform4i64(location: ?u32, v0: i64, v1: i64, v2: i64, v3: i64) void {
-    if (location) |loc| {
-        binding.uniform4i64ARB(@as(types.Int, @intCast(loc)), v0, v1, v2, v3);
-        checkError();
-    }
-}
-
 pub fn uniformMatrix4fv(location: ?u32, transpose: bool, items: []const [4][4]f32) void {
     if (location) |loc| {
         binding.uniformMatrix4fv(
