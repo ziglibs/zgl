@@ -1744,7 +1744,8 @@ pub fn TextureParameterType(comptime param: TextureParameter) type {
 pub fn texParameter(target: TextureTarget, comptime parameter: TextureParameter, value: TextureParameterType(parameter)) void {
     const T = TextureParameterType(parameter);
     const info = @typeInfo(T);
-    if (info == .Enum) {
+
+    if (info == .@"enum") {
         binding.texParameteri(@intFromEnum(target), @intFromEnum(parameter), @intFromEnum(value));
     } else {
         @compileError(@tagName(info) ++ " is not supported yet by texParameter");
@@ -1756,7 +1757,7 @@ pub fn textureParameter(texture: types.Texture, comptime parameter: TextureParam
     const T = TextureParameterType(parameter);
     const info = @typeInfo(T);
 
-    if (info == .Enum) {
+    if (info == .@"enum") {
         binding.textureParameteri(@intFromEnum(texture), @intFromEnum(parameter), @intFromEnum(value));
     } else {
         @compileError(@tagName(info) ++ " is not supported yet by textureParameter");
