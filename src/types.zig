@@ -102,6 +102,7 @@ pub const Program = enum(UInt) {
     pub const get = gl.getProgram;
     pub const getCompileLog = gl.getProgramInfoLog;
     pub const uniformLocation = gl.getUniformLocation;
+    pub const uniformBlockIndex = gl.getUniformBlockIndex;
 };
 
 pub const ProgramPipeline = enum(UInt) {

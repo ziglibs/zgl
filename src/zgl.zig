@@ -982,6 +982,14 @@ pub fn getUniformLocation(program: types.Program, name: [:0]const u8) ?u32 {
     return @as(u32, @intCast(loc));
 }
 
+pub fn getUniformBlockIndex(program: types.Program, name: [:0]const u8) ?u32 {
+    const loc = binding.getUniformBlockIndex(@intFromEnum(program), name.ptr);
+    checkError();
+    if (loc < 0)
+        return null;
+    return @intCast(loc);
+}
+
 pub fn getAttribLocation(program: types.Program, name: [:0]const u8) ?u32 {
     const loc = binding.getAttribLocation(@intFromEnum(program), name.ptr);
     checkError();
