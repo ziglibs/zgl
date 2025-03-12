@@ -1754,8 +1754,8 @@ pub fn texParameter(target: TextureTarget, comptime parameter: TextureParameter,
     const T = TextureParameterType(parameter);
     const info = @typeInfo(T);
     switch (info) {
-        .Enum => binding.texParameteri(@intFromEnum(target), @intFromEnum(parameter), @intFromEnum(value)),
-        .Int => binding.texParameteri(@intFromEnum(target), @intFromEnum(parameter), value),
+        .@"enum" => binding.texParameteri(@intFromEnum(target), @intFromEnum(parameter), @intFromEnum(value)),
+        .int => binding.texParameteri(@intFromEnum(target), @intFromEnum(parameter), value),
         else => @compileError(@tagName(info) ++ " is not supported yet by texParameter"),
     }
     checkError();
@@ -1765,7 +1765,7 @@ pub fn textureParameter(texture: types.Texture, comptime parameter: TextureParam
     const T = TextureParameterType(parameter);
     const info = @typeInfo(T);
 
-    if (info == .Enum) {
+    if (info == .@"enum") {
         binding.textureParameteri(@intFromEnum(texture), @intFromEnum(parameter), @intFromEnum(value));
     } else {
         @compileError(@tagName(info) ++ " is not supported yet by textureParameter");
