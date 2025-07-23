@@ -224,7 +224,7 @@ pub fn debugMessageCallback(context: anytype, comptime handler: DebugMessageCall
             length: types.SizeI,
             c_message: [*c]const types.Char,
             userParam: ?*const anyopaque,
-        ) callconv(.C) void {
+        ) callconv(.c) void {
             const debug_source = translateSource(c_source);
             const msg_type = translateMessageType(c_msg_type);
             const severity = translateSeverity(c_severity);

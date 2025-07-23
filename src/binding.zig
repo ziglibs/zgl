@@ -19,7 +19,7 @@ const std = @import("std");
 const builtin = @import("builtin");
 const log = std.log.scoped(.OpenGL);
 
-pub const FunctionPointer: type = *align(@alignOf(fn (u32) callconv(.C) u32)) const anyopaque;
+pub const FunctionPointer: type = *align(@alignOf(fn (u32) callconv(.c) u32)) const anyopaque;
 
 pub const GLenum = c_uint;
 pub const GLboolean = u8;
@@ -60,15 +60,15 @@ pub const GLsync = *opaque {};
 pub const _cl_context = opaque {};
 pub const _cl_event = opaque {};
 
-pub const GLDEBUGPROC = *const fn (source: GLenum, _type: GLenum, id: GLuint, severity: GLenum, length: GLsizei, message: [*:0]const u8, userParam: ?*anyopaque) callconv(.C) void;
-pub const GLDEBUGPROCARB = *const fn (source: GLenum, _type: GLenum, id: GLuint, severity: GLenum, length: GLsizei, message: [*:0]const u8, userParam: ?*anyopaque) callconv(.C) void;
-pub const GLDEBUGPROCKHR = *const fn (source: GLenum, _type: GLenum, id: GLuint, severity: GLenum, length: GLsizei, message: [*:0]const u8, userParam: ?*anyopaque) callconv(.C) void;
+pub const GLDEBUGPROC = *const fn (source: GLenum, _type: GLenum, id: GLuint, severity: GLenum, length: GLsizei, message: [*:0]const u8, userParam: ?*anyopaque) callconv(.c) void;
+pub const GLDEBUGPROCARB = *const fn (source: GLenum, _type: GLenum, id: GLuint, severity: GLenum, length: GLsizei, message: [*:0]const u8, userParam: ?*anyopaque) callconv(.c) void;
+pub const GLDEBUGPROCKHR = *const fn (source: GLenum, _type: GLenum, id: GLuint, severity: GLenum, length: GLsizei, message: [*:0]const u8, userParam: ?*anyopaque) callconv(.c) void;
 
-pub const GLDEBUGPROCAMD = *const fn (id: GLuint, category: GLenum, severity: GLenum, length: GLsizei, message: [*:0]const u8, userParam: ?*anyopaque) callconv(.C) void;
+pub const GLDEBUGPROCAMD = *const fn (id: GLuint, category: GLenum, severity: GLenum, length: GLsizei, message: [*:0]const u8, userParam: ?*anyopaque) callconv(.c) void;
 
 pub const GLhalfNV = u16;
 pub const GLvdpauSurfaceNV = GLintptr;
-pub const GLVULKANPROCNV = *const fn () callconv(.C) void;
+pub const GLVULKANPROCNV = *const fn () callconv(.c) void;
 
 pub const DEPTH_BUFFER_BIT = 0x00000100;
 pub const STENCIL_BUFFER_BIT = 0x00000400;
@@ -1416,2615 +1416,2615 @@ pub const CONTEXT_FLAG_ROBUST_ACCESS_BIT = 0x00000004;
 pub const CONTEXT_RELEASE_BEHAVIOR = 0x82FB;
 pub const CONTEXT_RELEASE_BEHAVIOR_FLUSH = 0x82FC;
 
-pub fn texStorage2D(_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn texStorage2D(_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexStorage2D, .{ _target, _levels, _internalformat, _width, _height });
 }
 
-pub fn texStorage1D(_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei) callconv(.C) void {
+pub fn texStorage1D(_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexStorage1D, .{ _target, _levels, _internalformat, _width });
 }
 
-pub fn drawTransformFeedbackStreamInstanced(_mode: GLenum, _id: GLuint, _stream: GLuint, _instancecount: GLsizei) callconv(.C) void {
+pub fn drawTransformFeedbackStreamInstanced(_mode: GLenum, _id: GLuint, _stream: GLuint, _instancecount: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawTransformFeedbackStreamInstanced, .{ _mode, _id, _stream, _instancecount });
 }
 
-pub fn drawTransformFeedbackInstanced(_mode: GLenum, _id: GLuint, _instancecount: GLsizei) callconv(.C) void {
+pub fn drawTransformFeedbackInstanced(_mode: GLenum, _id: GLuint, _instancecount: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawTransformFeedbackInstanced, .{ _mode, _id, _instancecount });
 }
 
-pub fn texStorage3D(_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.C) void {
+pub fn texStorage3D(_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexStorage3D, .{ _target, _levels, _internalformat, _width, _height, _depth });
 }
 
-pub fn memoryBarrier(_barriers: GLbitfield) callconv(.C) void {
+pub fn memoryBarrier(_barriers: GLbitfield) callconv(.c) void {
     return @call(.always_tail, function_pointers.glMemoryBarrier, .{_barriers});
 }
 
-pub fn bindImageTexture(_unit: GLuint, _texture: GLuint, _level: GLint, _layered: GLboolean, _layer: GLint, _access: GLenum, _format: GLenum) callconv(.C) void {
+pub fn bindImageTexture(_unit: GLuint, _texture: GLuint, _level: GLint, _layered: GLboolean, _layer: GLint, _access: GLenum, _format: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindImageTexture, .{ _unit, _texture, _level, _layered, _layer, _access, _format });
 }
 
-pub fn getActiveAtomicCounterBufferiv(_program: GLuint, _bufferIndex: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getActiveAtomicCounterBufferiv(_program: GLuint, _bufferIndex: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetActiveAtomicCounterBufferiv, .{ _program, _bufferIndex, _pname, _params });
 }
 
-pub fn getInternalformativ(_target: GLenum, _internalformat: GLenum, _pname: GLenum, _count: GLsizei, _params: [*c]GLint) callconv(.C) void {
+pub fn getInternalformativ(_target: GLenum, _internalformat: GLenum, _pname: GLenum, _count: GLsizei, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetInternalformativ, .{ _target, _internalformat, _pname, _count, _params });
 }
 
-pub fn drawElementsInstancedBaseVertexBaseInstance(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _basevertex: GLint, _baseinstance: GLuint) callconv(.C) void {
+pub fn drawElementsInstancedBaseVertexBaseInstance(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _basevertex: GLint, _baseinstance: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawElementsInstancedBaseVertexBaseInstance, .{ _mode, _count, _type, _indices, _instancecount, _basevertex, _baseinstance });
 }
 
-pub fn drawElementsInstancedBaseInstance(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _baseinstance: GLuint) callconv(.C) void {
+pub fn drawElementsInstancedBaseInstance(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _baseinstance: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawElementsInstancedBaseInstance, .{ _mode, _count, _type, _indices, _instancecount, _baseinstance });
 }
 
-pub fn drawArraysInstancedBaseInstance(_mode: GLenum, _first: GLint, _count: GLsizei, _instancecount: GLsizei, _baseinstance: GLuint) callconv(.C) void {
+pub fn drawArraysInstancedBaseInstance(_mode: GLenum, _first: GLint, _count: GLsizei, _instancecount: GLsizei, _baseinstance: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawArraysInstancedBaseInstance, .{ _mode, _first, _count, _instancecount, _baseinstance });
 }
 
-pub fn getDoublei_v(_target: GLenum, _index: GLuint, _data: [*c]GLdouble) callconv(.C) void {
+pub fn getDoublei_v(_target: GLenum, _index: GLuint, _data: [*c]GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetDoublei_v, .{ _target, _index, _data });
 }
 
-pub fn getFloati_v(_target: GLenum, _index: GLuint, _data: [*c]GLfloat) callconv(.C) void {
+pub fn getFloati_v(_target: GLenum, _index: GLuint, _data: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetFloati_v, .{ _target, _index, _data });
 }
 
-pub fn depthRangeIndexed(_index: GLuint, _n: GLdouble, _f: GLdouble) callconv(.C) void {
+pub fn depthRangeIndexed(_index: GLuint, _n: GLdouble, _f: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDepthRangeIndexed, .{ _index, _n, _f });
 }
 
-pub fn depthRangeArrayv(_first: GLuint, _count: GLsizei, _v: [*c]const GLdouble) callconv(.C) void {
+pub fn depthRangeArrayv(_first: GLuint, _count: GLsizei, _v: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDepthRangeArrayv, .{ _first, _count, _v });
 }
 
-pub fn scissorIndexedv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
+pub fn scissorIndexedv(_index: GLuint, _v: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glScissorIndexedv, .{ _index, _v });
 }
 
-pub fn scissorIndexed(_index: GLuint, _left: GLint, _bottom: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn scissorIndexed(_index: GLuint, _left: GLint, _bottom: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glScissorIndexed, .{ _index, _left, _bottom, _width, _height });
 }
 
-pub fn scissorArrayv(_first: GLuint, _count: GLsizei, _v: [*c]const GLint) callconv(.C) void {
+pub fn scissorArrayv(_first: GLuint, _count: GLsizei, _v: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glScissorArrayv, .{ _first, _count, _v });
 }
 
-pub fn viewportIndexedfv(_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void {
+pub fn viewportIndexedfv(_index: GLuint, _v: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glViewportIndexedfv, .{ _index, _v });
 }
 
-pub fn viewportIndexedf(_index: GLuint, _x: GLfloat, _y: GLfloat, _w: GLfloat, _h: GLfloat) callconv(.C) void {
+pub fn viewportIndexedf(_index: GLuint, _x: GLfloat, _y: GLfloat, _w: GLfloat, _h: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glViewportIndexedf, .{ _index, _x, _y, _w, _h });
 }
 
-pub fn viewportArrayv(_first: GLuint, _count: GLsizei, _v: [*c]const GLfloat) callconv(.C) void {
+pub fn viewportArrayv(_first: GLuint, _count: GLsizei, _v: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glViewportArrayv, .{ _first, _count, _v });
 }
 
-pub fn getVertexAttribLdv(_index: GLuint, _pname: GLenum, _params: [*c]GLdouble) callconv(.C) void {
+pub fn getVertexAttribLdv(_index: GLuint, _pname: GLenum, _params: [*c]GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetVertexAttribLdv, .{ _index, _pname, _params });
 }
 
-pub fn vertexAttribLPointer(_index: GLuint, _size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
+pub fn vertexAttribLPointer(_index: GLuint, _size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribLPointer, .{ _index, _size, _type, _stride, _pointer });
 }
 
-pub fn vertexAttribL4dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
+pub fn vertexAttribL4dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribL4dv, .{ _index, _v });
 }
 
-pub fn vertexAttribL3dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
+pub fn vertexAttribL3dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribL3dv, .{ _index, _v });
 }
 
-pub fn vertexAttribL2dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
+pub fn vertexAttribL2dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribL2dv, .{ _index, _v });
 }
 
-pub fn vertexAttribL1dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
+pub fn vertexAttribL1dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribL1dv, .{ _index, _v });
 }
 
-pub fn vertexAttribL4d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.C) void {
+pub fn vertexAttribL4d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribL4d, .{ _index, _x, _y, _z, _w });
 }
 
-pub fn vertexAttribL3d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void {
+pub fn vertexAttribL3d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribL3d, .{ _index, _x, _y, _z });
 }
 
-pub fn vertexAttribL2d(_index: GLuint, _x: GLdouble, _y: GLdouble) callconv(.C) void {
+pub fn vertexAttribL2d(_index: GLuint, _x: GLdouble, _y: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribL2d, .{ _index, _x, _y });
 }
 
-pub fn vertexAttribL1d(_index: GLuint, _x: GLdouble) callconv(.C) void {
+pub fn vertexAttribL1d(_index: GLuint, _x: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribL1d, .{ _index, _x });
 }
 
-pub fn validateProgramPipeline(_pipeline: GLuint) callconv(.C) void {
+pub fn validateProgramPipeline(_pipeline: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glValidateProgramPipeline, .{_pipeline});
 }
 
-pub fn programUniformMatrix4x3dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniformMatrix4x3dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix4x3dv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix3x4dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniformMatrix3x4dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix3x4dv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix4x2dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniformMatrix4x2dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix4x2dv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix2x4dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniformMatrix2x4dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix2x4dv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix3x2dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniformMatrix3x2dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix3x2dv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix2x3dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniformMatrix2x3dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix2x3dv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix4x3fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniformMatrix4x3fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix4x3fv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix3x4fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniformMatrix3x4fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix3x4fv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix4x2fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniformMatrix4x2fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix4x2fv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix2x4fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniformMatrix2x4fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix2x4fv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix3x2fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniformMatrix3x2fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix3x2fv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix2x3fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniformMatrix2x3fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix2x3fv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix4dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniformMatrix4dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix4dv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix3dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniformMatrix3dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix3dv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix2dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniformMatrix2dv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix2dv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix4fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniformMatrix4fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix4fv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix3fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniformMatrix3fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix3fv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniformMatrix2fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniformMatrix2fv(_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniformMatrix2fv, .{ _program, _location, _count, _transpose, _value });
 }
 
-pub fn programUniform4uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
+pub fn programUniform4uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform4uiv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform4ui(_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint, _v3: GLuint) callconv(.C) void {
+pub fn programUniform4ui(_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint, _v3: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform4ui, .{ _program, _location, _v0, _v1, _v2, _v3 });
 }
 
-pub fn programUniform4dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniform4dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform4dv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform4d(_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble, _v2: GLdouble, _v3: GLdouble) callconv(.C) void {
+pub fn programUniform4d(_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble, _v2: GLdouble, _v3: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform4d, .{ _program, _location, _v0, _v1, _v2, _v3 });
 }
 
-pub fn programUniform4fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniform4fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform4fv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform4f(_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat, _v3: GLfloat) callconv(.C) void {
+pub fn programUniform4f(_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat, _v3: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform4f, .{ _program, _location, _v0, _v1, _v2, _v3 });
 }
 
-pub fn programUniform4iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
+pub fn programUniform4iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform4iv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform4i(_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint, _v2: GLint, _v3: GLint) callconv(.C) void {
+pub fn programUniform4i(_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint, _v2: GLint, _v3: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform4i, .{ _program, _location, _v0, _v1, _v2, _v3 });
 }
 
-pub fn programUniform3uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
+pub fn programUniform3uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform3uiv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform3ui(_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint) callconv(.C) void {
+pub fn programUniform3ui(_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform3ui, .{ _program, _location, _v0, _v1, _v2 });
 }
 
-pub fn programUniform3dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniform3dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform3dv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform3d(_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble, _v2: GLdouble) callconv(.C) void {
+pub fn programUniform3d(_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble, _v2: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform3d, .{ _program, _location, _v0, _v1, _v2 });
 }
 
-pub fn programUniform3fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniform3fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform3fv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform3f(_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat) callconv(.C) void {
+pub fn programUniform3f(_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform3f, .{ _program, _location, _v0, _v1, _v2 });
 }
 
-pub fn programUniform3iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
+pub fn programUniform3iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform3iv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform3i(_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint, _v2: GLint) callconv(.C) void {
+pub fn programUniform3i(_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint, _v2: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform3i, .{ _program, _location, _v0, _v1, _v2 });
 }
 
-pub fn useProgramStages(_pipeline: GLuint, _stages: GLbitfield, _program: GLuint) callconv(.C) void {
+pub fn useProgramStages(_pipeline: GLuint, _stages: GLbitfield, _program: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUseProgramStages, .{ _pipeline, _stages, _program });
 }
 
-pub fn programParameteri(_program: GLuint, _pname: GLenum, _value: GLint) callconv(.C) void {
+pub fn programParameteri(_program: GLuint, _pname: GLenum, _value: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramParameteri, .{ _program, _pname, _value });
 }
 
-pub fn getShaderPrecisionFormat(_shadertype: GLenum, _precisiontype: GLenum, _range: [*c]GLint, _precision: [*c]GLint) callconv(.C) void {
+pub fn getShaderPrecisionFormat(_shadertype: GLenum, _precisiontype: GLenum, _range: [*c]GLint, _precision: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetShaderPrecisionFormat, .{ _shadertype, _precisiontype, _range, _precision });
 }
 
-pub fn shaderBinary(_count: GLsizei, _shaders: [*c]const GLuint, _binaryFormat: GLenum, _binary: ?*const anyopaque, _length: GLsizei) callconv(.C) void {
+pub fn shaderBinary(_count: GLsizei, _shaders: [*c]const GLuint, _binaryFormat: GLenum, _binary: ?*const anyopaque, _length: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glShaderBinary, .{ _count, _shaders, _binaryFormat, _binary, _length });
 }
 
-pub fn releaseShaderCompiler() callconv(.C) void {
+pub fn releaseShaderCompiler() callconv(.c) void {
     return @call(.always_tail, function_pointers.glReleaseShaderCompiler, .{});
 }
 
-pub fn getQueryIndexediv(_target: GLenum, _index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getQueryIndexediv(_target: GLenum, _index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetQueryIndexediv, .{ _target, _index, _pname, _params });
 }
 
-pub fn endQueryIndexed(_target: GLenum, _index: GLuint) callconv(.C) void {
+pub fn endQueryIndexed(_target: GLenum, _index: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glEndQueryIndexed, .{ _target, _index });
 }
 
-pub fn beginQueryIndexed(_target: GLenum, _index: GLuint, _id: GLuint) callconv(.C) void {
+pub fn beginQueryIndexed(_target: GLenum, _index: GLuint, _id: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBeginQueryIndexed, .{ _target, _index, _id });
 }
 
-pub fn drawTransformFeedbackStream(_mode: GLenum, _id: GLuint, _stream: GLuint) callconv(.C) void {
+pub fn drawTransformFeedbackStream(_mode: GLenum, _id: GLuint, _stream: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawTransformFeedbackStream, .{ _mode, _id, _stream });
 }
 
-pub fn drawTransformFeedback(_mode: GLenum, _id: GLuint) callconv(.C) void {
+pub fn drawTransformFeedback(_mode: GLenum, _id: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawTransformFeedback, .{ _mode, _id });
 }
 
-pub fn resumeTransformFeedback() callconv(.C) void {
+pub fn resumeTransformFeedback() callconv(.c) void {
     return @call(.always_tail, function_pointers.glResumeTransformFeedback, .{});
 }
 
-pub fn pauseTransformFeedback() callconv(.C) void {
+pub fn pauseTransformFeedback() callconv(.c) void {
     return @call(.always_tail, function_pointers.glPauseTransformFeedback, .{});
 }
 
-pub fn getProgramStageiv(_program: GLuint, _shadertype: GLenum, _pname: GLenum, _values: [*c]GLint) callconv(.C) void {
+pub fn getProgramStageiv(_program: GLuint, _shadertype: GLenum, _pname: GLenum, _values: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetProgramStageiv, .{ _program, _shadertype, _pname, _values });
 }
 
-pub fn getUniformSubroutineuiv(_shadertype: GLenum, _location: GLint, _params: [*c]GLuint) callconv(.C) void {
+pub fn getUniformSubroutineuiv(_shadertype: GLenum, _location: GLint, _params: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetUniformSubroutineuiv, .{ _shadertype, _location, _params });
 }
 
-pub fn uniformSubroutinesuiv(_shadertype: GLenum, _count: GLsizei, _indices: [*c]const GLuint) callconv(.C) void {
+pub fn uniformSubroutinesuiv(_shadertype: GLenum, _count: GLsizei, _indices: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformSubroutinesuiv, .{ _shadertype, _count, _indices });
 }
 
-pub fn getActiveSubroutineName(_program: GLuint, _shadertype: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.C) void {
+pub fn getActiveSubroutineName(_program: GLuint, _shadertype: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetActiveSubroutineName, .{ _program, _shadertype, _index, _bufSize, _length, _name });
 }
 
-pub fn cullFace(_mode: GLenum) callconv(.C) void {
+pub fn cullFace(_mode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCullFace, .{_mode});
 }
 
-pub fn frontFace(_mode: GLenum) callconv(.C) void {
+pub fn frontFace(_mode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glFrontFace, .{_mode});
 }
 
-pub fn hint(_target: GLenum, _mode: GLenum) callconv(.C) void {
+pub fn hint(_target: GLenum, _mode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glHint, .{ _target, _mode });
 }
 
-pub fn lineWidth(_width: GLfloat) callconv(.C) void {
+pub fn lineWidth(_width: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glLineWidth, .{_width});
 }
 
-pub fn pointSize(_size: GLfloat) callconv(.C) void {
+pub fn pointSize(_size: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPointSize, .{_size});
 }
 
-pub fn polygonMode(_face: GLenum, _mode: GLenum) callconv(.C) void {
+pub fn polygonMode(_face: GLenum, _mode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPolygonMode, .{ _face, _mode });
 }
 
-pub fn scissor(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn scissor(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glScissor, .{ _x, _y, _width, _height });
 }
 
-pub fn texParameterf(_target: GLenum, _pname: GLenum, _param: GLfloat) callconv(.C) void {
+pub fn texParameterf(_target: GLenum, _pname: GLenum, _param: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexParameterf, .{ _target, _pname, _param });
 }
 
-pub fn texParameterfv(_target: GLenum, _pname: GLenum, _params: [*c]const GLfloat) callconv(.C) void {
+pub fn texParameterfv(_target: GLenum, _pname: GLenum, _params: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexParameterfv, .{ _target, _pname, _params });
 }
 
-pub fn texParameteri(_target: GLenum, _pname: GLenum, _param: GLint) callconv(.C) void {
+pub fn texParameteri(_target: GLenum, _pname: GLenum, _param: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexParameteri, .{ _target, _pname, _param });
 }
 
-pub fn texParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]const GLint) callconv(.C) void {
+pub fn texParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexParameteriv, .{ _target, _pname, _params });
 }
 
-pub fn texImage1D(_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+pub fn texImage1D(_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexImage1D, .{ _target, _level, _internalformat, _width, _border, _format, _type, _pixels });
 }
 
-pub fn texImage2D(_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _height: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+pub fn texImage2D(_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _height: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexImage2D, .{ _target, _level, _internalformat, _width, _height, _border, _format, _type, _pixels });
 }
 
-pub fn drawBuffer(_buf: GLenum) callconv(.C) void {
+pub fn drawBuffer(_buf: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawBuffer, .{_buf});
 }
 
-pub fn clear(_mask: GLbitfield) callconv(.C) void {
+pub fn clear(_mask: GLbitfield) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClear, .{_mask});
 }
 
-pub fn clearColor(_red: GLfloat, _green: GLfloat, _blue: GLfloat, _alpha: GLfloat) callconv(.C) void {
+pub fn clearColor(_red: GLfloat, _green: GLfloat, _blue: GLfloat, _alpha: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearColor, .{ _red, _green, _blue, _alpha });
 }
 
-pub fn clearStencil(_s: GLint) callconv(.C) void {
+pub fn clearStencil(_s: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearStencil, .{_s});
 }
 
-pub fn clearDepth(_depth: GLdouble) callconv(.C) void {
+pub fn clearDepth(_depth: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearDepth, .{_depth});
 }
 
-pub fn stencilMask(_mask: GLuint) callconv(.C) void {
+pub fn stencilMask(_mask: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glStencilMask, .{_mask});
 }
 
-pub fn colorMask(_red: GLboolean, _green: GLboolean, _blue: GLboolean, _alpha: GLboolean) callconv(.C) void {
+pub fn colorMask(_red: GLboolean, _green: GLboolean, _blue: GLboolean, _alpha: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glColorMask, .{ _red, _green, _blue, _alpha });
 }
 
-pub fn depthMask(_flag: GLboolean) callconv(.C) void {
+pub fn depthMask(_flag: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDepthMask, .{_flag});
 }
 
-pub fn disable(_cap: GLenum) callconv(.C) void {
+pub fn disable(_cap: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDisable, .{_cap});
 }
 
-pub fn enable(_cap: GLenum) callconv(.C) void {
+pub fn enable(_cap: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glEnable, .{_cap});
 }
 
-pub fn finish() callconv(.C) void {
+pub fn finish() callconv(.c) void {
     return @call(.always_tail, function_pointers.glFinish, .{});
 }
 
-pub fn flush() callconv(.C) void {
+pub fn flush() callconv(.c) void {
     return @call(.always_tail, function_pointers.glFlush, .{});
 }
 
-pub fn blendFunc(_sfactor: GLenum, _dfactor: GLenum) callconv(.C) void {
+pub fn blendFunc(_sfactor: GLenum, _dfactor: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlendFunc, .{ _sfactor, _dfactor });
 }
 
-pub fn logicOp(_opcode: GLenum) callconv(.C) void {
+pub fn logicOp(_opcode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glLogicOp, .{_opcode});
 }
 
-pub fn stencilFunc(_func: GLenum, _ref: GLint, _mask: GLuint) callconv(.C) void {
+pub fn stencilFunc(_func: GLenum, _ref: GLint, _mask: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glStencilFunc, .{ _func, _ref, _mask });
 }
 
-pub fn stencilOp(_fail: GLenum, _zfail: GLenum, _zpass: GLenum) callconv(.C) void {
+pub fn stencilOp(_fail: GLenum, _zfail: GLenum, _zpass: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glStencilOp, .{ _fail, _zfail, _zpass });
 }
 
-pub fn depthFunc(_func: GLenum) callconv(.C) void {
+pub fn depthFunc(_func: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDepthFunc, .{_func});
 }
 
-pub fn pixelStoref(_pname: GLenum, _param: GLfloat) callconv(.C) void {
+pub fn pixelStoref(_pname: GLenum, _param: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPixelStoref, .{ _pname, _param });
 }
 
-pub fn pixelStorei(_pname: GLenum, _param: GLint) callconv(.C) void {
+pub fn pixelStorei(_pname: GLenum, _param: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPixelStorei, .{ _pname, _param });
 }
 
-pub fn readBuffer(_src: GLenum) callconv(.C) void {
+pub fn readBuffer(_src: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glReadBuffer, .{_src});
 }
 
-pub fn readPixels(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*anyopaque) callconv(.C) void {
+pub fn readPixels(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glReadPixels, .{ _x, _y, _width, _height, _format, _type, _pixels });
 }
 
-pub fn getBooleanv(_pname: GLenum, _data: [*c]GLboolean) callconv(.C) void {
+pub fn getBooleanv(_pname: GLenum, _data: [*c]GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetBooleanv, .{ _pname, _data });
 }
 
-pub fn getDoublev(_pname: GLenum, _data: [*c]GLdouble) callconv(.C) void {
+pub fn getDoublev(_pname: GLenum, _data: [*c]GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetDoublev, .{ _pname, _data });
 }
 
-pub fn getError() callconv(.C) GLenum {
+pub fn getError() callconv(.c) GLenum {
     return @call(.always_tail, function_pointers.glGetError, .{});
 }
 
-pub fn getFloatv(_pname: GLenum, _data: [*c]GLfloat) callconv(.C) void {
+pub fn getFloatv(_pname: GLenum, _data: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetFloatv, .{ _pname, _data });
 }
 
-pub fn getIntegerv(_pname: GLenum, _data: [*c]GLint) callconv(.C) void {
+pub fn getIntegerv(_pname: GLenum, _data: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetIntegerv, .{ _pname, _data });
 }
 
-pub fn getString(_name: GLenum) callconv(.C) ?[*:0]const GLubyte {
+pub fn getString(_name: GLenum) callconv(.c) ?[*:0]const GLubyte {
     return @call(.always_tail, function_pointers.glGetString, .{_name});
 }
 
-pub fn getTexImage(_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _pixels: ?*anyopaque) callconv(.C) void {
+pub fn getTexImage(_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _pixels: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTexImage, .{ _target, _level, _format, _type, _pixels });
 }
 
-pub fn getTexParameterfv(_target: GLenum, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
+pub fn getTexParameterfv(_target: GLenum, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTexParameterfv, .{ _target, _pname, _params });
 }
 
-pub fn getTexParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getTexParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTexParameteriv, .{ _target, _pname, _params });
 }
 
-pub fn getTexLevelParameterfv(_target: GLenum, _level: GLint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
+pub fn getTexLevelParameterfv(_target: GLenum, _level: GLint, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTexLevelParameterfv, .{ _target, _level, _pname, _params });
 }
 
-pub fn getTexLevelParameteriv(_target: GLenum, _level: GLint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getTexLevelParameteriv(_target: GLenum, _level: GLint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTexLevelParameteriv, .{ _target, _level, _pname, _params });
 }
 
-pub fn isEnabled(_cap: GLenum) callconv(.C) GLboolean {
+pub fn isEnabled(_cap: GLenum) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsEnabled, .{_cap});
 }
 
-pub fn depthRange(_n: GLdouble, _f: GLdouble) callconv(.C) void {
+pub fn depthRange(_n: GLdouble, _f: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDepthRange, .{ _n, _f });
 }
 
-pub fn viewport(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn viewport(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glViewport, .{ _x, _y, _width, _height });
 }
 
-pub fn texStorage2DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
+pub fn texStorage2DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexStorage2DMultisample, .{ _target, _samples, _internalformat, _width, _height, _fixedsamplelocations });
 }
 
-pub fn texBufferRange(_target: GLenum, _internalformat: GLenum, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
+pub fn texBufferRange(_target: GLenum, _internalformat: GLenum, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexBufferRange, .{ _target, _internalformat, _buffer, _offset, _size });
 }
 
-pub fn shaderStorageBlockBinding(_program: GLuint, _storageBlockIndex: GLuint, _storageBlockBinding: GLuint) callconv(.C) void {
+pub fn shaderStorageBlockBinding(_program: GLuint, _storageBlockIndex: GLuint, _storageBlockBinding: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glShaderStorageBlockBinding, .{ _program, _storageBlockIndex, _storageBlockBinding });
 }
 
-pub fn getProgramResourceLocationIndex(_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.C) GLint {
+pub fn getProgramResourceLocationIndex(_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.c) GLint {
     return @call(.always_tail, function_pointers.glGetProgramResourceLocationIndex, .{ _program, _programInterface, _name });
 }
 
-pub fn getProgramResourceLocation(_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.C) GLint {
+pub fn getProgramResourceLocation(_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.c) GLint {
     return @call(.always_tail, function_pointers.glGetProgramResourceLocation, .{ _program, _programInterface, _name });
 }
 
-pub fn getProgramResourceiv(_program: GLuint, _programInterface: GLenum, _index: GLuint, _propCount: GLsizei, _props: [*c]const GLenum, _count: GLsizei, _length: [*c]GLsizei, _params: [*c]GLint) callconv(.C) void {
+pub fn getProgramResourceiv(_program: GLuint, _programInterface: GLenum, _index: GLuint, _propCount: GLsizei, _props: [*c]const GLenum, _count: GLsizei, _length: [*c]GLsizei, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetProgramResourceiv, .{ _program, _programInterface, _index, _propCount, _props, _count, _length, _params });
 }
 
-pub fn getProgramResourceName(_program: GLuint, _programInterface: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.C) void {
+pub fn getProgramResourceName(_program: GLuint, _programInterface: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetProgramResourceName, .{ _program, _programInterface, _index, _bufSize, _length, _name });
 }
 
-pub fn getProgramResourceIndex(_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.C) GLuint {
+pub fn getProgramResourceIndex(_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.c) GLuint {
     return @call(.always_tail, function_pointers.glGetProgramResourceIndex, .{ _program, _programInterface, _name });
 }
 
-pub fn getProgramInterfaceiv(_program: GLuint, _programInterface: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getProgramInterfaceiv(_program: GLuint, _programInterface: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetProgramInterfaceiv, .{ _program, _programInterface, _pname, _params });
 }
 
-pub fn multiDrawElementsIndirect(_mode: GLenum, _type: GLenum, _indirect: ?*const anyopaque, _drawcount: GLsizei, _stride: GLsizei) callconv(.C) void {
+pub fn multiDrawElementsIndirect(_mode: GLenum, _type: GLenum, _indirect: ?*const anyopaque, _drawcount: GLsizei, _stride: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glMultiDrawElementsIndirect, .{ _mode, _type, _indirect, _drawcount, _stride });
 }
 
-pub fn multiDrawArraysIndirect(_mode: GLenum, _indirect: ?*const anyopaque, _drawcount: GLsizei, _stride: GLsizei) callconv(.C) void {
+pub fn multiDrawArraysIndirect(_mode: GLenum, _indirect: ?*const anyopaque, _drawcount: GLsizei, _stride: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glMultiDrawArraysIndirect, .{ _mode, _indirect, _drawcount, _stride });
 }
 
-pub fn invalidateSubFramebuffer(_target: GLenum, _numAttachments: GLsizei, _attachments: [*c]const GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn invalidateSubFramebuffer(_target: GLenum, _numAttachments: GLsizei, _attachments: [*c]const GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glInvalidateSubFramebuffer, .{ _target, _numAttachments, _attachments, _x, _y, _width, _height });
 }
 
-pub fn invalidateFramebuffer(_target: GLenum, _numAttachments: GLsizei, _attachments: [*c]const GLenum) callconv(.C) void {
+pub fn invalidateFramebuffer(_target: GLenum, _numAttachments: GLsizei, _attachments: [*c]const GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glInvalidateFramebuffer, .{ _target, _numAttachments, _attachments });
 }
 
-pub fn invalidateBufferData(_buffer: GLuint) callconv(.C) void {
+pub fn invalidateBufferData(_buffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glInvalidateBufferData, .{_buffer});
 }
 
-pub fn invalidateBufferSubData(_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr) callconv(.C) void {
+pub fn invalidateBufferSubData(_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glInvalidateBufferSubData, .{ _buffer, _offset, _length });
 }
 
-pub fn invalidateTexImage(_texture: GLuint, _level: GLint) callconv(.C) void {
+pub fn invalidateTexImage(_texture: GLuint, _level: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glInvalidateTexImage, .{ _texture, _level });
 }
 
-pub fn invalidateTexSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.C) void {
+pub fn invalidateTexSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glInvalidateTexSubImage, .{ _texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth });
 }
 
-pub fn getInternalformati64v(_target: GLenum, _internalformat: GLenum, _pname: GLenum, _count: GLsizei, _params: [*c]GLint64) callconv(.C) void {
+pub fn getInternalformati64v(_target: GLenum, _internalformat: GLenum, _pname: GLenum, _count: GLsizei, _params: [*c]GLint64) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetInternalformati64v, .{ _target, _internalformat, _pname, _count, _params });
 }
 
-pub fn getFramebufferParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getFramebufferParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetFramebufferParameteriv, .{ _target, _pname, _params });
 }
 
-pub fn framebufferParameteri(_target: GLenum, _pname: GLenum, _param: GLint) callconv(.C) void {
+pub fn framebufferParameteri(_target: GLenum, _pname: GLenum, _param: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glFramebufferParameteri, .{ _target, _pname, _param });
 }
 
-pub fn copyImageSubData(_srcName: GLuint, _srcTarget: GLenum, _srcLevel: GLint, _srcX: GLint, _srcY: GLint, _srcZ: GLint, _dstName: GLuint, _dstTarget: GLenum, _dstLevel: GLint, _dstX: GLint, _dstY: GLint, _dstZ: GLint, _srcWidth: GLsizei, _srcHeight: GLsizei, _srcDepth: GLsizei) callconv(.C) void {
+pub fn copyImageSubData(_srcName: GLuint, _srcTarget: GLenum, _srcLevel: GLint, _srcX: GLint, _srcY: GLint, _srcZ: GLint, _dstName: GLuint, _dstTarget: GLenum, _dstLevel: GLint, _dstX: GLint, _dstY: GLint, _dstZ: GLint, _srcWidth: GLsizei, _srcHeight: GLsizei, _srcDepth: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyImageSubData, .{ _srcName, _srcTarget, _srcLevel, _srcX, _srcY, _srcZ, _dstName, _dstTarget, _dstLevel, _dstX, _dstY, _dstZ, _srcWidth, _srcHeight, _srcDepth });
 }
 
-pub fn dispatchComputeIndirect(_indirect: GLintptr) callconv(.C) void {
+pub fn dispatchComputeIndirect(_indirect: GLintptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDispatchComputeIndirect, .{_indirect});
 }
 
-pub fn dispatchCompute(_num_groups_x: GLuint, _num_groups_y: GLuint, _num_groups_z: GLuint) callconv(.C) void {
+pub fn dispatchCompute(_num_groups_x: GLuint, _num_groups_y: GLuint, _num_groups_z: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDispatchCompute, .{ _num_groups_x, _num_groups_y, _num_groups_z });
 }
 
-pub fn clearBufferSubData(_target: GLenum, _internalformat: GLenum, _offset: GLintptr, _size: GLsizeiptr, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
+pub fn clearBufferSubData(_target: GLenum, _internalformat: GLenum, _offset: GLintptr, _size: GLsizeiptr, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearBufferSubData, .{ _target, _internalformat, _offset, _size, _format, _type, _data });
 }
 
-pub fn clearBufferData(_target: GLenum, _internalformat: GLenum, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
+pub fn clearBufferData(_target: GLenum, _internalformat: GLenum, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearBufferData, .{ _target, _internalformat, _format, _type, _data });
 }
 
-pub fn getProgramPipelineInfoLog(_pipeline: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.C) void {
+pub fn getProgramPipelineInfoLog(_pipeline: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetProgramPipelineInfoLog, .{ _pipeline, _bufSize, _length, _infoLog });
 }
 
-pub fn programUniform2uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
+pub fn programUniform2uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform2uiv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform2ui(_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint) callconv(.C) void {
+pub fn programUniform2ui(_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform2ui, .{ _program, _location, _v0, _v1 });
 }
 
-pub fn programUniform2dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniform2dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform2dv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform2d(_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble) callconv(.C) void {
+pub fn programUniform2d(_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform2d, .{ _program, _location, _v0, _v1 });
 }
 
-pub fn programUniform2fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniform2fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform2fv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform2f(_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat) callconv(.C) void {
+pub fn programUniform2f(_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform2f, .{ _program, _location, _v0, _v1 });
 }
 
-pub fn programUniform2iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
+pub fn programUniform2iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform2iv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform2i(_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint) callconv(.C) void {
+pub fn programUniform2i(_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform2i, .{ _program, _location, _v0, _v1 });
 }
 
-pub fn programUniform1uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
+pub fn programUniform1uiv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform1uiv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform1ui(_program: GLuint, _location: GLint, _v0: GLuint) callconv(.C) void {
+pub fn programUniform1ui(_program: GLuint, _location: GLint, _v0: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform1ui, .{ _program, _location, _v0 });
 }
 
-pub fn programUniform1dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn programUniform1dv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform1dv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform1d(_program: GLuint, _location: GLint, _v0: GLdouble) callconv(.C) void {
+pub fn programUniform1d(_program: GLuint, _location: GLint, _v0: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform1d, .{ _program, _location, _v0 });
 }
 
-pub fn programUniform1fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn programUniform1fv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform1fv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform1f(_program: GLuint, _location: GLint, _v0: GLfloat) callconv(.C) void {
+pub fn programUniform1f(_program: GLuint, _location: GLint, _v0: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform1f, .{ _program, _location, _v0 });
 }
 
-pub fn programUniform1iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
+pub fn programUniform1iv(_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform1iv, .{ _program, _location, _count, _value });
 }
 
-pub fn programUniform1i(_program: GLuint, _location: GLint, _v0: GLint) callconv(.C) void {
+pub fn programUniform1i(_program: GLuint, _location: GLint, _v0: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramUniform1i, .{ _program, _location, _v0 });
 }
 
-pub fn getProgramPipelineiv(_pipeline: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getProgramPipelineiv(_pipeline: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetProgramPipelineiv, .{ _pipeline, _pname, _params });
 }
 
-pub fn isProgramPipeline(_pipeline: GLuint) callconv(.C) GLboolean {
+pub fn isProgramPipeline(_pipeline: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsProgramPipeline, .{_pipeline});
 }
 
-pub fn genProgramPipelines(_n: GLsizei, _pipelines: [*c]GLuint) callconv(.C) void {
+pub fn genProgramPipelines(_n: GLsizei, _pipelines: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenProgramPipelines, .{ _n, _pipelines });
 }
 
-pub fn deleteProgramPipelines(_n: GLsizei, _pipelines: [*c]const GLuint) callconv(.C) void {
+pub fn deleteProgramPipelines(_n: GLsizei, _pipelines: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteProgramPipelines, .{ _n, _pipelines });
 }
 
-pub fn bindProgramPipeline(_pipeline: GLuint) callconv(.C) void {
+pub fn bindProgramPipeline(_pipeline: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindProgramPipeline, .{_pipeline});
 }
 
-pub fn createShaderProgramv(_type: GLenum, _count: GLsizei, _strings: [*c]const [*c]const GLchar) callconv(.C) GLuint {
+pub fn createShaderProgramv(_type: GLenum, _count: GLsizei, _strings: [*c]const [*c]const GLchar) callconv(.c) GLuint {
     return @call(.always_tail, function_pointers.glCreateShaderProgramv, .{ _type, _count, _strings });
 }
 
-pub fn activeShaderProgram(_pipeline: GLuint, _program: GLuint) callconv(.C) void {
+pub fn activeShaderProgram(_pipeline: GLuint, _program: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glActiveShaderProgram, .{ _pipeline, _program });
 }
 
-pub fn programBinary(_program: GLuint, _binaryFormat: GLenum, _binary: ?*const anyopaque, _length: GLsizei) callconv(.C) void {
+pub fn programBinary(_program: GLuint, _binaryFormat: GLenum, _binary: ?*const anyopaque, _length: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProgramBinary, .{ _program, _binaryFormat, _binary, _length });
 }
 
-pub fn getProgramBinary(_program: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _binaryFormat: [*c]GLenum, _binary: ?*anyopaque) callconv(.C) void {
+pub fn getProgramBinary(_program: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _binaryFormat: [*c]GLenum, _binary: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetProgramBinary, .{ _program, _bufSize, _length, _binaryFormat, _binary });
 }
 
-pub fn clearDepthf(_d: GLfloat) callconv(.C) void {
+pub fn clearDepthf(_d: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearDepthf, .{_d});
 }
 
-pub fn depthRangef(_n: GLfloat, _f: GLfloat) callconv(.C) void {
+pub fn depthRangef(_n: GLfloat, _f: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDepthRangef, .{ _n, _f });
 }
 
-pub fn isTransformFeedback(_id: GLuint) callconv(.C) GLboolean {
+pub fn isTransformFeedback(_id: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsTransformFeedback, .{_id});
 }
 
-pub fn genTransformFeedbacks(_n: GLsizei, _ids: [*c]GLuint) callconv(.C) void {
+pub fn genTransformFeedbacks(_n: GLsizei, _ids: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenTransformFeedbacks, .{ _n, _ids });
 }
 
-pub fn deleteTransformFeedbacks(_n: GLsizei, _ids: [*c]const GLuint) callconv(.C) void {
+pub fn deleteTransformFeedbacks(_n: GLsizei, _ids: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteTransformFeedbacks, .{ _n, _ids });
 }
 
-pub fn bindTransformFeedback(_target: GLenum, _id: GLuint) callconv(.C) void {
+pub fn bindTransformFeedback(_target: GLenum, _id: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindTransformFeedback, .{ _target, _id });
 }
 
-pub fn patchParameterfv(_pname: GLenum, _values: [*c]const GLfloat) callconv(.C) void {
+pub fn patchParameterfv(_pname: GLenum, _values: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPatchParameterfv, .{ _pname, _values });
 }
 
-pub fn patchParameteri(_pname: GLenum, _value: GLint) callconv(.C) void {
+pub fn patchParameteri(_pname: GLenum, _value: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPatchParameteri, .{ _pname, _value });
 }
 
-pub fn drawArrays(_mode: GLenum, _first: GLint, _count: GLsizei) callconv(.C) void {
+pub fn drawArrays(_mode: GLenum, _first: GLint, _count: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawArrays, .{ _mode, _first, _count });
 }
 
-pub fn drawElements(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.C) void {
+pub fn drawElements(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawElements, .{ _mode, _count, _type, _indices });
 }
 
-pub fn polygonOffset(_factor: GLfloat, _units: GLfloat) callconv(.C) void {
+pub fn polygonOffset(_factor: GLfloat, _units: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPolygonOffset, .{ _factor, _units });
 }
 
-pub fn copyTexImage1D(_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _border: GLint) callconv(.C) void {
+pub fn copyTexImage1D(_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _border: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyTexImage1D, .{ _target, _level, _internalformat, _x, _y, _width, _border });
 }
 
-pub fn copyTexImage2D(_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _border: GLint) callconv(.C) void {
+pub fn copyTexImage2D(_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _border: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyTexImage2D, .{ _target, _level, _internalformat, _x, _y, _width, _height, _border });
 }
 
-pub fn copyTexSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.C) void {
+pub fn copyTexSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyTexSubImage1D, .{ _target, _level, _xoffset, _x, _y, _width });
 }
 
-pub fn copyTexSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn copyTexSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyTexSubImage2D, .{ _target, _level, _xoffset, _yoffset, _x, _y, _width, _height });
 }
 
-pub fn texSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+pub fn texSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexSubImage1D, .{ _target, _level, _xoffset, _width, _format, _type, _pixels });
 }
 
-pub fn texSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+pub fn texSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexSubImage2D, .{ _target, _level, _xoffset, _yoffset, _width, _height, _format, _type, _pixels });
 }
 
-pub fn bindTexture(_target: GLenum, _texture: GLuint) callconv(.C) void {
+pub fn bindTexture(_target: GLenum, _texture: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindTexture, .{ _target, _texture });
 }
 
-pub fn deleteTextures(_n: GLsizei, _textures: [*c]const GLuint) callconv(.C) void {
+pub fn deleteTextures(_n: GLsizei, _textures: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteTextures, .{ _n, _textures });
 }
 
-pub fn genTextures(_n: GLsizei, _textures: [*c]GLuint) callconv(.C) void {
+pub fn genTextures(_n: GLsizei, _textures: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenTextures, .{ _n, _textures });
 }
 
-pub fn isTexture(_texture: GLuint) callconv(.C) GLboolean {
+pub fn isTexture(_texture: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsTexture, .{_texture});
 }
 
-pub fn getActiveSubroutineUniformName(_program: GLuint, _shadertype: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.C) void {
+pub fn getActiveSubroutineUniformName(_program: GLuint, _shadertype: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetActiveSubroutineUniformName, .{ _program, _shadertype, _index, _bufSize, _length, _name });
 }
 
-pub fn getActiveSubroutineUniformiv(_program: GLuint, _shadertype: GLenum, _index: GLuint, _pname: GLenum, _values: [*c]GLint) callconv(.C) void {
+pub fn getActiveSubroutineUniformiv(_program: GLuint, _shadertype: GLenum, _index: GLuint, _pname: GLenum, _values: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetActiveSubroutineUniformiv, .{ _program, _shadertype, _index, _pname, _values });
 }
 
-pub fn getSubroutineIndex(_program: GLuint, _shadertype: GLenum, _name: [*c]const GLchar) callconv(.C) GLuint {
+pub fn getSubroutineIndex(_program: GLuint, _shadertype: GLenum, _name: [*c]const GLchar) callconv(.c) GLuint {
     return @call(.always_tail, function_pointers.glGetSubroutineIndex, .{ _program, _shadertype, _name });
 }
 
-pub fn getSubroutineUniformLocation(_program: GLuint, _shadertype: GLenum, _name: [*c]const GLchar) callconv(.C) GLint {
+pub fn getSubroutineUniformLocation(_program: GLuint, _shadertype: GLenum, _name: [*c]const GLchar) callconv(.c) GLint {
     return @call(.always_tail, function_pointers.glGetSubroutineUniformLocation, .{ _program, _shadertype, _name });
 }
 
-pub fn getUniformdv(_program: GLuint, _location: GLint, _params: [*c]GLdouble) callconv(.C) void {
+pub fn getUniformdv(_program: GLuint, _location: GLint, _params: [*c]GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetUniformdv, .{ _program, _location, _params });
 }
 
-pub fn uniformMatrix4x3dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniformMatrix4x3dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix4x3dv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix4x2dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniformMatrix4x2dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix4x2dv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix3x4dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniformMatrix3x4dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix3x4dv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix3x2dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniformMatrix3x2dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix3x2dv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix2x4dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniformMatrix2x4dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix2x4dv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix2x3dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniformMatrix2x3dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix2x3dv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix4dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniformMatrix4dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix4dv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix3dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniformMatrix3dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix3dv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn drawRangeElements(_mode: GLenum, _start: GLuint, _end: GLuint, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.C) void {
+pub fn drawRangeElements(_mode: GLenum, _start: GLuint, _end: GLuint, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawRangeElements, .{ _mode, _start, _end, _count, _type, _indices });
 }
 
-pub fn texImage3D(_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+pub fn texImage3D(_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexImage3D, .{ _target, _level, _internalformat, _width, _height, _depth, _border, _format, _type, _pixels });
 }
 
-pub fn texSubImage3D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+pub fn texSubImage3D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexSubImage3D, .{ _target, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _pixels });
 }
 
-pub fn copyTexSubImage3D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn copyTexSubImage3D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyTexSubImage3D, .{ _target, _level, _xoffset, _yoffset, _zoffset, _x, _y, _width, _height });
 }
 
-pub fn uniformMatrix2dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniformMatrix2dv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix2dv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniform4dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniform4dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform4dv, .{ _location, _count, _value });
 }
 
-pub fn uniform3dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniform3dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform3dv, .{ _location, _count, _value });
 }
 
-pub fn uniform2dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniform2dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform2dv, .{ _location, _count, _value });
 }
 
-pub fn uniform1dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void {
+pub fn uniform1dv(_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform1dv, .{ _location, _count, _value });
 }
 
-pub fn uniform4d(_location: GLint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.C) void {
+pub fn uniform4d(_location: GLint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform4d, .{ _location, _x, _y, _z, _w });
 }
 
-pub fn uniform3d(_location: GLint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void {
+pub fn uniform3d(_location: GLint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform3d, .{ _location, _x, _y, _z });
 }
 
-pub fn uniform2d(_location: GLint, _x: GLdouble, _y: GLdouble) callconv(.C) void {
+pub fn uniform2d(_location: GLint, _x: GLdouble, _y: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform2d, .{ _location, _x, _y });
 }
 
-pub fn uniform1d(_location: GLint, _x: GLdouble) callconv(.C) void {
+pub fn uniform1d(_location: GLint, _x: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform1d, .{ _location, _x });
 }
 
-pub fn drawElementsIndirect(_mode: GLenum, _type: GLenum, _indirect: ?*const anyopaque) callconv(.C) void {
+pub fn drawElementsIndirect(_mode: GLenum, _type: GLenum, _indirect: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawElementsIndirect, .{ _mode, _type, _indirect });
 }
 
-pub fn drawArraysIndirect(_mode: GLenum, _indirect: ?*const anyopaque) callconv(.C) void {
+pub fn drawArraysIndirect(_mode: GLenum, _indirect: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawArraysIndirect, .{ _mode, _indirect });
 }
 
-pub fn blendFuncSeparatei(_buf: GLuint, _srcRGB: GLenum, _dstRGB: GLenum, _srcAlpha: GLenum, _dstAlpha: GLenum) callconv(.C) void {
+pub fn blendFuncSeparatei(_buf: GLuint, _srcRGB: GLenum, _dstRGB: GLenum, _srcAlpha: GLenum, _dstAlpha: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlendFuncSeparatei, .{ _buf, _srcRGB, _dstRGB, _srcAlpha, _dstAlpha });
 }
 
-pub fn blendFunci(_buf: GLuint, _src: GLenum, _dst: GLenum) callconv(.C) void {
+pub fn blendFunci(_buf: GLuint, _src: GLenum, _dst: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlendFunci, .{ _buf, _src, _dst });
 }
 
-pub fn blendEquationSeparatei(_buf: GLuint, _modeRGB: GLenum, _modeAlpha: GLenum) callconv(.C) void {
+pub fn blendEquationSeparatei(_buf: GLuint, _modeRGB: GLenum, _modeAlpha: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlendEquationSeparatei, .{ _buf, _modeRGB, _modeAlpha });
 }
 
-pub fn blendEquationi(_buf: GLuint, _mode: GLenum) callconv(.C) void {
+pub fn blendEquationi(_buf: GLuint, _mode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlendEquationi, .{ _buf, _mode });
 }
 
-pub fn minSampleShading(_value: GLfloat) callconv(.C) void {
+pub fn minSampleShading(_value: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glMinSampleShading, .{_value});
 }
 
-pub fn activeTexture(_texture: GLenum) callconv(.C) void {
+pub fn activeTexture(_texture: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glActiveTexture, .{_texture});
 }
 
-pub fn sampleCoverage(_value: GLfloat, _invert: GLboolean) callconv(.C) void {
+pub fn sampleCoverage(_value: GLfloat, _invert: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glSampleCoverage, .{ _value, _invert });
 }
 
-pub fn compressedTexImage3D(_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
+pub fn compressedTexImage3D(_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCompressedTexImage3D, .{ _target, _level, _internalformat, _width, _height, _depth, _border, _imageSize, _data });
 }
 
-pub fn compressedTexImage2D(_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
+pub fn compressedTexImage2D(_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCompressedTexImage2D, .{ _target, _level, _internalformat, _width, _height, _border, _imageSize, _data });
 }
 
-pub fn compressedTexImage1D(_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
+pub fn compressedTexImage1D(_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCompressedTexImage1D, .{ _target, _level, _internalformat, _width, _border, _imageSize, _data });
 }
 
-pub fn compressedTexSubImage3D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
+pub fn compressedTexSubImage3D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCompressedTexSubImage3D, .{ _target, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _imageSize, _data });
 }
 
-pub fn compressedTexSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
+pub fn compressedTexSubImage2D(_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCompressedTexSubImage2D, .{ _target, _level, _xoffset, _yoffset, _width, _height, _format, _imageSize, _data });
 }
 
-pub fn compressedTexSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
+pub fn compressedTexSubImage1D(_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCompressedTexSubImage1D, .{ _target, _level, _xoffset, _width, _format, _imageSize, _data });
 }
 
-pub fn getCompressedTexImage(_target: GLenum, _level: GLint, _img: ?*anyopaque) callconv(.C) void {
+pub fn getCompressedTexImage(_target: GLenum, _level: GLint, _img: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetCompressedTexImage, .{ _target, _level, _img });
 }
 
-pub fn vertexAttribP4uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void {
+pub fn vertexAttribP4uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribP4uiv, .{ _index, _type, _normalized, _value });
 }
 
-pub fn vertexAttribP4ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void {
+pub fn vertexAttribP4ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribP4ui, .{ _index, _type, _normalized, _value });
 }
 
-pub fn vertexAttribP3uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void {
+pub fn vertexAttribP3uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribP3uiv, .{ _index, _type, _normalized, _value });
 }
 
-pub fn vertexAttribP3ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void {
+pub fn vertexAttribP3ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribP3ui, .{ _index, _type, _normalized, _value });
 }
 
-pub fn vertexAttribP2uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void {
+pub fn vertexAttribP2uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribP2uiv, .{ _index, _type, _normalized, _value });
 }
 
-pub fn vertexAttribP2ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void {
+pub fn vertexAttribP2ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribP2ui, .{ _index, _type, _normalized, _value });
 }
 
-pub fn vertexAttribP1uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void {
+pub fn vertexAttribP1uiv(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribP1uiv, .{ _index, _type, _normalized, _value });
 }
 
-pub fn vertexAttribP1ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void {
+pub fn vertexAttribP1ui(_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribP1ui, .{ _index, _type, _normalized, _value });
 }
 
-pub fn vertexAttribDivisor(_index: GLuint, _divisor: GLuint) callconv(.C) void {
+pub fn vertexAttribDivisor(_index: GLuint, _divisor: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribDivisor, .{ _index, _divisor });
 }
 
-pub fn getQueryObjectui64v(_id: GLuint, _pname: GLenum, _params: [*c]GLuint64) callconv(.C) void {
+pub fn getQueryObjectui64v(_id: GLuint, _pname: GLenum, _params: [*c]GLuint64) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetQueryObjectui64v, .{ _id, _pname, _params });
 }
 
-pub fn getQueryObjecti64v(_id: GLuint, _pname: GLenum, _params: [*c]GLint64) callconv(.C) void {
+pub fn getQueryObjecti64v(_id: GLuint, _pname: GLenum, _params: [*c]GLint64) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetQueryObjecti64v, .{ _id, _pname, _params });
 }
 
-pub fn queryCounter(_id: GLuint, _target: GLenum) callconv(.C) void {
+pub fn queryCounter(_id: GLuint, _target: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glQueryCounter, .{ _id, _target });
 }
 
-pub fn getSamplerParameterIuiv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void {
+pub fn getSamplerParameterIuiv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetSamplerParameterIuiv, .{ _sampler, _pname, _params });
 }
 
-pub fn getSamplerParameterfv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
+pub fn getSamplerParameterfv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetSamplerParameterfv, .{ _sampler, _pname, _params });
 }
 
-pub fn getSamplerParameterIiv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getSamplerParameterIiv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetSamplerParameterIiv, .{ _sampler, _pname, _params });
 }
 
-pub fn getSamplerParameteriv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getSamplerParameteriv(_sampler: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetSamplerParameteriv, .{ _sampler, _pname, _params });
 }
 
-pub fn samplerParameterIuiv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLuint) callconv(.C) void {
+pub fn samplerParameterIuiv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glSamplerParameterIuiv, .{ _sampler, _pname, _param });
 }
 
-pub fn samplerParameterIiv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.C) void {
+pub fn samplerParameterIiv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glSamplerParameterIiv, .{ _sampler, _pname, _param });
 }
 
-pub fn samplerParameterfv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLfloat) callconv(.C) void {
+pub fn samplerParameterfv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glSamplerParameterfv, .{ _sampler, _pname, _param });
 }
 
-pub fn samplerParameterf(_sampler: GLuint, _pname: GLenum, _param: GLfloat) callconv(.C) void {
+pub fn samplerParameterf(_sampler: GLuint, _pname: GLenum, _param: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glSamplerParameterf, .{ _sampler, _pname, _param });
 }
 
-pub fn samplerParameteriv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.C) void {
+pub fn samplerParameteriv(_sampler: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glSamplerParameteriv, .{ _sampler, _pname, _param });
 }
 
-pub fn samplerParameteri(_sampler: GLuint, _pname: GLenum, _param: GLint) callconv(.C) void {
+pub fn samplerParameteri(_sampler: GLuint, _pname: GLenum, _param: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glSamplerParameteri, .{ _sampler, _pname, _param });
 }
 
-pub fn bindSampler(_unit: GLuint, _sampler: GLuint) callconv(.C) void {
+pub fn bindSampler(_unit: GLuint, _sampler: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindSampler, .{ _unit, _sampler });
 }
 
-pub fn isSampler(_sampler: GLuint) callconv(.C) GLboolean {
+pub fn isSampler(_sampler: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsSampler, .{_sampler});
 }
 
-pub fn deleteSamplers(_count: GLsizei, _samplers: [*c]const GLuint) callconv(.C) void {
+pub fn deleteSamplers(_count: GLsizei, _samplers: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteSamplers, .{ _count, _samplers });
 }
 
-pub fn genSamplers(_count: GLsizei, _samplers: [*c]GLuint) callconv(.C) void {
+pub fn genSamplers(_count: GLsizei, _samplers: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenSamplers, .{ _count, _samplers });
 }
 
-pub fn getFragDataIndex(_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint {
+pub fn getFragDataIndex(_program: GLuint, _name: [*c]const GLchar) callconv(.c) GLint {
     return @call(.always_tail, function_pointers.glGetFragDataIndex, .{ _program, _name });
 }
 
-pub fn bindFragDataLocationIndexed(_program: GLuint, _colorNumber: GLuint, _index: GLuint, _name: [*c]const GLchar) callconv(.C) void {
+pub fn bindFragDataLocationIndexed(_program: GLuint, _colorNumber: GLuint, _index: GLuint, _name: [*c]const GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindFragDataLocationIndexed, .{ _program, _colorNumber, _index, _name });
 }
 
-pub fn sampleMaski(_maskNumber: GLuint, _mask: GLbitfield) callconv(.C) void {
+pub fn sampleMaski(_maskNumber: GLuint, _mask: GLbitfield) callconv(.c) void {
     return @call(.always_tail, function_pointers.glSampleMaski, .{ _maskNumber, _mask });
 }
 
-pub fn getMultisamplefv(_pname: GLenum, _index: GLuint, _val: [*c]GLfloat) callconv(.C) void {
+pub fn getMultisamplefv(_pname: GLenum, _index: GLuint, _val: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetMultisamplefv, .{ _pname, _index, _val });
 }
 
-pub fn texImage3DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
+pub fn texImage3DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexImage3DMultisample, .{ _target, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations });
 }
 
-pub fn texImage2DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
+pub fn texImage2DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexImage2DMultisample, .{ _target, _samples, _internalformat, _width, _height, _fixedsamplelocations });
 }
 
-pub fn framebufferTexture(_target: GLenum, _attachment: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void {
+pub fn framebufferTexture(_target: GLenum, _attachment: GLenum, _texture: GLuint, _level: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glFramebufferTexture, .{ _target, _attachment, _texture, _level });
 }
 
-pub fn getBufferParameteri64v(_target: GLenum, _pname: GLenum, _params: [*c]GLint64) callconv(.C) void {
+pub fn getBufferParameteri64v(_target: GLenum, _pname: GLenum, _params: [*c]GLint64) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetBufferParameteri64v, .{ _target, _pname, _params });
 }
 
-pub fn blendFuncSeparate(_sfactorRGB: GLenum, _dfactorRGB: GLenum, _sfactorAlpha: GLenum, _dfactorAlpha: GLenum) callconv(.C) void {
+pub fn blendFuncSeparate(_sfactorRGB: GLenum, _dfactorRGB: GLenum, _sfactorAlpha: GLenum, _dfactorAlpha: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlendFuncSeparate, .{ _sfactorRGB, _dfactorRGB, _sfactorAlpha, _dfactorAlpha });
 }
 
-pub fn multiDrawArrays(_mode: GLenum, _first: [*c]const GLint, _count: [*c]const GLsizei, _drawcount: GLsizei) callconv(.C) void {
+pub fn multiDrawArrays(_mode: GLenum, _first: [*c]const GLint, _count: [*c]const GLsizei, _drawcount: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glMultiDrawArrays, .{ _mode, _first, _count, _drawcount });
 }
 
-pub fn multiDrawElements(_mode: GLenum, _count: [*c]const GLsizei, _type: GLenum, _indices: [*c]const ?*const anyopaque, _drawcount: GLsizei) callconv(.C) void {
+pub fn multiDrawElements(_mode: GLenum, _count: [*c]const GLsizei, _type: GLenum, _indices: [*c]const ?*const anyopaque, _drawcount: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glMultiDrawElements, .{ _mode, _count, _type, _indices, _drawcount });
 }
 
-pub fn pointParameterf(_pname: GLenum, _param: GLfloat) callconv(.C) void {
+pub fn pointParameterf(_pname: GLenum, _param: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPointParameterf, .{ _pname, _param });
 }
 
-pub fn pointParameterfv(_pname: GLenum, _params: [*c]const GLfloat) callconv(.C) void {
+pub fn pointParameterfv(_pname: GLenum, _params: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPointParameterfv, .{ _pname, _params });
 }
 
-pub fn pointParameteri(_pname: GLenum, _param: GLint) callconv(.C) void {
+pub fn pointParameteri(_pname: GLenum, _param: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPointParameteri, .{ _pname, _param });
 }
 
-pub fn pointParameteriv(_pname: GLenum, _params: [*c]const GLint) callconv(.C) void {
+pub fn pointParameteriv(_pname: GLenum, _params: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPointParameteriv, .{ _pname, _params });
 }
 
-pub fn getInteger64i_v(_target: GLenum, _index: GLuint, _data: [*c]GLint64) callconv(.C) void {
+pub fn getInteger64i_v(_target: GLenum, _index: GLuint, _data: [*c]GLint64) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetInteger64i_v, .{ _target, _index, _data });
 }
 
-pub fn getSynciv(_sync: GLsync, _pname: GLenum, _count: GLsizei, _length: [*c]GLsizei, _values: [*c]GLint) callconv(.C) void {
+pub fn getSynciv(_sync: GLsync, _pname: GLenum, _count: GLsizei, _length: [*c]GLsizei, _values: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetSynciv, .{ _sync, _pname, _count, _length, _values });
 }
 
-pub fn getInteger64v(_pname: GLenum, _data: [*c]GLint64) callconv(.C) void {
+pub fn getInteger64v(_pname: GLenum, _data: [*c]GLint64) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetInteger64v, .{ _pname, _data });
 }
 
-pub fn waitSync(_sync: GLsync, _flags: GLbitfield, _timeout: GLuint64) callconv(.C) void {
+pub fn waitSync(_sync: GLsync, _flags: GLbitfield, _timeout: GLuint64) callconv(.c) void {
     return @call(.always_tail, function_pointers.glWaitSync, .{ _sync, _flags, _timeout });
 }
 
-pub fn clientWaitSync(_sync: GLsync, _flags: GLbitfield, _timeout: GLuint64) callconv(.C) GLenum {
+pub fn clientWaitSync(_sync: GLsync, _flags: GLbitfield, _timeout: GLuint64) callconv(.c) GLenum {
     return @call(.always_tail, function_pointers.glClientWaitSync, .{ _sync, _flags, _timeout });
 }
 
-pub fn deleteSync(_sync: GLsync) callconv(.C) void {
+pub fn deleteSync(_sync: GLsync) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteSync, .{_sync});
 }
 
-pub fn isSync(_sync: GLsync) callconv(.C) GLboolean {
+pub fn isSync(_sync: GLsync) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsSync, .{_sync});
 }
 
-pub fn fenceSync(_condition: GLenum, _flags: GLbitfield) callconv(.C) GLsync {
+pub fn fenceSync(_condition: GLenum, _flags: GLbitfield) callconv(.c) GLsync {
     return @call(.always_tail, function_pointers.glFenceSync, .{ _condition, _flags });
 }
 
-pub fn blendColor(_red: GLfloat, _green: GLfloat, _blue: GLfloat, _alpha: GLfloat) callconv(.C) void {
+pub fn blendColor(_red: GLfloat, _green: GLfloat, _blue: GLfloat, _alpha: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlendColor, .{ _red, _green, _blue, _alpha });
 }
 
-pub fn blendEquation(_mode: GLenum) callconv(.C) void {
+pub fn blendEquation(_mode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlendEquation, .{_mode});
 }
 
-pub fn provokingVertex(_mode: GLenum) callconv(.C) void {
+pub fn provokingVertex(_mode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glProvokingVertex, .{_mode});
 }
 
-pub fn multiDrawElementsBaseVertex(_mode: GLenum, _count: [*c]const GLsizei, _type: GLenum, _indices: [*c]const ?*const anyopaque, _drawcount: GLsizei, _basevertex: [*c]const GLint) callconv(.C) void {
+pub fn multiDrawElementsBaseVertex(_mode: GLenum, _count: [*c]const GLsizei, _type: GLenum, _indices: [*c]const ?*const anyopaque, _drawcount: GLsizei, _basevertex: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glMultiDrawElementsBaseVertex, .{ _mode, _count, _type, _indices, _drawcount, _basevertex });
 }
 
-pub fn drawElementsInstancedBaseVertex(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _basevertex: GLint) callconv(.C) void {
+pub fn drawElementsInstancedBaseVertex(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _basevertex: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawElementsInstancedBaseVertex, .{ _mode, _count, _type, _indices, _instancecount, _basevertex });
 }
 
-pub fn drawRangeElementsBaseVertex(_mode: GLenum, _start: GLuint, _end: GLuint, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _basevertex: GLint) callconv(.C) void {
+pub fn drawRangeElementsBaseVertex(_mode: GLenum, _start: GLuint, _end: GLuint, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _basevertex: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawRangeElementsBaseVertex, .{ _mode, _start, _end, _count, _type, _indices, _basevertex });
 }
 
-pub fn drawElementsBaseVertex(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _basevertex: GLint) callconv(.C) void {
+pub fn drawElementsBaseVertex(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _basevertex: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawElementsBaseVertex, .{ _mode, _count, _type, _indices, _basevertex });
 }
 
-pub fn genQueries(_n: GLsizei, _ids: [*c]GLuint) callconv(.C) void {
+pub fn genQueries(_n: GLsizei, _ids: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenQueries, .{ _n, _ids });
 }
 
-pub fn deleteQueries(_n: GLsizei, _ids: [*c]const GLuint) callconv(.C) void {
+pub fn deleteQueries(_n: GLsizei, _ids: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteQueries, .{ _n, _ids });
 }
 
-pub fn isQuery(_id: GLuint) callconv(.C) GLboolean {
+pub fn isQuery(_id: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsQuery, .{_id});
 }
 
-pub fn beginQuery(_target: GLenum, _id: GLuint) callconv(.C) void {
+pub fn beginQuery(_target: GLenum, _id: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBeginQuery, .{ _target, _id });
 }
 
-pub fn endQuery(_target: GLenum) callconv(.C) void {
+pub fn endQuery(_target: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glEndQuery, .{_target});
 }
 
-pub fn getQueryiv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getQueryiv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetQueryiv, .{ _target, _pname, _params });
 }
 
-pub fn getQueryObjectiv(_id: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getQueryObjectiv(_id: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetQueryObjectiv, .{ _id, _pname, _params });
 }
 
-pub fn getQueryObjectuiv(_id: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void {
+pub fn getQueryObjectuiv(_id: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetQueryObjectuiv, .{ _id, _pname, _params });
 }
 
-pub fn bindBuffer(_target: GLenum, _buffer: GLuint) callconv(.C) void {
+pub fn bindBuffer(_target: GLenum, _buffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindBuffer, .{ _target, _buffer });
 }
 
-pub fn deleteBuffers(_n: GLsizei, _buffers: [*c]const GLuint) callconv(.C) void {
+pub fn deleteBuffers(_n: GLsizei, _buffers: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteBuffers, .{ _n, _buffers });
 }
 
-pub fn genBuffers(_n: GLsizei, _buffers: [*c]GLuint) callconv(.C) void {
+pub fn genBuffers(_n: GLsizei, _buffers: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenBuffers, .{ _n, _buffers });
 }
 
-pub fn isBuffer(_buffer: GLuint) callconv(.C) GLboolean {
+pub fn isBuffer(_buffer: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsBuffer, .{_buffer});
 }
 
-pub fn bufferData(_target: GLenum, _size: GLsizeiptr, _data: ?*const anyopaque, _usage: GLenum) callconv(.C) void {
+pub fn bufferData(_target: GLenum, _size: GLsizeiptr, _data: ?*const anyopaque, _usage: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBufferData, .{ _target, _size, _data, _usage });
 }
 
-pub fn bufferSubData(_target: GLenum, _offset: GLintptr, _size: GLsizeiptr, _data: ?*const anyopaque) callconv(.C) void {
+pub fn bufferSubData(_target: GLenum, _offset: GLintptr, _size: GLsizeiptr, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBufferSubData, .{ _target, _offset, _size, _data });
 }
 
-pub fn getBufferSubData(_target: GLenum, _offset: GLintptr, _size: GLsizeiptr, _data: ?*anyopaque) callconv(.C) void {
+pub fn getBufferSubData(_target: GLenum, _offset: GLintptr, _size: GLsizeiptr, _data: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetBufferSubData, .{ _target, _offset, _size, _data });
 }
 
-pub fn mapBuffer(_target: GLenum, _access: GLenum) callconv(.C) ?*anyopaque {
+pub fn mapBuffer(_target: GLenum, _access: GLenum) callconv(.c) ?*anyopaque {
     return @call(.always_tail, function_pointers.glMapBuffer, .{ _target, _access });
 }
 
-pub fn unmapBuffer(_target: GLenum) callconv(.C) GLboolean {
+pub fn unmapBuffer(_target: GLenum) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glUnmapBuffer, .{_target});
 }
 
-pub fn getBufferParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getBufferParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetBufferParameteriv, .{ _target, _pname, _params });
 }
 
-pub fn getBufferPointerv(_target: GLenum, _pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void {
+pub fn getBufferPointerv(_target: GLenum, _pname: GLenum, _params: ?*?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetBufferPointerv, .{ _target, _pname, _params });
 }
 
-pub fn blendEquationSeparate(_modeRGB: GLenum, _modeAlpha: GLenum) callconv(.C) void {
+pub fn blendEquationSeparate(_modeRGB: GLenum, _modeAlpha: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlendEquationSeparate, .{ _modeRGB, _modeAlpha });
 }
 
-pub fn drawBuffers(_n: GLsizei, _bufs: [*c]const GLenum) callconv(.C) void {
+pub fn drawBuffers(_n: GLsizei, _bufs: [*c]const GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawBuffers, .{ _n, _bufs });
 }
 
-pub fn stencilOpSeparate(_face: GLenum, _sfail: GLenum, _dpfail: GLenum, _dppass: GLenum) callconv(.C) void {
+pub fn stencilOpSeparate(_face: GLenum, _sfail: GLenum, _dpfail: GLenum, _dppass: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glStencilOpSeparate, .{ _face, _sfail, _dpfail, _dppass });
 }
 
-pub fn stencilFuncSeparate(_face: GLenum, _func: GLenum, _ref: GLint, _mask: GLuint) callconv(.C) void {
+pub fn stencilFuncSeparate(_face: GLenum, _func: GLenum, _ref: GLint, _mask: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glStencilFuncSeparate, .{ _face, _func, _ref, _mask });
 }
 
-pub fn stencilMaskSeparate(_face: GLenum, _mask: GLuint) callconv(.C) void {
+pub fn stencilMaskSeparate(_face: GLenum, _mask: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glStencilMaskSeparate, .{ _face, _mask });
 }
 
-pub fn attachShader(_program: GLuint, _shader: GLuint) callconv(.C) void {
+pub fn attachShader(_program: GLuint, _shader: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glAttachShader, .{ _program, _shader });
 }
 
-pub fn bindAttribLocation(_program: GLuint, _index: GLuint, _name: [*c]const GLchar) callconv(.C) void {
+pub fn bindAttribLocation(_program: GLuint, _index: GLuint, _name: [*c]const GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindAttribLocation, .{ _program, _index, _name });
 }
 
-pub fn compileShader(_shader: GLuint) callconv(.C) void {
+pub fn compileShader(_shader: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCompileShader, .{_shader});
 }
 
-pub fn createProgram() callconv(.C) GLuint {
+pub fn createProgram() callconv(.c) GLuint {
     return @call(.always_tail, function_pointers.glCreateProgram, .{});
 }
 
-pub fn createShader(_type: GLenum) callconv(.C) GLuint {
+pub fn createShader(_type: GLenum) callconv(.c) GLuint {
     return @call(.always_tail, function_pointers.glCreateShader, .{_type});
 }
 
-pub fn deleteProgram(_program: GLuint) callconv(.C) void {
+pub fn deleteProgram(_program: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteProgram, .{_program});
 }
 
-pub fn deleteShader(_shader: GLuint) callconv(.C) void {
+pub fn deleteShader(_shader: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteShader, .{_shader});
 }
 
-pub fn detachShader(_program: GLuint, _shader: GLuint) callconv(.C) void {
+pub fn detachShader(_program: GLuint, _shader: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDetachShader, .{ _program, _shader });
 }
 
-pub fn disableVertexAttribArray(_index: GLuint) callconv(.C) void {
+pub fn disableVertexAttribArray(_index: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDisableVertexAttribArray, .{_index});
 }
 
-pub fn enableVertexAttribArray(_index: GLuint) callconv(.C) void {
+pub fn enableVertexAttribArray(_index: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glEnableVertexAttribArray, .{_index});
 }
 
-pub fn getActiveAttrib(_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLint, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.C) void {
+pub fn getActiveAttrib(_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLint, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetActiveAttrib, .{ _program, _index, _bufSize, _length, _size, _type, _name });
 }
 
-pub fn getActiveUniform(_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLint, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.C) void {
+pub fn getActiveUniform(_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLint, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetActiveUniform, .{ _program, _index, _bufSize, _length, _size, _type, _name });
 }
 
-pub fn getAttachedShaders(_program: GLuint, _maxCount: GLsizei, _count: [*c]GLsizei, _shaders: [*c]GLuint) callconv(.C) void {
+pub fn getAttachedShaders(_program: GLuint, _maxCount: GLsizei, _count: [*c]GLsizei, _shaders: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetAttachedShaders, .{ _program, _maxCount, _count, _shaders });
 }
 
-pub fn getAttribLocation(_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint {
+pub fn getAttribLocation(_program: GLuint, _name: [*c]const GLchar) callconv(.c) GLint {
     return @call(.always_tail, function_pointers.glGetAttribLocation, .{ _program, _name });
 }
 
-pub fn getProgramiv(_program: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getProgramiv(_program: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetProgramiv, .{ _program, _pname, _params });
 }
 
-pub fn getProgramInfoLog(_program: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.C) void {
+pub fn getProgramInfoLog(_program: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetProgramInfoLog, .{ _program, _bufSize, _length, _infoLog });
 }
 
-pub fn getShaderiv(_shader: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getShaderiv(_shader: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetShaderiv, .{ _shader, _pname, _params });
 }
 
-pub fn getShaderInfoLog(_shader: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.C) void {
+pub fn getShaderInfoLog(_shader: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetShaderInfoLog, .{ _shader, _bufSize, _length, _infoLog });
 }
 
-pub fn getShaderSource(_shader: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _source: [*c]GLchar) callconv(.C) void {
+pub fn getShaderSource(_shader: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _source: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetShaderSource, .{ _shader, _bufSize, _length, _source });
 }
 
-pub fn getUniformLocation(_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint {
+pub fn getUniformLocation(_program: GLuint, _name: [*c]const GLchar) callconv(.c) GLint {
     return @call(.always_tail, function_pointers.glGetUniformLocation, .{ _program, _name });
 }
 
-pub fn getUniformfv(_program: GLuint, _location: GLint, _params: [*c]GLfloat) callconv(.C) void {
+pub fn getUniformfv(_program: GLuint, _location: GLint, _params: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetUniformfv, .{ _program, _location, _params });
 }
 
-pub fn getUniformiv(_program: GLuint, _location: GLint, _params: [*c]GLint) callconv(.C) void {
+pub fn getUniformiv(_program: GLuint, _location: GLint, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetUniformiv, .{ _program, _location, _params });
 }
 
-pub fn getVertexAttribdv(_index: GLuint, _pname: GLenum, _params: [*c]GLdouble) callconv(.C) void {
+pub fn getVertexAttribdv(_index: GLuint, _pname: GLenum, _params: [*c]GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetVertexAttribdv, .{ _index, _pname, _params });
 }
 
-pub fn getVertexAttribfv(_index: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
+pub fn getVertexAttribfv(_index: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetVertexAttribfv, .{ _index, _pname, _params });
 }
 
-pub fn getVertexAttribiv(_index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getVertexAttribiv(_index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetVertexAttribiv, .{ _index, _pname, _params });
 }
 
-pub fn getVertexAttribPointerv(_index: GLuint, _pname: GLenum, _pointer: ?*?*anyopaque) callconv(.C) void {
+pub fn getVertexAttribPointerv(_index: GLuint, _pname: GLenum, _pointer: ?*?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetVertexAttribPointerv, .{ _index, _pname, _pointer });
 }
 
-pub fn isProgram(_program: GLuint) callconv(.C) GLboolean {
+pub fn isProgram(_program: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsProgram, .{_program});
 }
 
-pub fn isShader(_shader: GLuint) callconv(.C) GLboolean {
+pub fn isShader(_shader: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsShader, .{_shader});
 }
 
-pub fn linkProgram(_program: GLuint) callconv(.C) void {
+pub fn linkProgram(_program: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glLinkProgram, .{_program});
 }
 
-pub fn shaderSource(_shader: GLuint, _count: GLsizei, _string: [*c]const [*c]const GLchar, _length: [*c]const GLint) callconv(.C) void {
+pub fn shaderSource(_shader: GLuint, _count: GLsizei, _string: [*c]const [*c]const GLchar, _length: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glShaderSource, .{ _shader, _count, _string, _length });
 }
 
-pub fn useProgram(_program: GLuint) callconv(.C) void {
+pub fn useProgram(_program: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUseProgram, .{_program});
 }
 
-pub fn uniform1f(_location: GLint, _v0: GLfloat) callconv(.C) void {
+pub fn uniform1f(_location: GLint, _v0: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform1f, .{ _location, _v0 });
 }
 
-pub fn uniform2f(_location: GLint, _v0: GLfloat, _v1: GLfloat) callconv(.C) void {
+pub fn uniform2f(_location: GLint, _v0: GLfloat, _v1: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform2f, .{ _location, _v0, _v1 });
 }
 
-pub fn uniform3f(_location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat) callconv(.C) void {
+pub fn uniform3f(_location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform3f, .{ _location, _v0, _v1, _v2 });
 }
 
-pub fn uniform4f(_location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat, _v3: GLfloat) callconv(.C) void {
+pub fn uniform4f(_location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat, _v3: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform4f, .{ _location, _v0, _v1, _v2, _v3 });
 }
 
-pub fn uniform1i(_location: GLint, _v0: GLint) callconv(.C) void {
+pub fn uniform1i(_location: GLint, _v0: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform1i, .{ _location, _v0 });
 }
 
-pub fn uniform2i(_location: GLint, _v0: GLint, _v1: GLint) callconv(.C) void {
+pub fn uniform2i(_location: GLint, _v0: GLint, _v1: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform2i, .{ _location, _v0, _v1 });
 }
 
-pub fn uniform3i(_location: GLint, _v0: GLint, _v1: GLint, _v2: GLint) callconv(.C) void {
+pub fn uniform3i(_location: GLint, _v0: GLint, _v1: GLint, _v2: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform3i, .{ _location, _v0, _v1, _v2 });
 }
 
-pub fn uniform4i(_location: GLint, _v0: GLint, _v1: GLint, _v2: GLint, _v3: GLint) callconv(.C) void {
+pub fn uniform4i(_location: GLint, _v0: GLint, _v1: GLint, _v2: GLint, _v3: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform4i, .{ _location, _v0, _v1, _v2, _v3 });
 }
 
-pub fn uniform1fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniform1fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform1fv, .{ _location, _count, _value });
 }
 
-pub fn uniform2fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniform2fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform2fv, .{ _location, _count, _value });
 }
 
-pub fn uniform3fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniform3fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform3fv, .{ _location, _count, _value });
 }
 
-pub fn uniform4fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniform4fv(_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform4fv, .{ _location, _count, _value });
 }
 
-pub fn uniform1iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
+pub fn uniform1iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform1iv, .{ _location, _count, _value });
 }
 
-pub fn uniform2iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
+pub fn uniform2iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform2iv, .{ _location, _count, _value });
 }
 
-pub fn uniform3iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
+pub fn uniform3iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform3iv, .{ _location, _count, _value });
 }
 
-pub fn uniform4iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void {
+pub fn uniform4iv(_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform4iv, .{ _location, _count, _value });
 }
 
-pub fn uniformMatrix2fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniformMatrix2fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix2fv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix3fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniformMatrix3fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix3fv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix4fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniformMatrix4fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix4fv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn validateProgram(_program: GLuint) callconv(.C) void {
+pub fn validateProgram(_program: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glValidateProgram, .{_program});
 }
 
-pub fn vertexAttrib1d(_index: GLuint, _x: GLdouble) callconv(.C) void {
+pub fn vertexAttrib1d(_index: GLuint, _x: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib1d, .{ _index, _x });
 }
 
-pub fn vertexAttrib1dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
+pub fn vertexAttrib1dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib1dv, .{ _index, _v });
 }
 
-pub fn vertexAttrib1f(_index: GLuint, _x: GLfloat) callconv(.C) void {
+pub fn vertexAttrib1f(_index: GLuint, _x: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib1f, .{ _index, _x });
 }
 
-pub fn vertexAttrib1fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void {
+pub fn vertexAttrib1fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib1fv, .{ _index, _v });
 }
 
-pub fn vertexAttrib1s(_index: GLuint, _x: GLshort) callconv(.C) void {
+pub fn vertexAttrib1s(_index: GLuint, _x: GLshort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib1s, .{ _index, _x });
 }
 
-pub fn vertexAttrib1sv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
+pub fn vertexAttrib1sv(_index: GLuint, _v: [*c]const GLshort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib1sv, .{ _index, _v });
 }
 
-pub fn vertexAttrib2d(_index: GLuint, _x: GLdouble, _y: GLdouble) callconv(.C) void {
+pub fn vertexAttrib2d(_index: GLuint, _x: GLdouble, _y: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib2d, .{ _index, _x, _y });
 }
 
-pub fn vertexAttrib2dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
+pub fn vertexAttrib2dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib2dv, .{ _index, _v });
 }
 
-pub fn vertexAttrib2f(_index: GLuint, _x: GLfloat, _y: GLfloat) callconv(.C) void {
+pub fn vertexAttrib2f(_index: GLuint, _x: GLfloat, _y: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib2f, .{ _index, _x, _y });
 }
 
-pub fn vertexAttrib2fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void {
+pub fn vertexAttrib2fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib2fv, .{ _index, _v });
 }
 
-pub fn vertexAttrib2s(_index: GLuint, _x: GLshort, _y: GLshort) callconv(.C) void {
+pub fn vertexAttrib2s(_index: GLuint, _x: GLshort, _y: GLshort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib2s, .{ _index, _x, _y });
 }
 
-pub fn vertexAttrib2sv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
+pub fn vertexAttrib2sv(_index: GLuint, _v: [*c]const GLshort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib2sv, .{ _index, _v });
 }
 
-pub fn vertexAttrib3d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void {
+pub fn vertexAttrib3d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib3d, .{ _index, _x, _y, _z });
 }
 
-pub fn vertexAttrib3dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
+pub fn vertexAttrib3dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib3dv, .{ _index, _v });
 }
 
-pub fn vertexAttrib3f(_index: GLuint, _x: GLfloat, _y: GLfloat, _z: GLfloat) callconv(.C) void {
+pub fn vertexAttrib3f(_index: GLuint, _x: GLfloat, _y: GLfloat, _z: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib3f, .{ _index, _x, _y, _z });
 }
 
-pub fn vertexAttrib3fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void {
+pub fn vertexAttrib3fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib3fv, .{ _index, _v });
 }
 
-pub fn vertexAttrib3s(_index: GLuint, _x: GLshort, _y: GLshort, _z: GLshort) callconv(.C) void {
+pub fn vertexAttrib3s(_index: GLuint, _x: GLshort, _y: GLshort, _z: GLshort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib3s, .{ _index, _x, _y, _z });
 }
 
-pub fn vertexAttrib3sv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
+pub fn vertexAttrib3sv(_index: GLuint, _v: [*c]const GLshort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib3sv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4Nbv(_index: GLuint, _v: [*c]const GLbyte) callconv(.C) void {
+pub fn vertexAttrib4Nbv(_index: GLuint, _v: [*c]const GLbyte) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4Nbv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4Niv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
+pub fn vertexAttrib4Niv(_index: GLuint, _v: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4Niv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4Nsv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
+pub fn vertexAttrib4Nsv(_index: GLuint, _v: [*c]const GLshort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4Nsv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4Nub(_index: GLuint, _x: GLubyte, _y: GLubyte, _z: GLubyte, _w: GLubyte) callconv(.C) void {
+pub fn vertexAttrib4Nub(_index: GLuint, _x: GLubyte, _y: GLubyte, _z: GLubyte, _w: GLubyte) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4Nub, .{ _index, _x, _y, _z, _w });
 }
 
-pub fn vertexAttrib4Nubv(_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.C) void {
+pub fn vertexAttrib4Nubv(_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4Nubv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4Nuiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
+pub fn vertexAttrib4Nuiv(_index: GLuint, _v: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4Nuiv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4Nusv(_index: GLuint, _v: [*c]const GLushort) callconv(.C) void {
+pub fn vertexAttrib4Nusv(_index: GLuint, _v: [*c]const GLushort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4Nusv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4bv(_index: GLuint, _v: [*c]const GLbyte) callconv(.C) void {
+pub fn vertexAttrib4bv(_index: GLuint, _v: [*c]const GLbyte) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4bv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.C) void {
+pub fn vertexAttrib4d(_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4d, .{ _index, _x, _y, _z, _w });
 }
 
-pub fn vertexAttrib4dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void {
+pub fn vertexAttrib4dv(_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4dv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4f(_index: GLuint, _x: GLfloat, _y: GLfloat, _z: GLfloat, _w: GLfloat) callconv(.C) void {
+pub fn vertexAttrib4f(_index: GLuint, _x: GLfloat, _y: GLfloat, _z: GLfloat, _w: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4f, .{ _index, _x, _y, _z, _w });
 }
 
-pub fn vertexAttrib4fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void {
+pub fn vertexAttrib4fv(_index: GLuint, _v: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4fv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4iv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
+pub fn vertexAttrib4iv(_index: GLuint, _v: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4iv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4s(_index: GLuint, _x: GLshort, _y: GLshort, _z: GLshort, _w: GLshort) callconv(.C) void {
+pub fn vertexAttrib4s(_index: GLuint, _x: GLshort, _y: GLshort, _z: GLshort, _w: GLshort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4s, .{ _index, _x, _y, _z, _w });
 }
 
-pub fn vertexAttrib4sv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
+pub fn vertexAttrib4sv(_index: GLuint, _v: [*c]const GLshort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4sv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4ubv(_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.C) void {
+pub fn vertexAttrib4ubv(_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4ubv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
+pub fn vertexAttrib4uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4uiv, .{ _index, _v });
 }
 
-pub fn vertexAttrib4usv(_index: GLuint, _v: [*c]const GLushort) callconv(.C) void {
+pub fn vertexAttrib4usv(_index: GLuint, _v: [*c]const GLushort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttrib4usv, .{ _index, _v });
 }
 
-pub fn vertexAttribPointer(_index: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
+pub fn vertexAttribPointer(_index: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribPointer, .{ _index, _size, _type, _normalized, _stride, _pointer });
 }
 
-pub fn uniformMatrix2x3fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniformMatrix2x3fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix2x3fv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix3x2fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniformMatrix3x2fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix3x2fv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix2x4fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniformMatrix2x4fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix2x4fv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix4x2fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniformMatrix4x2fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix4x2fv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix3x4fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniformMatrix3x4fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix3x4fv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn uniformMatrix4x3fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn uniformMatrix4x3fv(_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformMatrix4x3fv, .{ _location, _count, _transpose, _value });
 }
 
-pub fn colorMaski(_index: GLuint, _r: GLboolean, _g: GLboolean, _b: GLboolean, _a: GLboolean) callconv(.C) void {
+pub fn colorMaski(_index: GLuint, _r: GLboolean, _g: GLboolean, _b: GLboolean, _a: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glColorMaski, .{ _index, _r, _g, _b, _a });
 }
 
-pub fn getBooleani_v(_target: GLenum, _index: GLuint, _data: [*c]GLboolean) callconv(.C) void {
+pub fn getBooleani_v(_target: GLenum, _index: GLuint, _data: [*c]GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetBooleani_v, .{ _target, _index, _data });
 }
 
-pub fn getIntegeri_v(_target: GLenum, _index: GLuint, _data: [*c]GLint) callconv(.C) void {
+pub fn getIntegeri_v(_target: GLenum, _index: GLuint, _data: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetIntegeri_v, .{ _target, _index, _data });
 }
 
-pub fn enablei(_target: GLenum, _index: GLuint) callconv(.C) void {
+pub fn enablei(_target: GLenum, _index: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glEnablei, .{ _target, _index });
 }
 
-pub fn disablei(_target: GLenum, _index: GLuint) callconv(.C) void {
+pub fn disablei(_target: GLenum, _index: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDisablei, .{ _target, _index });
 }
 
-pub fn isEnabledi(_target: GLenum, _index: GLuint) callconv(.C) GLboolean {
+pub fn isEnabledi(_target: GLenum, _index: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsEnabledi, .{ _target, _index });
 }
 
-pub fn beginTransformFeedback(_primitiveMode: GLenum) callconv(.C) void {
+pub fn beginTransformFeedback(_primitiveMode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBeginTransformFeedback, .{_primitiveMode});
 }
 
-pub fn endTransformFeedback() callconv(.C) void {
+pub fn endTransformFeedback() callconv(.c) void {
     return @call(.always_tail, function_pointers.glEndTransformFeedback, .{});
 }
 
-pub fn bindBufferRange(_target: GLenum, _index: GLuint, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
+pub fn bindBufferRange(_target: GLenum, _index: GLuint, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindBufferRange, .{ _target, _index, _buffer, _offset, _size });
 }
 
-pub fn bindBufferBase(_target: GLenum, _index: GLuint, _buffer: GLuint) callconv(.C) void {
+pub fn bindBufferBase(_target: GLenum, _index: GLuint, _buffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindBufferBase, .{ _target, _index, _buffer });
 }
 
-pub fn transformFeedbackVaryings(_program: GLuint, _count: GLsizei, _varyings: [*c]const [*c]const GLchar, _bufferMode: GLenum) callconv(.C) void {
+pub fn transformFeedbackVaryings(_program: GLuint, _count: GLsizei, _varyings: [*c]const [*c]const GLchar, _bufferMode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTransformFeedbackVaryings, .{ _program, _count, _varyings, _bufferMode });
 }
 
-pub fn getTransformFeedbackVarying(_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLsizei, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.C) void {
+pub fn getTransformFeedbackVarying(_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLsizei, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTransformFeedbackVarying, .{ _program, _index, _bufSize, _length, _size, _type, _name });
 }
 
-pub fn clampColor(_target: GLenum, _clamp: GLenum) callconv(.C) void {
+pub fn clampColor(_target: GLenum, _clamp: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClampColor, .{ _target, _clamp });
 }
 
-pub fn beginConditionalRender(_id: GLuint, _mode: GLenum) callconv(.C) void {
+pub fn beginConditionalRender(_id: GLuint, _mode: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBeginConditionalRender, .{ _id, _mode });
 }
 
-pub fn endConditionalRender() callconv(.C) void {
+pub fn endConditionalRender() callconv(.c) void {
     return @call(.always_tail, function_pointers.glEndConditionalRender, .{});
 }
 
-pub fn vertexAttribIPointer(_index: GLuint, _size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void {
+pub fn vertexAttribIPointer(_index: GLuint, _size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribIPointer, .{ _index, _size, _type, _stride, _pointer });
 }
 
-pub fn getVertexAttribIiv(_index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getVertexAttribIiv(_index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetVertexAttribIiv, .{ _index, _pname, _params });
 }
 
-pub fn getVertexAttribIuiv(_index: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void {
+pub fn getVertexAttribIuiv(_index: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetVertexAttribIuiv, .{ _index, _pname, _params });
 }
 
-pub fn vertexAttribI1i(_index: GLuint, _x: GLint) callconv(.C) void {
+pub fn vertexAttribI1i(_index: GLuint, _x: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI1i, .{ _index, _x });
 }
 
-pub fn vertexAttribI2i(_index: GLuint, _x: GLint, _y: GLint) callconv(.C) void {
+pub fn vertexAttribI2i(_index: GLuint, _x: GLint, _y: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI2i, .{ _index, _x, _y });
 }
 
-pub fn vertexAttribI3i(_index: GLuint, _x: GLint, _y: GLint, _z: GLint) callconv(.C) void {
+pub fn vertexAttribI3i(_index: GLuint, _x: GLint, _y: GLint, _z: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI3i, .{ _index, _x, _y, _z });
 }
 
-pub fn vertexAttribI4i(_index: GLuint, _x: GLint, _y: GLint, _z: GLint, _w: GLint) callconv(.C) void {
+pub fn vertexAttribI4i(_index: GLuint, _x: GLint, _y: GLint, _z: GLint, _w: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI4i, .{ _index, _x, _y, _z, _w });
 }
 
-pub fn vertexAttribI1ui(_index: GLuint, _x: GLuint) callconv(.C) void {
+pub fn vertexAttribI1ui(_index: GLuint, _x: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI1ui, .{ _index, _x });
 }
 
-pub fn vertexAttribI2ui(_index: GLuint, _x: GLuint, _y: GLuint) callconv(.C) void {
+pub fn vertexAttribI2ui(_index: GLuint, _x: GLuint, _y: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI2ui, .{ _index, _x, _y });
 }
 
-pub fn vertexAttribI3ui(_index: GLuint, _x: GLuint, _y: GLuint, _z: GLuint) callconv(.C) void {
+pub fn vertexAttribI3ui(_index: GLuint, _x: GLuint, _y: GLuint, _z: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI3ui, .{ _index, _x, _y, _z });
 }
 
-pub fn vertexAttribI4ui(_index: GLuint, _x: GLuint, _y: GLuint, _z: GLuint, _w: GLuint) callconv(.C) void {
+pub fn vertexAttribI4ui(_index: GLuint, _x: GLuint, _y: GLuint, _z: GLuint, _w: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI4ui, .{ _index, _x, _y, _z, _w });
 }
 
-pub fn vertexAttribI1iv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
+pub fn vertexAttribI1iv(_index: GLuint, _v: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI1iv, .{ _index, _v });
 }
 
-pub fn vertexAttribI2iv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
+pub fn vertexAttribI2iv(_index: GLuint, _v: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI2iv, .{ _index, _v });
 }
 
-pub fn vertexAttribI3iv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
+pub fn vertexAttribI3iv(_index: GLuint, _v: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI3iv, .{ _index, _v });
 }
 
-pub fn vertexAttribI4iv(_index: GLuint, _v: [*c]const GLint) callconv(.C) void {
+pub fn vertexAttribI4iv(_index: GLuint, _v: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI4iv, .{ _index, _v });
 }
 
-pub fn vertexAttribI1uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
+pub fn vertexAttribI1uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI1uiv, .{ _index, _v });
 }
 
-pub fn vertexAttribI2uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
+pub fn vertexAttribI2uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI2uiv, .{ _index, _v });
 }
 
-pub fn vertexAttribI3uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
+pub fn vertexAttribI3uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI3uiv, .{ _index, _v });
 }
 
-pub fn vertexAttribI4uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.C) void {
+pub fn vertexAttribI4uiv(_index: GLuint, _v: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI4uiv, .{ _index, _v });
 }
 
-pub fn vertexAttribI4bv(_index: GLuint, _v: [*c]const GLbyte) callconv(.C) void {
+pub fn vertexAttribI4bv(_index: GLuint, _v: [*c]const GLbyte) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI4bv, .{ _index, _v });
 }
 
-pub fn vertexAttribI4sv(_index: GLuint, _v: [*c]const GLshort) callconv(.C) void {
+pub fn vertexAttribI4sv(_index: GLuint, _v: [*c]const GLshort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI4sv, .{ _index, _v });
 }
 
-pub fn vertexAttribI4ubv(_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.C) void {
+pub fn vertexAttribI4ubv(_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI4ubv, .{ _index, _v });
 }
 
-pub fn vertexAttribI4usv(_index: GLuint, _v: [*c]const GLushort) callconv(.C) void {
+pub fn vertexAttribI4usv(_index: GLuint, _v: [*c]const GLushort) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribI4usv, .{ _index, _v });
 }
 
-pub fn getUniformuiv(_program: GLuint, _location: GLint, _params: [*c]GLuint) callconv(.C) void {
+pub fn getUniformuiv(_program: GLuint, _location: GLint, _params: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetUniformuiv, .{ _program, _location, _params });
 }
 
-pub fn bindFragDataLocation(_program: GLuint, _color: GLuint, _name: [*c]const GLchar) callconv(.C) void {
+pub fn bindFragDataLocation(_program: GLuint, _color: GLuint, _name: [*c]const GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindFragDataLocation, .{ _program, _color, _name });
 }
 
-pub fn getFragDataLocation(_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint {
+pub fn getFragDataLocation(_program: GLuint, _name: [*c]const GLchar) callconv(.c) GLint {
     return @call(.always_tail, function_pointers.glGetFragDataLocation, .{ _program, _name });
 }
 
-pub fn uniform1ui(_location: GLint, _v0: GLuint) callconv(.C) void {
+pub fn uniform1ui(_location: GLint, _v0: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform1ui, .{ _location, _v0 });
 }
 
-pub fn uniform2ui(_location: GLint, _v0: GLuint, _v1: GLuint) callconv(.C) void {
+pub fn uniform2ui(_location: GLint, _v0: GLuint, _v1: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform2ui, .{ _location, _v0, _v1 });
 }
 
-pub fn uniform3ui(_location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint) callconv(.C) void {
+pub fn uniform3ui(_location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform3ui, .{ _location, _v0, _v1, _v2 });
 }
 
-pub fn uniform4ui(_location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint, _v3: GLuint) callconv(.C) void {
+pub fn uniform4ui(_location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint, _v3: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform4ui, .{ _location, _v0, _v1, _v2, _v3 });
 }
 
-pub fn uniform1uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
+pub fn uniform1uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform1uiv, .{ _location, _count, _value });
 }
 
-pub fn uniform2uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
+pub fn uniform2uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform2uiv, .{ _location, _count, _value });
 }
 
-pub fn uniform3uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
+pub fn uniform3uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform3uiv, .{ _location, _count, _value });
 }
 
-pub fn uniform4uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void {
+pub fn uniform4uiv(_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniform4uiv, .{ _location, _count, _value });
 }
 
-pub fn texParameterIiv(_target: GLenum, _pname: GLenum, _params: [*c]const GLint) callconv(.C) void {
+pub fn texParameterIiv(_target: GLenum, _pname: GLenum, _params: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexParameterIiv, .{ _target, _pname, _params });
 }
 
-pub fn texParameterIuiv(_target: GLenum, _pname: GLenum, _params: [*c]const GLuint) callconv(.C) void {
+pub fn texParameterIuiv(_target: GLenum, _pname: GLenum, _params: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexParameterIuiv, .{ _target, _pname, _params });
 }
 
-pub fn getTexParameterIiv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getTexParameterIiv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTexParameterIiv, .{ _target, _pname, _params });
 }
 
-pub fn getTexParameterIuiv(_target: GLenum, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void {
+pub fn getTexParameterIuiv(_target: GLenum, _pname: GLenum, _params: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTexParameterIuiv, .{ _target, _pname, _params });
 }
 
-pub fn clearBufferiv(_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLint) callconv(.C) void {
+pub fn clearBufferiv(_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearBufferiv, .{ _buffer, _drawbuffer, _value });
 }
 
-pub fn clearBufferuiv(_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLuint) callconv(.C) void {
+pub fn clearBufferuiv(_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearBufferuiv, .{ _buffer, _drawbuffer, _value });
 }
 
-pub fn clearBufferfv(_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn clearBufferfv(_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearBufferfv, .{ _buffer, _drawbuffer, _value });
 }
 
-pub fn clearBufferfi(_buffer: GLenum, _drawbuffer: GLint, _depth: GLfloat, _stencil: GLint) callconv(.C) void {
+pub fn clearBufferfi(_buffer: GLenum, _drawbuffer: GLint, _depth: GLfloat, _stencil: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearBufferfi, .{ _buffer, _drawbuffer, _depth, _stencil });
 }
 
-pub fn getStringi(_name: GLenum, _index: GLuint) callconv(.C) ?[*:0]const GLubyte {
+pub fn getStringi(_name: GLenum, _index: GLuint) callconv(.c) ?[*:0]const GLubyte {
     return @call(.always_tail, function_pointers.glGetStringi, .{ _name, _index });
 }
 
-pub fn isRenderbuffer(_renderbuffer: GLuint) callconv(.C) GLboolean {
+pub fn isRenderbuffer(_renderbuffer: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsRenderbuffer, .{_renderbuffer});
 }
 
-pub fn bindRenderbuffer(_target: GLenum, _renderbuffer: GLuint) callconv(.C) void {
+pub fn bindRenderbuffer(_target: GLenum, _renderbuffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindRenderbuffer, .{ _target, _renderbuffer });
 }
 
-pub fn deleteRenderbuffers(_n: GLsizei, _renderbuffers: [*c]const GLuint) callconv(.C) void {
+pub fn deleteRenderbuffers(_n: GLsizei, _renderbuffers: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteRenderbuffers, .{ _n, _renderbuffers });
 }
 
-pub fn genRenderbuffers(_n: GLsizei, _renderbuffers: [*c]GLuint) callconv(.C) void {
+pub fn genRenderbuffers(_n: GLsizei, _renderbuffers: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenRenderbuffers, .{ _n, _renderbuffers });
 }
 
-pub fn renderbufferStorage(_target: GLenum, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn renderbufferStorage(_target: GLenum, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glRenderbufferStorage, .{ _target, _internalformat, _width, _height });
 }
 
-pub fn getRenderbufferParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getRenderbufferParameteriv(_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetRenderbufferParameteriv, .{ _target, _pname, _params });
 }
 
-pub fn isFramebuffer(_framebuffer: GLuint) callconv(.C) GLboolean {
+pub fn isFramebuffer(_framebuffer: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsFramebuffer, .{_framebuffer});
 }
 
-pub fn bindFramebuffer(_target: GLenum, _framebuffer: GLuint) callconv(.C) void {
+pub fn bindFramebuffer(_target: GLenum, _framebuffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindFramebuffer, .{ _target, _framebuffer });
 }
 
-pub fn deleteFramebuffers(_n: GLsizei, _framebuffers: [*c]const GLuint) callconv(.C) void {
+pub fn deleteFramebuffers(_n: GLsizei, _framebuffers: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteFramebuffers, .{ _n, _framebuffers });
 }
 
-pub fn genFramebuffers(_n: GLsizei, _framebuffers: [*c]GLuint) callconv(.C) void {
+pub fn genFramebuffers(_n: GLsizei, _framebuffers: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenFramebuffers, .{ _n, _framebuffers });
 }
 
-pub fn checkFramebufferStatus(_target: GLenum) callconv(.C) GLenum {
+pub fn checkFramebufferStatus(_target: GLenum) callconv(.c) GLenum {
     return @call(.always_tail, function_pointers.glCheckFramebufferStatus, .{_target});
 }
 
-pub fn framebufferTexture1D(_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void {
+pub fn framebufferTexture1D(_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glFramebufferTexture1D, .{ _target, _attachment, _textarget, _texture, _level });
 }
 
-pub fn framebufferTexture2D(_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void {
+pub fn framebufferTexture2D(_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glFramebufferTexture2D, .{ _target, _attachment, _textarget, _texture, _level });
 }
 
-pub fn framebufferTexture3D(_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint, _zoffset: GLint) callconv(.C) void {
+pub fn framebufferTexture3D(_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint, _zoffset: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glFramebufferTexture3D, .{ _target, _attachment, _textarget, _texture, _level, _zoffset });
 }
 
-pub fn framebufferRenderbuffer(_target: GLenum, _attachment: GLenum, _renderbuffertarget: GLenum, _renderbuffer: GLuint) callconv(.C) void {
+pub fn framebufferRenderbuffer(_target: GLenum, _attachment: GLenum, _renderbuffertarget: GLenum, _renderbuffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glFramebufferRenderbuffer, .{ _target, _attachment, _renderbuffertarget, _renderbuffer });
 }
 
-pub fn getFramebufferAttachmentParameteriv(_target: GLenum, _attachment: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getFramebufferAttachmentParameteriv(_target: GLenum, _attachment: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetFramebufferAttachmentParameteriv, .{ _target, _attachment, _pname, _params });
 }
 
-pub fn generateMipmap(_target: GLenum) callconv(.C) void {
+pub fn generateMipmap(_target: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenerateMipmap, .{_target});
 }
 
-pub fn blitFramebuffer(_srcX0: GLint, _srcY0: GLint, _srcX1: GLint, _srcY1: GLint, _dstX0: GLint, _dstY0: GLint, _dstX1: GLint, _dstY1: GLint, _mask: GLbitfield, _filter: GLenum) callconv(.C) void {
+pub fn blitFramebuffer(_srcX0: GLint, _srcY0: GLint, _srcX1: GLint, _srcY1: GLint, _dstX0: GLint, _dstY0: GLint, _dstX1: GLint, _dstY1: GLint, _mask: GLbitfield, _filter: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlitFramebuffer, .{ _srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter });
 }
 
-pub fn renderbufferStorageMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn renderbufferStorageMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glRenderbufferStorageMultisample, .{ _target, _samples, _internalformat, _width, _height });
 }
 
-pub fn framebufferTextureLayer(_target: GLenum, _attachment: GLenum, _texture: GLuint, _level: GLint, _layer: GLint) callconv(.C) void {
+pub fn framebufferTextureLayer(_target: GLenum, _attachment: GLenum, _texture: GLuint, _level: GLint, _layer: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glFramebufferTextureLayer, .{ _target, _attachment, _texture, _level, _layer });
 }
 
-pub fn mapBufferRange(_target: GLenum, _offset: GLintptr, _length: GLsizeiptr, _access: GLbitfield) callconv(.C) ?*anyopaque {
+pub fn mapBufferRange(_target: GLenum, _offset: GLintptr, _length: GLsizeiptr, _access: GLbitfield) callconv(.c) ?*anyopaque {
     return @call(.always_tail, function_pointers.glMapBufferRange, .{ _target, _offset, _length, _access });
 }
 
-pub fn flushMappedBufferRange(_target: GLenum, _offset: GLintptr, _length: GLsizeiptr) callconv(.C) void {
+pub fn flushMappedBufferRange(_target: GLenum, _offset: GLintptr, _length: GLsizeiptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glFlushMappedBufferRange, .{ _target, _offset, _length });
 }
 
-pub fn bindVertexArray(_array: GLuint) callconv(.C) void {
+pub fn bindVertexArray(_array: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindVertexArray, .{_array});
 }
 
-pub fn deleteVertexArrays(_n: GLsizei, _arrays: [*c]const GLuint) callconv(.C) void {
+pub fn deleteVertexArrays(_n: GLsizei, _arrays: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDeleteVertexArrays, .{ _n, _arrays });
 }
 
-pub fn genVertexArrays(_n: GLsizei, _arrays: [*c]GLuint) callconv(.C) void {
+pub fn genVertexArrays(_n: GLsizei, _arrays: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenVertexArrays, .{ _n, _arrays });
 }
 
-pub fn isVertexArray(_array: GLuint) callconv(.C) GLboolean {
+pub fn isVertexArray(_array: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glIsVertexArray, .{_array});
 }
 
-pub fn drawArraysInstanced(_mode: GLenum, _first: GLint, _count: GLsizei, _instancecount: GLsizei) callconv(.C) void {
+pub fn drawArraysInstanced(_mode: GLenum, _first: GLint, _count: GLsizei, _instancecount: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawArraysInstanced, .{ _mode, _first, _count, _instancecount });
 }
 
-pub fn drawElementsInstanced(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei) callconv(.C) void {
+pub fn drawElementsInstanced(_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDrawElementsInstanced, .{ _mode, _count, _type, _indices, _instancecount });
 }
 
-pub fn texBuffer(_target: GLenum, _internalformat: GLenum, _buffer: GLuint) callconv(.C) void {
+pub fn texBuffer(_target: GLenum, _internalformat: GLenum, _buffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexBuffer, .{ _target, _internalformat, _buffer });
 }
 
-pub fn primitiveRestartIndex(_index: GLuint) callconv(.C) void {
+pub fn primitiveRestartIndex(_index: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPrimitiveRestartIndex, .{_index});
 }
 
-pub fn copyBufferSubData(_readTarget: GLenum, _writeTarget: GLenum, _readOffset: GLintptr, _writeOffset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
+pub fn copyBufferSubData(_readTarget: GLenum, _writeTarget: GLenum, _readOffset: GLintptr, _writeOffset: GLintptr, _size: GLsizeiptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyBufferSubData, .{ _readTarget, _writeTarget, _readOffset, _writeOffset, _size });
 }
 
-pub fn getUniformIndices(_program: GLuint, _uniformCount: GLsizei, _uniformNames: [*c]const [*c]const GLchar, _uniformIndices: [*c]GLuint) callconv(.C) void {
+pub fn getUniformIndices(_program: GLuint, _uniformCount: GLsizei, _uniformNames: [*c]const [*c]const GLchar, _uniformIndices: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetUniformIndices, .{ _program, _uniformCount, _uniformNames, _uniformIndices });
 }
 
-pub fn getActiveUniformsiv(_program: GLuint, _uniformCount: GLsizei, _uniformIndices: [*c]const GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getActiveUniformsiv(_program: GLuint, _uniformCount: GLsizei, _uniformIndices: [*c]const GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetActiveUniformsiv, .{ _program, _uniformCount, _uniformIndices, _pname, _params });
 }
 
-pub fn getActiveUniformName(_program: GLuint, _uniformIndex: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _uniformName: [*c]GLchar) callconv(.C) void {
+pub fn getActiveUniformName(_program: GLuint, _uniformIndex: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _uniformName: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetActiveUniformName, .{ _program, _uniformIndex, _bufSize, _length, _uniformName });
 }
 
-pub fn getUniformBlockIndex(_program: GLuint, _uniformBlockName: [*c]const GLchar) callconv(.C) GLuint {
+pub fn getUniformBlockIndex(_program: GLuint, _uniformBlockName: [*c]const GLchar) callconv(.c) GLuint {
     return @call(.always_tail, function_pointers.glGetUniformBlockIndex, .{ _program, _uniformBlockName });
 }
 
-pub fn getActiveUniformBlockiv(_program: GLuint, _uniformBlockIndex: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getActiveUniformBlockiv(_program: GLuint, _uniformBlockIndex: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetActiveUniformBlockiv, .{ _program, _uniformBlockIndex, _pname, _params });
 }
 
-pub fn getActiveUniformBlockName(_program: GLuint, _uniformBlockIndex: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _uniformBlockName: [*c]GLchar) callconv(.C) void {
+pub fn getActiveUniformBlockName(_program: GLuint, _uniformBlockIndex: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _uniformBlockName: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetActiveUniformBlockName, .{ _program, _uniformBlockIndex, _bufSize, _length, _uniformBlockName });
 }
 
-pub fn uniformBlockBinding(_program: GLuint, _uniformBlockIndex: GLuint, _uniformBlockBinding: GLuint) callconv(.C) void {
+pub fn uniformBlockBinding(_program: GLuint, _uniformBlockIndex: GLuint, _uniformBlockBinding: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glUniformBlockBinding, .{ _program, _uniformBlockIndex, _uniformBlockBinding });
 }
 
-pub fn texStorage3DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
+pub fn texStorage3DMultisample(_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTexStorage3DMultisample, .{ _target, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations });
 }
 
-pub fn textureView(_texture: GLuint, _target: GLenum, _origtexture: GLuint, _internalformat: GLenum, _minlevel: GLuint, _numlevels: GLuint, _minlayer: GLuint, _numlayers: GLuint) callconv(.C) void {
+pub fn textureView(_texture: GLuint, _target: GLenum, _origtexture: GLuint, _internalformat: GLenum, _minlevel: GLuint, _numlevels: GLuint, _minlayer: GLuint, _numlayers: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureView, .{ _texture, _target, _origtexture, _internalformat, _minlevel, _numlevels, _minlayer, _numlayers });
 }
 
-pub fn bindVertexBuffer(_bindingindex: GLuint, _buffer: GLuint, _offset: GLintptr, _stride: GLsizei) callconv(.C) void {
+pub fn bindVertexBuffer(_bindingindex: GLuint, _buffer: GLuint, _offset: GLintptr, _stride: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindVertexBuffer, .{ _bindingindex, _buffer, _offset, _stride });
 }
 
-pub fn vertexAttribFormat(_attribindex: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _relativeoffset: GLuint) callconv(.C) void {
+pub fn vertexAttribFormat(_attribindex: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _relativeoffset: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribFormat, .{ _attribindex, _size, _type, _normalized, _relativeoffset });
 }
 
-pub fn vertexAttribIFormat(_attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void {
+pub fn vertexAttribIFormat(_attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribIFormat, .{ _attribindex, _size, _type, _relativeoffset });
 }
 
-pub fn vertexAttribLFormat(_attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void {
+pub fn vertexAttribLFormat(_attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribLFormat, .{ _attribindex, _size, _type, _relativeoffset });
 }
 
-pub fn vertexAttribBinding(_attribindex: GLuint, _bindingindex: GLuint) callconv(.C) void {
+pub fn vertexAttribBinding(_attribindex: GLuint, _bindingindex: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexAttribBinding, .{ _attribindex, _bindingindex });
 }
 
-pub fn vertexBindingDivisor(_bindingindex: GLuint, _divisor: GLuint) callconv(.C) void {
+pub fn vertexBindingDivisor(_bindingindex: GLuint, _divisor: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexBindingDivisor, .{ _bindingindex, _divisor });
 }
 
-pub fn debugMessageControl(_source: GLenum, _type: GLenum, _severity: GLenum, _count: GLsizei, _ids: [*c]const GLuint, _enabled: GLboolean) callconv(.C) void {
+pub fn debugMessageControl(_source: GLenum, _type: GLenum, _severity: GLenum, _count: GLsizei, _ids: [*c]const GLuint, _enabled: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDebugMessageControl, .{ _source, _type, _severity, _count, _ids, _enabled });
 }
 
-pub fn debugMessageInsert(_source: GLenum, _type: GLenum, _id: GLuint, _severity: GLenum, _length: GLsizei, _buf: [*c]const GLchar) callconv(.C) void {
+pub fn debugMessageInsert(_source: GLenum, _type: GLenum, _id: GLuint, _severity: GLenum, _length: GLsizei, _buf: [*c]const GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDebugMessageInsert, .{ _source, _type, _id, _severity, _length, _buf });
 }
 
-pub fn debugMessageCallback(_callback: GLDEBUGPROC, _userParam: ?*const anyopaque) callconv(.C) void {
+pub fn debugMessageCallback(_callback: GLDEBUGPROC, _userParam: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDebugMessageCallback, .{ _callback, _userParam });
 }
 
-pub fn getDebugMessageLog(_count: GLuint, _bufSize: GLsizei, _sources: [*c]GLenum, _types: [*c]GLenum, _ids: [*c]GLuint, _severities: [*c]GLenum, _lengths: [*c]GLsizei, _messageLog: [*c]GLchar) callconv(.C) GLuint {
+pub fn getDebugMessageLog(_count: GLuint, _bufSize: GLsizei, _sources: [*c]GLenum, _types: [*c]GLenum, _ids: [*c]GLuint, _severities: [*c]GLenum, _lengths: [*c]GLsizei, _messageLog: [*c]GLchar) callconv(.c) GLuint {
     return @call(.always_tail, function_pointers.glGetDebugMessageLog, .{ _count, _bufSize, _sources, _types, _ids, _severities, _lengths, _messageLog });
 }
 
-pub fn pushDebugGroup(_source: GLenum, _id: GLuint, _length: GLsizei, _message: [*c]const GLchar) callconv(.C) void {
+pub fn pushDebugGroup(_source: GLenum, _id: GLuint, _length: GLsizei, _message: [*c]const GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glPushDebugGroup, .{ _source, _id, _length, _message });
 }
 
-pub fn popDebugGroup() callconv(.C) void {
+pub fn popDebugGroup() callconv(.c) void {
     return @call(.always_tail, function_pointers.glPopDebugGroup, .{});
 }
 
-pub fn objectLabel(_identifier: GLenum, _name: GLuint, _length: GLsizei, _label: [*c]const GLchar) callconv(.C) void {
+pub fn objectLabel(_identifier: GLenum, _name: GLuint, _length: GLsizei, _label: [*c]const GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glObjectLabel, .{ _identifier, _name, _length, _label });
 }
 
-pub fn getObjectLabel(_identifier: GLenum, _name: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _label: [*c]GLchar) callconv(.C) void {
+pub fn getObjectLabel(_identifier: GLenum, _name: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _label: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetObjectLabel, .{ _identifier, _name, _bufSize, _length, _label });
 }
 
-pub fn objectPtrLabel(_ptr: ?*const anyopaque, _length: GLsizei, _label: [*c]const GLchar) callconv(.C) void {
+pub fn objectPtrLabel(_ptr: ?*const anyopaque, _length: GLsizei, _label: [*c]const GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glObjectPtrLabel, .{ _ptr, _length, _label });
 }
 
-pub fn getObjectPtrLabel(_ptr: ?*const anyopaque, _bufSize: GLsizei, _length: [*c]GLsizei, _label: [*c]GLchar) callconv(.C) void {
+pub fn getObjectPtrLabel(_ptr: ?*const anyopaque, _bufSize: GLsizei, _length: [*c]GLsizei, _label: [*c]GLchar) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetObjectPtrLabel, .{ _ptr, _bufSize, _length, _label });
 }
 
-pub fn getPointerv(_pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void {
+pub fn getPointerv(_pname: GLenum, _params: ?*?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetPointerv, .{ _pname, _params });
 }
 
-pub fn bufferStorage(_target: GLenum, _size: GLsizeiptr, _data: ?*const anyopaque, _flags: GLbitfield) callconv(.C) void {
+pub fn bufferStorage(_target: GLenum, _size: GLsizeiptr, _data: ?*const anyopaque, _flags: GLbitfield) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBufferStorage, .{ _target, _size, _data, _flags });
 }
 
-pub fn clearTexImage(_texture: GLuint, _level: GLint, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
+pub fn clearTexImage(_texture: GLuint, _level: GLint, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearTexImage, .{ _texture, _level, _format, _type, _data });
 }
 
-pub fn clearTexSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
+pub fn clearTexSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearTexSubImage, .{ _texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _data });
 }
 
-pub fn bindBuffersBase(_target: GLenum, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint) callconv(.C) void {
+pub fn bindBuffersBase(_target: GLenum, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindBuffersBase, .{ _target, _first, _count, _buffers });
 }
 
-pub fn bindBuffersRange(_target: GLenum, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _sizes: [*c]const GLsizeiptr) callconv(.C) void {
+pub fn bindBuffersRange(_target: GLenum, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _sizes: [*c]const GLsizeiptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindBuffersRange, .{ _target, _first, _count, _buffers, _offsets, _sizes });
 }
 
-pub fn bindTextures(_first: GLuint, _count: GLsizei, _textures: [*c]const GLuint) callconv(.C) void {
+pub fn bindTextures(_first: GLuint, _count: GLsizei, _textures: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindTextures, .{ _first, _count, _textures });
 }
 
-pub fn bindSamplers(_first: GLuint, _count: GLsizei, _samplers: [*c]const GLuint) callconv(.C) void {
+pub fn bindSamplers(_first: GLuint, _count: GLsizei, _samplers: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindSamplers, .{ _first, _count, _samplers });
 }
 
-pub fn bindImageTextures(_first: GLuint, _count: GLsizei, _textures: [*c]const GLuint) callconv(.C) void {
+pub fn bindImageTextures(_first: GLuint, _count: GLsizei, _textures: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindImageTextures, .{ _first, _count, _textures });
 }
 
-pub fn bindVertexBuffers(_first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _strides: [*c]const GLsizei) callconv(.C) void {
+pub fn bindVertexBuffers(_first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _strides: [*c]const GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindVertexBuffers, .{ _first, _count, _buffers, _offsets, _strides });
 }
 
-pub fn clipControl(_origin: GLenum, _depth: GLenum) callconv(.C) void {
+pub fn clipControl(_origin: GLenum, _depth: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClipControl, .{ _origin, _depth });
 }
 
-pub fn createTransformFeedbacks(_n: GLsizei, _ids: [*c]GLuint) callconv(.C) void {
+pub fn createTransformFeedbacks(_n: GLsizei, _ids: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCreateTransformFeedbacks, .{ _n, _ids });
 }
 
-pub fn transformFeedbackBufferBase(_xfb: GLuint, _index: GLuint, _buffer: GLuint) callconv(.C) void {
+pub fn transformFeedbackBufferBase(_xfb: GLuint, _index: GLuint, _buffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTransformFeedbackBufferBase, .{ _xfb, _index, _buffer });
 }
 
-pub fn transformFeedbackBufferRange(_xfb: GLuint, _index: GLuint, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
+pub fn transformFeedbackBufferRange(_xfb: GLuint, _index: GLuint, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTransformFeedbackBufferRange, .{ _xfb, _index, _buffer, _offset, _size });
 }
 
-pub fn getTransformFeedbackiv(_xfb: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void {
+pub fn getTransformFeedbackiv(_xfb: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTransformFeedbackiv, .{ _xfb, _pname, _param });
 }
 
-pub fn getTransformFeedbacki_v(_xfb: GLuint, _pname: GLenum, _index: GLuint, _param: [*c]GLint) callconv(.C) void {
+pub fn getTransformFeedbacki_v(_xfb: GLuint, _pname: GLenum, _index: GLuint, _param: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTransformFeedbacki_v, .{ _xfb, _pname, _index, _param });
 }
 
-pub fn getTransformFeedbacki64_v(_xfb: GLuint, _pname: GLenum, _index: GLuint, _param: [*c]GLint64) callconv(.C) void {
+pub fn getTransformFeedbacki64_v(_xfb: GLuint, _pname: GLenum, _index: GLuint, _param: [*c]GLint64) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTransformFeedbacki64_v, .{ _xfb, _pname, _index, _param });
 }
 
-pub fn createBuffers(_n: GLsizei, _buffers: [*c]GLuint) callconv(.C) void {
+pub fn createBuffers(_n: GLsizei, _buffers: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCreateBuffers, .{ _n, _buffers });
 }
 
-pub fn namedBufferStorage(_buffer: GLuint, _size: GLsizeiptr, _data: ?*const anyopaque, _flags: GLbitfield) callconv(.C) void {
+pub fn namedBufferStorage(_buffer: GLuint, _size: GLsizeiptr, _data: ?*const anyopaque, _flags: GLbitfield) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedBufferStorage, .{ _buffer, _size, _data, _flags });
 }
 
-pub fn namedBufferData(_buffer: GLuint, _size: GLsizeiptr, _data: ?*const anyopaque, _usage: GLenum) callconv(.C) void {
+pub fn namedBufferData(_buffer: GLuint, _size: GLsizeiptr, _data: ?*const anyopaque, _usage: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedBufferData, .{ _buffer, _size, _data, _usage });
 }
 
-pub fn namedBufferSubData(_buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr, _data: ?*const anyopaque) callconv(.C) void {
+pub fn namedBufferSubData(_buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedBufferSubData, .{ _buffer, _offset, _size, _data });
 }
 
-pub fn copyNamedBufferSubData(_readBuffer: GLuint, _writeBuffer: GLuint, _readOffset: GLintptr, _writeOffset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
+pub fn copyNamedBufferSubData(_readBuffer: GLuint, _writeBuffer: GLuint, _readOffset: GLintptr, _writeOffset: GLintptr, _size: GLsizeiptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyNamedBufferSubData, .{ _readBuffer, _writeBuffer, _readOffset, _writeOffset, _size });
 }
 
-pub fn clearNamedBufferData(_buffer: GLuint, _internalformat: GLenum, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
+pub fn clearNamedBufferData(_buffer: GLuint, _internalformat: GLenum, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearNamedBufferData, .{ _buffer, _internalformat, _format, _type, _data });
 }
 
-pub fn clearNamedBufferSubData(_buffer: GLuint, _internalformat: GLenum, _offset: GLintptr, _size: GLsizeiptr, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void {
+pub fn clearNamedBufferSubData(_buffer: GLuint, _internalformat: GLenum, _offset: GLintptr, _size: GLsizeiptr, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearNamedBufferSubData, .{ _buffer, _internalformat, _offset, _size, _format, _type, _data });
 }
 
-pub fn mapNamedBuffer(_buffer: GLuint, _access: GLenum) callconv(.C) ?*anyopaque {
+pub fn mapNamedBuffer(_buffer: GLuint, _access: GLenum) callconv(.c) ?*anyopaque {
     return @call(.always_tail, function_pointers.glMapNamedBuffer, .{ _buffer, _access });
 }
 
-pub fn mapNamedBufferRange(_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr, _access: GLbitfield) callconv(.C) ?*anyopaque {
+pub fn mapNamedBufferRange(_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr, _access: GLbitfield) callconv(.c) ?*anyopaque {
     return @call(.always_tail, function_pointers.glMapNamedBufferRange, .{ _buffer, _offset, _length, _access });
 }
 
-pub fn unmapNamedBuffer(_buffer: GLuint) callconv(.C) GLboolean {
+pub fn unmapNamedBuffer(_buffer: GLuint) callconv(.c) GLboolean {
     return @call(.always_tail, function_pointers.glUnmapNamedBuffer, .{_buffer});
 }
 
-pub fn flushMappedNamedBufferRange(_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr) callconv(.C) void {
+pub fn flushMappedNamedBufferRange(_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glFlushMappedNamedBufferRange, .{ _buffer, _offset, _length });
 }
 
-pub fn getNamedBufferParameteriv(_buffer: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getNamedBufferParameteriv(_buffer: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetNamedBufferParameteriv, .{ _buffer, _pname, _params });
 }
 
-pub fn getNamedBufferParameteri64v(_buffer: GLuint, _pname: GLenum, _params: [*c]GLint64) callconv(.C) void {
+pub fn getNamedBufferParameteri64v(_buffer: GLuint, _pname: GLenum, _params: [*c]GLint64) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetNamedBufferParameteri64v, .{ _buffer, _pname, _params });
 }
 
-pub fn getNamedBufferPointerv(_buffer: GLuint, _pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void {
+pub fn getNamedBufferPointerv(_buffer: GLuint, _pname: GLenum, _params: ?*?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetNamedBufferPointerv, .{ _buffer, _pname, _params });
 }
 
-pub fn getNamedBufferSubData(_buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr, _data: ?*anyopaque) callconv(.C) void {
+pub fn getNamedBufferSubData(_buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr, _data: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetNamedBufferSubData, .{ _buffer, _offset, _size, _data });
 }
 
-pub fn createFramebuffers(_n: GLsizei, _framebuffers: [*c]GLuint) callconv(.C) void {
+pub fn createFramebuffers(_n: GLsizei, _framebuffers: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCreateFramebuffers, .{ _n, _framebuffers });
 }
 
-pub fn namedFramebufferRenderbuffer(_framebuffer: GLuint, _attachment: GLenum, _renderbuffertarget: GLenum, _renderbuffer: GLuint) callconv(.C) void {
+pub fn namedFramebufferRenderbuffer(_framebuffer: GLuint, _attachment: GLenum, _renderbuffertarget: GLenum, _renderbuffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedFramebufferRenderbuffer, .{ _framebuffer, _attachment, _renderbuffertarget, _renderbuffer });
 }
 
-pub fn namedFramebufferParameteri(_framebuffer: GLuint, _pname: GLenum, _param: GLint) callconv(.C) void {
+pub fn namedFramebufferParameteri(_framebuffer: GLuint, _pname: GLenum, _param: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedFramebufferParameteri, .{ _framebuffer, _pname, _param });
 }
 
-pub fn namedFramebufferTexture(_framebuffer: GLuint, _attachment: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void {
+pub fn namedFramebufferTexture(_framebuffer: GLuint, _attachment: GLenum, _texture: GLuint, _level: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedFramebufferTexture, .{ _framebuffer, _attachment, _texture, _level });
 }
 
-pub fn namedFramebufferTextureLayer(_framebuffer: GLuint, _attachment: GLenum, _texture: GLuint, _level: GLint, _layer: GLint) callconv(.C) void {
+pub fn namedFramebufferTextureLayer(_framebuffer: GLuint, _attachment: GLenum, _texture: GLuint, _level: GLint, _layer: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedFramebufferTextureLayer, .{ _framebuffer, _attachment, _texture, _level, _layer });
 }
 
-pub fn namedFramebufferDrawBuffer(_framebuffer: GLuint, _buf: GLenum) callconv(.C) void {
+pub fn namedFramebufferDrawBuffer(_framebuffer: GLuint, _buf: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedFramebufferDrawBuffer, .{ _framebuffer, _buf });
 }
 
-pub fn namedFramebufferDrawBuffers(_framebuffer: GLuint, _n: GLsizei, _bufs: [*c]const GLenum) callconv(.C) void {
+pub fn namedFramebufferDrawBuffers(_framebuffer: GLuint, _n: GLsizei, _bufs: [*c]const GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedFramebufferDrawBuffers, .{ _framebuffer, _n, _bufs });
 }
 
-pub fn namedFramebufferReadBuffer(_framebuffer: GLuint, _src: GLenum) callconv(.C) void {
+pub fn namedFramebufferReadBuffer(_framebuffer: GLuint, _src: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedFramebufferReadBuffer, .{ _framebuffer, _src });
 }
 
-pub fn invalidateNamedFramebufferData(_framebuffer: GLuint, _numAttachments: GLsizei, _attachments: [*c]const GLenum) callconv(.C) void {
+pub fn invalidateNamedFramebufferData(_framebuffer: GLuint, _numAttachments: GLsizei, _attachments: [*c]const GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glInvalidateNamedFramebufferData, .{ _framebuffer, _numAttachments, _attachments });
 }
 
-pub fn invalidateNamedFramebufferSubData(_framebuffer: GLuint, _numAttachments: GLsizei, _attachments: [*c]const GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn invalidateNamedFramebufferSubData(_framebuffer: GLuint, _numAttachments: GLsizei, _attachments: [*c]const GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glInvalidateNamedFramebufferSubData, .{ _framebuffer, _numAttachments, _attachments, _x, _y, _width, _height });
 }
 
-pub fn clearNamedFramebufferiv(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLint) callconv(.C) void {
+pub fn clearNamedFramebufferiv(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearNamedFramebufferiv, .{ _framebuffer, _buffer, _drawbuffer, _value });
 }
 
-pub fn clearNamedFramebufferuiv(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLuint) callconv(.C) void {
+pub fn clearNamedFramebufferuiv(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearNamedFramebufferuiv, .{ _framebuffer, _buffer, _drawbuffer, _value });
 }
 
-pub fn clearNamedFramebufferfv(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLfloat) callconv(.C) void {
+pub fn clearNamedFramebufferfv(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearNamedFramebufferfv, .{ _framebuffer, _buffer, _drawbuffer, _value });
 }
 
-pub fn clearNamedFramebufferfi(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _depth: GLfloat, _stencil: GLint) callconv(.C) void {
+pub fn clearNamedFramebufferfi(_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _depth: GLfloat, _stencil: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glClearNamedFramebufferfi, .{ _framebuffer, _buffer, _drawbuffer, _depth, _stencil });
 }
 
-pub fn blitNamedFramebuffer(_readFramebuffer: GLuint, _drawFramebuffer: GLuint, _srcX0: GLint, _srcY0: GLint, _srcX1: GLint, _srcY1: GLint, _dstX0: GLint, _dstY0: GLint, _dstX1: GLint, _dstY1: GLint, _mask: GLbitfield, _filter: GLenum) callconv(.C) void {
+pub fn blitNamedFramebuffer(_readFramebuffer: GLuint, _drawFramebuffer: GLuint, _srcX0: GLint, _srcY0: GLint, _srcX1: GLint, _srcY1: GLint, _dstX0: GLint, _dstY0: GLint, _dstX1: GLint, _dstY1: GLint, _mask: GLbitfield, _filter: GLenum) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBlitNamedFramebuffer, .{ _readFramebuffer, _drawFramebuffer, _srcX0, _srcY0, _srcX1, _srcY1, _dstX0, _dstY0, _dstX1, _dstY1, _mask, _filter });
 }
 
-pub fn checkNamedFramebufferStatus(_framebuffer: GLuint, _target: GLenum) callconv(.C) GLenum {
+pub fn checkNamedFramebufferStatus(_framebuffer: GLuint, _target: GLenum) callconv(.c) GLenum {
     return @call(.always_tail, function_pointers.glCheckNamedFramebufferStatus, .{ _framebuffer, _target });
 }
 
-pub fn getNamedFramebufferParameteriv(_framebuffer: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void {
+pub fn getNamedFramebufferParameteriv(_framebuffer: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetNamedFramebufferParameteriv, .{ _framebuffer, _pname, _param });
 }
 
-pub fn getNamedFramebufferAttachmentParameteriv(_framebuffer: GLuint, _attachment: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getNamedFramebufferAttachmentParameteriv(_framebuffer: GLuint, _attachment: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetNamedFramebufferAttachmentParameteriv, .{ _framebuffer, _attachment, _pname, _params });
 }
 
-pub fn createRenderbuffers(_n: GLsizei, _renderbuffers: [*c]GLuint) callconv(.C) void {
+pub fn createRenderbuffers(_n: GLsizei, _renderbuffers: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCreateRenderbuffers, .{ _n, _renderbuffers });
 }
 
-pub fn namedRenderbufferStorage(_renderbuffer: GLuint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn namedRenderbufferStorage(_renderbuffer: GLuint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedRenderbufferStorage, .{ _renderbuffer, _internalformat, _width, _height });
 }
 
-pub fn namedRenderbufferStorageMultisample(_renderbuffer: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn namedRenderbufferStorageMultisample(_renderbuffer: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glNamedRenderbufferStorageMultisample, .{ _renderbuffer, _samples, _internalformat, _width, _height });
 }
 
-pub fn getNamedRenderbufferParameteriv(_renderbuffer: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getNamedRenderbufferParameteriv(_renderbuffer: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetNamedRenderbufferParameteriv, .{ _renderbuffer, _pname, _params });
 }
 
-pub fn createTextures(_target: GLenum, _n: GLsizei, _textures: [*c]GLuint) callconv(.C) void {
+pub fn createTextures(_target: GLenum, _n: GLsizei, _textures: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCreateTextures, .{ _target, _n, _textures });
 }
 
-pub fn textureBuffer(_texture: GLuint, _internalformat: GLenum, _buffer: GLuint) callconv(.C) void {
+pub fn textureBuffer(_texture: GLuint, _internalformat: GLenum, _buffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureBuffer, .{ _texture, _internalformat, _buffer });
 }
 
-pub fn textureBufferRange(_texture: GLuint, _internalformat: GLenum, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void {
+pub fn textureBufferRange(_texture: GLuint, _internalformat: GLenum, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureBufferRange, .{ _texture, _internalformat, _buffer, _offset, _size });
 }
 
-pub fn textureStorage1D(_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei) callconv(.C) void {
+pub fn textureStorage1D(_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureStorage1D, .{ _texture, _levels, _internalformat, _width });
 }
 
-pub fn textureStorage2D(_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn textureStorage2D(_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureStorage2D, .{ _texture, _levels, _internalformat, _width, _height });
 }
 
-pub fn textureStorage3D(_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.C) void {
+pub fn textureStorage3D(_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureStorage3D, .{ _texture, _levels, _internalformat, _width, _height, _depth });
 }
 
-pub fn textureStorage2DMultisample(_texture: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
+pub fn textureStorage2DMultisample(_texture: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureStorage2DMultisample, .{ _texture, _samples, _internalformat, _width, _height, _fixedsamplelocations });
 }
 
-pub fn textureStorage3DMultisample(_texture: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void {
+pub fn textureStorage3DMultisample(_texture: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureStorage3DMultisample, .{ _texture, _samples, _internalformat, _width, _height, _depth, _fixedsamplelocations });
 }
 
-pub fn textureSubImage1D(_texture: GLuint, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+pub fn textureSubImage1D(_texture: GLuint, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureSubImage1D, .{ _texture, _level, _xoffset, _width, _format, _type, _pixels });
 }
 
-pub fn textureSubImage2D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+pub fn textureSubImage2D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureSubImage2D, .{ _texture, _level, _xoffset, _yoffset, _width, _height, _format, _type, _pixels });
 }
 
-pub fn textureSubImage3D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void {
+pub fn textureSubImage3D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureSubImage3D, .{ _texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _pixels });
 }
 
-pub fn compressedTextureSubImage1D(_texture: GLuint, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
+pub fn compressedTextureSubImage1D(_texture: GLuint, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCompressedTextureSubImage1D, .{ _texture, _level, _xoffset, _width, _format, _imageSize, _data });
 }
 
-pub fn compressedTextureSubImage2D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
+pub fn compressedTextureSubImage2D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCompressedTextureSubImage2D, .{ _texture, _level, _xoffset, _yoffset, _width, _height, _format, _imageSize, _data });
 }
 
-pub fn compressedTextureSubImage3D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void {
+pub fn compressedTextureSubImage3D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCompressedTextureSubImage3D, .{ _texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _imageSize, _data });
 }
 
-pub fn copyTextureSubImage1D(_texture: GLuint, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.C) void {
+pub fn copyTextureSubImage1D(_texture: GLuint, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyTextureSubImage1D, .{ _texture, _level, _xoffset, _x, _y, _width });
 }
 
-pub fn copyTextureSubImage2D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn copyTextureSubImage2D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyTextureSubImage2D, .{ _texture, _level, _xoffset, _yoffset, _x, _y, _width, _height });
 }
 
-pub fn copyTextureSubImage3D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void {
+pub fn copyTextureSubImage3D(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCopyTextureSubImage3D, .{ _texture, _level, _xoffset, _yoffset, _zoffset, _x, _y, _width, _height });
 }
 
-pub fn textureParameterf(_texture: GLuint, _pname: GLenum, _param: GLfloat) callconv(.C) void {
+pub fn textureParameterf(_texture: GLuint, _pname: GLenum, _param: GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureParameterf, .{ _texture, _pname, _param });
 }
 
-pub fn textureParameterfv(_texture: GLuint, _pname: GLenum, _param: [*c]const GLfloat) callconv(.C) void {
+pub fn textureParameterfv(_texture: GLuint, _pname: GLenum, _param: [*c]const GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureParameterfv, .{ _texture, _pname, _param });
 }
 
-pub fn textureParameteri(_texture: GLuint, _pname: GLenum, _param: GLint) callconv(.C) void {
+pub fn textureParameteri(_texture: GLuint, _pname: GLenum, _param: GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureParameteri, .{ _texture, _pname, _param });
 }
 
-pub fn textureParameterIiv(_texture: GLuint, _pname: GLenum, _params: [*c]const GLint) callconv(.C) void {
+pub fn textureParameterIiv(_texture: GLuint, _pname: GLenum, _params: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureParameterIiv, .{ _texture, _pname, _params });
 }
 
-pub fn textureParameterIuiv(_texture: GLuint, _pname: GLenum, _params: [*c]const GLuint) callconv(.C) void {
+pub fn textureParameterIuiv(_texture: GLuint, _pname: GLenum, _params: [*c]const GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureParameterIuiv, .{ _texture, _pname, _params });
 }
 
-pub fn textureParameteriv(_texture: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.C) void {
+pub fn textureParameteriv(_texture: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureParameteriv, .{ _texture, _pname, _param });
 }
 
-pub fn generateTextureMipmap(_texture: GLuint) callconv(.C) void {
+pub fn generateTextureMipmap(_texture: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGenerateTextureMipmap, .{_texture});
 }
 
-pub fn bindTextureUnit(_unit: GLuint, _texture: GLuint) callconv(.C) void {
+pub fn bindTextureUnit(_unit: GLuint, _texture: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glBindTextureUnit, .{ _unit, _texture });
 }
 
-pub fn getTextureImage(_texture: GLuint, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
+pub fn getTextureImage(_texture: GLuint, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTextureImage, .{ _texture, _level, _format, _type, _bufSize, _pixels });
 }
 
-pub fn getCompressedTextureImage(_texture: GLuint, _level: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
+pub fn getCompressedTextureImage(_texture: GLuint, _level: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetCompressedTextureImage, .{ _texture, _level, _bufSize, _pixels });
 }
 
-pub fn getTextureLevelParameterfv(_texture: GLuint, _level: GLint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
+pub fn getTextureLevelParameterfv(_texture: GLuint, _level: GLint, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTextureLevelParameterfv, .{ _texture, _level, _pname, _params });
 }
 
-pub fn getTextureLevelParameteriv(_texture: GLuint, _level: GLint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getTextureLevelParameteriv(_texture: GLuint, _level: GLint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTextureLevelParameteriv, .{ _texture, _level, _pname, _params });
 }
 
-pub fn getTextureParameterfv(_texture: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void {
+pub fn getTextureParameterfv(_texture: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTextureParameterfv, .{ _texture, _pname, _params });
 }
 
-pub fn getTextureParameterIiv(_texture: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getTextureParameterIiv(_texture: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTextureParameterIiv, .{ _texture, _pname, _params });
 }
 
-pub fn getTextureParameterIuiv(_texture: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void {
+pub fn getTextureParameterIuiv(_texture: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTextureParameterIuiv, .{ _texture, _pname, _params });
 }
 
-pub fn getTextureParameteriv(_texture: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void {
+pub fn getTextureParameteriv(_texture: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTextureParameteriv, .{ _texture, _pname, _params });
 }
 
-pub fn createVertexArrays(_n: GLsizei, _arrays: [*c]GLuint) callconv(.C) void {
+pub fn createVertexArrays(_n: GLsizei, _arrays: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCreateVertexArrays, .{ _n, _arrays });
 }
 
-pub fn disableVertexArrayAttrib(_vaobj: GLuint, _index: GLuint) callconv(.C) void {
+pub fn disableVertexArrayAttrib(_vaobj: GLuint, _index: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glDisableVertexArrayAttrib, .{ _vaobj, _index });
 }
 
-pub fn enableVertexArrayAttrib(_vaobj: GLuint, _index: GLuint) callconv(.C) void {
+pub fn enableVertexArrayAttrib(_vaobj: GLuint, _index: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glEnableVertexArrayAttrib, .{ _vaobj, _index });
 }
 
-pub fn vertexArrayElementBuffer(_vaobj: GLuint, _buffer: GLuint) callconv(.C) void {
+pub fn vertexArrayElementBuffer(_vaobj: GLuint, _buffer: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexArrayElementBuffer, .{ _vaobj, _buffer });
 }
 
-pub fn vertexArrayVertexBuffer(_vaobj: GLuint, _bindingindex: GLuint, _buffer: GLuint, _offset: GLintptr, _stride: GLsizei) callconv(.C) void {
+pub fn vertexArrayVertexBuffer(_vaobj: GLuint, _bindingindex: GLuint, _buffer: GLuint, _offset: GLintptr, _stride: GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexArrayVertexBuffer, .{ _vaobj, _bindingindex, _buffer, _offset, _stride });
 }
 
-pub fn vertexArrayVertexBuffers(_vaobj: GLuint, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _strides: [*c]const GLsizei) callconv(.C) void {
+pub fn vertexArrayVertexBuffers(_vaobj: GLuint, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _strides: [*c]const GLsizei) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexArrayVertexBuffers, .{ _vaobj, _first, _count, _buffers, _offsets, _strides });
 }
 
-pub fn vertexArrayAttribBinding(_vaobj: GLuint, _attribindex: GLuint, _bindingindex: GLuint) callconv(.C) void {
+pub fn vertexArrayAttribBinding(_vaobj: GLuint, _attribindex: GLuint, _bindingindex: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexArrayAttribBinding, .{ _vaobj, _attribindex, _bindingindex });
 }
 
-pub fn vertexArrayAttribFormat(_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _relativeoffset: GLuint) callconv(.C) void {
+pub fn vertexArrayAttribFormat(_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _relativeoffset: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexArrayAttribFormat, .{ _vaobj, _attribindex, _size, _type, _normalized, _relativeoffset });
 }
 
-pub fn vertexArrayAttribIFormat(_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void {
+pub fn vertexArrayAttribIFormat(_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexArrayAttribIFormat, .{ _vaobj, _attribindex, _size, _type, _relativeoffset });
 }
 
-pub fn vertexArrayAttribLFormat(_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void {
+pub fn vertexArrayAttribLFormat(_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexArrayAttribLFormat, .{ _vaobj, _attribindex, _size, _type, _relativeoffset });
 }
 
-pub fn vertexArrayBindingDivisor(_vaobj: GLuint, _bindingindex: GLuint, _divisor: GLuint) callconv(.C) void {
+pub fn vertexArrayBindingDivisor(_vaobj: GLuint, _bindingindex: GLuint, _divisor: GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glVertexArrayBindingDivisor, .{ _vaobj, _bindingindex, _divisor });
 }
 
-pub fn getVertexArrayiv(_vaobj: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void {
+pub fn getVertexArrayiv(_vaobj: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetVertexArrayiv, .{ _vaobj, _pname, _param });
 }
 
-pub fn getVertexArrayIndexediv(_vaobj: GLuint, _index: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void {
+pub fn getVertexArrayIndexediv(_vaobj: GLuint, _index: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetVertexArrayIndexediv, .{ _vaobj, _index, _pname, _param });
 }
 
-pub fn getVertexArrayIndexed64iv(_vaobj: GLuint, _index: GLuint, _pname: GLenum, _param: [*c]GLint64) callconv(.C) void {
+pub fn getVertexArrayIndexed64iv(_vaobj: GLuint, _index: GLuint, _pname: GLenum, _param: [*c]GLint64) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetVertexArrayIndexed64iv, .{ _vaobj, _index, _pname, _param });
 }
 
-pub fn createSamplers(_n: GLsizei, _samplers: [*c]GLuint) callconv(.C) void {
+pub fn createSamplers(_n: GLsizei, _samplers: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCreateSamplers, .{ _n, _samplers });
 }
 
-pub fn createProgramPipelines(_n: GLsizei, _pipelines: [*c]GLuint) callconv(.C) void {
+pub fn createProgramPipelines(_n: GLsizei, _pipelines: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCreateProgramPipelines, .{ _n, _pipelines });
 }
 
-pub fn createQueries(_target: GLenum, _n: GLsizei, _ids: [*c]GLuint) callconv(.C) void {
+pub fn createQueries(_target: GLenum, _n: GLsizei, _ids: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glCreateQueries, .{ _target, _n, _ids });
 }
 
-pub fn getQueryBufferObjecti64v(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void {
+pub fn getQueryBufferObjecti64v(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetQueryBufferObjecti64v, .{ _id, _buffer, _pname, _offset });
 }
 
-pub fn getQueryBufferObjectiv(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void {
+pub fn getQueryBufferObjectiv(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetQueryBufferObjectiv, .{ _id, _buffer, _pname, _offset });
 }
 
-pub fn getQueryBufferObjectui64v(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void {
+pub fn getQueryBufferObjectui64v(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetQueryBufferObjectui64v, .{ _id, _buffer, _pname, _offset });
 }
 
-pub fn getQueryBufferObjectuiv(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void {
+pub fn getQueryBufferObjectuiv(_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetQueryBufferObjectuiv, .{ _id, _buffer, _pname, _offset });
 }
 
-pub fn memoryBarrierByRegion(_barriers: GLbitfield) callconv(.C) void {
+pub fn memoryBarrierByRegion(_barriers: GLbitfield) callconv(.c) void {
     return @call(.always_tail, function_pointers.glMemoryBarrierByRegion, .{_barriers});
 }
 
-pub fn getTextureSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
+pub fn getTextureSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetTextureSubImage, .{ _texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _format, _type, _bufSize, _pixels });
 }
 
-pub fn getCompressedTextureSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
+pub fn getCompressedTextureSubImage(_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetCompressedTextureSubImage, .{ _texture, _level, _xoffset, _yoffset, _zoffset, _width, _height, _depth, _bufSize, _pixels });
 }
 
-pub fn getGraphicsResetStatus() callconv(.C) GLenum {
+pub fn getGraphicsResetStatus() callconv(.c) GLenum {
     return @call(.always_tail, function_pointers.glGetGraphicsResetStatus, .{});
 }
 
-pub fn getnCompressedTexImage(_target: GLenum, _lod: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
+pub fn getnCompressedTexImage(_target: GLenum, _lod: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetnCompressedTexImage, .{ _target, _lod, _bufSize, _pixels });
 }
 
-pub fn getnTexImage(_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void {
+pub fn getnTexImage(_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetnTexImage, .{ _target, _level, _format, _type, _bufSize, _pixels });
 }
 
-pub fn getnUniformdv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLdouble) callconv(.C) void {
+pub fn getnUniformdv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLdouble) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetnUniformdv, .{ _program, _location, _bufSize, _params });
 }
 
-pub fn getnUniformfv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLfloat) callconv(.C) void {
+pub fn getnUniformfv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLfloat) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetnUniformfv, .{ _program, _location, _bufSize, _params });
 }
 
-pub fn getnUniformiv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLint) callconv(.C) void {
+pub fn getnUniformiv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetnUniformiv, .{ _program, _location, _bufSize, _params });
 }
 
-pub fn getnUniformuiv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLuint) callconv(.C) void {
+pub fn getnUniformuiv(_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLuint) callconv(.c) void {
     return @call(.always_tail, function_pointers.glGetnUniformuiv, .{ _program, _location, _bufSize, _params });
 }
 
-pub fn readnPixels(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _data: ?*anyopaque) callconv(.C) void {
+pub fn readnPixels(_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _data: ?*anyopaque) callconv(.c) void {
     return @call(.always_tail, function_pointers.glReadnPixels, .{ _x, _y, _width, _height, _format, _type, _bufSize, _data });
 }
 
-pub fn textureBarrier() callconv(.C) void {
+pub fn textureBarrier() callconv(.c) void {
     return @call(.always_tail, function_pointers.glTextureBarrier, .{});
 }
 // Extensions:
@@ -4033,3919 +4033,3919 @@ pub fn textureBarrier() callconv(.C) void {
 pub fn load(load_ctx: anytype, get_proc_address: fn (@TypeOf(load_ctx), [:0]const u8) ?FunctionPointer) !void {
     var success = true;
     if (get_proc_address(load_ctx, "glTexStorage2D")) |proc| {
-        function_pointers.glTexStorage2D = @as(@TypeOf(function_pointers.glTexStorage2D), @ptrCast(proc));
+        function_pointers.glTexStorage2D = @ptrCast(proc);
     } else {
         log.err("entry point glTexStorage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexStorage1D")) |proc| {
-        function_pointers.glTexStorage1D = @as(@TypeOf(function_pointers.glTexStorage1D), @ptrCast(proc));
+        function_pointers.glTexStorage1D = @ptrCast(proc);
     } else {
         log.err("entry point glTexStorage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawTransformFeedbackStreamInstanced")) |proc| {
-        function_pointers.glDrawTransformFeedbackStreamInstanced = @as(@TypeOf(function_pointers.glDrawTransformFeedbackStreamInstanced), @ptrCast(proc));
+        function_pointers.glDrawTransformFeedbackStreamInstanced = @ptrCast(proc);
     } else {
         log.err("entry point glDrawTransformFeedbackStreamInstanced not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawTransformFeedbackInstanced")) |proc| {
-        function_pointers.glDrawTransformFeedbackInstanced = @as(@TypeOf(function_pointers.glDrawTransformFeedbackInstanced), @ptrCast(proc));
+        function_pointers.glDrawTransformFeedbackInstanced = @ptrCast(proc);
     } else {
         log.err("entry point glDrawTransformFeedbackInstanced not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexStorage3D")) |proc| {
-        function_pointers.glTexStorage3D = @as(@TypeOf(function_pointers.glTexStorage3D), @ptrCast(proc));
+        function_pointers.glTexStorage3D = @ptrCast(proc);
     } else {
         log.err("entry point glTexStorage3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMemoryBarrier")) |proc| {
-        function_pointers.glMemoryBarrier = @as(@TypeOf(function_pointers.glMemoryBarrier), @ptrCast(proc));
+        function_pointers.glMemoryBarrier = @ptrCast(proc);
     } else {
         log.err("entry point glMemoryBarrier not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindImageTexture")) |proc| {
-        function_pointers.glBindImageTexture = @as(@TypeOf(function_pointers.glBindImageTexture), @ptrCast(proc));
+        function_pointers.glBindImageTexture = @ptrCast(proc);
     } else {
         log.err("entry point glBindImageTexture not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetActiveAtomicCounterBufferiv")) |proc| {
-        function_pointers.glGetActiveAtomicCounterBufferiv = @as(@TypeOf(function_pointers.glGetActiveAtomicCounterBufferiv), @ptrCast(proc));
+        function_pointers.glGetActiveAtomicCounterBufferiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetActiveAtomicCounterBufferiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetInternalformativ")) |proc| {
-        function_pointers.glGetInternalformativ = @as(@TypeOf(function_pointers.glGetInternalformativ), @ptrCast(proc));
+        function_pointers.glGetInternalformativ = @ptrCast(proc);
     } else {
         log.err("entry point glGetInternalformativ not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawElementsInstancedBaseVertexBaseInstance")) |proc| {
-        function_pointers.glDrawElementsInstancedBaseVertexBaseInstance = @as(@TypeOf(function_pointers.glDrawElementsInstancedBaseVertexBaseInstance), @ptrCast(proc));
+        function_pointers.glDrawElementsInstancedBaseVertexBaseInstance = @ptrCast(proc);
     } else {
         log.err("entry point glDrawElementsInstancedBaseVertexBaseInstance not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawElementsInstancedBaseInstance")) |proc| {
-        function_pointers.glDrawElementsInstancedBaseInstance = @as(@TypeOf(function_pointers.glDrawElementsInstancedBaseInstance), @ptrCast(proc));
+        function_pointers.glDrawElementsInstancedBaseInstance = @ptrCast(proc);
     } else {
         log.err("entry point glDrawElementsInstancedBaseInstance not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawArraysInstancedBaseInstance")) |proc| {
-        function_pointers.glDrawArraysInstancedBaseInstance = @as(@TypeOf(function_pointers.glDrawArraysInstancedBaseInstance), @ptrCast(proc));
+        function_pointers.glDrawArraysInstancedBaseInstance = @ptrCast(proc);
     } else {
         log.err("entry point glDrawArraysInstancedBaseInstance not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetDoublei_v")) |proc| {
-        function_pointers.glGetDoublei_v = @as(@TypeOf(function_pointers.glGetDoublei_v), @ptrCast(proc));
+        function_pointers.glGetDoublei_v = @ptrCast(proc);
     } else {
         log.err("entry point glGetDoublei_v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetFloati_v")) |proc| {
-        function_pointers.glGetFloati_v = @as(@TypeOf(function_pointers.glGetFloati_v), @ptrCast(proc));
+        function_pointers.glGetFloati_v = @ptrCast(proc);
     } else {
         log.err("entry point glGetFloati_v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDepthRangeIndexed")) |proc| {
-        function_pointers.glDepthRangeIndexed = @as(@TypeOf(function_pointers.glDepthRangeIndexed), @ptrCast(proc));
+        function_pointers.glDepthRangeIndexed = @ptrCast(proc);
     } else {
         log.err("entry point glDepthRangeIndexed not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDepthRangeArrayv")) |proc| {
-        function_pointers.glDepthRangeArrayv = @as(@TypeOf(function_pointers.glDepthRangeArrayv), @ptrCast(proc));
+        function_pointers.glDepthRangeArrayv = @ptrCast(proc);
     } else {
         log.err("entry point glDepthRangeArrayv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glScissorIndexedv")) |proc| {
-        function_pointers.glScissorIndexedv = @as(@TypeOf(function_pointers.glScissorIndexedv), @ptrCast(proc));
+        function_pointers.glScissorIndexedv = @ptrCast(proc);
     } else {
         log.err("entry point glScissorIndexedv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glScissorIndexed")) |proc| {
-        function_pointers.glScissorIndexed = @as(@TypeOf(function_pointers.glScissorIndexed), @ptrCast(proc));
+        function_pointers.glScissorIndexed = @ptrCast(proc);
     } else {
         log.err("entry point glScissorIndexed not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glScissorArrayv")) |proc| {
-        function_pointers.glScissorArrayv = @as(@TypeOf(function_pointers.glScissorArrayv), @ptrCast(proc));
+        function_pointers.glScissorArrayv = @ptrCast(proc);
     } else {
         log.err("entry point glScissorArrayv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glViewportIndexedfv")) |proc| {
-        function_pointers.glViewportIndexedfv = @as(@TypeOf(function_pointers.glViewportIndexedfv), @ptrCast(proc));
+        function_pointers.glViewportIndexedfv = @ptrCast(proc);
     } else {
         log.err("entry point glViewportIndexedfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glViewportIndexedf")) |proc| {
-        function_pointers.glViewportIndexedf = @as(@TypeOf(function_pointers.glViewportIndexedf), @ptrCast(proc));
+        function_pointers.glViewportIndexedf = @ptrCast(proc);
     } else {
         log.err("entry point glViewportIndexedf not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glViewportArrayv")) |proc| {
-        function_pointers.glViewportArrayv = @as(@TypeOf(function_pointers.glViewportArrayv), @ptrCast(proc));
+        function_pointers.glViewportArrayv = @ptrCast(proc);
     } else {
         log.err("entry point glViewportArrayv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetVertexAttribLdv")) |proc| {
-        function_pointers.glGetVertexAttribLdv = @as(@TypeOf(function_pointers.glGetVertexAttribLdv), @ptrCast(proc));
+        function_pointers.glGetVertexAttribLdv = @ptrCast(proc);
     } else {
         log.err("entry point glGetVertexAttribLdv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribLPointer")) |proc| {
-        function_pointers.glVertexAttribLPointer = @as(@TypeOf(function_pointers.glVertexAttribLPointer), @ptrCast(proc));
+        function_pointers.glVertexAttribLPointer = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribLPointer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribL4dv")) |proc| {
-        function_pointers.glVertexAttribL4dv = @as(@TypeOf(function_pointers.glVertexAttribL4dv), @ptrCast(proc));
+        function_pointers.glVertexAttribL4dv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribL4dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribL3dv")) |proc| {
-        function_pointers.glVertexAttribL3dv = @as(@TypeOf(function_pointers.glVertexAttribL3dv), @ptrCast(proc));
+        function_pointers.glVertexAttribL3dv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribL3dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribL2dv")) |proc| {
-        function_pointers.glVertexAttribL2dv = @as(@TypeOf(function_pointers.glVertexAttribL2dv), @ptrCast(proc));
+        function_pointers.glVertexAttribL2dv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribL2dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribL1dv")) |proc| {
-        function_pointers.glVertexAttribL1dv = @as(@TypeOf(function_pointers.glVertexAttribL1dv), @ptrCast(proc));
+        function_pointers.glVertexAttribL1dv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribL1dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribL4d")) |proc| {
-        function_pointers.glVertexAttribL4d = @as(@TypeOf(function_pointers.glVertexAttribL4d), @ptrCast(proc));
+        function_pointers.glVertexAttribL4d = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribL4d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribL3d")) |proc| {
-        function_pointers.glVertexAttribL3d = @as(@TypeOf(function_pointers.glVertexAttribL3d), @ptrCast(proc));
+        function_pointers.glVertexAttribL3d = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribL3d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribL2d")) |proc| {
-        function_pointers.glVertexAttribL2d = @as(@TypeOf(function_pointers.glVertexAttribL2d), @ptrCast(proc));
+        function_pointers.glVertexAttribL2d = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribL2d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribL1d")) |proc| {
-        function_pointers.glVertexAttribL1d = @as(@TypeOf(function_pointers.glVertexAttribL1d), @ptrCast(proc));
+        function_pointers.glVertexAttribL1d = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribL1d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glValidateProgramPipeline")) |proc| {
-        function_pointers.glValidateProgramPipeline = @as(@TypeOf(function_pointers.glValidateProgramPipeline), @ptrCast(proc));
+        function_pointers.glValidateProgramPipeline = @ptrCast(proc);
     } else {
         log.err("entry point glValidateProgramPipeline not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix4x3dv")) |proc| {
-        function_pointers.glProgramUniformMatrix4x3dv = @as(@TypeOf(function_pointers.glProgramUniformMatrix4x3dv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix4x3dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix4x3dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix3x4dv")) |proc| {
-        function_pointers.glProgramUniformMatrix3x4dv = @as(@TypeOf(function_pointers.glProgramUniformMatrix3x4dv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix3x4dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix3x4dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix4x2dv")) |proc| {
-        function_pointers.glProgramUniformMatrix4x2dv = @as(@TypeOf(function_pointers.glProgramUniformMatrix4x2dv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix4x2dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix4x2dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix2x4dv")) |proc| {
-        function_pointers.glProgramUniformMatrix2x4dv = @as(@TypeOf(function_pointers.glProgramUniformMatrix2x4dv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix2x4dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix2x4dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix3x2dv")) |proc| {
-        function_pointers.glProgramUniformMatrix3x2dv = @as(@TypeOf(function_pointers.glProgramUniformMatrix3x2dv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix3x2dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix3x2dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix2x3dv")) |proc| {
-        function_pointers.glProgramUniformMatrix2x3dv = @as(@TypeOf(function_pointers.glProgramUniformMatrix2x3dv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix2x3dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix2x3dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix4x3fv")) |proc| {
-        function_pointers.glProgramUniformMatrix4x3fv = @as(@TypeOf(function_pointers.glProgramUniformMatrix4x3fv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix4x3fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix4x3fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix3x4fv")) |proc| {
-        function_pointers.glProgramUniformMatrix3x4fv = @as(@TypeOf(function_pointers.glProgramUniformMatrix3x4fv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix3x4fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix3x4fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix4x2fv")) |proc| {
-        function_pointers.glProgramUniformMatrix4x2fv = @as(@TypeOf(function_pointers.glProgramUniformMatrix4x2fv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix4x2fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix4x2fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix2x4fv")) |proc| {
-        function_pointers.glProgramUniformMatrix2x4fv = @as(@TypeOf(function_pointers.glProgramUniformMatrix2x4fv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix2x4fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix2x4fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix3x2fv")) |proc| {
-        function_pointers.glProgramUniformMatrix3x2fv = @as(@TypeOf(function_pointers.glProgramUniformMatrix3x2fv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix3x2fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix3x2fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix2x3fv")) |proc| {
-        function_pointers.glProgramUniformMatrix2x3fv = @as(@TypeOf(function_pointers.glProgramUniformMatrix2x3fv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix2x3fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix2x3fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix4dv")) |proc| {
-        function_pointers.glProgramUniformMatrix4dv = @as(@TypeOf(function_pointers.glProgramUniformMatrix4dv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix4dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix4dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix3dv")) |proc| {
-        function_pointers.glProgramUniformMatrix3dv = @as(@TypeOf(function_pointers.glProgramUniformMatrix3dv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix3dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix3dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix2dv")) |proc| {
-        function_pointers.glProgramUniformMatrix2dv = @as(@TypeOf(function_pointers.glProgramUniformMatrix2dv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix2dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix2dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix4fv")) |proc| {
-        function_pointers.glProgramUniformMatrix4fv = @as(@TypeOf(function_pointers.glProgramUniformMatrix4fv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix4fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix4fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix3fv")) |proc| {
-        function_pointers.glProgramUniformMatrix3fv = @as(@TypeOf(function_pointers.glProgramUniformMatrix3fv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix3fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix3fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniformMatrix2fv")) |proc| {
-        function_pointers.glProgramUniformMatrix2fv = @as(@TypeOf(function_pointers.glProgramUniformMatrix2fv), @ptrCast(proc));
+        function_pointers.glProgramUniformMatrix2fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniformMatrix2fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform4uiv")) |proc| {
-        function_pointers.glProgramUniform4uiv = @as(@TypeOf(function_pointers.glProgramUniform4uiv), @ptrCast(proc));
+        function_pointers.glProgramUniform4uiv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform4uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform4ui")) |proc| {
-        function_pointers.glProgramUniform4ui = @as(@TypeOf(function_pointers.glProgramUniform4ui), @ptrCast(proc));
+        function_pointers.glProgramUniform4ui = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform4ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform4dv")) |proc| {
-        function_pointers.glProgramUniform4dv = @as(@TypeOf(function_pointers.glProgramUniform4dv), @ptrCast(proc));
+        function_pointers.glProgramUniform4dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform4dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform4d")) |proc| {
-        function_pointers.glProgramUniform4d = @as(@TypeOf(function_pointers.glProgramUniform4d), @ptrCast(proc));
+        function_pointers.glProgramUniform4d = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform4d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform4fv")) |proc| {
-        function_pointers.glProgramUniform4fv = @as(@TypeOf(function_pointers.glProgramUniform4fv), @ptrCast(proc));
+        function_pointers.glProgramUniform4fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform4fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform4f")) |proc| {
-        function_pointers.glProgramUniform4f = @as(@TypeOf(function_pointers.glProgramUniform4f), @ptrCast(proc));
+        function_pointers.glProgramUniform4f = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform4f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform4iv")) |proc| {
-        function_pointers.glProgramUniform4iv = @as(@TypeOf(function_pointers.glProgramUniform4iv), @ptrCast(proc));
+        function_pointers.glProgramUniform4iv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform4iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform4i")) |proc| {
-        function_pointers.glProgramUniform4i = @as(@TypeOf(function_pointers.glProgramUniform4i), @ptrCast(proc));
+        function_pointers.glProgramUniform4i = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform4i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform3uiv")) |proc| {
-        function_pointers.glProgramUniform3uiv = @as(@TypeOf(function_pointers.glProgramUniform3uiv), @ptrCast(proc));
+        function_pointers.glProgramUniform3uiv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform3uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform3ui")) |proc| {
-        function_pointers.glProgramUniform3ui = @as(@TypeOf(function_pointers.glProgramUniform3ui), @ptrCast(proc));
+        function_pointers.glProgramUniform3ui = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform3ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform3dv")) |proc| {
-        function_pointers.glProgramUniform3dv = @as(@TypeOf(function_pointers.glProgramUniform3dv), @ptrCast(proc));
+        function_pointers.glProgramUniform3dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform3dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform3d")) |proc| {
-        function_pointers.glProgramUniform3d = @as(@TypeOf(function_pointers.glProgramUniform3d), @ptrCast(proc));
+        function_pointers.glProgramUniform3d = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform3d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform3fv")) |proc| {
-        function_pointers.glProgramUniform3fv = @as(@TypeOf(function_pointers.glProgramUniform3fv), @ptrCast(proc));
+        function_pointers.glProgramUniform3fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform3fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform3f")) |proc| {
-        function_pointers.glProgramUniform3f = @as(@TypeOf(function_pointers.glProgramUniform3f), @ptrCast(proc));
+        function_pointers.glProgramUniform3f = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform3f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform3iv")) |proc| {
-        function_pointers.glProgramUniform3iv = @as(@TypeOf(function_pointers.glProgramUniform3iv), @ptrCast(proc));
+        function_pointers.glProgramUniform3iv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform3iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform3i")) |proc| {
-        function_pointers.glProgramUniform3i = @as(@TypeOf(function_pointers.glProgramUniform3i), @ptrCast(proc));
+        function_pointers.glProgramUniform3i = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform3i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUseProgramStages")) |proc| {
-        function_pointers.glUseProgramStages = @as(@TypeOf(function_pointers.glUseProgramStages), @ptrCast(proc));
+        function_pointers.glUseProgramStages = @ptrCast(proc);
     } else {
         log.err("entry point glUseProgramStages not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramParameteri")) |proc| {
-        function_pointers.glProgramParameteri = @as(@TypeOf(function_pointers.glProgramParameteri), @ptrCast(proc));
+        function_pointers.glProgramParameteri = @ptrCast(proc);
     } else {
         log.err("entry point glProgramParameteri not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetShaderPrecisionFormat")) |proc| {
-        function_pointers.glGetShaderPrecisionFormat = @as(@TypeOf(function_pointers.glGetShaderPrecisionFormat), @ptrCast(proc));
+        function_pointers.glGetShaderPrecisionFormat = @ptrCast(proc);
     } else {
         log.err("entry point glGetShaderPrecisionFormat not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glShaderBinary")) |proc| {
-        function_pointers.glShaderBinary = @as(@TypeOf(function_pointers.glShaderBinary), @ptrCast(proc));
+        function_pointers.glShaderBinary = @ptrCast(proc);
     } else {
         log.err("entry point glShaderBinary not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glReleaseShaderCompiler")) |proc| {
-        function_pointers.glReleaseShaderCompiler = @as(@TypeOf(function_pointers.glReleaseShaderCompiler), @ptrCast(proc));
+        function_pointers.glReleaseShaderCompiler = @ptrCast(proc);
     } else {
         log.err("entry point glReleaseShaderCompiler not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetQueryIndexediv")) |proc| {
-        function_pointers.glGetQueryIndexediv = @as(@TypeOf(function_pointers.glGetQueryIndexediv), @ptrCast(proc));
+        function_pointers.glGetQueryIndexediv = @ptrCast(proc);
     } else {
         log.err("entry point glGetQueryIndexediv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glEndQueryIndexed")) |proc| {
-        function_pointers.glEndQueryIndexed = @as(@TypeOf(function_pointers.glEndQueryIndexed), @ptrCast(proc));
+        function_pointers.glEndQueryIndexed = @ptrCast(proc);
     } else {
         log.err("entry point glEndQueryIndexed not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBeginQueryIndexed")) |proc| {
-        function_pointers.glBeginQueryIndexed = @as(@TypeOf(function_pointers.glBeginQueryIndexed), @ptrCast(proc));
+        function_pointers.glBeginQueryIndexed = @ptrCast(proc);
     } else {
         log.err("entry point glBeginQueryIndexed not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawTransformFeedbackStream")) |proc| {
-        function_pointers.glDrawTransformFeedbackStream = @as(@TypeOf(function_pointers.glDrawTransformFeedbackStream), @ptrCast(proc));
+        function_pointers.glDrawTransformFeedbackStream = @ptrCast(proc);
     } else {
         log.err("entry point glDrawTransformFeedbackStream not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawTransformFeedback")) |proc| {
-        function_pointers.glDrawTransformFeedback = @as(@TypeOf(function_pointers.glDrawTransformFeedback), @ptrCast(proc));
+        function_pointers.glDrawTransformFeedback = @ptrCast(proc);
     } else {
         log.err("entry point glDrawTransformFeedback not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glResumeTransformFeedback")) |proc| {
-        function_pointers.glResumeTransformFeedback = @as(@TypeOf(function_pointers.glResumeTransformFeedback), @ptrCast(proc));
+        function_pointers.glResumeTransformFeedback = @ptrCast(proc);
     } else {
         log.err("entry point glResumeTransformFeedback not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPauseTransformFeedback")) |proc| {
-        function_pointers.glPauseTransformFeedback = @as(@TypeOf(function_pointers.glPauseTransformFeedback), @ptrCast(proc));
+        function_pointers.glPauseTransformFeedback = @ptrCast(proc);
     } else {
         log.err("entry point glPauseTransformFeedback not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramStageiv")) |proc| {
-        function_pointers.glGetProgramStageiv = @as(@TypeOf(function_pointers.glGetProgramStageiv), @ptrCast(proc));
+        function_pointers.glGetProgramStageiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramStageiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetUniformSubroutineuiv")) |proc| {
-        function_pointers.glGetUniformSubroutineuiv = @as(@TypeOf(function_pointers.glGetUniformSubroutineuiv), @ptrCast(proc));
+        function_pointers.glGetUniformSubroutineuiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetUniformSubroutineuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformSubroutinesuiv")) |proc| {
-        function_pointers.glUniformSubroutinesuiv = @as(@TypeOf(function_pointers.glUniformSubroutinesuiv), @ptrCast(proc));
+        function_pointers.glUniformSubroutinesuiv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformSubroutinesuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetActiveSubroutineName")) |proc| {
-        function_pointers.glGetActiveSubroutineName = @as(@TypeOf(function_pointers.glGetActiveSubroutineName), @ptrCast(proc));
+        function_pointers.glGetActiveSubroutineName = @ptrCast(proc);
     } else {
         log.err("entry point glGetActiveSubroutineName not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCullFace")) |proc| {
-        function_pointers.glCullFace = @as(@TypeOf(function_pointers.glCullFace), @ptrCast(proc));
+        function_pointers.glCullFace = @ptrCast(proc);
     } else {
         log.err("entry point glCullFace not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFrontFace")) |proc| {
-        function_pointers.glFrontFace = @as(@TypeOf(function_pointers.glFrontFace), @ptrCast(proc));
+        function_pointers.glFrontFace = @ptrCast(proc);
     } else {
         log.err("entry point glFrontFace not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glHint")) |proc| {
-        function_pointers.glHint = @as(@TypeOf(function_pointers.glHint), @ptrCast(proc));
+        function_pointers.glHint = @ptrCast(proc);
     } else {
         log.err("entry point glHint not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glLineWidth")) |proc| {
-        function_pointers.glLineWidth = @as(@TypeOf(function_pointers.glLineWidth), @ptrCast(proc));
+        function_pointers.glLineWidth = @ptrCast(proc);
     } else {
         log.err("entry point glLineWidth not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPointSize")) |proc| {
-        function_pointers.glPointSize = @as(@TypeOf(function_pointers.glPointSize), @ptrCast(proc));
+        function_pointers.glPointSize = @ptrCast(proc);
     } else {
         log.err("entry point glPointSize not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPolygonMode")) |proc| {
-        function_pointers.glPolygonMode = @as(@TypeOf(function_pointers.glPolygonMode), @ptrCast(proc));
+        function_pointers.glPolygonMode = @ptrCast(proc);
     } else {
         log.err("entry point glPolygonMode not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glScissor")) |proc| {
-        function_pointers.glScissor = @as(@TypeOf(function_pointers.glScissor), @ptrCast(proc));
+        function_pointers.glScissor = @ptrCast(proc);
     } else {
         log.err("entry point glScissor not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexParameterf")) |proc| {
-        function_pointers.glTexParameterf = @as(@TypeOf(function_pointers.glTexParameterf), @ptrCast(proc));
+        function_pointers.glTexParameterf = @ptrCast(proc);
     } else {
         log.err("entry point glTexParameterf not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexParameterfv")) |proc| {
-        function_pointers.glTexParameterfv = @as(@TypeOf(function_pointers.glTexParameterfv), @ptrCast(proc));
+        function_pointers.glTexParameterfv = @ptrCast(proc);
     } else {
         log.err("entry point glTexParameterfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexParameteri")) |proc| {
-        function_pointers.glTexParameteri = @as(@TypeOf(function_pointers.glTexParameteri), @ptrCast(proc));
+        function_pointers.glTexParameteri = @ptrCast(proc);
     } else {
         log.err("entry point glTexParameteri not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexParameteriv")) |proc| {
-        function_pointers.glTexParameteriv = @as(@TypeOf(function_pointers.glTexParameteriv), @ptrCast(proc));
+        function_pointers.glTexParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glTexParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexImage1D")) |proc| {
-        function_pointers.glTexImage1D = @as(@TypeOf(function_pointers.glTexImage1D), @ptrCast(proc));
+        function_pointers.glTexImage1D = @ptrCast(proc);
     } else {
         log.err("entry point glTexImage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexImage2D")) |proc| {
-        function_pointers.glTexImage2D = @as(@TypeOf(function_pointers.glTexImage2D), @ptrCast(proc));
+        function_pointers.glTexImage2D = @ptrCast(proc);
     } else {
         log.err("entry point glTexImage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawBuffer")) |proc| {
-        function_pointers.glDrawBuffer = @as(@TypeOf(function_pointers.glDrawBuffer), @ptrCast(proc));
+        function_pointers.glDrawBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glDrawBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClear")) |proc| {
-        function_pointers.glClear = @as(@TypeOf(function_pointers.glClear), @ptrCast(proc));
+        function_pointers.glClear = @ptrCast(proc);
     } else {
         log.err("entry point glClear not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearColor")) |proc| {
-        function_pointers.glClearColor = @as(@TypeOf(function_pointers.glClearColor), @ptrCast(proc));
+        function_pointers.glClearColor = @ptrCast(proc);
     } else {
         log.err("entry point glClearColor not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearStencil")) |proc| {
-        function_pointers.glClearStencil = @as(@TypeOf(function_pointers.glClearStencil), @ptrCast(proc));
+        function_pointers.glClearStencil = @ptrCast(proc);
     } else {
         log.err("entry point glClearStencil not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearDepth")) |proc| {
-        function_pointers.glClearDepth = @as(@TypeOf(function_pointers.glClearDepth), @ptrCast(proc));
+        function_pointers.glClearDepth = @ptrCast(proc);
     } else {
         log.err("entry point glClearDepth not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glStencilMask")) |proc| {
-        function_pointers.glStencilMask = @as(@TypeOf(function_pointers.glStencilMask), @ptrCast(proc));
+        function_pointers.glStencilMask = @ptrCast(proc);
     } else {
         log.err("entry point glStencilMask not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glColorMask")) |proc| {
-        function_pointers.glColorMask = @as(@TypeOf(function_pointers.glColorMask), @ptrCast(proc));
+        function_pointers.glColorMask = @ptrCast(proc);
     } else {
         log.err("entry point glColorMask not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDepthMask")) |proc| {
-        function_pointers.glDepthMask = @as(@TypeOf(function_pointers.glDepthMask), @ptrCast(proc));
+        function_pointers.glDepthMask = @ptrCast(proc);
     } else {
         log.err("entry point glDepthMask not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDisable")) |proc| {
-        function_pointers.glDisable = @as(@TypeOf(function_pointers.glDisable), @ptrCast(proc));
+        function_pointers.glDisable = @ptrCast(proc);
     } else {
         log.err("entry point glDisable not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glEnable")) |proc| {
-        function_pointers.glEnable = @as(@TypeOf(function_pointers.glEnable), @ptrCast(proc));
+        function_pointers.glEnable = @ptrCast(proc);
     } else {
         log.err("entry point glEnable not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFinish")) |proc| {
-        function_pointers.glFinish = @as(@TypeOf(function_pointers.glFinish), @ptrCast(proc));
+        function_pointers.glFinish = @ptrCast(proc);
     } else {
         log.err("entry point glFinish not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFlush")) |proc| {
-        function_pointers.glFlush = @as(@TypeOf(function_pointers.glFlush), @ptrCast(proc));
+        function_pointers.glFlush = @ptrCast(proc);
     } else {
         log.err("entry point glFlush not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlendFunc")) |proc| {
-        function_pointers.glBlendFunc = @as(@TypeOf(function_pointers.glBlendFunc), @ptrCast(proc));
+        function_pointers.glBlendFunc = @ptrCast(proc);
     } else {
         log.err("entry point glBlendFunc not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glLogicOp")) |proc| {
-        function_pointers.glLogicOp = @as(@TypeOf(function_pointers.glLogicOp), @ptrCast(proc));
+        function_pointers.glLogicOp = @ptrCast(proc);
     } else {
         log.err("entry point glLogicOp not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glStencilFunc")) |proc| {
-        function_pointers.glStencilFunc = @as(@TypeOf(function_pointers.glStencilFunc), @ptrCast(proc));
+        function_pointers.glStencilFunc = @ptrCast(proc);
     } else {
         log.err("entry point glStencilFunc not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glStencilOp")) |proc| {
-        function_pointers.glStencilOp = @as(@TypeOf(function_pointers.glStencilOp), @ptrCast(proc));
+        function_pointers.glStencilOp = @ptrCast(proc);
     } else {
         log.err("entry point glStencilOp not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDepthFunc")) |proc| {
-        function_pointers.glDepthFunc = @as(@TypeOf(function_pointers.glDepthFunc), @ptrCast(proc));
+        function_pointers.glDepthFunc = @ptrCast(proc);
     } else {
         log.err("entry point glDepthFunc not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPixelStoref")) |proc| {
-        function_pointers.glPixelStoref = @as(@TypeOf(function_pointers.glPixelStoref), @ptrCast(proc));
+        function_pointers.glPixelStoref = @ptrCast(proc);
     } else {
         log.err("entry point glPixelStoref not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPixelStorei")) |proc| {
-        function_pointers.glPixelStorei = @as(@TypeOf(function_pointers.glPixelStorei), @ptrCast(proc));
+        function_pointers.glPixelStorei = @ptrCast(proc);
     } else {
         log.err("entry point glPixelStorei not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glReadBuffer")) |proc| {
-        function_pointers.glReadBuffer = @as(@TypeOf(function_pointers.glReadBuffer), @ptrCast(proc));
+        function_pointers.glReadBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glReadBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glReadPixels")) |proc| {
-        function_pointers.glReadPixels = @as(@TypeOf(function_pointers.glReadPixels), @ptrCast(proc));
+        function_pointers.glReadPixels = @ptrCast(proc);
     } else {
         log.err("entry point glReadPixels not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetBooleanv")) |proc| {
-        function_pointers.glGetBooleanv = @as(@TypeOf(function_pointers.glGetBooleanv), @ptrCast(proc));
+        function_pointers.glGetBooleanv = @ptrCast(proc);
     } else {
         log.err("entry point glGetBooleanv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetDoublev")) |proc| {
-        function_pointers.glGetDoublev = @as(@TypeOf(function_pointers.glGetDoublev), @ptrCast(proc));
+        function_pointers.glGetDoublev = @ptrCast(proc);
     } else {
         log.err("entry point glGetDoublev not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetError")) |proc| {
-        function_pointers.glGetError = @as(@TypeOf(function_pointers.glGetError), @ptrCast(proc));
+        function_pointers.glGetError = @ptrCast(proc);
     } else {
         log.err("entry point glGetError not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetFloatv")) |proc| {
-        function_pointers.glGetFloatv = @as(@TypeOf(function_pointers.glGetFloatv), @ptrCast(proc));
+        function_pointers.glGetFloatv = @ptrCast(proc);
     } else {
         log.err("entry point glGetFloatv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetIntegerv")) |proc| {
-        function_pointers.glGetIntegerv = @as(@TypeOf(function_pointers.glGetIntegerv), @ptrCast(proc));
+        function_pointers.glGetIntegerv = @ptrCast(proc);
     } else {
         log.err("entry point glGetIntegerv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetString")) |proc| {
-        function_pointers.glGetString = @as(@TypeOf(function_pointers.glGetString), @ptrCast(proc));
+        function_pointers.glGetString = @ptrCast(proc);
     } else {
         log.err("entry point glGetString not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTexImage")) |proc| {
-        function_pointers.glGetTexImage = @as(@TypeOf(function_pointers.glGetTexImage), @ptrCast(proc));
+        function_pointers.glGetTexImage = @ptrCast(proc);
     } else {
         log.err("entry point glGetTexImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTexParameterfv")) |proc| {
-        function_pointers.glGetTexParameterfv = @as(@TypeOf(function_pointers.glGetTexParameterfv), @ptrCast(proc));
+        function_pointers.glGetTexParameterfv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTexParameterfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTexParameteriv")) |proc| {
-        function_pointers.glGetTexParameteriv = @as(@TypeOf(function_pointers.glGetTexParameteriv), @ptrCast(proc));
+        function_pointers.glGetTexParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTexParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTexLevelParameterfv")) |proc| {
-        function_pointers.glGetTexLevelParameterfv = @as(@TypeOf(function_pointers.glGetTexLevelParameterfv), @ptrCast(proc));
+        function_pointers.glGetTexLevelParameterfv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTexLevelParameterfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTexLevelParameteriv")) |proc| {
-        function_pointers.glGetTexLevelParameteriv = @as(@TypeOf(function_pointers.glGetTexLevelParameteriv), @ptrCast(proc));
+        function_pointers.glGetTexLevelParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTexLevelParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsEnabled")) |proc| {
-        function_pointers.glIsEnabled = @as(@TypeOf(function_pointers.glIsEnabled), @ptrCast(proc));
+        function_pointers.glIsEnabled = @ptrCast(proc);
     } else {
         log.err("entry point glIsEnabled not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDepthRange")) |proc| {
-        function_pointers.glDepthRange = @as(@TypeOf(function_pointers.glDepthRange), @ptrCast(proc));
+        function_pointers.glDepthRange = @ptrCast(proc);
     } else {
         log.err("entry point glDepthRange not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glViewport")) |proc| {
-        function_pointers.glViewport = @as(@TypeOf(function_pointers.glViewport), @ptrCast(proc));
+        function_pointers.glViewport = @ptrCast(proc);
     } else {
         log.err("entry point glViewport not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexStorage2DMultisample")) |proc| {
-        function_pointers.glTexStorage2DMultisample = @as(@TypeOf(function_pointers.glTexStorage2DMultisample), @ptrCast(proc));
+        function_pointers.glTexStorage2DMultisample = @ptrCast(proc);
     } else {
         log.err("entry point glTexStorage2DMultisample not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexBufferRange")) |proc| {
-        function_pointers.glTexBufferRange = @as(@TypeOf(function_pointers.glTexBufferRange), @ptrCast(proc));
+        function_pointers.glTexBufferRange = @ptrCast(proc);
     } else {
         log.err("entry point glTexBufferRange not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glShaderStorageBlockBinding")) |proc| {
-        function_pointers.glShaderStorageBlockBinding = @as(@TypeOf(function_pointers.glShaderStorageBlockBinding), @ptrCast(proc));
+        function_pointers.glShaderStorageBlockBinding = @ptrCast(proc);
     } else {
         log.err("entry point glShaderStorageBlockBinding not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramResourceLocationIndex")) |proc| {
-        function_pointers.glGetProgramResourceLocationIndex = @as(@TypeOf(function_pointers.glGetProgramResourceLocationIndex), @ptrCast(proc));
+        function_pointers.glGetProgramResourceLocationIndex = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramResourceLocationIndex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramResourceLocation")) |proc| {
-        function_pointers.glGetProgramResourceLocation = @as(@TypeOf(function_pointers.glGetProgramResourceLocation), @ptrCast(proc));
+        function_pointers.glGetProgramResourceLocation = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramResourceLocation not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramResourceiv")) |proc| {
-        function_pointers.glGetProgramResourceiv = @as(@TypeOf(function_pointers.glGetProgramResourceiv), @ptrCast(proc));
+        function_pointers.glGetProgramResourceiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramResourceiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramResourceName")) |proc| {
-        function_pointers.glGetProgramResourceName = @as(@TypeOf(function_pointers.glGetProgramResourceName), @ptrCast(proc));
+        function_pointers.glGetProgramResourceName = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramResourceName not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramResourceIndex")) |proc| {
-        function_pointers.glGetProgramResourceIndex = @as(@TypeOf(function_pointers.glGetProgramResourceIndex), @ptrCast(proc));
+        function_pointers.glGetProgramResourceIndex = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramResourceIndex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramInterfaceiv")) |proc| {
-        function_pointers.glGetProgramInterfaceiv = @as(@TypeOf(function_pointers.glGetProgramInterfaceiv), @ptrCast(proc));
+        function_pointers.glGetProgramInterfaceiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramInterfaceiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMultiDrawElementsIndirect")) |proc| {
-        function_pointers.glMultiDrawElementsIndirect = @as(@TypeOf(function_pointers.glMultiDrawElementsIndirect), @ptrCast(proc));
+        function_pointers.glMultiDrawElementsIndirect = @ptrCast(proc);
     } else {
         log.err("entry point glMultiDrawElementsIndirect not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMultiDrawArraysIndirect")) |proc| {
-        function_pointers.glMultiDrawArraysIndirect = @as(@TypeOf(function_pointers.glMultiDrawArraysIndirect), @ptrCast(proc));
+        function_pointers.glMultiDrawArraysIndirect = @ptrCast(proc);
     } else {
         log.err("entry point glMultiDrawArraysIndirect not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glInvalidateSubFramebuffer")) |proc| {
-        function_pointers.glInvalidateSubFramebuffer = @as(@TypeOf(function_pointers.glInvalidateSubFramebuffer), @ptrCast(proc));
+        function_pointers.glInvalidateSubFramebuffer = @ptrCast(proc);
     } else {
         log.err("entry point glInvalidateSubFramebuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glInvalidateFramebuffer")) |proc| {
-        function_pointers.glInvalidateFramebuffer = @as(@TypeOf(function_pointers.glInvalidateFramebuffer), @ptrCast(proc));
+        function_pointers.glInvalidateFramebuffer = @ptrCast(proc);
     } else {
         log.err("entry point glInvalidateFramebuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glInvalidateBufferData")) |proc| {
-        function_pointers.glInvalidateBufferData = @as(@TypeOf(function_pointers.glInvalidateBufferData), @ptrCast(proc));
+        function_pointers.glInvalidateBufferData = @ptrCast(proc);
     } else {
         log.err("entry point glInvalidateBufferData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glInvalidateBufferSubData")) |proc| {
-        function_pointers.glInvalidateBufferSubData = @as(@TypeOf(function_pointers.glInvalidateBufferSubData), @ptrCast(proc));
+        function_pointers.glInvalidateBufferSubData = @ptrCast(proc);
     } else {
         log.err("entry point glInvalidateBufferSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glInvalidateTexImage")) |proc| {
-        function_pointers.glInvalidateTexImage = @as(@TypeOf(function_pointers.glInvalidateTexImage), @ptrCast(proc));
+        function_pointers.glInvalidateTexImage = @ptrCast(proc);
     } else {
         log.err("entry point glInvalidateTexImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glInvalidateTexSubImage")) |proc| {
-        function_pointers.glInvalidateTexSubImage = @as(@TypeOf(function_pointers.glInvalidateTexSubImage), @ptrCast(proc));
+        function_pointers.glInvalidateTexSubImage = @ptrCast(proc);
     } else {
         log.err("entry point glInvalidateTexSubImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetInternalformati64v")) |proc| {
-        function_pointers.glGetInternalformati64v = @as(@TypeOf(function_pointers.glGetInternalformati64v), @ptrCast(proc));
+        function_pointers.glGetInternalformati64v = @ptrCast(proc);
     } else {
         log.err("entry point glGetInternalformati64v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetFramebufferParameteriv")) |proc| {
-        function_pointers.glGetFramebufferParameteriv = @as(@TypeOf(function_pointers.glGetFramebufferParameteriv), @ptrCast(proc));
+        function_pointers.glGetFramebufferParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetFramebufferParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFramebufferParameteri")) |proc| {
-        function_pointers.glFramebufferParameteri = @as(@TypeOf(function_pointers.glFramebufferParameteri), @ptrCast(proc));
+        function_pointers.glFramebufferParameteri = @ptrCast(proc);
     } else {
         log.err("entry point glFramebufferParameteri not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyImageSubData")) |proc| {
-        function_pointers.glCopyImageSubData = @as(@TypeOf(function_pointers.glCopyImageSubData), @ptrCast(proc));
+        function_pointers.glCopyImageSubData = @ptrCast(proc);
     } else {
         log.err("entry point glCopyImageSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDispatchComputeIndirect")) |proc| {
-        function_pointers.glDispatchComputeIndirect = @as(@TypeOf(function_pointers.glDispatchComputeIndirect), @ptrCast(proc));
+        function_pointers.glDispatchComputeIndirect = @ptrCast(proc);
     } else {
         log.err("entry point glDispatchComputeIndirect not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDispatchCompute")) |proc| {
-        function_pointers.glDispatchCompute = @as(@TypeOf(function_pointers.glDispatchCompute), @ptrCast(proc));
+        function_pointers.glDispatchCompute = @ptrCast(proc);
     } else {
         log.err("entry point glDispatchCompute not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearBufferSubData")) |proc| {
-        function_pointers.glClearBufferSubData = @as(@TypeOf(function_pointers.glClearBufferSubData), @ptrCast(proc));
+        function_pointers.glClearBufferSubData = @ptrCast(proc);
     } else {
         log.err("entry point glClearBufferSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearBufferData")) |proc| {
-        function_pointers.glClearBufferData = @as(@TypeOf(function_pointers.glClearBufferData), @ptrCast(proc));
+        function_pointers.glClearBufferData = @ptrCast(proc);
     } else {
         log.err("entry point glClearBufferData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramPipelineInfoLog")) |proc| {
-        function_pointers.glGetProgramPipelineInfoLog = @as(@TypeOf(function_pointers.glGetProgramPipelineInfoLog), @ptrCast(proc));
+        function_pointers.glGetProgramPipelineInfoLog = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramPipelineInfoLog not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform2uiv")) |proc| {
-        function_pointers.glProgramUniform2uiv = @as(@TypeOf(function_pointers.glProgramUniform2uiv), @ptrCast(proc));
+        function_pointers.glProgramUniform2uiv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform2uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform2ui")) |proc| {
-        function_pointers.glProgramUniform2ui = @as(@TypeOf(function_pointers.glProgramUniform2ui), @ptrCast(proc));
+        function_pointers.glProgramUniform2ui = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform2ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform2dv")) |proc| {
-        function_pointers.glProgramUniform2dv = @as(@TypeOf(function_pointers.glProgramUniform2dv), @ptrCast(proc));
+        function_pointers.glProgramUniform2dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform2dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform2d")) |proc| {
-        function_pointers.glProgramUniform2d = @as(@TypeOf(function_pointers.glProgramUniform2d), @ptrCast(proc));
+        function_pointers.glProgramUniform2d = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform2d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform2fv")) |proc| {
-        function_pointers.glProgramUniform2fv = @as(@TypeOf(function_pointers.glProgramUniform2fv), @ptrCast(proc));
+        function_pointers.glProgramUniform2fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform2fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform2f")) |proc| {
-        function_pointers.glProgramUniform2f = @as(@TypeOf(function_pointers.glProgramUniform2f), @ptrCast(proc));
+        function_pointers.glProgramUniform2f = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform2f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform2iv")) |proc| {
-        function_pointers.glProgramUniform2iv = @as(@TypeOf(function_pointers.glProgramUniform2iv), @ptrCast(proc));
+        function_pointers.glProgramUniform2iv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform2iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform2i")) |proc| {
-        function_pointers.glProgramUniform2i = @as(@TypeOf(function_pointers.glProgramUniform2i), @ptrCast(proc));
+        function_pointers.glProgramUniform2i = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform2i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform1uiv")) |proc| {
-        function_pointers.glProgramUniform1uiv = @as(@TypeOf(function_pointers.glProgramUniform1uiv), @ptrCast(proc));
+        function_pointers.glProgramUniform1uiv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform1uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform1ui")) |proc| {
-        function_pointers.glProgramUniform1ui = @as(@TypeOf(function_pointers.glProgramUniform1ui), @ptrCast(proc));
+        function_pointers.glProgramUniform1ui = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform1ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform1dv")) |proc| {
-        function_pointers.glProgramUniform1dv = @as(@TypeOf(function_pointers.glProgramUniform1dv), @ptrCast(proc));
+        function_pointers.glProgramUniform1dv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform1dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform1d")) |proc| {
-        function_pointers.glProgramUniform1d = @as(@TypeOf(function_pointers.glProgramUniform1d), @ptrCast(proc));
+        function_pointers.glProgramUniform1d = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform1d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform1fv")) |proc| {
-        function_pointers.glProgramUniform1fv = @as(@TypeOf(function_pointers.glProgramUniform1fv), @ptrCast(proc));
+        function_pointers.glProgramUniform1fv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform1fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform1f")) |proc| {
-        function_pointers.glProgramUniform1f = @as(@TypeOf(function_pointers.glProgramUniform1f), @ptrCast(proc));
+        function_pointers.glProgramUniform1f = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform1f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform1iv")) |proc| {
-        function_pointers.glProgramUniform1iv = @as(@TypeOf(function_pointers.glProgramUniform1iv), @ptrCast(proc));
+        function_pointers.glProgramUniform1iv = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform1iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramUniform1i")) |proc| {
-        function_pointers.glProgramUniform1i = @as(@TypeOf(function_pointers.glProgramUniform1i), @ptrCast(proc));
+        function_pointers.glProgramUniform1i = @ptrCast(proc);
     } else {
         log.err("entry point glProgramUniform1i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramPipelineiv")) |proc| {
-        function_pointers.glGetProgramPipelineiv = @as(@TypeOf(function_pointers.glGetProgramPipelineiv), @ptrCast(proc));
+        function_pointers.glGetProgramPipelineiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramPipelineiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsProgramPipeline")) |proc| {
-        function_pointers.glIsProgramPipeline = @as(@TypeOf(function_pointers.glIsProgramPipeline), @ptrCast(proc));
+        function_pointers.glIsProgramPipeline = @ptrCast(proc);
     } else {
         log.err("entry point glIsProgramPipeline not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenProgramPipelines")) |proc| {
-        function_pointers.glGenProgramPipelines = @as(@TypeOf(function_pointers.glGenProgramPipelines), @ptrCast(proc));
+        function_pointers.glGenProgramPipelines = @ptrCast(proc);
     } else {
         log.err("entry point glGenProgramPipelines not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteProgramPipelines")) |proc| {
-        function_pointers.glDeleteProgramPipelines = @as(@TypeOf(function_pointers.glDeleteProgramPipelines), @ptrCast(proc));
+        function_pointers.glDeleteProgramPipelines = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteProgramPipelines not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindProgramPipeline")) |proc| {
-        function_pointers.glBindProgramPipeline = @as(@TypeOf(function_pointers.glBindProgramPipeline), @ptrCast(proc));
+        function_pointers.glBindProgramPipeline = @ptrCast(proc);
     } else {
         log.err("entry point glBindProgramPipeline not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateShaderProgramv")) |proc| {
-        function_pointers.glCreateShaderProgramv = @as(@TypeOf(function_pointers.glCreateShaderProgramv), @ptrCast(proc));
+        function_pointers.glCreateShaderProgramv = @ptrCast(proc);
     } else {
         log.err("entry point glCreateShaderProgramv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glActiveShaderProgram")) |proc| {
-        function_pointers.glActiveShaderProgram = @as(@TypeOf(function_pointers.glActiveShaderProgram), @ptrCast(proc));
+        function_pointers.glActiveShaderProgram = @ptrCast(proc);
     } else {
         log.err("entry point glActiveShaderProgram not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProgramBinary")) |proc| {
-        function_pointers.glProgramBinary = @as(@TypeOf(function_pointers.glProgramBinary), @ptrCast(proc));
+        function_pointers.glProgramBinary = @ptrCast(proc);
     } else {
         log.err("entry point glProgramBinary not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramBinary")) |proc| {
-        function_pointers.glGetProgramBinary = @as(@TypeOf(function_pointers.glGetProgramBinary), @ptrCast(proc));
+        function_pointers.glGetProgramBinary = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramBinary not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearDepthf")) |proc| {
-        function_pointers.glClearDepthf = @as(@TypeOf(function_pointers.glClearDepthf), @ptrCast(proc));
+        function_pointers.glClearDepthf = @ptrCast(proc);
     } else {
         log.err("entry point glClearDepthf not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDepthRangef")) |proc| {
-        function_pointers.glDepthRangef = @as(@TypeOf(function_pointers.glDepthRangef), @ptrCast(proc));
+        function_pointers.glDepthRangef = @ptrCast(proc);
     } else {
         log.err("entry point glDepthRangef not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsTransformFeedback")) |proc| {
-        function_pointers.glIsTransformFeedback = @as(@TypeOf(function_pointers.glIsTransformFeedback), @ptrCast(proc));
+        function_pointers.glIsTransformFeedback = @ptrCast(proc);
     } else {
         log.err("entry point glIsTransformFeedback not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenTransformFeedbacks")) |proc| {
-        function_pointers.glGenTransformFeedbacks = @as(@TypeOf(function_pointers.glGenTransformFeedbacks), @ptrCast(proc));
+        function_pointers.glGenTransformFeedbacks = @ptrCast(proc);
     } else {
         log.err("entry point glGenTransformFeedbacks not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteTransformFeedbacks")) |proc| {
-        function_pointers.glDeleteTransformFeedbacks = @as(@TypeOf(function_pointers.glDeleteTransformFeedbacks), @ptrCast(proc));
+        function_pointers.glDeleteTransformFeedbacks = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteTransformFeedbacks not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindTransformFeedback")) |proc| {
-        function_pointers.glBindTransformFeedback = @as(@TypeOf(function_pointers.glBindTransformFeedback), @ptrCast(proc));
+        function_pointers.glBindTransformFeedback = @ptrCast(proc);
     } else {
         log.err("entry point glBindTransformFeedback not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPatchParameterfv")) |proc| {
-        function_pointers.glPatchParameterfv = @as(@TypeOf(function_pointers.glPatchParameterfv), @ptrCast(proc));
+        function_pointers.glPatchParameterfv = @ptrCast(proc);
     } else {
         log.err("entry point glPatchParameterfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPatchParameteri")) |proc| {
-        function_pointers.glPatchParameteri = @as(@TypeOf(function_pointers.glPatchParameteri), @ptrCast(proc));
+        function_pointers.glPatchParameteri = @ptrCast(proc);
     } else {
         log.err("entry point glPatchParameteri not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawArrays")) |proc| {
-        function_pointers.glDrawArrays = @as(@TypeOf(function_pointers.glDrawArrays), @ptrCast(proc));
+        function_pointers.glDrawArrays = @ptrCast(proc);
     } else {
         log.err("entry point glDrawArrays not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawElements")) |proc| {
-        function_pointers.glDrawElements = @as(@TypeOf(function_pointers.glDrawElements), @ptrCast(proc));
+        function_pointers.glDrawElements = @ptrCast(proc);
     } else {
         log.err("entry point glDrawElements not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPolygonOffset")) |proc| {
-        function_pointers.glPolygonOffset = @as(@TypeOf(function_pointers.glPolygonOffset), @ptrCast(proc));
+        function_pointers.glPolygonOffset = @ptrCast(proc);
     } else {
         log.err("entry point glPolygonOffset not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyTexImage1D")) |proc| {
-        function_pointers.glCopyTexImage1D = @as(@TypeOf(function_pointers.glCopyTexImage1D), @ptrCast(proc));
+        function_pointers.glCopyTexImage1D = @ptrCast(proc);
     } else {
         log.err("entry point glCopyTexImage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyTexImage2D")) |proc| {
-        function_pointers.glCopyTexImage2D = @as(@TypeOf(function_pointers.glCopyTexImage2D), @ptrCast(proc));
+        function_pointers.glCopyTexImage2D = @ptrCast(proc);
     } else {
         log.err("entry point glCopyTexImage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyTexSubImage1D")) |proc| {
-        function_pointers.glCopyTexSubImage1D = @as(@TypeOf(function_pointers.glCopyTexSubImage1D), @ptrCast(proc));
+        function_pointers.glCopyTexSubImage1D = @ptrCast(proc);
     } else {
         log.err("entry point glCopyTexSubImage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyTexSubImage2D")) |proc| {
-        function_pointers.glCopyTexSubImage2D = @as(@TypeOf(function_pointers.glCopyTexSubImage2D), @ptrCast(proc));
+        function_pointers.glCopyTexSubImage2D = @ptrCast(proc);
     } else {
         log.err("entry point glCopyTexSubImage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexSubImage1D")) |proc| {
-        function_pointers.glTexSubImage1D = @as(@TypeOf(function_pointers.glTexSubImage1D), @ptrCast(proc));
+        function_pointers.glTexSubImage1D = @ptrCast(proc);
     } else {
         log.err("entry point glTexSubImage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexSubImage2D")) |proc| {
-        function_pointers.glTexSubImage2D = @as(@TypeOf(function_pointers.glTexSubImage2D), @ptrCast(proc));
+        function_pointers.glTexSubImage2D = @ptrCast(proc);
     } else {
         log.err("entry point glTexSubImage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindTexture")) |proc| {
-        function_pointers.glBindTexture = @as(@TypeOf(function_pointers.glBindTexture), @ptrCast(proc));
+        function_pointers.glBindTexture = @ptrCast(proc);
     } else {
         log.err("entry point glBindTexture not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteTextures")) |proc| {
-        function_pointers.glDeleteTextures = @as(@TypeOf(function_pointers.glDeleteTextures), @ptrCast(proc));
+        function_pointers.glDeleteTextures = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteTextures not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenTextures")) |proc| {
-        function_pointers.glGenTextures = @as(@TypeOf(function_pointers.glGenTextures), @ptrCast(proc));
+        function_pointers.glGenTextures = @ptrCast(proc);
     } else {
         log.err("entry point glGenTextures not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsTexture")) |proc| {
-        function_pointers.glIsTexture = @as(@TypeOf(function_pointers.glIsTexture), @ptrCast(proc));
+        function_pointers.glIsTexture = @ptrCast(proc);
     } else {
         log.err("entry point glIsTexture not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetActiveSubroutineUniformName")) |proc| {
-        function_pointers.glGetActiveSubroutineUniformName = @as(@TypeOf(function_pointers.glGetActiveSubroutineUniformName), @ptrCast(proc));
+        function_pointers.glGetActiveSubroutineUniformName = @ptrCast(proc);
     } else {
         log.err("entry point glGetActiveSubroutineUniformName not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetActiveSubroutineUniformiv")) |proc| {
-        function_pointers.glGetActiveSubroutineUniformiv = @as(@TypeOf(function_pointers.glGetActiveSubroutineUniformiv), @ptrCast(proc));
+        function_pointers.glGetActiveSubroutineUniformiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetActiveSubroutineUniformiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetSubroutineIndex")) |proc| {
-        function_pointers.glGetSubroutineIndex = @as(@TypeOf(function_pointers.glGetSubroutineIndex), @ptrCast(proc));
+        function_pointers.glGetSubroutineIndex = @ptrCast(proc);
     } else {
         log.err("entry point glGetSubroutineIndex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetSubroutineUniformLocation")) |proc| {
-        function_pointers.glGetSubroutineUniformLocation = @as(@TypeOf(function_pointers.glGetSubroutineUniformLocation), @ptrCast(proc));
+        function_pointers.glGetSubroutineUniformLocation = @ptrCast(proc);
     } else {
         log.err("entry point glGetSubroutineUniformLocation not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetUniformdv")) |proc| {
-        function_pointers.glGetUniformdv = @as(@TypeOf(function_pointers.glGetUniformdv), @ptrCast(proc));
+        function_pointers.glGetUniformdv = @ptrCast(proc);
     } else {
         log.err("entry point glGetUniformdv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix4x3dv")) |proc| {
-        function_pointers.glUniformMatrix4x3dv = @as(@TypeOf(function_pointers.glUniformMatrix4x3dv), @ptrCast(proc));
+        function_pointers.glUniformMatrix4x3dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix4x3dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix4x2dv")) |proc| {
-        function_pointers.glUniformMatrix4x2dv = @as(@TypeOf(function_pointers.glUniformMatrix4x2dv), @ptrCast(proc));
+        function_pointers.glUniformMatrix4x2dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix4x2dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix3x4dv")) |proc| {
-        function_pointers.glUniformMatrix3x4dv = @as(@TypeOf(function_pointers.glUniformMatrix3x4dv), @ptrCast(proc));
+        function_pointers.glUniformMatrix3x4dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix3x4dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix3x2dv")) |proc| {
-        function_pointers.glUniformMatrix3x2dv = @as(@TypeOf(function_pointers.glUniformMatrix3x2dv), @ptrCast(proc));
+        function_pointers.glUniformMatrix3x2dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix3x2dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix2x4dv")) |proc| {
-        function_pointers.glUniformMatrix2x4dv = @as(@TypeOf(function_pointers.glUniformMatrix2x4dv), @ptrCast(proc));
+        function_pointers.glUniformMatrix2x4dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix2x4dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix2x3dv")) |proc| {
-        function_pointers.glUniformMatrix2x3dv = @as(@TypeOf(function_pointers.glUniformMatrix2x3dv), @ptrCast(proc));
+        function_pointers.glUniformMatrix2x3dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix2x3dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix4dv")) |proc| {
-        function_pointers.glUniformMatrix4dv = @as(@TypeOf(function_pointers.glUniformMatrix4dv), @ptrCast(proc));
+        function_pointers.glUniformMatrix4dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix4dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix3dv")) |proc| {
-        function_pointers.glUniformMatrix3dv = @as(@TypeOf(function_pointers.glUniformMatrix3dv), @ptrCast(proc));
+        function_pointers.glUniformMatrix3dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix3dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawRangeElements")) |proc| {
-        function_pointers.glDrawRangeElements = @as(@TypeOf(function_pointers.glDrawRangeElements), @ptrCast(proc));
+        function_pointers.glDrawRangeElements = @ptrCast(proc);
     } else {
         log.err("entry point glDrawRangeElements not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexImage3D")) |proc| {
-        function_pointers.glTexImage3D = @as(@TypeOf(function_pointers.glTexImage3D), @ptrCast(proc));
+        function_pointers.glTexImage3D = @ptrCast(proc);
     } else {
         log.err("entry point glTexImage3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexSubImage3D")) |proc| {
-        function_pointers.glTexSubImage3D = @as(@TypeOf(function_pointers.glTexSubImage3D), @ptrCast(proc));
+        function_pointers.glTexSubImage3D = @ptrCast(proc);
     } else {
         log.err("entry point glTexSubImage3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyTexSubImage3D")) |proc| {
-        function_pointers.glCopyTexSubImage3D = @as(@TypeOf(function_pointers.glCopyTexSubImage3D), @ptrCast(proc));
+        function_pointers.glCopyTexSubImage3D = @ptrCast(proc);
     } else {
         log.err("entry point glCopyTexSubImage3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix2dv")) |proc| {
-        function_pointers.glUniformMatrix2dv = @as(@TypeOf(function_pointers.glUniformMatrix2dv), @ptrCast(proc));
+        function_pointers.glUniformMatrix2dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix2dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform4dv")) |proc| {
-        function_pointers.glUniform4dv = @as(@TypeOf(function_pointers.glUniform4dv), @ptrCast(proc));
+        function_pointers.glUniform4dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform4dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform3dv")) |proc| {
-        function_pointers.glUniform3dv = @as(@TypeOf(function_pointers.glUniform3dv), @ptrCast(proc));
+        function_pointers.glUniform3dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform3dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform2dv")) |proc| {
-        function_pointers.glUniform2dv = @as(@TypeOf(function_pointers.glUniform2dv), @ptrCast(proc));
+        function_pointers.glUniform2dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform2dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform1dv")) |proc| {
-        function_pointers.glUniform1dv = @as(@TypeOf(function_pointers.glUniform1dv), @ptrCast(proc));
+        function_pointers.glUniform1dv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform1dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform4d")) |proc| {
-        function_pointers.glUniform4d = @as(@TypeOf(function_pointers.glUniform4d), @ptrCast(proc));
+        function_pointers.glUniform4d = @ptrCast(proc);
     } else {
         log.err("entry point glUniform4d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform3d")) |proc| {
-        function_pointers.glUniform3d = @as(@TypeOf(function_pointers.glUniform3d), @ptrCast(proc));
+        function_pointers.glUniform3d = @ptrCast(proc);
     } else {
         log.err("entry point glUniform3d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform2d")) |proc| {
-        function_pointers.glUniform2d = @as(@TypeOf(function_pointers.glUniform2d), @ptrCast(proc));
+        function_pointers.glUniform2d = @ptrCast(proc);
     } else {
         log.err("entry point glUniform2d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform1d")) |proc| {
-        function_pointers.glUniform1d = @as(@TypeOf(function_pointers.glUniform1d), @ptrCast(proc));
+        function_pointers.glUniform1d = @ptrCast(proc);
     } else {
         log.err("entry point glUniform1d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawElementsIndirect")) |proc| {
-        function_pointers.glDrawElementsIndirect = @as(@TypeOf(function_pointers.glDrawElementsIndirect), @ptrCast(proc));
+        function_pointers.glDrawElementsIndirect = @ptrCast(proc);
     } else {
         log.err("entry point glDrawElementsIndirect not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawArraysIndirect")) |proc| {
-        function_pointers.glDrawArraysIndirect = @as(@TypeOf(function_pointers.glDrawArraysIndirect), @ptrCast(proc));
+        function_pointers.glDrawArraysIndirect = @ptrCast(proc);
     } else {
         log.err("entry point glDrawArraysIndirect not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlendFuncSeparatei")) |proc| {
-        function_pointers.glBlendFuncSeparatei = @as(@TypeOf(function_pointers.glBlendFuncSeparatei), @ptrCast(proc));
+        function_pointers.glBlendFuncSeparatei = @ptrCast(proc);
     } else {
         log.err("entry point glBlendFuncSeparatei not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlendFunci")) |proc| {
-        function_pointers.glBlendFunci = @as(@TypeOf(function_pointers.glBlendFunci), @ptrCast(proc));
+        function_pointers.glBlendFunci = @ptrCast(proc);
     } else {
         log.err("entry point glBlendFunci not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlendEquationSeparatei")) |proc| {
-        function_pointers.glBlendEquationSeparatei = @as(@TypeOf(function_pointers.glBlendEquationSeparatei), @ptrCast(proc));
+        function_pointers.glBlendEquationSeparatei = @ptrCast(proc);
     } else {
         log.err("entry point glBlendEquationSeparatei not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlendEquationi")) |proc| {
-        function_pointers.glBlendEquationi = @as(@TypeOf(function_pointers.glBlendEquationi), @ptrCast(proc));
+        function_pointers.glBlendEquationi = @ptrCast(proc);
     } else {
         log.err("entry point glBlendEquationi not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMinSampleShading")) |proc| {
-        function_pointers.glMinSampleShading = @as(@TypeOf(function_pointers.glMinSampleShading), @ptrCast(proc));
+        function_pointers.glMinSampleShading = @ptrCast(proc);
     } else {
         log.err("entry point glMinSampleShading not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glActiveTexture")) |proc| {
-        function_pointers.glActiveTexture = @as(@TypeOf(function_pointers.glActiveTexture), @ptrCast(proc));
+        function_pointers.glActiveTexture = @ptrCast(proc);
     } else {
         log.err("entry point glActiveTexture not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glSampleCoverage")) |proc| {
-        function_pointers.glSampleCoverage = @as(@TypeOf(function_pointers.glSampleCoverage), @ptrCast(proc));
+        function_pointers.glSampleCoverage = @ptrCast(proc);
     } else {
         log.err("entry point glSampleCoverage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCompressedTexImage3D")) |proc| {
-        function_pointers.glCompressedTexImage3D = @as(@TypeOf(function_pointers.glCompressedTexImage3D), @ptrCast(proc));
+        function_pointers.glCompressedTexImage3D = @ptrCast(proc);
     } else {
         log.err("entry point glCompressedTexImage3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCompressedTexImage2D")) |proc| {
-        function_pointers.glCompressedTexImage2D = @as(@TypeOf(function_pointers.glCompressedTexImage2D), @ptrCast(proc));
+        function_pointers.glCompressedTexImage2D = @ptrCast(proc);
     } else {
         log.err("entry point glCompressedTexImage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCompressedTexImage1D")) |proc| {
-        function_pointers.glCompressedTexImage1D = @as(@TypeOf(function_pointers.glCompressedTexImage1D), @ptrCast(proc));
+        function_pointers.glCompressedTexImage1D = @ptrCast(proc);
     } else {
         log.err("entry point glCompressedTexImage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCompressedTexSubImage3D")) |proc| {
-        function_pointers.glCompressedTexSubImage3D = @as(@TypeOf(function_pointers.glCompressedTexSubImage3D), @ptrCast(proc));
+        function_pointers.glCompressedTexSubImage3D = @ptrCast(proc);
     } else {
         log.err("entry point glCompressedTexSubImage3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCompressedTexSubImage2D")) |proc| {
-        function_pointers.glCompressedTexSubImage2D = @as(@TypeOf(function_pointers.glCompressedTexSubImage2D), @ptrCast(proc));
+        function_pointers.glCompressedTexSubImage2D = @ptrCast(proc);
     } else {
         log.err("entry point glCompressedTexSubImage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCompressedTexSubImage1D")) |proc| {
-        function_pointers.glCompressedTexSubImage1D = @as(@TypeOf(function_pointers.glCompressedTexSubImage1D), @ptrCast(proc));
+        function_pointers.glCompressedTexSubImage1D = @ptrCast(proc);
     } else {
         log.err("entry point glCompressedTexSubImage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetCompressedTexImage")) |proc| {
-        function_pointers.glGetCompressedTexImage = @as(@TypeOf(function_pointers.glGetCompressedTexImage), @ptrCast(proc));
+        function_pointers.glGetCompressedTexImage = @ptrCast(proc);
     } else {
         log.err("entry point glGetCompressedTexImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribP4uiv")) |proc| {
-        function_pointers.glVertexAttribP4uiv = @as(@TypeOf(function_pointers.glVertexAttribP4uiv), @ptrCast(proc));
+        function_pointers.glVertexAttribP4uiv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribP4uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribP4ui")) |proc| {
-        function_pointers.glVertexAttribP4ui = @as(@TypeOf(function_pointers.glVertexAttribP4ui), @ptrCast(proc));
+        function_pointers.glVertexAttribP4ui = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribP4ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribP3uiv")) |proc| {
-        function_pointers.glVertexAttribP3uiv = @as(@TypeOf(function_pointers.glVertexAttribP3uiv), @ptrCast(proc));
+        function_pointers.glVertexAttribP3uiv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribP3uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribP3ui")) |proc| {
-        function_pointers.glVertexAttribP3ui = @as(@TypeOf(function_pointers.glVertexAttribP3ui), @ptrCast(proc));
+        function_pointers.glVertexAttribP3ui = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribP3ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribP2uiv")) |proc| {
-        function_pointers.glVertexAttribP2uiv = @as(@TypeOf(function_pointers.glVertexAttribP2uiv), @ptrCast(proc));
+        function_pointers.glVertexAttribP2uiv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribP2uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribP2ui")) |proc| {
-        function_pointers.glVertexAttribP2ui = @as(@TypeOf(function_pointers.glVertexAttribP2ui), @ptrCast(proc));
+        function_pointers.glVertexAttribP2ui = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribP2ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribP1uiv")) |proc| {
-        function_pointers.glVertexAttribP1uiv = @as(@TypeOf(function_pointers.glVertexAttribP1uiv), @ptrCast(proc));
+        function_pointers.glVertexAttribP1uiv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribP1uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribP1ui")) |proc| {
-        function_pointers.glVertexAttribP1ui = @as(@TypeOf(function_pointers.glVertexAttribP1ui), @ptrCast(proc));
+        function_pointers.glVertexAttribP1ui = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribP1ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribDivisor")) |proc| {
-        function_pointers.glVertexAttribDivisor = @as(@TypeOf(function_pointers.glVertexAttribDivisor), @ptrCast(proc));
+        function_pointers.glVertexAttribDivisor = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribDivisor not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetQueryObjectui64v")) |proc| {
-        function_pointers.glGetQueryObjectui64v = @as(@TypeOf(function_pointers.glGetQueryObjectui64v), @ptrCast(proc));
+        function_pointers.glGetQueryObjectui64v = @ptrCast(proc);
     } else {
         log.err("entry point glGetQueryObjectui64v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetQueryObjecti64v")) |proc| {
-        function_pointers.glGetQueryObjecti64v = @as(@TypeOf(function_pointers.glGetQueryObjecti64v), @ptrCast(proc));
+        function_pointers.glGetQueryObjecti64v = @ptrCast(proc);
     } else {
         log.err("entry point glGetQueryObjecti64v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glQueryCounter")) |proc| {
-        function_pointers.glQueryCounter = @as(@TypeOf(function_pointers.glQueryCounter), @ptrCast(proc));
+        function_pointers.glQueryCounter = @ptrCast(proc);
     } else {
         log.err("entry point glQueryCounter not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetSamplerParameterIuiv")) |proc| {
-        function_pointers.glGetSamplerParameterIuiv = @as(@TypeOf(function_pointers.glGetSamplerParameterIuiv), @ptrCast(proc));
+        function_pointers.glGetSamplerParameterIuiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetSamplerParameterIuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetSamplerParameterfv")) |proc| {
-        function_pointers.glGetSamplerParameterfv = @as(@TypeOf(function_pointers.glGetSamplerParameterfv), @ptrCast(proc));
+        function_pointers.glGetSamplerParameterfv = @ptrCast(proc);
     } else {
         log.err("entry point glGetSamplerParameterfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetSamplerParameterIiv")) |proc| {
-        function_pointers.glGetSamplerParameterIiv = @as(@TypeOf(function_pointers.glGetSamplerParameterIiv), @ptrCast(proc));
+        function_pointers.glGetSamplerParameterIiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetSamplerParameterIiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetSamplerParameteriv")) |proc| {
-        function_pointers.glGetSamplerParameteriv = @as(@TypeOf(function_pointers.glGetSamplerParameteriv), @ptrCast(proc));
+        function_pointers.glGetSamplerParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetSamplerParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glSamplerParameterIuiv")) |proc| {
-        function_pointers.glSamplerParameterIuiv = @as(@TypeOf(function_pointers.glSamplerParameterIuiv), @ptrCast(proc));
+        function_pointers.glSamplerParameterIuiv = @ptrCast(proc);
     } else {
         log.err("entry point glSamplerParameterIuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glSamplerParameterIiv")) |proc| {
-        function_pointers.glSamplerParameterIiv = @as(@TypeOf(function_pointers.glSamplerParameterIiv), @ptrCast(proc));
+        function_pointers.glSamplerParameterIiv = @ptrCast(proc);
     } else {
         log.err("entry point glSamplerParameterIiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glSamplerParameterfv")) |proc| {
-        function_pointers.glSamplerParameterfv = @as(@TypeOf(function_pointers.glSamplerParameterfv), @ptrCast(proc));
+        function_pointers.glSamplerParameterfv = @ptrCast(proc);
     } else {
         log.err("entry point glSamplerParameterfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glSamplerParameterf")) |proc| {
-        function_pointers.glSamplerParameterf = @as(@TypeOf(function_pointers.glSamplerParameterf), @ptrCast(proc));
+        function_pointers.glSamplerParameterf = @ptrCast(proc);
     } else {
         log.err("entry point glSamplerParameterf not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glSamplerParameteriv")) |proc| {
-        function_pointers.glSamplerParameteriv = @as(@TypeOf(function_pointers.glSamplerParameteriv), @ptrCast(proc));
+        function_pointers.glSamplerParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glSamplerParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glSamplerParameteri")) |proc| {
-        function_pointers.glSamplerParameteri = @as(@TypeOf(function_pointers.glSamplerParameteri), @ptrCast(proc));
+        function_pointers.glSamplerParameteri = @ptrCast(proc);
     } else {
         log.err("entry point glSamplerParameteri not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindSampler")) |proc| {
-        function_pointers.glBindSampler = @as(@TypeOf(function_pointers.glBindSampler), @ptrCast(proc));
+        function_pointers.glBindSampler = @ptrCast(proc);
     } else {
         log.err("entry point glBindSampler not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsSampler")) |proc| {
-        function_pointers.glIsSampler = @as(@TypeOf(function_pointers.glIsSampler), @ptrCast(proc));
+        function_pointers.glIsSampler = @ptrCast(proc);
     } else {
         log.err("entry point glIsSampler not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteSamplers")) |proc| {
-        function_pointers.glDeleteSamplers = @as(@TypeOf(function_pointers.glDeleteSamplers), @ptrCast(proc));
+        function_pointers.glDeleteSamplers = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteSamplers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenSamplers")) |proc| {
-        function_pointers.glGenSamplers = @as(@TypeOf(function_pointers.glGenSamplers), @ptrCast(proc));
+        function_pointers.glGenSamplers = @ptrCast(proc);
     } else {
         log.err("entry point glGenSamplers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetFragDataIndex")) |proc| {
-        function_pointers.glGetFragDataIndex = @as(@TypeOf(function_pointers.glGetFragDataIndex), @ptrCast(proc));
+        function_pointers.glGetFragDataIndex = @ptrCast(proc);
     } else {
         log.err("entry point glGetFragDataIndex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindFragDataLocationIndexed")) |proc| {
-        function_pointers.glBindFragDataLocationIndexed = @as(@TypeOf(function_pointers.glBindFragDataLocationIndexed), @ptrCast(proc));
+        function_pointers.glBindFragDataLocationIndexed = @ptrCast(proc);
     } else {
         log.err("entry point glBindFragDataLocationIndexed not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glSampleMaski")) |proc| {
-        function_pointers.glSampleMaski = @as(@TypeOf(function_pointers.glSampleMaski), @ptrCast(proc));
+        function_pointers.glSampleMaski = @ptrCast(proc);
     } else {
         log.err("entry point glSampleMaski not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetMultisamplefv")) |proc| {
-        function_pointers.glGetMultisamplefv = @as(@TypeOf(function_pointers.glGetMultisamplefv), @ptrCast(proc));
+        function_pointers.glGetMultisamplefv = @ptrCast(proc);
     } else {
         log.err("entry point glGetMultisamplefv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexImage3DMultisample")) |proc| {
-        function_pointers.glTexImage3DMultisample = @as(@TypeOf(function_pointers.glTexImage3DMultisample), @ptrCast(proc));
+        function_pointers.glTexImage3DMultisample = @ptrCast(proc);
     } else {
         log.err("entry point glTexImage3DMultisample not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexImage2DMultisample")) |proc| {
-        function_pointers.glTexImage2DMultisample = @as(@TypeOf(function_pointers.glTexImage2DMultisample), @ptrCast(proc));
+        function_pointers.glTexImage2DMultisample = @ptrCast(proc);
     } else {
         log.err("entry point glTexImage2DMultisample not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFramebufferTexture")) |proc| {
-        function_pointers.glFramebufferTexture = @as(@TypeOf(function_pointers.glFramebufferTexture), @ptrCast(proc));
+        function_pointers.glFramebufferTexture = @ptrCast(proc);
     } else {
         log.err("entry point glFramebufferTexture not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetBufferParameteri64v")) |proc| {
-        function_pointers.glGetBufferParameteri64v = @as(@TypeOf(function_pointers.glGetBufferParameteri64v), @ptrCast(proc));
+        function_pointers.glGetBufferParameteri64v = @ptrCast(proc);
     } else {
         log.err("entry point glGetBufferParameteri64v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlendFuncSeparate")) |proc| {
-        function_pointers.glBlendFuncSeparate = @as(@TypeOf(function_pointers.glBlendFuncSeparate), @ptrCast(proc));
+        function_pointers.glBlendFuncSeparate = @ptrCast(proc);
     } else {
         log.err("entry point glBlendFuncSeparate not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMultiDrawArrays")) |proc| {
-        function_pointers.glMultiDrawArrays = @as(@TypeOf(function_pointers.glMultiDrawArrays), @ptrCast(proc));
+        function_pointers.glMultiDrawArrays = @ptrCast(proc);
     } else {
         log.err("entry point glMultiDrawArrays not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMultiDrawElements")) |proc| {
-        function_pointers.glMultiDrawElements = @as(@TypeOf(function_pointers.glMultiDrawElements), @ptrCast(proc));
+        function_pointers.glMultiDrawElements = @ptrCast(proc);
     } else {
         log.err("entry point glMultiDrawElements not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPointParameterf")) |proc| {
-        function_pointers.glPointParameterf = @as(@TypeOf(function_pointers.glPointParameterf), @ptrCast(proc));
+        function_pointers.glPointParameterf = @ptrCast(proc);
     } else {
         log.err("entry point glPointParameterf not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPointParameterfv")) |proc| {
-        function_pointers.glPointParameterfv = @as(@TypeOf(function_pointers.glPointParameterfv), @ptrCast(proc));
+        function_pointers.glPointParameterfv = @ptrCast(proc);
     } else {
         log.err("entry point glPointParameterfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPointParameteri")) |proc| {
-        function_pointers.glPointParameteri = @as(@TypeOf(function_pointers.glPointParameteri), @ptrCast(proc));
+        function_pointers.glPointParameteri = @ptrCast(proc);
     } else {
         log.err("entry point glPointParameteri not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPointParameteriv")) |proc| {
-        function_pointers.glPointParameteriv = @as(@TypeOf(function_pointers.glPointParameteriv), @ptrCast(proc));
+        function_pointers.glPointParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glPointParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetInteger64i_v")) |proc| {
-        function_pointers.glGetInteger64i_v = @as(@TypeOf(function_pointers.glGetInteger64i_v), @ptrCast(proc));
+        function_pointers.glGetInteger64i_v = @ptrCast(proc);
     } else {
         log.err("entry point glGetInteger64i_v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetSynciv")) |proc| {
-        function_pointers.glGetSynciv = @as(@TypeOf(function_pointers.glGetSynciv), @ptrCast(proc));
+        function_pointers.glGetSynciv = @ptrCast(proc);
     } else {
         log.err("entry point glGetSynciv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetInteger64v")) |proc| {
-        function_pointers.glGetInteger64v = @as(@TypeOf(function_pointers.glGetInteger64v), @ptrCast(proc));
+        function_pointers.glGetInteger64v = @ptrCast(proc);
     } else {
         log.err("entry point glGetInteger64v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glWaitSync")) |proc| {
-        function_pointers.glWaitSync = @as(@TypeOf(function_pointers.glWaitSync), @ptrCast(proc));
+        function_pointers.glWaitSync = @ptrCast(proc);
     } else {
         log.err("entry point glWaitSync not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClientWaitSync")) |proc| {
-        function_pointers.glClientWaitSync = @as(@TypeOf(function_pointers.glClientWaitSync), @ptrCast(proc));
+        function_pointers.glClientWaitSync = @ptrCast(proc);
     } else {
         log.err("entry point glClientWaitSync not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteSync")) |proc| {
-        function_pointers.glDeleteSync = @as(@TypeOf(function_pointers.glDeleteSync), @ptrCast(proc));
+        function_pointers.glDeleteSync = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteSync not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsSync")) |proc| {
-        function_pointers.glIsSync = @as(@TypeOf(function_pointers.glIsSync), @ptrCast(proc));
+        function_pointers.glIsSync = @ptrCast(proc);
     } else {
         log.err("entry point glIsSync not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFenceSync")) |proc| {
-        function_pointers.glFenceSync = @as(@TypeOf(function_pointers.glFenceSync), @ptrCast(proc));
+        function_pointers.glFenceSync = @ptrCast(proc);
     } else {
         log.err("entry point glFenceSync not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlendColor")) |proc| {
-        function_pointers.glBlendColor = @as(@TypeOf(function_pointers.glBlendColor), @ptrCast(proc));
+        function_pointers.glBlendColor = @ptrCast(proc);
     } else {
         log.err("entry point glBlendColor not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlendEquation")) |proc| {
-        function_pointers.glBlendEquation = @as(@TypeOf(function_pointers.glBlendEquation), @ptrCast(proc));
+        function_pointers.glBlendEquation = @ptrCast(proc);
     } else {
         log.err("entry point glBlendEquation not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glProvokingVertex")) |proc| {
-        function_pointers.glProvokingVertex = @as(@TypeOf(function_pointers.glProvokingVertex), @ptrCast(proc));
+        function_pointers.glProvokingVertex = @ptrCast(proc);
     } else {
         log.err("entry point glProvokingVertex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMultiDrawElementsBaseVertex")) |proc| {
-        function_pointers.glMultiDrawElementsBaseVertex = @as(@TypeOf(function_pointers.glMultiDrawElementsBaseVertex), @ptrCast(proc));
+        function_pointers.glMultiDrawElementsBaseVertex = @ptrCast(proc);
     } else {
         log.err("entry point glMultiDrawElementsBaseVertex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawElementsInstancedBaseVertex")) |proc| {
-        function_pointers.glDrawElementsInstancedBaseVertex = @as(@TypeOf(function_pointers.glDrawElementsInstancedBaseVertex), @ptrCast(proc));
+        function_pointers.glDrawElementsInstancedBaseVertex = @ptrCast(proc);
     } else {
         log.err("entry point glDrawElementsInstancedBaseVertex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawRangeElementsBaseVertex")) |proc| {
-        function_pointers.glDrawRangeElementsBaseVertex = @as(@TypeOf(function_pointers.glDrawRangeElementsBaseVertex), @ptrCast(proc));
+        function_pointers.glDrawRangeElementsBaseVertex = @ptrCast(proc);
     } else {
         log.err("entry point glDrawRangeElementsBaseVertex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawElementsBaseVertex")) |proc| {
-        function_pointers.glDrawElementsBaseVertex = @as(@TypeOf(function_pointers.glDrawElementsBaseVertex), @ptrCast(proc));
+        function_pointers.glDrawElementsBaseVertex = @ptrCast(proc);
     } else {
         log.err("entry point glDrawElementsBaseVertex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenQueries")) |proc| {
-        function_pointers.glGenQueries = @as(@TypeOf(function_pointers.glGenQueries), @ptrCast(proc));
+        function_pointers.glGenQueries = @ptrCast(proc);
     } else {
         log.err("entry point glGenQueries not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteQueries")) |proc| {
-        function_pointers.glDeleteQueries = @as(@TypeOf(function_pointers.glDeleteQueries), @ptrCast(proc));
+        function_pointers.glDeleteQueries = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteQueries not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsQuery")) |proc| {
-        function_pointers.glIsQuery = @as(@TypeOf(function_pointers.glIsQuery), @ptrCast(proc));
+        function_pointers.glIsQuery = @ptrCast(proc);
     } else {
         log.err("entry point glIsQuery not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBeginQuery")) |proc| {
-        function_pointers.glBeginQuery = @as(@TypeOf(function_pointers.glBeginQuery), @ptrCast(proc));
+        function_pointers.glBeginQuery = @ptrCast(proc);
     } else {
         log.err("entry point glBeginQuery not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glEndQuery")) |proc| {
-        function_pointers.glEndQuery = @as(@TypeOf(function_pointers.glEndQuery), @ptrCast(proc));
+        function_pointers.glEndQuery = @ptrCast(proc);
     } else {
         log.err("entry point glEndQuery not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetQueryiv")) |proc| {
-        function_pointers.glGetQueryiv = @as(@TypeOf(function_pointers.glGetQueryiv), @ptrCast(proc));
+        function_pointers.glGetQueryiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetQueryiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetQueryObjectiv")) |proc| {
-        function_pointers.glGetQueryObjectiv = @as(@TypeOf(function_pointers.glGetQueryObjectiv), @ptrCast(proc));
+        function_pointers.glGetQueryObjectiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetQueryObjectiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetQueryObjectuiv")) |proc| {
-        function_pointers.glGetQueryObjectuiv = @as(@TypeOf(function_pointers.glGetQueryObjectuiv), @ptrCast(proc));
+        function_pointers.glGetQueryObjectuiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetQueryObjectuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindBuffer")) |proc| {
-        function_pointers.glBindBuffer = @as(@TypeOf(function_pointers.glBindBuffer), @ptrCast(proc));
+        function_pointers.glBindBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glBindBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteBuffers")) |proc| {
-        function_pointers.glDeleteBuffers = @as(@TypeOf(function_pointers.glDeleteBuffers), @ptrCast(proc));
+        function_pointers.glDeleteBuffers = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteBuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenBuffers")) |proc| {
-        function_pointers.glGenBuffers = @as(@TypeOf(function_pointers.glGenBuffers), @ptrCast(proc));
+        function_pointers.glGenBuffers = @ptrCast(proc);
     } else {
         log.err("entry point glGenBuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsBuffer")) |proc| {
-        function_pointers.glIsBuffer = @as(@TypeOf(function_pointers.glIsBuffer), @ptrCast(proc));
+        function_pointers.glIsBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glIsBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBufferData")) |proc| {
-        function_pointers.glBufferData = @as(@TypeOf(function_pointers.glBufferData), @ptrCast(proc));
+        function_pointers.glBufferData = @ptrCast(proc);
     } else {
         log.err("entry point glBufferData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBufferSubData")) |proc| {
-        function_pointers.glBufferSubData = @as(@TypeOf(function_pointers.glBufferSubData), @ptrCast(proc));
+        function_pointers.glBufferSubData = @ptrCast(proc);
     } else {
         log.err("entry point glBufferSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetBufferSubData")) |proc| {
-        function_pointers.glGetBufferSubData = @as(@TypeOf(function_pointers.glGetBufferSubData), @ptrCast(proc));
+        function_pointers.glGetBufferSubData = @ptrCast(proc);
     } else {
         log.err("entry point glGetBufferSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMapBuffer")) |proc| {
-        function_pointers.glMapBuffer = @as(@TypeOf(function_pointers.glMapBuffer), @ptrCast(proc));
+        function_pointers.glMapBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glMapBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUnmapBuffer")) |proc| {
-        function_pointers.glUnmapBuffer = @as(@TypeOf(function_pointers.glUnmapBuffer), @ptrCast(proc));
+        function_pointers.glUnmapBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glUnmapBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetBufferParameteriv")) |proc| {
-        function_pointers.glGetBufferParameteriv = @as(@TypeOf(function_pointers.glGetBufferParameteriv), @ptrCast(proc));
+        function_pointers.glGetBufferParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetBufferParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetBufferPointerv")) |proc| {
-        function_pointers.glGetBufferPointerv = @as(@TypeOf(function_pointers.glGetBufferPointerv), @ptrCast(proc));
+        function_pointers.glGetBufferPointerv = @ptrCast(proc);
     } else {
         log.err("entry point glGetBufferPointerv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlendEquationSeparate")) |proc| {
-        function_pointers.glBlendEquationSeparate = @as(@TypeOf(function_pointers.glBlendEquationSeparate), @ptrCast(proc));
+        function_pointers.glBlendEquationSeparate = @ptrCast(proc);
     } else {
         log.err("entry point glBlendEquationSeparate not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawBuffers")) |proc| {
-        function_pointers.glDrawBuffers = @as(@TypeOf(function_pointers.glDrawBuffers), @ptrCast(proc));
+        function_pointers.glDrawBuffers = @ptrCast(proc);
     } else {
         log.err("entry point glDrawBuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glStencilOpSeparate")) |proc| {
-        function_pointers.glStencilOpSeparate = @as(@TypeOf(function_pointers.glStencilOpSeparate), @ptrCast(proc));
+        function_pointers.glStencilOpSeparate = @ptrCast(proc);
     } else {
         log.err("entry point glStencilOpSeparate not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glStencilFuncSeparate")) |proc| {
-        function_pointers.glStencilFuncSeparate = @as(@TypeOf(function_pointers.glStencilFuncSeparate), @ptrCast(proc));
+        function_pointers.glStencilFuncSeparate = @ptrCast(proc);
     } else {
         log.err("entry point glStencilFuncSeparate not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glStencilMaskSeparate")) |proc| {
-        function_pointers.glStencilMaskSeparate = @as(@TypeOf(function_pointers.glStencilMaskSeparate), @ptrCast(proc));
+        function_pointers.glStencilMaskSeparate = @ptrCast(proc);
     } else {
         log.err("entry point glStencilMaskSeparate not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glAttachShader")) |proc| {
-        function_pointers.glAttachShader = @as(@TypeOf(function_pointers.glAttachShader), @ptrCast(proc));
+        function_pointers.glAttachShader = @ptrCast(proc);
     } else {
         log.err("entry point glAttachShader not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindAttribLocation")) |proc| {
-        function_pointers.glBindAttribLocation = @as(@TypeOf(function_pointers.glBindAttribLocation), @ptrCast(proc));
+        function_pointers.glBindAttribLocation = @ptrCast(proc);
     } else {
         log.err("entry point glBindAttribLocation not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCompileShader")) |proc| {
-        function_pointers.glCompileShader = @as(@TypeOf(function_pointers.glCompileShader), @ptrCast(proc));
+        function_pointers.glCompileShader = @ptrCast(proc);
     } else {
         log.err("entry point glCompileShader not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateProgram")) |proc| {
-        function_pointers.glCreateProgram = @as(@TypeOf(function_pointers.glCreateProgram), @ptrCast(proc));
+        function_pointers.glCreateProgram = @ptrCast(proc);
     } else {
         log.err("entry point glCreateProgram not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateShader")) |proc| {
-        function_pointers.glCreateShader = @as(@TypeOf(function_pointers.glCreateShader), @ptrCast(proc));
+        function_pointers.glCreateShader = @ptrCast(proc);
     } else {
         log.err("entry point glCreateShader not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteProgram")) |proc| {
-        function_pointers.glDeleteProgram = @as(@TypeOf(function_pointers.glDeleteProgram), @ptrCast(proc));
+        function_pointers.glDeleteProgram = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteProgram not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteShader")) |proc| {
-        function_pointers.glDeleteShader = @as(@TypeOf(function_pointers.glDeleteShader), @ptrCast(proc));
+        function_pointers.glDeleteShader = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteShader not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDetachShader")) |proc| {
-        function_pointers.glDetachShader = @as(@TypeOf(function_pointers.glDetachShader), @ptrCast(proc));
+        function_pointers.glDetachShader = @ptrCast(proc);
     } else {
         log.err("entry point glDetachShader not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDisableVertexAttribArray")) |proc| {
-        function_pointers.glDisableVertexAttribArray = @as(@TypeOf(function_pointers.glDisableVertexAttribArray), @ptrCast(proc));
+        function_pointers.glDisableVertexAttribArray = @ptrCast(proc);
     } else {
         log.err("entry point glDisableVertexAttribArray not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glEnableVertexAttribArray")) |proc| {
-        function_pointers.glEnableVertexAttribArray = @as(@TypeOf(function_pointers.glEnableVertexAttribArray), @ptrCast(proc));
+        function_pointers.glEnableVertexAttribArray = @ptrCast(proc);
     } else {
         log.err("entry point glEnableVertexAttribArray not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetActiveAttrib")) |proc| {
-        function_pointers.glGetActiveAttrib = @as(@TypeOf(function_pointers.glGetActiveAttrib), @ptrCast(proc));
+        function_pointers.glGetActiveAttrib = @ptrCast(proc);
     } else {
         log.err("entry point glGetActiveAttrib not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetActiveUniform")) |proc| {
-        function_pointers.glGetActiveUniform = @as(@TypeOf(function_pointers.glGetActiveUniform), @ptrCast(proc));
+        function_pointers.glGetActiveUniform = @ptrCast(proc);
     } else {
         log.err("entry point glGetActiveUniform not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetAttachedShaders")) |proc| {
-        function_pointers.glGetAttachedShaders = @as(@TypeOf(function_pointers.glGetAttachedShaders), @ptrCast(proc));
+        function_pointers.glGetAttachedShaders = @ptrCast(proc);
     } else {
         log.err("entry point glGetAttachedShaders not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetAttribLocation")) |proc| {
-        function_pointers.glGetAttribLocation = @as(@TypeOf(function_pointers.glGetAttribLocation), @ptrCast(proc));
+        function_pointers.glGetAttribLocation = @ptrCast(proc);
     } else {
         log.err("entry point glGetAttribLocation not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramiv")) |proc| {
-        function_pointers.glGetProgramiv = @as(@TypeOf(function_pointers.glGetProgramiv), @ptrCast(proc));
+        function_pointers.glGetProgramiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetProgramInfoLog")) |proc| {
-        function_pointers.glGetProgramInfoLog = @as(@TypeOf(function_pointers.glGetProgramInfoLog), @ptrCast(proc));
+        function_pointers.glGetProgramInfoLog = @ptrCast(proc);
     } else {
         log.err("entry point glGetProgramInfoLog not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetShaderiv")) |proc| {
-        function_pointers.glGetShaderiv = @as(@TypeOf(function_pointers.glGetShaderiv), @ptrCast(proc));
+        function_pointers.glGetShaderiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetShaderiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetShaderInfoLog")) |proc| {
-        function_pointers.glGetShaderInfoLog = @as(@TypeOf(function_pointers.glGetShaderInfoLog), @ptrCast(proc));
+        function_pointers.glGetShaderInfoLog = @ptrCast(proc);
     } else {
         log.err("entry point glGetShaderInfoLog not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetShaderSource")) |proc| {
-        function_pointers.glGetShaderSource = @as(@TypeOf(function_pointers.glGetShaderSource), @ptrCast(proc));
+        function_pointers.glGetShaderSource = @ptrCast(proc);
     } else {
         log.err("entry point glGetShaderSource not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetUniformLocation")) |proc| {
-        function_pointers.glGetUniformLocation = @as(@TypeOf(function_pointers.glGetUniformLocation), @ptrCast(proc));
+        function_pointers.glGetUniformLocation = @ptrCast(proc);
     } else {
         log.err("entry point glGetUniformLocation not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetUniformfv")) |proc| {
-        function_pointers.glGetUniformfv = @as(@TypeOf(function_pointers.glGetUniformfv), @ptrCast(proc));
+        function_pointers.glGetUniformfv = @ptrCast(proc);
     } else {
         log.err("entry point glGetUniformfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetUniformiv")) |proc| {
-        function_pointers.glGetUniformiv = @as(@TypeOf(function_pointers.glGetUniformiv), @ptrCast(proc));
+        function_pointers.glGetUniformiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetUniformiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetVertexAttribdv")) |proc| {
-        function_pointers.glGetVertexAttribdv = @as(@TypeOf(function_pointers.glGetVertexAttribdv), @ptrCast(proc));
+        function_pointers.glGetVertexAttribdv = @ptrCast(proc);
     } else {
         log.err("entry point glGetVertexAttribdv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetVertexAttribfv")) |proc| {
-        function_pointers.glGetVertexAttribfv = @as(@TypeOf(function_pointers.glGetVertexAttribfv), @ptrCast(proc));
+        function_pointers.glGetVertexAttribfv = @ptrCast(proc);
     } else {
         log.err("entry point glGetVertexAttribfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetVertexAttribiv")) |proc| {
-        function_pointers.glGetVertexAttribiv = @as(@TypeOf(function_pointers.glGetVertexAttribiv), @ptrCast(proc));
+        function_pointers.glGetVertexAttribiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetVertexAttribiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetVertexAttribPointerv")) |proc| {
-        function_pointers.glGetVertexAttribPointerv = @as(@TypeOf(function_pointers.glGetVertexAttribPointerv), @ptrCast(proc));
+        function_pointers.glGetVertexAttribPointerv = @ptrCast(proc);
     } else {
         log.err("entry point glGetVertexAttribPointerv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsProgram")) |proc| {
-        function_pointers.glIsProgram = @as(@TypeOf(function_pointers.glIsProgram), @ptrCast(proc));
+        function_pointers.glIsProgram = @ptrCast(proc);
     } else {
         log.err("entry point glIsProgram not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsShader")) |proc| {
-        function_pointers.glIsShader = @as(@TypeOf(function_pointers.glIsShader), @ptrCast(proc));
+        function_pointers.glIsShader = @ptrCast(proc);
     } else {
         log.err("entry point glIsShader not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glLinkProgram")) |proc| {
-        function_pointers.glLinkProgram = @as(@TypeOf(function_pointers.glLinkProgram), @ptrCast(proc));
+        function_pointers.glLinkProgram = @ptrCast(proc);
     } else {
         log.err("entry point glLinkProgram not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glShaderSource")) |proc| {
-        function_pointers.glShaderSource = @as(@TypeOf(function_pointers.glShaderSource), @ptrCast(proc));
+        function_pointers.glShaderSource = @ptrCast(proc);
     } else {
         log.err("entry point glShaderSource not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUseProgram")) |proc| {
-        function_pointers.glUseProgram = @as(@TypeOf(function_pointers.glUseProgram), @ptrCast(proc));
+        function_pointers.glUseProgram = @ptrCast(proc);
     } else {
         log.err("entry point glUseProgram not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform1f")) |proc| {
-        function_pointers.glUniform1f = @as(@TypeOf(function_pointers.glUniform1f), @ptrCast(proc));
+        function_pointers.glUniform1f = @ptrCast(proc);
     } else {
         log.err("entry point glUniform1f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform2f")) |proc| {
-        function_pointers.glUniform2f = @as(@TypeOf(function_pointers.glUniform2f), @ptrCast(proc));
+        function_pointers.glUniform2f = @ptrCast(proc);
     } else {
         log.err("entry point glUniform2f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform3f")) |proc| {
-        function_pointers.glUniform3f = @as(@TypeOf(function_pointers.glUniform3f), @ptrCast(proc));
+        function_pointers.glUniform3f = @ptrCast(proc);
     } else {
         log.err("entry point glUniform3f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform4f")) |proc| {
-        function_pointers.glUniform4f = @as(@TypeOf(function_pointers.glUniform4f), @ptrCast(proc));
+        function_pointers.glUniform4f = @ptrCast(proc);
     } else {
         log.err("entry point glUniform4f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform1i")) |proc| {
-        function_pointers.glUniform1i = @as(@TypeOf(function_pointers.glUniform1i), @ptrCast(proc));
+        function_pointers.glUniform1i = @ptrCast(proc);
     } else {
         log.err("entry point glUniform1i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform2i")) |proc| {
-        function_pointers.glUniform2i = @as(@TypeOf(function_pointers.glUniform2i), @ptrCast(proc));
+        function_pointers.glUniform2i = @ptrCast(proc);
     } else {
         log.err("entry point glUniform2i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform3i")) |proc| {
-        function_pointers.glUniform3i = @as(@TypeOf(function_pointers.glUniform3i), @ptrCast(proc));
+        function_pointers.glUniform3i = @ptrCast(proc);
     } else {
         log.err("entry point glUniform3i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform4i")) |proc| {
-        function_pointers.glUniform4i = @as(@TypeOf(function_pointers.glUniform4i), @ptrCast(proc));
+        function_pointers.glUniform4i = @ptrCast(proc);
     } else {
         log.err("entry point glUniform4i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform1fv")) |proc| {
-        function_pointers.glUniform1fv = @as(@TypeOf(function_pointers.glUniform1fv), @ptrCast(proc));
+        function_pointers.glUniform1fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform1fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform2fv")) |proc| {
-        function_pointers.glUniform2fv = @as(@TypeOf(function_pointers.glUniform2fv), @ptrCast(proc));
+        function_pointers.glUniform2fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform2fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform3fv")) |proc| {
-        function_pointers.glUniform3fv = @as(@TypeOf(function_pointers.glUniform3fv), @ptrCast(proc));
+        function_pointers.glUniform3fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform3fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform4fv")) |proc| {
-        function_pointers.glUniform4fv = @as(@TypeOf(function_pointers.glUniform4fv), @ptrCast(proc));
+        function_pointers.glUniform4fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform4fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform1iv")) |proc| {
-        function_pointers.glUniform1iv = @as(@TypeOf(function_pointers.glUniform1iv), @ptrCast(proc));
+        function_pointers.glUniform1iv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform1iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform2iv")) |proc| {
-        function_pointers.glUniform2iv = @as(@TypeOf(function_pointers.glUniform2iv), @ptrCast(proc));
+        function_pointers.glUniform2iv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform2iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform3iv")) |proc| {
-        function_pointers.glUniform3iv = @as(@TypeOf(function_pointers.glUniform3iv), @ptrCast(proc));
+        function_pointers.glUniform3iv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform3iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform4iv")) |proc| {
-        function_pointers.glUniform4iv = @as(@TypeOf(function_pointers.glUniform4iv), @ptrCast(proc));
+        function_pointers.glUniform4iv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform4iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix2fv")) |proc| {
-        function_pointers.glUniformMatrix2fv = @as(@TypeOf(function_pointers.glUniformMatrix2fv), @ptrCast(proc));
+        function_pointers.glUniformMatrix2fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix2fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix3fv")) |proc| {
-        function_pointers.glUniformMatrix3fv = @as(@TypeOf(function_pointers.glUniformMatrix3fv), @ptrCast(proc));
+        function_pointers.glUniformMatrix3fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix3fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix4fv")) |proc| {
-        function_pointers.glUniformMatrix4fv = @as(@TypeOf(function_pointers.glUniformMatrix4fv), @ptrCast(proc));
+        function_pointers.glUniformMatrix4fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix4fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glValidateProgram")) |proc| {
-        function_pointers.glValidateProgram = @as(@TypeOf(function_pointers.glValidateProgram), @ptrCast(proc));
+        function_pointers.glValidateProgram = @ptrCast(proc);
     } else {
         log.err("entry point glValidateProgram not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib1d")) |proc| {
-        function_pointers.glVertexAttrib1d = @as(@TypeOf(function_pointers.glVertexAttrib1d), @ptrCast(proc));
+        function_pointers.glVertexAttrib1d = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib1d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib1dv")) |proc| {
-        function_pointers.glVertexAttrib1dv = @as(@TypeOf(function_pointers.glVertexAttrib1dv), @ptrCast(proc));
+        function_pointers.glVertexAttrib1dv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib1dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib1f")) |proc| {
-        function_pointers.glVertexAttrib1f = @as(@TypeOf(function_pointers.glVertexAttrib1f), @ptrCast(proc));
+        function_pointers.glVertexAttrib1f = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib1f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib1fv")) |proc| {
-        function_pointers.glVertexAttrib1fv = @as(@TypeOf(function_pointers.glVertexAttrib1fv), @ptrCast(proc));
+        function_pointers.glVertexAttrib1fv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib1fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib1s")) |proc| {
-        function_pointers.glVertexAttrib1s = @as(@TypeOf(function_pointers.glVertexAttrib1s), @ptrCast(proc));
+        function_pointers.glVertexAttrib1s = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib1s not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib1sv")) |proc| {
-        function_pointers.glVertexAttrib1sv = @as(@TypeOf(function_pointers.glVertexAttrib1sv), @ptrCast(proc));
+        function_pointers.glVertexAttrib1sv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib1sv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib2d")) |proc| {
-        function_pointers.glVertexAttrib2d = @as(@TypeOf(function_pointers.glVertexAttrib2d), @ptrCast(proc));
+        function_pointers.glVertexAttrib2d = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib2d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib2dv")) |proc| {
-        function_pointers.glVertexAttrib2dv = @as(@TypeOf(function_pointers.glVertexAttrib2dv), @ptrCast(proc));
+        function_pointers.glVertexAttrib2dv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib2dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib2f")) |proc| {
-        function_pointers.glVertexAttrib2f = @as(@TypeOf(function_pointers.glVertexAttrib2f), @ptrCast(proc));
+        function_pointers.glVertexAttrib2f = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib2f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib2fv")) |proc| {
-        function_pointers.glVertexAttrib2fv = @as(@TypeOf(function_pointers.glVertexAttrib2fv), @ptrCast(proc));
+        function_pointers.glVertexAttrib2fv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib2fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib2s")) |proc| {
-        function_pointers.glVertexAttrib2s = @as(@TypeOf(function_pointers.glVertexAttrib2s), @ptrCast(proc));
+        function_pointers.glVertexAttrib2s = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib2s not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib2sv")) |proc| {
-        function_pointers.glVertexAttrib2sv = @as(@TypeOf(function_pointers.glVertexAttrib2sv), @ptrCast(proc));
+        function_pointers.glVertexAttrib2sv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib2sv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib3d")) |proc| {
-        function_pointers.glVertexAttrib3d = @as(@TypeOf(function_pointers.glVertexAttrib3d), @ptrCast(proc));
+        function_pointers.glVertexAttrib3d = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib3d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib3dv")) |proc| {
-        function_pointers.glVertexAttrib3dv = @as(@TypeOf(function_pointers.glVertexAttrib3dv), @ptrCast(proc));
+        function_pointers.glVertexAttrib3dv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib3dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib3f")) |proc| {
-        function_pointers.glVertexAttrib3f = @as(@TypeOf(function_pointers.glVertexAttrib3f), @ptrCast(proc));
+        function_pointers.glVertexAttrib3f = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib3f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib3fv")) |proc| {
-        function_pointers.glVertexAttrib3fv = @as(@TypeOf(function_pointers.glVertexAttrib3fv), @ptrCast(proc));
+        function_pointers.glVertexAttrib3fv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib3fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib3s")) |proc| {
-        function_pointers.glVertexAttrib3s = @as(@TypeOf(function_pointers.glVertexAttrib3s), @ptrCast(proc));
+        function_pointers.glVertexAttrib3s = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib3s not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib3sv")) |proc| {
-        function_pointers.glVertexAttrib3sv = @as(@TypeOf(function_pointers.glVertexAttrib3sv), @ptrCast(proc));
+        function_pointers.glVertexAttrib3sv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib3sv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4Nbv")) |proc| {
-        function_pointers.glVertexAttrib4Nbv = @as(@TypeOf(function_pointers.glVertexAttrib4Nbv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4Nbv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4Nbv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4Niv")) |proc| {
-        function_pointers.glVertexAttrib4Niv = @as(@TypeOf(function_pointers.glVertexAttrib4Niv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4Niv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4Niv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4Nsv")) |proc| {
-        function_pointers.glVertexAttrib4Nsv = @as(@TypeOf(function_pointers.glVertexAttrib4Nsv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4Nsv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4Nsv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4Nub")) |proc| {
-        function_pointers.glVertexAttrib4Nub = @as(@TypeOf(function_pointers.glVertexAttrib4Nub), @ptrCast(proc));
+        function_pointers.glVertexAttrib4Nub = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4Nub not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4Nubv")) |proc| {
-        function_pointers.glVertexAttrib4Nubv = @as(@TypeOf(function_pointers.glVertexAttrib4Nubv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4Nubv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4Nubv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4Nuiv")) |proc| {
-        function_pointers.glVertexAttrib4Nuiv = @as(@TypeOf(function_pointers.glVertexAttrib4Nuiv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4Nuiv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4Nuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4Nusv")) |proc| {
-        function_pointers.glVertexAttrib4Nusv = @as(@TypeOf(function_pointers.glVertexAttrib4Nusv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4Nusv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4Nusv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4bv")) |proc| {
-        function_pointers.glVertexAttrib4bv = @as(@TypeOf(function_pointers.glVertexAttrib4bv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4bv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4bv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4d")) |proc| {
-        function_pointers.glVertexAttrib4d = @as(@TypeOf(function_pointers.glVertexAttrib4d), @ptrCast(proc));
+        function_pointers.glVertexAttrib4d = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4d not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4dv")) |proc| {
-        function_pointers.glVertexAttrib4dv = @as(@TypeOf(function_pointers.glVertexAttrib4dv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4dv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4dv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4f")) |proc| {
-        function_pointers.glVertexAttrib4f = @as(@TypeOf(function_pointers.glVertexAttrib4f), @ptrCast(proc));
+        function_pointers.glVertexAttrib4f = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4f not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4fv")) |proc| {
-        function_pointers.glVertexAttrib4fv = @as(@TypeOf(function_pointers.glVertexAttrib4fv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4fv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4iv")) |proc| {
-        function_pointers.glVertexAttrib4iv = @as(@TypeOf(function_pointers.glVertexAttrib4iv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4iv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4s")) |proc| {
-        function_pointers.glVertexAttrib4s = @as(@TypeOf(function_pointers.glVertexAttrib4s), @ptrCast(proc));
+        function_pointers.glVertexAttrib4s = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4s not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4sv")) |proc| {
-        function_pointers.glVertexAttrib4sv = @as(@TypeOf(function_pointers.glVertexAttrib4sv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4sv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4sv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4ubv")) |proc| {
-        function_pointers.glVertexAttrib4ubv = @as(@TypeOf(function_pointers.glVertexAttrib4ubv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4ubv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4ubv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4uiv")) |proc| {
-        function_pointers.glVertexAttrib4uiv = @as(@TypeOf(function_pointers.glVertexAttrib4uiv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4uiv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttrib4usv")) |proc| {
-        function_pointers.glVertexAttrib4usv = @as(@TypeOf(function_pointers.glVertexAttrib4usv), @ptrCast(proc));
+        function_pointers.glVertexAttrib4usv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttrib4usv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribPointer")) |proc| {
-        function_pointers.glVertexAttribPointer = @as(@TypeOf(function_pointers.glVertexAttribPointer), @ptrCast(proc));
+        function_pointers.glVertexAttribPointer = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribPointer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix2x3fv")) |proc| {
-        function_pointers.glUniformMatrix2x3fv = @as(@TypeOf(function_pointers.glUniformMatrix2x3fv), @ptrCast(proc));
+        function_pointers.glUniformMatrix2x3fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix2x3fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix3x2fv")) |proc| {
-        function_pointers.glUniformMatrix3x2fv = @as(@TypeOf(function_pointers.glUniformMatrix3x2fv), @ptrCast(proc));
+        function_pointers.glUniformMatrix3x2fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix3x2fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix2x4fv")) |proc| {
-        function_pointers.glUniformMatrix2x4fv = @as(@TypeOf(function_pointers.glUniformMatrix2x4fv), @ptrCast(proc));
+        function_pointers.glUniformMatrix2x4fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix2x4fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix4x2fv")) |proc| {
-        function_pointers.glUniformMatrix4x2fv = @as(@TypeOf(function_pointers.glUniformMatrix4x2fv), @ptrCast(proc));
+        function_pointers.glUniformMatrix4x2fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix4x2fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix3x4fv")) |proc| {
-        function_pointers.glUniformMatrix3x4fv = @as(@TypeOf(function_pointers.glUniformMatrix3x4fv), @ptrCast(proc));
+        function_pointers.glUniformMatrix3x4fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix3x4fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformMatrix4x3fv")) |proc| {
-        function_pointers.glUniformMatrix4x3fv = @as(@TypeOf(function_pointers.glUniformMatrix4x3fv), @ptrCast(proc));
+        function_pointers.glUniformMatrix4x3fv = @ptrCast(proc);
     } else {
         log.err("entry point glUniformMatrix4x3fv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glColorMaski")) |proc| {
-        function_pointers.glColorMaski = @as(@TypeOf(function_pointers.glColorMaski), @ptrCast(proc));
+        function_pointers.glColorMaski = @ptrCast(proc);
     } else {
         log.err("entry point glColorMaski not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetBooleani_v")) |proc| {
-        function_pointers.glGetBooleani_v = @as(@TypeOf(function_pointers.glGetBooleani_v), @ptrCast(proc));
+        function_pointers.glGetBooleani_v = @ptrCast(proc);
     } else {
         log.err("entry point glGetBooleani_v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetIntegeri_v")) |proc| {
-        function_pointers.glGetIntegeri_v = @as(@TypeOf(function_pointers.glGetIntegeri_v), @ptrCast(proc));
+        function_pointers.glGetIntegeri_v = @ptrCast(proc);
     } else {
         log.err("entry point glGetIntegeri_v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glEnablei")) |proc| {
-        function_pointers.glEnablei = @as(@TypeOf(function_pointers.glEnablei), @ptrCast(proc));
+        function_pointers.glEnablei = @ptrCast(proc);
     } else {
         log.err("entry point glEnablei not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDisablei")) |proc| {
-        function_pointers.glDisablei = @as(@TypeOf(function_pointers.glDisablei), @ptrCast(proc));
+        function_pointers.glDisablei = @ptrCast(proc);
     } else {
         log.err("entry point glDisablei not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsEnabledi")) |proc| {
-        function_pointers.glIsEnabledi = @as(@TypeOf(function_pointers.glIsEnabledi), @ptrCast(proc));
+        function_pointers.glIsEnabledi = @ptrCast(proc);
     } else {
         log.err("entry point glIsEnabledi not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBeginTransformFeedback")) |proc| {
-        function_pointers.glBeginTransformFeedback = @as(@TypeOf(function_pointers.glBeginTransformFeedback), @ptrCast(proc));
+        function_pointers.glBeginTransformFeedback = @ptrCast(proc);
     } else {
         log.err("entry point glBeginTransformFeedback not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glEndTransformFeedback")) |proc| {
-        function_pointers.glEndTransformFeedback = @as(@TypeOf(function_pointers.glEndTransformFeedback), @ptrCast(proc));
+        function_pointers.glEndTransformFeedback = @ptrCast(proc);
     } else {
         log.err("entry point glEndTransformFeedback not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindBufferRange")) |proc| {
-        function_pointers.glBindBufferRange = @as(@TypeOf(function_pointers.glBindBufferRange), @ptrCast(proc));
+        function_pointers.glBindBufferRange = @ptrCast(proc);
     } else {
         log.err("entry point glBindBufferRange not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindBufferBase")) |proc| {
-        function_pointers.glBindBufferBase = @as(@TypeOf(function_pointers.glBindBufferBase), @ptrCast(proc));
+        function_pointers.glBindBufferBase = @ptrCast(proc);
     } else {
         log.err("entry point glBindBufferBase not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTransformFeedbackVaryings")) |proc| {
-        function_pointers.glTransformFeedbackVaryings = @as(@TypeOf(function_pointers.glTransformFeedbackVaryings), @ptrCast(proc));
+        function_pointers.glTransformFeedbackVaryings = @ptrCast(proc);
     } else {
         log.err("entry point glTransformFeedbackVaryings not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTransformFeedbackVarying")) |proc| {
-        function_pointers.glGetTransformFeedbackVarying = @as(@TypeOf(function_pointers.glGetTransformFeedbackVarying), @ptrCast(proc));
+        function_pointers.glGetTransformFeedbackVarying = @ptrCast(proc);
     } else {
         log.err("entry point glGetTransformFeedbackVarying not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClampColor")) |proc| {
-        function_pointers.glClampColor = @as(@TypeOf(function_pointers.glClampColor), @ptrCast(proc));
+        function_pointers.glClampColor = @ptrCast(proc);
     } else {
         log.err("entry point glClampColor not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBeginConditionalRender")) |proc| {
-        function_pointers.glBeginConditionalRender = @as(@TypeOf(function_pointers.glBeginConditionalRender), @ptrCast(proc));
+        function_pointers.glBeginConditionalRender = @ptrCast(proc);
     } else {
         log.err("entry point glBeginConditionalRender not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glEndConditionalRender")) |proc| {
-        function_pointers.glEndConditionalRender = @as(@TypeOf(function_pointers.glEndConditionalRender), @ptrCast(proc));
+        function_pointers.glEndConditionalRender = @ptrCast(proc);
     } else {
         log.err("entry point glEndConditionalRender not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribIPointer")) |proc| {
-        function_pointers.glVertexAttribIPointer = @as(@TypeOf(function_pointers.glVertexAttribIPointer), @ptrCast(proc));
+        function_pointers.glVertexAttribIPointer = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribIPointer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetVertexAttribIiv")) |proc| {
-        function_pointers.glGetVertexAttribIiv = @as(@TypeOf(function_pointers.glGetVertexAttribIiv), @ptrCast(proc));
+        function_pointers.glGetVertexAttribIiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetVertexAttribIiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetVertexAttribIuiv")) |proc| {
-        function_pointers.glGetVertexAttribIuiv = @as(@TypeOf(function_pointers.glGetVertexAttribIuiv), @ptrCast(proc));
+        function_pointers.glGetVertexAttribIuiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetVertexAttribIuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI1i")) |proc| {
-        function_pointers.glVertexAttribI1i = @as(@TypeOf(function_pointers.glVertexAttribI1i), @ptrCast(proc));
+        function_pointers.glVertexAttribI1i = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI1i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI2i")) |proc| {
-        function_pointers.glVertexAttribI2i = @as(@TypeOf(function_pointers.glVertexAttribI2i), @ptrCast(proc));
+        function_pointers.glVertexAttribI2i = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI2i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI3i")) |proc| {
-        function_pointers.glVertexAttribI3i = @as(@TypeOf(function_pointers.glVertexAttribI3i), @ptrCast(proc));
+        function_pointers.glVertexAttribI3i = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI3i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI4i")) |proc| {
-        function_pointers.glVertexAttribI4i = @as(@TypeOf(function_pointers.glVertexAttribI4i), @ptrCast(proc));
+        function_pointers.glVertexAttribI4i = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI4i not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI1ui")) |proc| {
-        function_pointers.glVertexAttribI1ui = @as(@TypeOf(function_pointers.glVertexAttribI1ui), @ptrCast(proc));
+        function_pointers.glVertexAttribI1ui = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI1ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI2ui")) |proc| {
-        function_pointers.glVertexAttribI2ui = @as(@TypeOf(function_pointers.glVertexAttribI2ui), @ptrCast(proc));
+        function_pointers.glVertexAttribI2ui = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI2ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI3ui")) |proc| {
-        function_pointers.glVertexAttribI3ui = @as(@TypeOf(function_pointers.glVertexAttribI3ui), @ptrCast(proc));
+        function_pointers.glVertexAttribI3ui = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI3ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI4ui")) |proc| {
-        function_pointers.glVertexAttribI4ui = @as(@TypeOf(function_pointers.glVertexAttribI4ui), @ptrCast(proc));
+        function_pointers.glVertexAttribI4ui = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI4ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI1iv")) |proc| {
-        function_pointers.glVertexAttribI1iv = @as(@TypeOf(function_pointers.glVertexAttribI1iv), @ptrCast(proc));
+        function_pointers.glVertexAttribI1iv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI1iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI2iv")) |proc| {
-        function_pointers.glVertexAttribI2iv = @as(@TypeOf(function_pointers.glVertexAttribI2iv), @ptrCast(proc));
+        function_pointers.glVertexAttribI2iv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI2iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI3iv")) |proc| {
-        function_pointers.glVertexAttribI3iv = @as(@TypeOf(function_pointers.glVertexAttribI3iv), @ptrCast(proc));
+        function_pointers.glVertexAttribI3iv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI3iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI4iv")) |proc| {
-        function_pointers.glVertexAttribI4iv = @as(@TypeOf(function_pointers.glVertexAttribI4iv), @ptrCast(proc));
+        function_pointers.glVertexAttribI4iv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI4iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI1uiv")) |proc| {
-        function_pointers.glVertexAttribI1uiv = @as(@TypeOf(function_pointers.glVertexAttribI1uiv), @ptrCast(proc));
+        function_pointers.glVertexAttribI1uiv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI1uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI2uiv")) |proc| {
-        function_pointers.glVertexAttribI2uiv = @as(@TypeOf(function_pointers.glVertexAttribI2uiv), @ptrCast(proc));
+        function_pointers.glVertexAttribI2uiv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI2uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI3uiv")) |proc| {
-        function_pointers.glVertexAttribI3uiv = @as(@TypeOf(function_pointers.glVertexAttribI3uiv), @ptrCast(proc));
+        function_pointers.glVertexAttribI3uiv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI3uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI4uiv")) |proc| {
-        function_pointers.glVertexAttribI4uiv = @as(@TypeOf(function_pointers.glVertexAttribI4uiv), @ptrCast(proc));
+        function_pointers.glVertexAttribI4uiv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI4uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI4bv")) |proc| {
-        function_pointers.glVertexAttribI4bv = @as(@TypeOf(function_pointers.glVertexAttribI4bv), @ptrCast(proc));
+        function_pointers.glVertexAttribI4bv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI4bv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI4sv")) |proc| {
-        function_pointers.glVertexAttribI4sv = @as(@TypeOf(function_pointers.glVertexAttribI4sv), @ptrCast(proc));
+        function_pointers.glVertexAttribI4sv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI4sv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI4ubv")) |proc| {
-        function_pointers.glVertexAttribI4ubv = @as(@TypeOf(function_pointers.glVertexAttribI4ubv), @ptrCast(proc));
+        function_pointers.glVertexAttribI4ubv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI4ubv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribI4usv")) |proc| {
-        function_pointers.glVertexAttribI4usv = @as(@TypeOf(function_pointers.glVertexAttribI4usv), @ptrCast(proc));
+        function_pointers.glVertexAttribI4usv = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribI4usv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetUniformuiv")) |proc| {
-        function_pointers.glGetUniformuiv = @as(@TypeOf(function_pointers.glGetUniformuiv), @ptrCast(proc));
+        function_pointers.glGetUniformuiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetUniformuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindFragDataLocation")) |proc| {
-        function_pointers.glBindFragDataLocation = @as(@TypeOf(function_pointers.glBindFragDataLocation), @ptrCast(proc));
+        function_pointers.glBindFragDataLocation = @ptrCast(proc);
     } else {
         log.err("entry point glBindFragDataLocation not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetFragDataLocation")) |proc| {
-        function_pointers.glGetFragDataLocation = @as(@TypeOf(function_pointers.glGetFragDataLocation), @ptrCast(proc));
+        function_pointers.glGetFragDataLocation = @ptrCast(proc);
     } else {
         log.err("entry point glGetFragDataLocation not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform1ui")) |proc| {
-        function_pointers.glUniform1ui = @as(@TypeOf(function_pointers.glUniform1ui), @ptrCast(proc));
+        function_pointers.glUniform1ui = @ptrCast(proc);
     } else {
         log.err("entry point glUniform1ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform2ui")) |proc| {
-        function_pointers.glUniform2ui = @as(@TypeOf(function_pointers.glUniform2ui), @ptrCast(proc));
+        function_pointers.glUniform2ui = @ptrCast(proc);
     } else {
         log.err("entry point glUniform2ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform3ui")) |proc| {
-        function_pointers.glUniform3ui = @as(@TypeOf(function_pointers.glUniform3ui), @ptrCast(proc));
+        function_pointers.glUniform3ui = @ptrCast(proc);
     } else {
         log.err("entry point glUniform3ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform4ui")) |proc| {
-        function_pointers.glUniform4ui = @as(@TypeOf(function_pointers.glUniform4ui), @ptrCast(proc));
+        function_pointers.glUniform4ui = @ptrCast(proc);
     } else {
         log.err("entry point glUniform4ui not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform1uiv")) |proc| {
-        function_pointers.glUniform1uiv = @as(@TypeOf(function_pointers.glUniform1uiv), @ptrCast(proc));
+        function_pointers.glUniform1uiv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform1uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform2uiv")) |proc| {
-        function_pointers.glUniform2uiv = @as(@TypeOf(function_pointers.glUniform2uiv), @ptrCast(proc));
+        function_pointers.glUniform2uiv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform2uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform3uiv")) |proc| {
-        function_pointers.glUniform3uiv = @as(@TypeOf(function_pointers.glUniform3uiv), @ptrCast(proc));
+        function_pointers.glUniform3uiv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform3uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniform4uiv")) |proc| {
-        function_pointers.glUniform4uiv = @as(@TypeOf(function_pointers.glUniform4uiv), @ptrCast(proc));
+        function_pointers.glUniform4uiv = @ptrCast(proc);
     } else {
         log.err("entry point glUniform4uiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexParameterIiv")) |proc| {
-        function_pointers.glTexParameterIiv = @as(@TypeOf(function_pointers.glTexParameterIiv), @ptrCast(proc));
+        function_pointers.glTexParameterIiv = @ptrCast(proc);
     } else {
         log.err("entry point glTexParameterIiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexParameterIuiv")) |proc| {
-        function_pointers.glTexParameterIuiv = @as(@TypeOf(function_pointers.glTexParameterIuiv), @ptrCast(proc));
+        function_pointers.glTexParameterIuiv = @ptrCast(proc);
     } else {
         log.err("entry point glTexParameterIuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTexParameterIiv")) |proc| {
-        function_pointers.glGetTexParameterIiv = @as(@TypeOf(function_pointers.glGetTexParameterIiv), @ptrCast(proc));
+        function_pointers.glGetTexParameterIiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTexParameterIiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTexParameterIuiv")) |proc| {
-        function_pointers.glGetTexParameterIuiv = @as(@TypeOf(function_pointers.glGetTexParameterIuiv), @ptrCast(proc));
+        function_pointers.glGetTexParameterIuiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTexParameterIuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearBufferiv")) |proc| {
-        function_pointers.glClearBufferiv = @as(@TypeOf(function_pointers.glClearBufferiv), @ptrCast(proc));
+        function_pointers.glClearBufferiv = @ptrCast(proc);
     } else {
         log.err("entry point glClearBufferiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearBufferuiv")) |proc| {
-        function_pointers.glClearBufferuiv = @as(@TypeOf(function_pointers.glClearBufferuiv), @ptrCast(proc));
+        function_pointers.glClearBufferuiv = @ptrCast(proc);
     } else {
         log.err("entry point glClearBufferuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearBufferfv")) |proc| {
-        function_pointers.glClearBufferfv = @as(@TypeOf(function_pointers.glClearBufferfv), @ptrCast(proc));
+        function_pointers.glClearBufferfv = @ptrCast(proc);
     } else {
         log.err("entry point glClearBufferfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearBufferfi")) |proc| {
-        function_pointers.glClearBufferfi = @as(@TypeOf(function_pointers.glClearBufferfi), @ptrCast(proc));
+        function_pointers.glClearBufferfi = @ptrCast(proc);
     } else {
         log.err("entry point glClearBufferfi not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetStringi")) |proc| {
-        function_pointers.glGetStringi = @as(@TypeOf(function_pointers.glGetStringi), @ptrCast(proc));
+        function_pointers.glGetStringi = @ptrCast(proc);
     } else {
         log.err("entry point glGetStringi not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsRenderbuffer")) |proc| {
-        function_pointers.glIsRenderbuffer = @as(@TypeOf(function_pointers.glIsRenderbuffer), @ptrCast(proc));
+        function_pointers.glIsRenderbuffer = @ptrCast(proc);
     } else {
         log.err("entry point glIsRenderbuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindRenderbuffer")) |proc| {
-        function_pointers.glBindRenderbuffer = @as(@TypeOf(function_pointers.glBindRenderbuffer), @ptrCast(proc));
+        function_pointers.glBindRenderbuffer = @ptrCast(proc);
     } else {
         log.err("entry point glBindRenderbuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteRenderbuffers")) |proc| {
-        function_pointers.glDeleteRenderbuffers = @as(@TypeOf(function_pointers.glDeleteRenderbuffers), @ptrCast(proc));
+        function_pointers.glDeleteRenderbuffers = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteRenderbuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenRenderbuffers")) |proc| {
-        function_pointers.glGenRenderbuffers = @as(@TypeOf(function_pointers.glGenRenderbuffers), @ptrCast(proc));
+        function_pointers.glGenRenderbuffers = @ptrCast(proc);
     } else {
         log.err("entry point glGenRenderbuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glRenderbufferStorage")) |proc| {
-        function_pointers.glRenderbufferStorage = @as(@TypeOf(function_pointers.glRenderbufferStorage), @ptrCast(proc));
+        function_pointers.glRenderbufferStorage = @ptrCast(proc);
     } else {
         log.err("entry point glRenderbufferStorage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetRenderbufferParameteriv")) |proc| {
-        function_pointers.glGetRenderbufferParameteriv = @as(@TypeOf(function_pointers.glGetRenderbufferParameteriv), @ptrCast(proc));
+        function_pointers.glGetRenderbufferParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetRenderbufferParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsFramebuffer")) |proc| {
-        function_pointers.glIsFramebuffer = @as(@TypeOf(function_pointers.glIsFramebuffer), @ptrCast(proc));
+        function_pointers.glIsFramebuffer = @ptrCast(proc);
     } else {
         log.err("entry point glIsFramebuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindFramebuffer")) |proc| {
-        function_pointers.glBindFramebuffer = @as(@TypeOf(function_pointers.glBindFramebuffer), @ptrCast(proc));
+        function_pointers.glBindFramebuffer = @ptrCast(proc);
     } else {
         log.err("entry point glBindFramebuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteFramebuffers")) |proc| {
-        function_pointers.glDeleteFramebuffers = @as(@TypeOf(function_pointers.glDeleteFramebuffers), @ptrCast(proc));
+        function_pointers.glDeleteFramebuffers = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteFramebuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenFramebuffers")) |proc| {
-        function_pointers.glGenFramebuffers = @as(@TypeOf(function_pointers.glGenFramebuffers), @ptrCast(proc));
+        function_pointers.glGenFramebuffers = @ptrCast(proc);
     } else {
         log.err("entry point glGenFramebuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCheckFramebufferStatus")) |proc| {
-        function_pointers.glCheckFramebufferStatus = @as(@TypeOf(function_pointers.glCheckFramebufferStatus), @ptrCast(proc));
+        function_pointers.glCheckFramebufferStatus = @ptrCast(proc);
     } else {
         log.err("entry point glCheckFramebufferStatus not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFramebufferTexture1D")) |proc| {
-        function_pointers.glFramebufferTexture1D = @as(@TypeOf(function_pointers.glFramebufferTexture1D), @ptrCast(proc));
+        function_pointers.glFramebufferTexture1D = @ptrCast(proc);
     } else {
         log.err("entry point glFramebufferTexture1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFramebufferTexture2D")) |proc| {
-        function_pointers.glFramebufferTexture2D = @as(@TypeOf(function_pointers.glFramebufferTexture2D), @ptrCast(proc));
+        function_pointers.glFramebufferTexture2D = @ptrCast(proc);
     } else {
         log.err("entry point glFramebufferTexture2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFramebufferTexture3D")) |proc| {
-        function_pointers.glFramebufferTexture3D = @as(@TypeOf(function_pointers.glFramebufferTexture3D), @ptrCast(proc));
+        function_pointers.glFramebufferTexture3D = @ptrCast(proc);
     } else {
         log.err("entry point glFramebufferTexture3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFramebufferRenderbuffer")) |proc| {
-        function_pointers.glFramebufferRenderbuffer = @as(@TypeOf(function_pointers.glFramebufferRenderbuffer), @ptrCast(proc));
+        function_pointers.glFramebufferRenderbuffer = @ptrCast(proc);
     } else {
         log.err("entry point glFramebufferRenderbuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetFramebufferAttachmentParameteriv")) |proc| {
-        function_pointers.glGetFramebufferAttachmentParameteriv = @as(@TypeOf(function_pointers.glGetFramebufferAttachmentParameteriv), @ptrCast(proc));
+        function_pointers.glGetFramebufferAttachmentParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetFramebufferAttachmentParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenerateMipmap")) |proc| {
-        function_pointers.glGenerateMipmap = @as(@TypeOf(function_pointers.glGenerateMipmap), @ptrCast(proc));
+        function_pointers.glGenerateMipmap = @ptrCast(proc);
     } else {
         log.err("entry point glGenerateMipmap not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlitFramebuffer")) |proc| {
-        function_pointers.glBlitFramebuffer = @as(@TypeOf(function_pointers.glBlitFramebuffer), @ptrCast(proc));
+        function_pointers.glBlitFramebuffer = @ptrCast(proc);
     } else {
         log.err("entry point glBlitFramebuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glRenderbufferStorageMultisample")) |proc| {
-        function_pointers.glRenderbufferStorageMultisample = @as(@TypeOf(function_pointers.glRenderbufferStorageMultisample), @ptrCast(proc));
+        function_pointers.glRenderbufferStorageMultisample = @ptrCast(proc);
     } else {
         log.err("entry point glRenderbufferStorageMultisample not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFramebufferTextureLayer")) |proc| {
-        function_pointers.glFramebufferTextureLayer = @as(@TypeOf(function_pointers.glFramebufferTextureLayer), @ptrCast(proc));
+        function_pointers.glFramebufferTextureLayer = @ptrCast(proc);
     } else {
         log.err("entry point glFramebufferTextureLayer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMapBufferRange")) |proc| {
-        function_pointers.glMapBufferRange = @as(@TypeOf(function_pointers.glMapBufferRange), @ptrCast(proc));
+        function_pointers.glMapBufferRange = @ptrCast(proc);
     } else {
         log.err("entry point glMapBufferRange not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFlushMappedBufferRange")) |proc| {
-        function_pointers.glFlushMappedBufferRange = @as(@TypeOf(function_pointers.glFlushMappedBufferRange), @ptrCast(proc));
+        function_pointers.glFlushMappedBufferRange = @ptrCast(proc);
     } else {
         log.err("entry point glFlushMappedBufferRange not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindVertexArray")) |proc| {
-        function_pointers.glBindVertexArray = @as(@TypeOf(function_pointers.glBindVertexArray), @ptrCast(proc));
+        function_pointers.glBindVertexArray = @ptrCast(proc);
     } else {
         log.err("entry point glBindVertexArray not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDeleteVertexArrays")) |proc| {
-        function_pointers.glDeleteVertexArrays = @as(@TypeOf(function_pointers.glDeleteVertexArrays), @ptrCast(proc));
+        function_pointers.glDeleteVertexArrays = @ptrCast(proc);
     } else {
         log.err("entry point glDeleteVertexArrays not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenVertexArrays")) |proc| {
-        function_pointers.glGenVertexArrays = @as(@TypeOf(function_pointers.glGenVertexArrays), @ptrCast(proc));
+        function_pointers.glGenVertexArrays = @ptrCast(proc);
     } else {
         log.err("entry point glGenVertexArrays not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glIsVertexArray")) |proc| {
-        function_pointers.glIsVertexArray = @as(@TypeOf(function_pointers.glIsVertexArray), @ptrCast(proc));
+        function_pointers.glIsVertexArray = @ptrCast(proc);
     } else {
         log.err("entry point glIsVertexArray not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawArraysInstanced")) |proc| {
-        function_pointers.glDrawArraysInstanced = @as(@TypeOf(function_pointers.glDrawArraysInstanced), @ptrCast(proc));
+        function_pointers.glDrawArraysInstanced = @ptrCast(proc);
     } else {
         log.err("entry point glDrawArraysInstanced not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDrawElementsInstanced")) |proc| {
-        function_pointers.glDrawElementsInstanced = @as(@TypeOf(function_pointers.glDrawElementsInstanced), @ptrCast(proc));
+        function_pointers.glDrawElementsInstanced = @ptrCast(proc);
     } else {
         log.err("entry point glDrawElementsInstanced not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexBuffer")) |proc| {
-        function_pointers.glTexBuffer = @as(@TypeOf(function_pointers.glTexBuffer), @ptrCast(proc));
+        function_pointers.glTexBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glTexBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPrimitiveRestartIndex")) |proc| {
-        function_pointers.glPrimitiveRestartIndex = @as(@TypeOf(function_pointers.glPrimitiveRestartIndex), @ptrCast(proc));
+        function_pointers.glPrimitiveRestartIndex = @ptrCast(proc);
     } else {
         log.err("entry point glPrimitiveRestartIndex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyBufferSubData")) |proc| {
-        function_pointers.glCopyBufferSubData = @as(@TypeOf(function_pointers.glCopyBufferSubData), @ptrCast(proc));
+        function_pointers.glCopyBufferSubData = @ptrCast(proc);
     } else {
         log.err("entry point glCopyBufferSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetUniformIndices")) |proc| {
-        function_pointers.glGetUniformIndices = @as(@TypeOf(function_pointers.glGetUniformIndices), @ptrCast(proc));
+        function_pointers.glGetUniformIndices = @ptrCast(proc);
     } else {
         log.err("entry point glGetUniformIndices not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetActiveUniformsiv")) |proc| {
-        function_pointers.glGetActiveUniformsiv = @as(@TypeOf(function_pointers.glGetActiveUniformsiv), @ptrCast(proc));
+        function_pointers.glGetActiveUniformsiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetActiveUniformsiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetActiveUniformName")) |proc| {
-        function_pointers.glGetActiveUniformName = @as(@TypeOf(function_pointers.glGetActiveUniformName), @ptrCast(proc));
+        function_pointers.glGetActiveUniformName = @ptrCast(proc);
     } else {
         log.err("entry point glGetActiveUniformName not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetUniformBlockIndex")) |proc| {
-        function_pointers.glGetUniformBlockIndex = @as(@TypeOf(function_pointers.glGetUniformBlockIndex), @ptrCast(proc));
+        function_pointers.glGetUniformBlockIndex = @ptrCast(proc);
     } else {
         log.err("entry point glGetUniformBlockIndex not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetActiveUniformBlockiv")) |proc| {
-        function_pointers.glGetActiveUniformBlockiv = @as(@TypeOf(function_pointers.glGetActiveUniformBlockiv), @ptrCast(proc));
+        function_pointers.glGetActiveUniformBlockiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetActiveUniformBlockiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetActiveUniformBlockName")) |proc| {
-        function_pointers.glGetActiveUniformBlockName = @as(@TypeOf(function_pointers.glGetActiveUniformBlockName), @ptrCast(proc));
+        function_pointers.glGetActiveUniformBlockName = @ptrCast(proc);
     } else {
         log.err("entry point glGetActiveUniformBlockName not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUniformBlockBinding")) |proc| {
-        function_pointers.glUniformBlockBinding = @as(@TypeOf(function_pointers.glUniformBlockBinding), @ptrCast(proc));
+        function_pointers.glUniformBlockBinding = @ptrCast(proc);
     } else {
         log.err("entry point glUniformBlockBinding not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTexStorage3DMultisample")) |proc| {
-        function_pointers.glTexStorage3DMultisample = @as(@TypeOf(function_pointers.glTexStorage3DMultisample), @ptrCast(proc));
+        function_pointers.glTexStorage3DMultisample = @ptrCast(proc);
     } else {
         log.err("entry point glTexStorage3DMultisample not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureView")) |proc| {
-        function_pointers.glTextureView = @as(@TypeOf(function_pointers.glTextureView), @ptrCast(proc));
+        function_pointers.glTextureView = @ptrCast(proc);
     } else {
         log.err("entry point glTextureView not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindVertexBuffer")) |proc| {
-        function_pointers.glBindVertexBuffer = @as(@TypeOf(function_pointers.glBindVertexBuffer), @ptrCast(proc));
+        function_pointers.glBindVertexBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glBindVertexBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribFormat")) |proc| {
-        function_pointers.glVertexAttribFormat = @as(@TypeOf(function_pointers.glVertexAttribFormat), @ptrCast(proc));
+        function_pointers.glVertexAttribFormat = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribFormat not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribIFormat")) |proc| {
-        function_pointers.glVertexAttribIFormat = @as(@TypeOf(function_pointers.glVertexAttribIFormat), @ptrCast(proc));
+        function_pointers.glVertexAttribIFormat = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribIFormat not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribLFormat")) |proc| {
-        function_pointers.glVertexAttribLFormat = @as(@TypeOf(function_pointers.glVertexAttribLFormat), @ptrCast(proc));
+        function_pointers.glVertexAttribLFormat = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribLFormat not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexAttribBinding")) |proc| {
-        function_pointers.glVertexAttribBinding = @as(@TypeOf(function_pointers.glVertexAttribBinding), @ptrCast(proc));
+        function_pointers.glVertexAttribBinding = @ptrCast(proc);
     } else {
         log.err("entry point glVertexAttribBinding not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexBindingDivisor")) |proc| {
-        function_pointers.glVertexBindingDivisor = @as(@TypeOf(function_pointers.glVertexBindingDivisor), @ptrCast(proc));
+        function_pointers.glVertexBindingDivisor = @ptrCast(proc);
     } else {
         log.err("entry point glVertexBindingDivisor not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDebugMessageControl")) |proc| {
-        function_pointers.glDebugMessageControl = @as(@TypeOf(function_pointers.glDebugMessageControl), @ptrCast(proc));
+        function_pointers.glDebugMessageControl = @ptrCast(proc);
     } else {
         log.err("entry point glDebugMessageControl not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDebugMessageInsert")) |proc| {
-        function_pointers.glDebugMessageInsert = @as(@TypeOf(function_pointers.glDebugMessageInsert), @ptrCast(proc));
+        function_pointers.glDebugMessageInsert = @ptrCast(proc);
     } else {
         log.err("entry point glDebugMessageInsert not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDebugMessageCallback")) |proc| {
-        function_pointers.glDebugMessageCallback = @as(@TypeOf(function_pointers.glDebugMessageCallback), @ptrCast(proc));
+        function_pointers.glDebugMessageCallback = @ptrCast(proc);
     } else {
         log.err("entry point glDebugMessageCallback not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetDebugMessageLog")) |proc| {
-        function_pointers.glGetDebugMessageLog = @as(@TypeOf(function_pointers.glGetDebugMessageLog), @ptrCast(proc));
+        function_pointers.glGetDebugMessageLog = @ptrCast(proc);
     } else {
         log.err("entry point glGetDebugMessageLog not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPushDebugGroup")) |proc| {
-        function_pointers.glPushDebugGroup = @as(@TypeOf(function_pointers.glPushDebugGroup), @ptrCast(proc));
+        function_pointers.glPushDebugGroup = @ptrCast(proc);
     } else {
         log.err("entry point glPushDebugGroup not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glPopDebugGroup")) |proc| {
-        function_pointers.glPopDebugGroup = @as(@TypeOf(function_pointers.glPopDebugGroup), @ptrCast(proc));
+        function_pointers.glPopDebugGroup = @ptrCast(proc);
     } else {
         log.err("entry point glPopDebugGroup not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glObjectLabel")) |proc| {
-        function_pointers.glObjectLabel = @as(@TypeOf(function_pointers.glObjectLabel), @ptrCast(proc));
+        function_pointers.glObjectLabel = @ptrCast(proc);
     } else {
         log.err("entry point glObjectLabel not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetObjectLabel")) |proc| {
-        function_pointers.glGetObjectLabel = @as(@TypeOf(function_pointers.glGetObjectLabel), @ptrCast(proc));
+        function_pointers.glGetObjectLabel = @ptrCast(proc);
     } else {
         log.err("entry point glGetObjectLabel not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glObjectPtrLabel")) |proc| {
-        function_pointers.glObjectPtrLabel = @as(@TypeOf(function_pointers.glObjectPtrLabel), @ptrCast(proc));
+        function_pointers.glObjectPtrLabel = @ptrCast(proc);
     } else {
         log.err("entry point glObjectPtrLabel not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetObjectPtrLabel")) |proc| {
-        function_pointers.glGetObjectPtrLabel = @as(@TypeOf(function_pointers.glGetObjectPtrLabel), @ptrCast(proc));
+        function_pointers.glGetObjectPtrLabel = @ptrCast(proc);
     } else {
         log.err("entry point glGetObjectPtrLabel not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetPointerv")) |proc| {
-        function_pointers.glGetPointerv = @as(@TypeOf(function_pointers.glGetPointerv), @ptrCast(proc));
+        function_pointers.glGetPointerv = @ptrCast(proc);
     } else {
         log.err("entry point glGetPointerv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBufferStorage")) |proc| {
-        function_pointers.glBufferStorage = @as(@TypeOf(function_pointers.glBufferStorage), @ptrCast(proc));
+        function_pointers.glBufferStorage = @ptrCast(proc);
     } else {
         log.err("entry point glBufferStorage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearTexImage")) |proc| {
-        function_pointers.glClearTexImage = @as(@TypeOf(function_pointers.glClearTexImage), @ptrCast(proc));
+        function_pointers.glClearTexImage = @ptrCast(proc);
     } else {
         log.err("entry point glClearTexImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearTexSubImage")) |proc| {
-        function_pointers.glClearTexSubImage = @as(@TypeOf(function_pointers.glClearTexSubImage), @ptrCast(proc));
+        function_pointers.glClearTexSubImage = @ptrCast(proc);
     } else {
         log.err("entry point glClearTexSubImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindBuffersBase")) |proc| {
-        function_pointers.glBindBuffersBase = @as(@TypeOf(function_pointers.glBindBuffersBase), @ptrCast(proc));
+        function_pointers.glBindBuffersBase = @ptrCast(proc);
     } else {
         log.err("entry point glBindBuffersBase not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindBuffersRange")) |proc| {
-        function_pointers.glBindBuffersRange = @as(@TypeOf(function_pointers.glBindBuffersRange), @ptrCast(proc));
+        function_pointers.glBindBuffersRange = @ptrCast(proc);
     } else {
         log.err("entry point glBindBuffersRange not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindTextures")) |proc| {
-        function_pointers.glBindTextures = @as(@TypeOf(function_pointers.glBindTextures), @ptrCast(proc));
+        function_pointers.glBindTextures = @ptrCast(proc);
     } else {
         log.err("entry point glBindTextures not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindSamplers")) |proc| {
-        function_pointers.glBindSamplers = @as(@TypeOf(function_pointers.glBindSamplers), @ptrCast(proc));
+        function_pointers.glBindSamplers = @ptrCast(proc);
     } else {
         log.err("entry point glBindSamplers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindImageTextures")) |proc| {
-        function_pointers.glBindImageTextures = @as(@TypeOf(function_pointers.glBindImageTextures), @ptrCast(proc));
+        function_pointers.glBindImageTextures = @ptrCast(proc);
     } else {
         log.err("entry point glBindImageTextures not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindVertexBuffers")) |proc| {
-        function_pointers.glBindVertexBuffers = @as(@TypeOf(function_pointers.glBindVertexBuffers), @ptrCast(proc));
+        function_pointers.glBindVertexBuffers = @ptrCast(proc);
     } else {
         log.err("entry point glBindVertexBuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClipControl")) |proc| {
-        function_pointers.glClipControl = @as(@TypeOf(function_pointers.glClipControl), @ptrCast(proc));
+        function_pointers.glClipControl = @ptrCast(proc);
     } else {
         log.err("entry point glClipControl not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateTransformFeedbacks")) |proc| {
-        function_pointers.glCreateTransformFeedbacks = @as(@TypeOf(function_pointers.glCreateTransformFeedbacks), @ptrCast(proc));
+        function_pointers.glCreateTransformFeedbacks = @ptrCast(proc);
     } else {
         log.err("entry point glCreateTransformFeedbacks not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTransformFeedbackBufferBase")) |proc| {
-        function_pointers.glTransformFeedbackBufferBase = @as(@TypeOf(function_pointers.glTransformFeedbackBufferBase), @ptrCast(proc));
+        function_pointers.glTransformFeedbackBufferBase = @ptrCast(proc);
     } else {
         log.err("entry point glTransformFeedbackBufferBase not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTransformFeedbackBufferRange")) |proc| {
-        function_pointers.glTransformFeedbackBufferRange = @as(@TypeOf(function_pointers.glTransformFeedbackBufferRange), @ptrCast(proc));
+        function_pointers.glTransformFeedbackBufferRange = @ptrCast(proc);
     } else {
         log.err("entry point glTransformFeedbackBufferRange not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTransformFeedbackiv")) |proc| {
-        function_pointers.glGetTransformFeedbackiv = @as(@TypeOf(function_pointers.glGetTransformFeedbackiv), @ptrCast(proc));
+        function_pointers.glGetTransformFeedbackiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTransformFeedbackiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTransformFeedbacki_v")) |proc| {
-        function_pointers.glGetTransformFeedbacki_v = @as(@TypeOf(function_pointers.glGetTransformFeedbacki_v), @ptrCast(proc));
+        function_pointers.glGetTransformFeedbacki_v = @ptrCast(proc);
     } else {
         log.err("entry point glGetTransformFeedbacki_v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTransformFeedbacki64_v")) |proc| {
-        function_pointers.glGetTransformFeedbacki64_v = @as(@TypeOf(function_pointers.glGetTransformFeedbacki64_v), @ptrCast(proc));
+        function_pointers.glGetTransformFeedbacki64_v = @ptrCast(proc);
     } else {
         log.err("entry point glGetTransformFeedbacki64_v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateBuffers")) |proc| {
-        function_pointers.glCreateBuffers = @as(@TypeOf(function_pointers.glCreateBuffers), @ptrCast(proc));
+        function_pointers.glCreateBuffers = @ptrCast(proc);
     } else {
         log.err("entry point glCreateBuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedBufferStorage")) |proc| {
-        function_pointers.glNamedBufferStorage = @as(@TypeOf(function_pointers.glNamedBufferStorage), @ptrCast(proc));
+        function_pointers.glNamedBufferStorage = @ptrCast(proc);
     } else {
         log.err("entry point glNamedBufferStorage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedBufferData")) |proc| {
-        function_pointers.glNamedBufferData = @as(@TypeOf(function_pointers.glNamedBufferData), @ptrCast(proc));
+        function_pointers.glNamedBufferData = @ptrCast(proc);
     } else {
         log.err("entry point glNamedBufferData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedBufferSubData")) |proc| {
-        function_pointers.glNamedBufferSubData = @as(@TypeOf(function_pointers.glNamedBufferSubData), @ptrCast(proc));
+        function_pointers.glNamedBufferSubData = @ptrCast(proc);
     } else {
         log.err("entry point glNamedBufferSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyNamedBufferSubData")) |proc| {
-        function_pointers.glCopyNamedBufferSubData = @as(@TypeOf(function_pointers.glCopyNamedBufferSubData), @ptrCast(proc));
+        function_pointers.glCopyNamedBufferSubData = @ptrCast(proc);
     } else {
         log.err("entry point glCopyNamedBufferSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearNamedBufferData")) |proc| {
-        function_pointers.glClearNamedBufferData = @as(@TypeOf(function_pointers.glClearNamedBufferData), @ptrCast(proc));
+        function_pointers.glClearNamedBufferData = @ptrCast(proc);
     } else {
         log.err("entry point glClearNamedBufferData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearNamedBufferSubData")) |proc| {
-        function_pointers.glClearNamedBufferSubData = @as(@TypeOf(function_pointers.glClearNamedBufferSubData), @ptrCast(proc));
+        function_pointers.glClearNamedBufferSubData = @ptrCast(proc);
     } else {
         log.err("entry point glClearNamedBufferSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMapNamedBuffer")) |proc| {
-        function_pointers.glMapNamedBuffer = @as(@TypeOf(function_pointers.glMapNamedBuffer), @ptrCast(proc));
+        function_pointers.glMapNamedBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glMapNamedBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMapNamedBufferRange")) |proc| {
-        function_pointers.glMapNamedBufferRange = @as(@TypeOf(function_pointers.glMapNamedBufferRange), @ptrCast(proc));
+        function_pointers.glMapNamedBufferRange = @ptrCast(proc);
     } else {
         log.err("entry point glMapNamedBufferRange not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glUnmapNamedBuffer")) |proc| {
-        function_pointers.glUnmapNamedBuffer = @as(@TypeOf(function_pointers.glUnmapNamedBuffer), @ptrCast(proc));
+        function_pointers.glUnmapNamedBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glUnmapNamedBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glFlushMappedNamedBufferRange")) |proc| {
-        function_pointers.glFlushMappedNamedBufferRange = @as(@TypeOf(function_pointers.glFlushMappedNamedBufferRange), @ptrCast(proc));
+        function_pointers.glFlushMappedNamedBufferRange = @ptrCast(proc);
     } else {
         log.err("entry point glFlushMappedNamedBufferRange not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetNamedBufferParameteriv")) |proc| {
-        function_pointers.glGetNamedBufferParameteriv = @as(@TypeOf(function_pointers.glGetNamedBufferParameteriv), @ptrCast(proc));
+        function_pointers.glGetNamedBufferParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetNamedBufferParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetNamedBufferParameteri64v")) |proc| {
-        function_pointers.glGetNamedBufferParameteri64v = @as(@TypeOf(function_pointers.glGetNamedBufferParameteri64v), @ptrCast(proc));
+        function_pointers.glGetNamedBufferParameteri64v = @ptrCast(proc);
     } else {
         log.err("entry point glGetNamedBufferParameteri64v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetNamedBufferPointerv")) |proc| {
-        function_pointers.glGetNamedBufferPointerv = @as(@TypeOf(function_pointers.glGetNamedBufferPointerv), @ptrCast(proc));
+        function_pointers.glGetNamedBufferPointerv = @ptrCast(proc);
     } else {
         log.err("entry point glGetNamedBufferPointerv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetNamedBufferSubData")) |proc| {
-        function_pointers.glGetNamedBufferSubData = @as(@TypeOf(function_pointers.glGetNamedBufferSubData), @ptrCast(proc));
+        function_pointers.glGetNamedBufferSubData = @ptrCast(proc);
     } else {
         log.err("entry point glGetNamedBufferSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateFramebuffers")) |proc| {
-        function_pointers.glCreateFramebuffers = @as(@TypeOf(function_pointers.glCreateFramebuffers), @ptrCast(proc));
+        function_pointers.glCreateFramebuffers = @ptrCast(proc);
     } else {
         log.err("entry point glCreateFramebuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedFramebufferRenderbuffer")) |proc| {
-        function_pointers.glNamedFramebufferRenderbuffer = @as(@TypeOf(function_pointers.glNamedFramebufferRenderbuffer), @ptrCast(proc));
+        function_pointers.glNamedFramebufferRenderbuffer = @ptrCast(proc);
     } else {
         log.err("entry point glNamedFramebufferRenderbuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedFramebufferParameteri")) |proc| {
-        function_pointers.glNamedFramebufferParameteri = @as(@TypeOf(function_pointers.glNamedFramebufferParameteri), @ptrCast(proc));
+        function_pointers.glNamedFramebufferParameteri = @ptrCast(proc);
     } else {
         log.err("entry point glNamedFramebufferParameteri not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedFramebufferTexture")) |proc| {
-        function_pointers.glNamedFramebufferTexture = @as(@TypeOf(function_pointers.glNamedFramebufferTexture), @ptrCast(proc));
+        function_pointers.glNamedFramebufferTexture = @ptrCast(proc);
     } else {
         log.err("entry point glNamedFramebufferTexture not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedFramebufferTextureLayer")) |proc| {
-        function_pointers.glNamedFramebufferTextureLayer = @as(@TypeOf(function_pointers.glNamedFramebufferTextureLayer), @ptrCast(proc));
+        function_pointers.glNamedFramebufferTextureLayer = @ptrCast(proc);
     } else {
         log.err("entry point glNamedFramebufferTextureLayer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedFramebufferDrawBuffer")) |proc| {
-        function_pointers.glNamedFramebufferDrawBuffer = @as(@TypeOf(function_pointers.glNamedFramebufferDrawBuffer), @ptrCast(proc));
+        function_pointers.glNamedFramebufferDrawBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glNamedFramebufferDrawBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedFramebufferDrawBuffers")) |proc| {
-        function_pointers.glNamedFramebufferDrawBuffers = @as(@TypeOf(function_pointers.glNamedFramebufferDrawBuffers), @ptrCast(proc));
+        function_pointers.glNamedFramebufferDrawBuffers = @ptrCast(proc);
     } else {
         log.err("entry point glNamedFramebufferDrawBuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedFramebufferReadBuffer")) |proc| {
-        function_pointers.glNamedFramebufferReadBuffer = @as(@TypeOf(function_pointers.glNamedFramebufferReadBuffer), @ptrCast(proc));
+        function_pointers.glNamedFramebufferReadBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glNamedFramebufferReadBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glInvalidateNamedFramebufferData")) |proc| {
-        function_pointers.glInvalidateNamedFramebufferData = @as(@TypeOf(function_pointers.glInvalidateNamedFramebufferData), @ptrCast(proc));
+        function_pointers.glInvalidateNamedFramebufferData = @ptrCast(proc);
     } else {
         log.err("entry point glInvalidateNamedFramebufferData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glInvalidateNamedFramebufferSubData")) |proc| {
-        function_pointers.glInvalidateNamedFramebufferSubData = @as(@TypeOf(function_pointers.glInvalidateNamedFramebufferSubData), @ptrCast(proc));
+        function_pointers.glInvalidateNamedFramebufferSubData = @ptrCast(proc);
     } else {
         log.err("entry point glInvalidateNamedFramebufferSubData not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearNamedFramebufferiv")) |proc| {
-        function_pointers.glClearNamedFramebufferiv = @as(@TypeOf(function_pointers.glClearNamedFramebufferiv), @ptrCast(proc));
+        function_pointers.glClearNamedFramebufferiv = @ptrCast(proc);
     } else {
         log.err("entry point glClearNamedFramebufferiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearNamedFramebufferuiv")) |proc| {
-        function_pointers.glClearNamedFramebufferuiv = @as(@TypeOf(function_pointers.glClearNamedFramebufferuiv), @ptrCast(proc));
+        function_pointers.glClearNamedFramebufferuiv = @ptrCast(proc);
     } else {
         log.err("entry point glClearNamedFramebufferuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearNamedFramebufferfv")) |proc| {
-        function_pointers.glClearNamedFramebufferfv = @as(@TypeOf(function_pointers.glClearNamedFramebufferfv), @ptrCast(proc));
+        function_pointers.glClearNamedFramebufferfv = @ptrCast(proc);
     } else {
         log.err("entry point glClearNamedFramebufferfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glClearNamedFramebufferfi")) |proc| {
-        function_pointers.glClearNamedFramebufferfi = @as(@TypeOf(function_pointers.glClearNamedFramebufferfi), @ptrCast(proc));
+        function_pointers.glClearNamedFramebufferfi = @ptrCast(proc);
     } else {
         log.err("entry point glClearNamedFramebufferfi not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBlitNamedFramebuffer")) |proc| {
-        function_pointers.glBlitNamedFramebuffer = @as(@TypeOf(function_pointers.glBlitNamedFramebuffer), @ptrCast(proc));
+        function_pointers.glBlitNamedFramebuffer = @ptrCast(proc);
     } else {
         log.err("entry point glBlitNamedFramebuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCheckNamedFramebufferStatus")) |proc| {
-        function_pointers.glCheckNamedFramebufferStatus = @as(@TypeOf(function_pointers.glCheckNamedFramebufferStatus), @ptrCast(proc));
+        function_pointers.glCheckNamedFramebufferStatus = @ptrCast(proc);
     } else {
         log.err("entry point glCheckNamedFramebufferStatus not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetNamedFramebufferParameteriv")) |proc| {
-        function_pointers.glGetNamedFramebufferParameteriv = @as(@TypeOf(function_pointers.glGetNamedFramebufferParameteriv), @ptrCast(proc));
+        function_pointers.glGetNamedFramebufferParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetNamedFramebufferParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetNamedFramebufferAttachmentParameteriv")) |proc| {
-        function_pointers.glGetNamedFramebufferAttachmentParameteriv = @as(@TypeOf(function_pointers.glGetNamedFramebufferAttachmentParameteriv), @ptrCast(proc));
+        function_pointers.glGetNamedFramebufferAttachmentParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetNamedFramebufferAttachmentParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateRenderbuffers")) |proc| {
-        function_pointers.glCreateRenderbuffers = @as(@TypeOf(function_pointers.glCreateRenderbuffers), @ptrCast(proc));
+        function_pointers.glCreateRenderbuffers = @ptrCast(proc);
     } else {
         log.err("entry point glCreateRenderbuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedRenderbufferStorage")) |proc| {
-        function_pointers.glNamedRenderbufferStorage = @as(@TypeOf(function_pointers.glNamedRenderbufferStorage), @ptrCast(proc));
+        function_pointers.glNamedRenderbufferStorage = @ptrCast(proc);
     } else {
         log.err("entry point glNamedRenderbufferStorage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glNamedRenderbufferStorageMultisample")) |proc| {
-        function_pointers.glNamedRenderbufferStorageMultisample = @as(@TypeOf(function_pointers.glNamedRenderbufferStorageMultisample), @ptrCast(proc));
+        function_pointers.glNamedRenderbufferStorageMultisample = @ptrCast(proc);
     } else {
         log.err("entry point glNamedRenderbufferStorageMultisample not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetNamedRenderbufferParameteriv")) |proc| {
-        function_pointers.glGetNamedRenderbufferParameteriv = @as(@TypeOf(function_pointers.glGetNamedRenderbufferParameteriv), @ptrCast(proc));
+        function_pointers.glGetNamedRenderbufferParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetNamedRenderbufferParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateTextures")) |proc| {
-        function_pointers.glCreateTextures = @as(@TypeOf(function_pointers.glCreateTextures), @ptrCast(proc));
+        function_pointers.glCreateTextures = @ptrCast(proc);
     } else {
         log.err("entry point glCreateTextures not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureBuffer")) |proc| {
-        function_pointers.glTextureBuffer = @as(@TypeOf(function_pointers.glTextureBuffer), @ptrCast(proc));
+        function_pointers.glTextureBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glTextureBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureBufferRange")) |proc| {
-        function_pointers.glTextureBufferRange = @as(@TypeOf(function_pointers.glTextureBufferRange), @ptrCast(proc));
+        function_pointers.glTextureBufferRange = @ptrCast(proc);
     } else {
         log.err("entry point glTextureBufferRange not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureStorage1D")) |proc| {
-        function_pointers.glTextureStorage1D = @as(@TypeOf(function_pointers.glTextureStorage1D), @ptrCast(proc));
+        function_pointers.glTextureStorage1D = @ptrCast(proc);
     } else {
         log.err("entry point glTextureStorage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureStorage2D")) |proc| {
-        function_pointers.glTextureStorage2D = @as(@TypeOf(function_pointers.glTextureStorage2D), @ptrCast(proc));
+        function_pointers.glTextureStorage2D = @ptrCast(proc);
     } else {
         log.err("entry point glTextureStorage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureStorage3D")) |proc| {
-        function_pointers.glTextureStorage3D = @as(@TypeOf(function_pointers.glTextureStorage3D), @ptrCast(proc));
+        function_pointers.glTextureStorage3D = @ptrCast(proc);
     } else {
         log.err("entry point glTextureStorage3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureStorage2DMultisample")) |proc| {
-        function_pointers.glTextureStorage2DMultisample = @as(@TypeOf(function_pointers.glTextureStorage2DMultisample), @ptrCast(proc));
+        function_pointers.glTextureStorage2DMultisample = @ptrCast(proc);
     } else {
         log.err("entry point glTextureStorage2DMultisample not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureStorage3DMultisample")) |proc| {
-        function_pointers.glTextureStorage3DMultisample = @as(@TypeOf(function_pointers.glTextureStorage3DMultisample), @ptrCast(proc));
+        function_pointers.glTextureStorage3DMultisample = @ptrCast(proc);
     } else {
         log.err("entry point glTextureStorage3DMultisample not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureSubImage1D")) |proc| {
-        function_pointers.glTextureSubImage1D = @as(@TypeOf(function_pointers.glTextureSubImage1D), @ptrCast(proc));
+        function_pointers.glTextureSubImage1D = @ptrCast(proc);
     } else {
         log.err("entry point glTextureSubImage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureSubImage2D")) |proc| {
-        function_pointers.glTextureSubImage2D = @as(@TypeOf(function_pointers.glTextureSubImage2D), @ptrCast(proc));
+        function_pointers.glTextureSubImage2D = @ptrCast(proc);
     } else {
         log.err("entry point glTextureSubImage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureSubImage3D")) |proc| {
-        function_pointers.glTextureSubImage3D = @as(@TypeOf(function_pointers.glTextureSubImage3D), @ptrCast(proc));
+        function_pointers.glTextureSubImage3D = @ptrCast(proc);
     } else {
         log.err("entry point glTextureSubImage3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCompressedTextureSubImage1D")) |proc| {
-        function_pointers.glCompressedTextureSubImage1D = @as(@TypeOf(function_pointers.glCompressedTextureSubImage1D), @ptrCast(proc));
+        function_pointers.glCompressedTextureSubImage1D = @ptrCast(proc);
     } else {
         log.err("entry point glCompressedTextureSubImage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCompressedTextureSubImage2D")) |proc| {
-        function_pointers.glCompressedTextureSubImage2D = @as(@TypeOf(function_pointers.glCompressedTextureSubImage2D), @ptrCast(proc));
+        function_pointers.glCompressedTextureSubImage2D = @ptrCast(proc);
     } else {
         log.err("entry point glCompressedTextureSubImage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCompressedTextureSubImage3D")) |proc| {
-        function_pointers.glCompressedTextureSubImage3D = @as(@TypeOf(function_pointers.glCompressedTextureSubImage3D), @ptrCast(proc));
+        function_pointers.glCompressedTextureSubImage3D = @ptrCast(proc);
     } else {
         log.err("entry point glCompressedTextureSubImage3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyTextureSubImage1D")) |proc| {
-        function_pointers.glCopyTextureSubImage1D = @as(@TypeOf(function_pointers.glCopyTextureSubImage1D), @ptrCast(proc));
+        function_pointers.glCopyTextureSubImage1D = @ptrCast(proc);
     } else {
         log.err("entry point glCopyTextureSubImage1D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyTextureSubImage2D")) |proc| {
-        function_pointers.glCopyTextureSubImage2D = @as(@TypeOf(function_pointers.glCopyTextureSubImage2D), @ptrCast(proc));
+        function_pointers.glCopyTextureSubImage2D = @ptrCast(proc);
     } else {
         log.err("entry point glCopyTextureSubImage2D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCopyTextureSubImage3D")) |proc| {
-        function_pointers.glCopyTextureSubImage3D = @as(@TypeOf(function_pointers.glCopyTextureSubImage3D), @ptrCast(proc));
+        function_pointers.glCopyTextureSubImage3D = @ptrCast(proc);
     } else {
         log.err("entry point glCopyTextureSubImage3D not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureParameterf")) |proc| {
-        function_pointers.glTextureParameterf = @as(@TypeOf(function_pointers.glTextureParameterf), @ptrCast(proc));
+        function_pointers.glTextureParameterf = @ptrCast(proc);
     } else {
         log.err("entry point glTextureParameterf not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureParameterfv")) |proc| {
-        function_pointers.glTextureParameterfv = @as(@TypeOf(function_pointers.glTextureParameterfv), @ptrCast(proc));
+        function_pointers.glTextureParameterfv = @ptrCast(proc);
     } else {
         log.err("entry point glTextureParameterfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureParameteri")) |proc| {
-        function_pointers.glTextureParameteri = @as(@TypeOf(function_pointers.glTextureParameteri), @ptrCast(proc));
+        function_pointers.glTextureParameteri = @ptrCast(proc);
     } else {
         log.err("entry point glTextureParameteri not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureParameterIiv")) |proc| {
-        function_pointers.glTextureParameterIiv = @as(@TypeOf(function_pointers.glTextureParameterIiv), @ptrCast(proc));
+        function_pointers.glTextureParameterIiv = @ptrCast(proc);
     } else {
         log.err("entry point glTextureParameterIiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureParameterIuiv")) |proc| {
-        function_pointers.glTextureParameterIuiv = @as(@TypeOf(function_pointers.glTextureParameterIuiv), @ptrCast(proc));
+        function_pointers.glTextureParameterIuiv = @ptrCast(proc);
     } else {
         log.err("entry point glTextureParameterIuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureParameteriv")) |proc| {
-        function_pointers.glTextureParameteriv = @as(@TypeOf(function_pointers.glTextureParameteriv), @ptrCast(proc));
+        function_pointers.glTextureParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glTextureParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGenerateTextureMipmap")) |proc| {
-        function_pointers.glGenerateTextureMipmap = @as(@TypeOf(function_pointers.glGenerateTextureMipmap), @ptrCast(proc));
+        function_pointers.glGenerateTextureMipmap = @ptrCast(proc);
     } else {
         log.err("entry point glGenerateTextureMipmap not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glBindTextureUnit")) |proc| {
-        function_pointers.glBindTextureUnit = @as(@TypeOf(function_pointers.glBindTextureUnit), @ptrCast(proc));
+        function_pointers.glBindTextureUnit = @ptrCast(proc);
     } else {
         log.err("entry point glBindTextureUnit not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTextureImage")) |proc| {
-        function_pointers.glGetTextureImage = @as(@TypeOf(function_pointers.glGetTextureImage), @ptrCast(proc));
+        function_pointers.glGetTextureImage = @ptrCast(proc);
     } else {
         log.err("entry point glGetTextureImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetCompressedTextureImage")) |proc| {
-        function_pointers.glGetCompressedTextureImage = @as(@TypeOf(function_pointers.glGetCompressedTextureImage), @ptrCast(proc));
+        function_pointers.glGetCompressedTextureImage = @ptrCast(proc);
     } else {
         log.err("entry point glGetCompressedTextureImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTextureLevelParameterfv")) |proc| {
-        function_pointers.glGetTextureLevelParameterfv = @as(@TypeOf(function_pointers.glGetTextureLevelParameterfv), @ptrCast(proc));
+        function_pointers.glGetTextureLevelParameterfv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTextureLevelParameterfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTextureLevelParameteriv")) |proc| {
-        function_pointers.glGetTextureLevelParameteriv = @as(@TypeOf(function_pointers.glGetTextureLevelParameteriv), @ptrCast(proc));
+        function_pointers.glGetTextureLevelParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTextureLevelParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTextureParameterfv")) |proc| {
-        function_pointers.glGetTextureParameterfv = @as(@TypeOf(function_pointers.glGetTextureParameterfv), @ptrCast(proc));
+        function_pointers.glGetTextureParameterfv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTextureParameterfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTextureParameterIiv")) |proc| {
-        function_pointers.glGetTextureParameterIiv = @as(@TypeOf(function_pointers.glGetTextureParameterIiv), @ptrCast(proc));
+        function_pointers.glGetTextureParameterIiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTextureParameterIiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTextureParameterIuiv")) |proc| {
-        function_pointers.glGetTextureParameterIuiv = @as(@TypeOf(function_pointers.glGetTextureParameterIuiv), @ptrCast(proc));
+        function_pointers.glGetTextureParameterIuiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTextureParameterIuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTextureParameteriv")) |proc| {
-        function_pointers.glGetTextureParameteriv = @as(@TypeOf(function_pointers.glGetTextureParameteriv), @ptrCast(proc));
+        function_pointers.glGetTextureParameteriv = @ptrCast(proc);
     } else {
         log.err("entry point glGetTextureParameteriv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateVertexArrays")) |proc| {
-        function_pointers.glCreateVertexArrays = @as(@TypeOf(function_pointers.glCreateVertexArrays), @ptrCast(proc));
+        function_pointers.glCreateVertexArrays = @ptrCast(proc);
     } else {
         log.err("entry point glCreateVertexArrays not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glDisableVertexArrayAttrib")) |proc| {
-        function_pointers.glDisableVertexArrayAttrib = @as(@TypeOf(function_pointers.glDisableVertexArrayAttrib), @ptrCast(proc));
+        function_pointers.glDisableVertexArrayAttrib = @ptrCast(proc);
     } else {
         log.err("entry point glDisableVertexArrayAttrib not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glEnableVertexArrayAttrib")) |proc| {
-        function_pointers.glEnableVertexArrayAttrib = @as(@TypeOf(function_pointers.glEnableVertexArrayAttrib), @ptrCast(proc));
+        function_pointers.glEnableVertexArrayAttrib = @ptrCast(proc);
     } else {
         log.err("entry point glEnableVertexArrayAttrib not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexArrayElementBuffer")) |proc| {
-        function_pointers.glVertexArrayElementBuffer = @as(@TypeOf(function_pointers.glVertexArrayElementBuffer), @ptrCast(proc));
+        function_pointers.glVertexArrayElementBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glVertexArrayElementBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexArrayVertexBuffer")) |proc| {
-        function_pointers.glVertexArrayVertexBuffer = @as(@TypeOf(function_pointers.glVertexArrayVertexBuffer), @ptrCast(proc));
+        function_pointers.glVertexArrayVertexBuffer = @ptrCast(proc);
     } else {
         log.err("entry point glVertexArrayVertexBuffer not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexArrayVertexBuffers")) |proc| {
-        function_pointers.glVertexArrayVertexBuffers = @as(@TypeOf(function_pointers.glVertexArrayVertexBuffers), @ptrCast(proc));
+        function_pointers.glVertexArrayVertexBuffers = @ptrCast(proc);
     } else {
         log.err("entry point glVertexArrayVertexBuffers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexArrayAttribBinding")) |proc| {
-        function_pointers.glVertexArrayAttribBinding = @as(@TypeOf(function_pointers.glVertexArrayAttribBinding), @ptrCast(proc));
+        function_pointers.glVertexArrayAttribBinding = @ptrCast(proc);
     } else {
         log.err("entry point glVertexArrayAttribBinding not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexArrayAttribFormat")) |proc| {
-        function_pointers.glVertexArrayAttribFormat = @as(@TypeOf(function_pointers.glVertexArrayAttribFormat), @ptrCast(proc));
+        function_pointers.glVertexArrayAttribFormat = @ptrCast(proc);
     } else {
         log.err("entry point glVertexArrayAttribFormat not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexArrayAttribIFormat")) |proc| {
-        function_pointers.glVertexArrayAttribIFormat = @as(@TypeOf(function_pointers.glVertexArrayAttribIFormat), @ptrCast(proc));
+        function_pointers.glVertexArrayAttribIFormat = @ptrCast(proc);
     } else {
         log.err("entry point glVertexArrayAttribIFormat not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexArrayAttribLFormat")) |proc| {
-        function_pointers.glVertexArrayAttribLFormat = @as(@TypeOf(function_pointers.glVertexArrayAttribLFormat), @ptrCast(proc));
+        function_pointers.glVertexArrayAttribLFormat = @ptrCast(proc);
     } else {
         log.err("entry point glVertexArrayAttribLFormat not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glVertexArrayBindingDivisor")) |proc| {
-        function_pointers.glVertexArrayBindingDivisor = @as(@TypeOf(function_pointers.glVertexArrayBindingDivisor), @ptrCast(proc));
+        function_pointers.glVertexArrayBindingDivisor = @ptrCast(proc);
     } else {
         log.err("entry point glVertexArrayBindingDivisor not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetVertexArrayiv")) |proc| {
-        function_pointers.glGetVertexArrayiv = @as(@TypeOf(function_pointers.glGetVertexArrayiv), @ptrCast(proc));
+        function_pointers.glGetVertexArrayiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetVertexArrayiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetVertexArrayIndexediv")) |proc| {
-        function_pointers.glGetVertexArrayIndexediv = @as(@TypeOf(function_pointers.glGetVertexArrayIndexediv), @ptrCast(proc));
+        function_pointers.glGetVertexArrayIndexediv = @ptrCast(proc);
     } else {
         log.err("entry point glGetVertexArrayIndexediv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetVertexArrayIndexed64iv")) |proc| {
-        function_pointers.glGetVertexArrayIndexed64iv = @as(@TypeOf(function_pointers.glGetVertexArrayIndexed64iv), @ptrCast(proc));
+        function_pointers.glGetVertexArrayIndexed64iv = @ptrCast(proc);
     } else {
         log.err("entry point glGetVertexArrayIndexed64iv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateSamplers")) |proc| {
-        function_pointers.glCreateSamplers = @as(@TypeOf(function_pointers.glCreateSamplers), @ptrCast(proc));
+        function_pointers.glCreateSamplers = @ptrCast(proc);
     } else {
         log.err("entry point glCreateSamplers not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateProgramPipelines")) |proc| {
-        function_pointers.glCreateProgramPipelines = @as(@TypeOf(function_pointers.glCreateProgramPipelines), @ptrCast(proc));
+        function_pointers.glCreateProgramPipelines = @ptrCast(proc);
     } else {
         log.err("entry point glCreateProgramPipelines not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glCreateQueries")) |proc| {
-        function_pointers.glCreateQueries = @as(@TypeOf(function_pointers.glCreateQueries), @ptrCast(proc));
+        function_pointers.glCreateQueries = @ptrCast(proc);
     } else {
         log.err("entry point glCreateQueries not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetQueryBufferObjecti64v")) |proc| {
-        function_pointers.glGetQueryBufferObjecti64v = @as(@TypeOf(function_pointers.glGetQueryBufferObjecti64v), @ptrCast(proc));
+        function_pointers.glGetQueryBufferObjecti64v = @ptrCast(proc);
     } else {
         log.err("entry point glGetQueryBufferObjecti64v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetQueryBufferObjectiv")) |proc| {
-        function_pointers.glGetQueryBufferObjectiv = @as(@TypeOf(function_pointers.glGetQueryBufferObjectiv), @ptrCast(proc));
+        function_pointers.glGetQueryBufferObjectiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetQueryBufferObjectiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetQueryBufferObjectui64v")) |proc| {
-        function_pointers.glGetQueryBufferObjectui64v = @as(@TypeOf(function_pointers.glGetQueryBufferObjectui64v), @ptrCast(proc));
+        function_pointers.glGetQueryBufferObjectui64v = @ptrCast(proc);
     } else {
         log.err("entry point glGetQueryBufferObjectui64v not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetQueryBufferObjectuiv")) |proc| {
-        function_pointers.glGetQueryBufferObjectuiv = @as(@TypeOf(function_pointers.glGetQueryBufferObjectuiv), @ptrCast(proc));
+        function_pointers.glGetQueryBufferObjectuiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetQueryBufferObjectuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glMemoryBarrierByRegion")) |proc| {
-        function_pointers.glMemoryBarrierByRegion = @as(@TypeOf(function_pointers.glMemoryBarrierByRegion), @ptrCast(proc));
+        function_pointers.glMemoryBarrierByRegion = @ptrCast(proc);
     } else {
         log.err("entry point glMemoryBarrierByRegion not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetTextureSubImage")) |proc| {
-        function_pointers.glGetTextureSubImage = @as(@TypeOf(function_pointers.glGetTextureSubImage), @ptrCast(proc));
+        function_pointers.glGetTextureSubImage = @ptrCast(proc);
     } else {
         log.err("entry point glGetTextureSubImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetCompressedTextureSubImage")) |proc| {
-        function_pointers.glGetCompressedTextureSubImage = @as(@TypeOf(function_pointers.glGetCompressedTextureSubImage), @ptrCast(proc));
+        function_pointers.glGetCompressedTextureSubImage = @ptrCast(proc);
     } else {
         log.err("entry point glGetCompressedTextureSubImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetGraphicsResetStatus")) |proc| {
-        function_pointers.glGetGraphicsResetStatus = @as(@TypeOf(function_pointers.glGetGraphicsResetStatus), @ptrCast(proc));
+        function_pointers.glGetGraphicsResetStatus = @ptrCast(proc);
     } else {
         log.err("entry point glGetGraphicsResetStatus not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetnCompressedTexImage")) |proc| {
-        function_pointers.glGetnCompressedTexImage = @as(@TypeOf(function_pointers.glGetnCompressedTexImage), @ptrCast(proc));
+        function_pointers.glGetnCompressedTexImage = @ptrCast(proc);
     } else {
         log.err("entry point glGetnCompressedTexImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetnTexImage")) |proc| {
-        function_pointers.glGetnTexImage = @as(@TypeOf(function_pointers.glGetnTexImage), @ptrCast(proc));
+        function_pointers.glGetnTexImage = @ptrCast(proc);
     } else {
         log.err("entry point glGetnTexImage not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetnUniformdv")) |proc| {
-        function_pointers.glGetnUniformdv = @as(@TypeOf(function_pointers.glGetnUniformdv), @ptrCast(proc));
+        function_pointers.glGetnUniformdv = @ptrCast(proc);
     } else {
         log.err("entry point glGetnUniformdv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetnUniformfv")) |proc| {
-        function_pointers.glGetnUniformfv = @as(@TypeOf(function_pointers.glGetnUniformfv), @ptrCast(proc));
+        function_pointers.glGetnUniformfv = @ptrCast(proc);
     } else {
         log.err("entry point glGetnUniformfv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetnUniformiv")) |proc| {
-        function_pointers.glGetnUniformiv = @as(@TypeOf(function_pointers.glGetnUniformiv), @ptrCast(proc));
+        function_pointers.glGetnUniformiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetnUniformiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glGetnUniformuiv")) |proc| {
-        function_pointers.glGetnUniformuiv = @as(@TypeOf(function_pointers.glGetnUniformuiv), @ptrCast(proc));
+        function_pointers.glGetnUniformuiv = @ptrCast(proc);
     } else {
         log.err("entry point glGetnUniformuiv not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glReadnPixels")) |proc| {
-        function_pointers.glReadnPixels = @as(@TypeOf(function_pointers.glReadnPixels), @ptrCast(proc));
+        function_pointers.glReadnPixels = @ptrCast(proc);
     } else {
         log.err("entry point glReadnPixels not found!", .{});
         success = false;
     }
     if (get_proc_address(load_ctx, "glTextureBarrier")) |proc| {
-        function_pointers.glTextureBarrier = @as(@TypeOf(function_pointers.glTextureBarrier), @ptrCast(proc));
+        function_pointers.glTextureBarrier = @ptrCast(proc);
     } else {
         log.err("entry point glTextureBarrier not found!", .{});
         success = false;
@@ -7955,659 +7955,659 @@ pub fn load(load_ctx: anytype, get_proc_address: fn (@TypeOf(load_ctx), [:0]cons
 }
 
 const function_signatures = struct {
-    const glTexStorage2D = fn (_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glTexStorage1D = fn (_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei) callconv(.C) void;
-    const glDrawTransformFeedbackStreamInstanced = fn (_mode: GLenum, _id: GLuint, _stream: GLuint, _instancecount: GLsizei) callconv(.C) void;
-    const glDrawTransformFeedbackInstanced = fn (_mode: GLenum, _id: GLuint, _instancecount: GLsizei) callconv(.C) void;
-    const glTexStorage3D = fn (_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.C) void;
-    const glMemoryBarrier = fn (_barriers: GLbitfield) callconv(.C) void;
-    const glBindImageTexture = fn (_unit: GLuint, _texture: GLuint, _level: GLint, _layered: GLboolean, _layer: GLint, _access: GLenum, _format: GLenum) callconv(.C) void;
-    const glGetActiveAtomicCounterBufferiv = fn (_program: GLuint, _bufferIndex: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetInternalformativ = fn (_target: GLenum, _internalformat: GLenum, _pname: GLenum, _count: GLsizei, _params: [*c]GLint) callconv(.C) void;
-    const glDrawElementsInstancedBaseVertexBaseInstance = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _basevertex: GLint, _baseinstance: GLuint) callconv(.C) void;
-    const glDrawElementsInstancedBaseInstance = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _baseinstance: GLuint) callconv(.C) void;
-    const glDrawArraysInstancedBaseInstance = fn (_mode: GLenum, _first: GLint, _count: GLsizei, _instancecount: GLsizei, _baseinstance: GLuint) callconv(.C) void;
-    const glGetDoublei_v = fn (_target: GLenum, _index: GLuint, _data: [*c]GLdouble) callconv(.C) void;
-    const glGetFloati_v = fn (_target: GLenum, _index: GLuint, _data: [*c]GLfloat) callconv(.C) void;
-    const glDepthRangeIndexed = fn (_index: GLuint, _n: GLdouble, _f: GLdouble) callconv(.C) void;
-    const glDepthRangeArrayv = fn (_first: GLuint, _count: GLsizei, _v: [*c]const GLdouble) callconv(.C) void;
-    const glScissorIndexedv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.C) void;
-    const glScissorIndexed = fn (_index: GLuint, _left: GLint, _bottom: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glScissorArrayv = fn (_first: GLuint, _count: GLsizei, _v: [*c]const GLint) callconv(.C) void;
-    const glViewportIndexedfv = fn (_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void;
-    const glViewportIndexedf = fn (_index: GLuint, _x: GLfloat, _y: GLfloat, _w: GLfloat, _h: GLfloat) callconv(.C) void;
-    const glViewportArrayv = fn (_first: GLuint, _count: GLsizei, _v: [*c]const GLfloat) callconv(.C) void;
-    const glGetVertexAttribLdv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLdouble) callconv(.C) void;
-    const glVertexAttribLPointer = fn (_index: GLuint, _size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void;
-    const glVertexAttribL4dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void;
-    const glVertexAttribL3dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void;
-    const glVertexAttribL2dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void;
-    const glVertexAttribL1dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void;
-    const glVertexAttribL4d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.C) void;
-    const glVertexAttribL3d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void;
-    const glVertexAttribL2d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble) callconv(.C) void;
-    const glVertexAttribL1d = fn (_index: GLuint, _x: GLdouble) callconv(.C) void;
-    const glValidateProgramPipeline = fn (_pipeline: GLuint) callconv(.C) void;
-    const glProgramUniformMatrix4x3dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniformMatrix3x4dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniformMatrix4x2dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniformMatrix2x4dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniformMatrix3x2dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniformMatrix2x3dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniformMatrix4x3fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniformMatrix3x4fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniformMatrix4x2fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniformMatrix2x4fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniformMatrix3x2fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniformMatrix2x3fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniformMatrix4dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniformMatrix3dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniformMatrix2dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniformMatrix4fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniformMatrix3fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniformMatrix2fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniform4uiv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void;
-    const glProgramUniform4ui = fn (_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint, _v3: GLuint) callconv(.C) void;
-    const glProgramUniform4dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniform4d = fn (_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble, _v2: GLdouble, _v3: GLdouble) callconv(.C) void;
-    const glProgramUniform4fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniform4f = fn (_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat, _v3: GLfloat) callconv(.C) void;
-    const glProgramUniform4iv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void;
-    const glProgramUniform4i = fn (_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint, _v2: GLint, _v3: GLint) callconv(.C) void;
-    const glProgramUniform3uiv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void;
-    const glProgramUniform3ui = fn (_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint) callconv(.C) void;
-    const glProgramUniform3dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniform3d = fn (_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble, _v2: GLdouble) callconv(.C) void;
-    const glProgramUniform3fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniform3f = fn (_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat) callconv(.C) void;
-    const glProgramUniform3iv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void;
-    const glProgramUniform3i = fn (_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint, _v2: GLint) callconv(.C) void;
-    const glUseProgramStages = fn (_pipeline: GLuint, _stages: GLbitfield, _program: GLuint) callconv(.C) void;
-    const glProgramParameteri = fn (_program: GLuint, _pname: GLenum, _value: GLint) callconv(.C) void;
-    const glGetShaderPrecisionFormat = fn (_shadertype: GLenum, _precisiontype: GLenum, _range: [*c]GLint, _precision: [*c]GLint) callconv(.C) void;
-    const glShaderBinary = fn (_count: GLsizei, _shaders: [*c]const GLuint, _binaryFormat: GLenum, _binary: ?*const anyopaque, _length: GLsizei) callconv(.C) void;
-    const glReleaseShaderCompiler = fn () callconv(.C) void;
-    const glGetQueryIndexediv = fn (_target: GLenum, _index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glEndQueryIndexed = fn (_target: GLenum, _index: GLuint) callconv(.C) void;
-    const glBeginQueryIndexed = fn (_target: GLenum, _index: GLuint, _id: GLuint) callconv(.C) void;
-    const glDrawTransformFeedbackStream = fn (_mode: GLenum, _id: GLuint, _stream: GLuint) callconv(.C) void;
-    const glDrawTransformFeedback = fn (_mode: GLenum, _id: GLuint) callconv(.C) void;
-    const glResumeTransformFeedback = fn () callconv(.C) void;
-    const glPauseTransformFeedback = fn () callconv(.C) void;
-    const glGetProgramStageiv = fn (_program: GLuint, _shadertype: GLenum, _pname: GLenum, _values: [*c]GLint) callconv(.C) void;
-    const glGetUniformSubroutineuiv = fn (_shadertype: GLenum, _location: GLint, _params: [*c]GLuint) callconv(.C) void;
-    const glUniformSubroutinesuiv = fn (_shadertype: GLenum, _count: GLsizei, _indices: [*c]const GLuint) callconv(.C) void;
-    const glGetActiveSubroutineName = fn (_program: GLuint, _shadertype: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.C) void;
-    const glCullFace = fn (_mode: GLenum) callconv(.C) void;
-    const glFrontFace = fn (_mode: GLenum) callconv(.C) void;
-    const glHint = fn (_target: GLenum, _mode: GLenum) callconv(.C) void;
-    const glLineWidth = fn (_width: GLfloat) callconv(.C) void;
-    const glPointSize = fn (_size: GLfloat) callconv(.C) void;
-    const glPolygonMode = fn (_face: GLenum, _mode: GLenum) callconv(.C) void;
-    const glScissor = fn (_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glTexParameterf = fn (_target: GLenum, _pname: GLenum, _param: GLfloat) callconv(.C) void;
-    const glTexParameterfv = fn (_target: GLenum, _pname: GLenum, _params: [*c]const GLfloat) callconv(.C) void;
-    const glTexParameteri = fn (_target: GLenum, _pname: GLenum, _param: GLint) callconv(.C) void;
-    const glTexParameteriv = fn (_target: GLenum, _pname: GLenum, _params: [*c]const GLint) callconv(.C) void;
-    const glTexImage1D = fn (_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
-    const glTexImage2D = fn (_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _height: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
-    const glDrawBuffer = fn (_buf: GLenum) callconv(.C) void;
-    const glClear = fn (_mask: GLbitfield) callconv(.C) void;
-    const glClearColor = fn (_red: GLfloat, _green: GLfloat, _blue: GLfloat, _alpha: GLfloat) callconv(.C) void;
-    const glClearStencil = fn (_s: GLint) callconv(.C) void;
-    const glClearDepth = fn (_depth: GLdouble) callconv(.C) void;
-    const glStencilMask = fn (_mask: GLuint) callconv(.C) void;
-    const glColorMask = fn (_red: GLboolean, _green: GLboolean, _blue: GLboolean, _alpha: GLboolean) callconv(.C) void;
-    const glDepthMask = fn (_flag: GLboolean) callconv(.C) void;
-    const glDisable = fn (_cap: GLenum) callconv(.C) void;
-    const glEnable = fn (_cap: GLenum) callconv(.C) void;
-    const glFinish = fn () callconv(.C) void;
-    const glFlush = fn () callconv(.C) void;
-    const glBlendFunc = fn (_sfactor: GLenum, _dfactor: GLenum) callconv(.C) void;
-    const glLogicOp = fn (_opcode: GLenum) callconv(.C) void;
-    const glStencilFunc = fn (_func: GLenum, _ref: GLint, _mask: GLuint) callconv(.C) void;
-    const glStencilOp = fn (_fail: GLenum, _zfail: GLenum, _zpass: GLenum) callconv(.C) void;
-    const glDepthFunc = fn (_func: GLenum) callconv(.C) void;
-    const glPixelStoref = fn (_pname: GLenum, _param: GLfloat) callconv(.C) void;
-    const glPixelStorei = fn (_pname: GLenum, _param: GLint) callconv(.C) void;
-    const glReadBuffer = fn (_src: GLenum) callconv(.C) void;
-    const glReadPixels = fn (_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*anyopaque) callconv(.C) void;
-    const glGetBooleanv = fn (_pname: GLenum, _data: [*c]GLboolean) callconv(.C) void;
-    const glGetDoublev = fn (_pname: GLenum, _data: [*c]GLdouble) callconv(.C) void;
-    const glGetError = fn () callconv(.C) GLenum;
-    const glGetFloatv = fn (_pname: GLenum, _data: [*c]GLfloat) callconv(.C) void;
-    const glGetIntegerv = fn (_pname: GLenum, _data: [*c]GLint) callconv(.C) void;
-    const glGetString = fn (_name: GLenum) callconv(.C) ?[*:0]const GLubyte;
-    const glGetTexImage = fn (_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _pixels: ?*anyopaque) callconv(.C) void;
-    const glGetTexParameterfv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void;
-    const glGetTexParameteriv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetTexLevelParameterfv = fn (_target: GLenum, _level: GLint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void;
-    const glGetTexLevelParameteriv = fn (_target: GLenum, _level: GLint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glIsEnabled = fn (_cap: GLenum) callconv(.C) GLboolean;
-    const glDepthRange = fn (_n: GLdouble, _f: GLdouble) callconv(.C) void;
-    const glViewport = fn (_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glTexStorage2DMultisample = fn (_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void;
-    const glTexBufferRange = fn (_target: GLenum, _internalformat: GLenum, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void;
-    const glShaderStorageBlockBinding = fn (_program: GLuint, _storageBlockIndex: GLuint, _storageBlockBinding: GLuint) callconv(.C) void;
-    const glGetProgramResourceLocationIndex = fn (_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.C) GLint;
-    const glGetProgramResourceLocation = fn (_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.C) GLint;
-    const glGetProgramResourceiv = fn (_program: GLuint, _programInterface: GLenum, _index: GLuint, _propCount: GLsizei, _props: [*c]const GLenum, _count: GLsizei, _length: [*c]GLsizei, _params: [*c]GLint) callconv(.C) void;
-    const glGetProgramResourceName = fn (_program: GLuint, _programInterface: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.C) void;
-    const glGetProgramResourceIndex = fn (_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.C) GLuint;
-    const glGetProgramInterfaceiv = fn (_program: GLuint, _programInterface: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glMultiDrawElementsIndirect = fn (_mode: GLenum, _type: GLenum, _indirect: ?*const anyopaque, _drawcount: GLsizei, _stride: GLsizei) callconv(.C) void;
-    const glMultiDrawArraysIndirect = fn (_mode: GLenum, _indirect: ?*const anyopaque, _drawcount: GLsizei, _stride: GLsizei) callconv(.C) void;
-    const glInvalidateSubFramebuffer = fn (_target: GLenum, _numAttachments: GLsizei, _attachments: [*c]const GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glInvalidateFramebuffer = fn (_target: GLenum, _numAttachments: GLsizei, _attachments: [*c]const GLenum) callconv(.C) void;
-    const glInvalidateBufferData = fn (_buffer: GLuint) callconv(.C) void;
-    const glInvalidateBufferSubData = fn (_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr) callconv(.C) void;
-    const glInvalidateTexImage = fn (_texture: GLuint, _level: GLint) callconv(.C) void;
-    const glInvalidateTexSubImage = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.C) void;
-    const glGetInternalformati64v = fn (_target: GLenum, _internalformat: GLenum, _pname: GLenum, _count: GLsizei, _params: [*c]GLint64) callconv(.C) void;
-    const glGetFramebufferParameteriv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glFramebufferParameteri = fn (_target: GLenum, _pname: GLenum, _param: GLint) callconv(.C) void;
-    const glCopyImageSubData = fn (_srcName: GLuint, _srcTarget: GLenum, _srcLevel: GLint, _srcX: GLint, _srcY: GLint, _srcZ: GLint, _dstName: GLuint, _dstTarget: GLenum, _dstLevel: GLint, _dstX: GLint, _dstY: GLint, _dstZ: GLint, _srcWidth: GLsizei, _srcHeight: GLsizei, _srcDepth: GLsizei) callconv(.C) void;
-    const glDispatchComputeIndirect = fn (_indirect: GLintptr) callconv(.C) void;
-    const glDispatchCompute = fn (_num_groups_x: GLuint, _num_groups_y: GLuint, _num_groups_z: GLuint) callconv(.C) void;
-    const glClearBufferSubData = fn (_target: GLenum, _internalformat: GLenum, _offset: GLintptr, _size: GLsizeiptr, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void;
-    const glClearBufferData = fn (_target: GLenum, _internalformat: GLenum, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void;
-    const glGetProgramPipelineInfoLog = fn (_pipeline: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.C) void;
-    const glProgramUniform2uiv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void;
-    const glProgramUniform2ui = fn (_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint) callconv(.C) void;
-    const glProgramUniform2dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniform2d = fn (_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble) callconv(.C) void;
-    const glProgramUniform2fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniform2f = fn (_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat) callconv(.C) void;
-    const glProgramUniform2iv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void;
-    const glProgramUniform2i = fn (_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint) callconv(.C) void;
-    const glProgramUniform1uiv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void;
-    const glProgramUniform1ui = fn (_program: GLuint, _location: GLint, _v0: GLuint) callconv(.C) void;
-    const glProgramUniform1dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void;
-    const glProgramUniform1d = fn (_program: GLuint, _location: GLint, _v0: GLdouble) callconv(.C) void;
-    const glProgramUniform1fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void;
-    const glProgramUniform1f = fn (_program: GLuint, _location: GLint, _v0: GLfloat) callconv(.C) void;
-    const glProgramUniform1iv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void;
-    const glProgramUniform1i = fn (_program: GLuint, _location: GLint, _v0: GLint) callconv(.C) void;
-    const glGetProgramPipelineiv = fn (_pipeline: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glIsProgramPipeline = fn (_pipeline: GLuint) callconv(.C) GLboolean;
-    const glGenProgramPipelines = fn (_n: GLsizei, _pipelines: [*c]GLuint) callconv(.C) void;
-    const glDeleteProgramPipelines = fn (_n: GLsizei, _pipelines: [*c]const GLuint) callconv(.C) void;
-    const glBindProgramPipeline = fn (_pipeline: GLuint) callconv(.C) void;
-    const glCreateShaderProgramv = fn (_type: GLenum, _count: GLsizei, _strings: [*c]const [*c]const GLchar) callconv(.C) GLuint;
-    const glActiveShaderProgram = fn (_pipeline: GLuint, _program: GLuint) callconv(.C) void;
-    const glProgramBinary = fn (_program: GLuint, _binaryFormat: GLenum, _binary: ?*const anyopaque, _length: GLsizei) callconv(.C) void;
-    const glGetProgramBinary = fn (_program: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _binaryFormat: [*c]GLenum, _binary: ?*anyopaque) callconv(.C) void;
-    const glClearDepthf = fn (_d: GLfloat) callconv(.C) void;
-    const glDepthRangef = fn (_n: GLfloat, _f: GLfloat) callconv(.C) void;
-    const glIsTransformFeedback = fn (_id: GLuint) callconv(.C) GLboolean;
-    const glGenTransformFeedbacks = fn (_n: GLsizei, _ids: [*c]GLuint) callconv(.C) void;
-    const glDeleteTransformFeedbacks = fn (_n: GLsizei, _ids: [*c]const GLuint) callconv(.C) void;
-    const glBindTransformFeedback = fn (_target: GLenum, _id: GLuint) callconv(.C) void;
-    const glPatchParameterfv = fn (_pname: GLenum, _values: [*c]const GLfloat) callconv(.C) void;
-    const glPatchParameteri = fn (_pname: GLenum, _value: GLint) callconv(.C) void;
-    const glDrawArrays = fn (_mode: GLenum, _first: GLint, _count: GLsizei) callconv(.C) void;
-    const glDrawElements = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.C) void;
-    const glPolygonOffset = fn (_factor: GLfloat, _units: GLfloat) callconv(.C) void;
-    const glCopyTexImage1D = fn (_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _border: GLint) callconv(.C) void;
-    const glCopyTexImage2D = fn (_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _border: GLint) callconv(.C) void;
-    const glCopyTexSubImage1D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.C) void;
-    const glCopyTexSubImage2D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glTexSubImage1D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
-    const glTexSubImage2D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
-    const glBindTexture = fn (_target: GLenum, _texture: GLuint) callconv(.C) void;
-    const glDeleteTextures = fn (_n: GLsizei, _textures: [*c]const GLuint) callconv(.C) void;
-    const glGenTextures = fn (_n: GLsizei, _textures: [*c]GLuint) callconv(.C) void;
-    const glIsTexture = fn (_texture: GLuint) callconv(.C) GLboolean;
-    const glGetActiveSubroutineUniformName = fn (_program: GLuint, _shadertype: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.C) void;
-    const glGetActiveSubroutineUniformiv = fn (_program: GLuint, _shadertype: GLenum, _index: GLuint, _pname: GLenum, _values: [*c]GLint) callconv(.C) void;
-    const glGetSubroutineIndex = fn (_program: GLuint, _shadertype: GLenum, _name: [*c]const GLchar) callconv(.C) GLuint;
-    const glGetSubroutineUniformLocation = fn (_program: GLuint, _shadertype: GLenum, _name: [*c]const GLchar) callconv(.C) GLint;
-    const glGetUniformdv = fn (_program: GLuint, _location: GLint, _params: [*c]GLdouble) callconv(.C) void;
-    const glUniformMatrix4x3dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniformMatrix4x2dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniformMatrix3x4dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniformMatrix3x2dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniformMatrix2x4dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniformMatrix2x3dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniformMatrix4dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniformMatrix3dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glDrawRangeElements = fn (_mode: GLenum, _start: GLuint, _end: GLuint, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.C) void;
-    const glTexImage3D = fn (_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
-    const glTexSubImage3D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
-    const glCopyTexSubImage3D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glUniformMatrix2dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniform4dv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniform3dv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniform2dv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniform1dv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.C) void;
-    const glUniform4d = fn (_location: GLint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.C) void;
-    const glUniform3d = fn (_location: GLint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void;
-    const glUniform2d = fn (_location: GLint, _x: GLdouble, _y: GLdouble) callconv(.C) void;
-    const glUniform1d = fn (_location: GLint, _x: GLdouble) callconv(.C) void;
-    const glDrawElementsIndirect = fn (_mode: GLenum, _type: GLenum, _indirect: ?*const anyopaque) callconv(.C) void;
-    const glDrawArraysIndirect = fn (_mode: GLenum, _indirect: ?*const anyopaque) callconv(.C) void;
-    const glBlendFuncSeparatei = fn (_buf: GLuint, _srcRGB: GLenum, _dstRGB: GLenum, _srcAlpha: GLenum, _dstAlpha: GLenum) callconv(.C) void;
-    const glBlendFunci = fn (_buf: GLuint, _src: GLenum, _dst: GLenum) callconv(.C) void;
-    const glBlendEquationSeparatei = fn (_buf: GLuint, _modeRGB: GLenum, _modeAlpha: GLenum) callconv(.C) void;
-    const glBlendEquationi = fn (_buf: GLuint, _mode: GLenum) callconv(.C) void;
-    const glMinSampleShading = fn (_value: GLfloat) callconv(.C) void;
-    const glActiveTexture = fn (_texture: GLenum) callconv(.C) void;
-    const glSampleCoverage = fn (_value: GLfloat, _invert: GLboolean) callconv(.C) void;
-    const glCompressedTexImage3D = fn (_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void;
-    const glCompressedTexImage2D = fn (_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void;
-    const glCompressedTexImage1D = fn (_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void;
-    const glCompressedTexSubImage3D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void;
-    const glCompressedTexSubImage2D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void;
-    const glCompressedTexSubImage1D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void;
-    const glGetCompressedTexImage = fn (_target: GLenum, _level: GLint, _img: ?*anyopaque) callconv(.C) void;
-    const glVertexAttribP4uiv = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void;
-    const glVertexAttribP4ui = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void;
-    const glVertexAttribP3uiv = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void;
-    const glVertexAttribP3ui = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void;
-    const glVertexAttribP2uiv = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void;
-    const glVertexAttribP2ui = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void;
-    const glVertexAttribP1uiv = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.C) void;
-    const glVertexAttribP1ui = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.C) void;
-    const glVertexAttribDivisor = fn (_index: GLuint, _divisor: GLuint) callconv(.C) void;
-    const glGetQueryObjectui64v = fn (_id: GLuint, _pname: GLenum, _params: [*c]GLuint64) callconv(.C) void;
-    const glGetQueryObjecti64v = fn (_id: GLuint, _pname: GLenum, _params: [*c]GLint64) callconv(.C) void;
-    const glQueryCounter = fn (_id: GLuint, _target: GLenum) callconv(.C) void;
-    const glGetSamplerParameterIuiv = fn (_sampler: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void;
-    const glGetSamplerParameterfv = fn (_sampler: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void;
-    const glGetSamplerParameterIiv = fn (_sampler: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetSamplerParameteriv = fn (_sampler: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glSamplerParameterIuiv = fn (_sampler: GLuint, _pname: GLenum, _param: [*c]const GLuint) callconv(.C) void;
-    const glSamplerParameterIiv = fn (_sampler: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.C) void;
-    const glSamplerParameterfv = fn (_sampler: GLuint, _pname: GLenum, _param: [*c]const GLfloat) callconv(.C) void;
-    const glSamplerParameterf = fn (_sampler: GLuint, _pname: GLenum, _param: GLfloat) callconv(.C) void;
-    const glSamplerParameteriv = fn (_sampler: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.C) void;
-    const glSamplerParameteri = fn (_sampler: GLuint, _pname: GLenum, _param: GLint) callconv(.C) void;
-    const glBindSampler = fn (_unit: GLuint, _sampler: GLuint) callconv(.C) void;
-    const glIsSampler = fn (_sampler: GLuint) callconv(.C) GLboolean;
-    const glDeleteSamplers = fn (_count: GLsizei, _samplers: [*c]const GLuint) callconv(.C) void;
-    const glGenSamplers = fn (_count: GLsizei, _samplers: [*c]GLuint) callconv(.C) void;
-    const glGetFragDataIndex = fn (_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint;
-    const glBindFragDataLocationIndexed = fn (_program: GLuint, _colorNumber: GLuint, _index: GLuint, _name: [*c]const GLchar) callconv(.C) void;
-    const glSampleMaski = fn (_maskNumber: GLuint, _mask: GLbitfield) callconv(.C) void;
-    const glGetMultisamplefv = fn (_pname: GLenum, _index: GLuint, _val: [*c]GLfloat) callconv(.C) void;
-    const glTexImage3DMultisample = fn (_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void;
-    const glTexImage2DMultisample = fn (_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void;
-    const glFramebufferTexture = fn (_target: GLenum, _attachment: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void;
-    const glGetBufferParameteri64v = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint64) callconv(.C) void;
-    const glBlendFuncSeparate = fn (_sfactorRGB: GLenum, _dfactorRGB: GLenum, _sfactorAlpha: GLenum, _dfactorAlpha: GLenum) callconv(.C) void;
-    const glMultiDrawArrays = fn (_mode: GLenum, _first: [*c]const GLint, _count: [*c]const GLsizei, _drawcount: GLsizei) callconv(.C) void;
-    const glMultiDrawElements = fn (_mode: GLenum, _count: [*c]const GLsizei, _type: GLenum, _indices: [*c]const ?*const anyopaque, _drawcount: GLsizei) callconv(.C) void;
-    const glPointParameterf = fn (_pname: GLenum, _param: GLfloat) callconv(.C) void;
-    const glPointParameterfv = fn (_pname: GLenum, _params: [*c]const GLfloat) callconv(.C) void;
-    const glPointParameteri = fn (_pname: GLenum, _param: GLint) callconv(.C) void;
-    const glPointParameteriv = fn (_pname: GLenum, _params: [*c]const GLint) callconv(.C) void;
-    const glGetInteger64i_v = fn (_target: GLenum, _index: GLuint, _data: [*c]GLint64) callconv(.C) void;
-    const glGetSynciv = fn (_sync: GLsync, _pname: GLenum, _count: GLsizei, _length: [*c]GLsizei, _values: [*c]GLint) callconv(.C) void;
-    const glGetInteger64v = fn (_pname: GLenum, _data: [*c]GLint64) callconv(.C) void;
-    const glWaitSync = fn (_sync: GLsync, _flags: GLbitfield, _timeout: GLuint64) callconv(.C) void;
-    const glClientWaitSync = fn (_sync: GLsync, _flags: GLbitfield, _timeout: GLuint64) callconv(.C) GLenum;
-    const glDeleteSync = fn (_sync: GLsync) callconv(.C) void;
-    const glIsSync = fn (_sync: GLsync) callconv(.C) GLboolean;
-    const glFenceSync = fn (_condition: GLenum, _flags: GLbitfield) callconv(.C) GLsync;
-    const glBlendColor = fn (_red: GLfloat, _green: GLfloat, _blue: GLfloat, _alpha: GLfloat) callconv(.C) void;
-    const glBlendEquation = fn (_mode: GLenum) callconv(.C) void;
-    const glProvokingVertex = fn (_mode: GLenum) callconv(.C) void;
-    const glMultiDrawElementsBaseVertex = fn (_mode: GLenum, _count: [*c]const GLsizei, _type: GLenum, _indices: [*c]const ?*const anyopaque, _drawcount: GLsizei, _basevertex: [*c]const GLint) callconv(.C) void;
-    const glDrawElementsInstancedBaseVertex = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _basevertex: GLint) callconv(.C) void;
-    const glDrawRangeElementsBaseVertex = fn (_mode: GLenum, _start: GLuint, _end: GLuint, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _basevertex: GLint) callconv(.C) void;
-    const glDrawElementsBaseVertex = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _basevertex: GLint) callconv(.C) void;
-    const glGenQueries = fn (_n: GLsizei, _ids: [*c]GLuint) callconv(.C) void;
-    const glDeleteQueries = fn (_n: GLsizei, _ids: [*c]const GLuint) callconv(.C) void;
-    const glIsQuery = fn (_id: GLuint) callconv(.C) GLboolean;
-    const glBeginQuery = fn (_target: GLenum, _id: GLuint) callconv(.C) void;
-    const glEndQuery = fn (_target: GLenum) callconv(.C) void;
-    const glGetQueryiv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetQueryObjectiv = fn (_id: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetQueryObjectuiv = fn (_id: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void;
-    const glBindBuffer = fn (_target: GLenum, _buffer: GLuint) callconv(.C) void;
-    const glDeleteBuffers = fn (_n: GLsizei, _buffers: [*c]const GLuint) callconv(.C) void;
-    const glGenBuffers = fn (_n: GLsizei, _buffers: [*c]GLuint) callconv(.C) void;
-    const glIsBuffer = fn (_buffer: GLuint) callconv(.C) GLboolean;
-    const glBufferData = fn (_target: GLenum, _size: GLsizeiptr, _data: ?*const anyopaque, _usage: GLenum) callconv(.C) void;
-    const glBufferSubData = fn (_target: GLenum, _offset: GLintptr, _size: GLsizeiptr, _data: ?*const anyopaque) callconv(.C) void;
-    const glGetBufferSubData = fn (_target: GLenum, _offset: GLintptr, _size: GLsizeiptr, _data: ?*anyopaque) callconv(.C) void;
-    const glMapBuffer = fn (_target: GLenum, _access: GLenum) callconv(.C) ?*anyopaque;
-    const glUnmapBuffer = fn (_target: GLenum) callconv(.C) GLboolean;
-    const glGetBufferParameteriv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetBufferPointerv = fn (_target: GLenum, _pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void;
-    const glBlendEquationSeparate = fn (_modeRGB: GLenum, _modeAlpha: GLenum) callconv(.C) void;
-    const glDrawBuffers = fn (_n: GLsizei, _bufs: [*c]const GLenum) callconv(.C) void;
-    const glStencilOpSeparate = fn (_face: GLenum, _sfail: GLenum, _dpfail: GLenum, _dppass: GLenum) callconv(.C) void;
-    const glStencilFuncSeparate = fn (_face: GLenum, _func: GLenum, _ref: GLint, _mask: GLuint) callconv(.C) void;
-    const glStencilMaskSeparate = fn (_face: GLenum, _mask: GLuint) callconv(.C) void;
-    const glAttachShader = fn (_program: GLuint, _shader: GLuint) callconv(.C) void;
-    const glBindAttribLocation = fn (_program: GLuint, _index: GLuint, _name: [*c]const GLchar) callconv(.C) void;
-    const glCompileShader = fn (_shader: GLuint) callconv(.C) void;
-    const glCreateProgram = fn () callconv(.C) GLuint;
-    const glCreateShader = fn (_type: GLenum) callconv(.C) GLuint;
-    const glDeleteProgram = fn (_program: GLuint) callconv(.C) void;
-    const glDeleteShader = fn (_shader: GLuint) callconv(.C) void;
-    const glDetachShader = fn (_program: GLuint, _shader: GLuint) callconv(.C) void;
-    const glDisableVertexAttribArray = fn (_index: GLuint) callconv(.C) void;
-    const glEnableVertexAttribArray = fn (_index: GLuint) callconv(.C) void;
-    const glGetActiveAttrib = fn (_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLint, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.C) void;
-    const glGetActiveUniform = fn (_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLint, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.C) void;
-    const glGetAttachedShaders = fn (_program: GLuint, _maxCount: GLsizei, _count: [*c]GLsizei, _shaders: [*c]GLuint) callconv(.C) void;
-    const glGetAttribLocation = fn (_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint;
-    const glGetProgramiv = fn (_program: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetProgramInfoLog = fn (_program: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.C) void;
-    const glGetShaderiv = fn (_shader: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetShaderInfoLog = fn (_shader: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.C) void;
-    const glGetShaderSource = fn (_shader: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _source: [*c]GLchar) callconv(.C) void;
-    const glGetUniformLocation = fn (_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint;
-    const glGetUniformfv = fn (_program: GLuint, _location: GLint, _params: [*c]GLfloat) callconv(.C) void;
-    const glGetUniformiv = fn (_program: GLuint, _location: GLint, _params: [*c]GLint) callconv(.C) void;
-    const glGetVertexAttribdv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLdouble) callconv(.C) void;
-    const glGetVertexAttribfv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void;
-    const glGetVertexAttribiv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetVertexAttribPointerv = fn (_index: GLuint, _pname: GLenum, _pointer: ?*?*anyopaque) callconv(.C) void;
-    const glIsProgram = fn (_program: GLuint) callconv(.C) GLboolean;
-    const glIsShader = fn (_shader: GLuint) callconv(.C) GLboolean;
-    const glLinkProgram = fn (_program: GLuint) callconv(.C) void;
-    const glShaderSource = fn (_shader: GLuint, _count: GLsizei, _string: [*c]const [*c]const GLchar, _length: [*c]const GLint) callconv(.C) void;
-    const glUseProgram = fn (_program: GLuint) callconv(.C) void;
-    const glUniform1f = fn (_location: GLint, _v0: GLfloat) callconv(.C) void;
-    const glUniform2f = fn (_location: GLint, _v0: GLfloat, _v1: GLfloat) callconv(.C) void;
-    const glUniform3f = fn (_location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat) callconv(.C) void;
-    const glUniform4f = fn (_location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat, _v3: GLfloat) callconv(.C) void;
-    const glUniform1i = fn (_location: GLint, _v0: GLint) callconv(.C) void;
-    const glUniform2i = fn (_location: GLint, _v0: GLint, _v1: GLint) callconv(.C) void;
-    const glUniform3i = fn (_location: GLint, _v0: GLint, _v1: GLint, _v2: GLint) callconv(.C) void;
-    const glUniform4i = fn (_location: GLint, _v0: GLint, _v1: GLint, _v2: GLint, _v3: GLint) callconv(.C) void;
-    const glUniform1fv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniform2fv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniform3fv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniform4fv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniform1iv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void;
-    const glUniform2iv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void;
-    const glUniform3iv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void;
-    const glUniform4iv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.C) void;
-    const glUniformMatrix2fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniformMatrix3fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniformMatrix4fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glValidateProgram = fn (_program: GLuint) callconv(.C) void;
-    const glVertexAttrib1d = fn (_index: GLuint, _x: GLdouble) callconv(.C) void;
-    const glVertexAttrib1dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void;
-    const glVertexAttrib1f = fn (_index: GLuint, _x: GLfloat) callconv(.C) void;
-    const glVertexAttrib1fv = fn (_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void;
-    const glVertexAttrib1s = fn (_index: GLuint, _x: GLshort) callconv(.C) void;
-    const glVertexAttrib1sv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.C) void;
-    const glVertexAttrib2d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble) callconv(.C) void;
-    const glVertexAttrib2dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void;
-    const glVertexAttrib2f = fn (_index: GLuint, _x: GLfloat, _y: GLfloat) callconv(.C) void;
-    const glVertexAttrib2fv = fn (_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void;
-    const glVertexAttrib2s = fn (_index: GLuint, _x: GLshort, _y: GLshort) callconv(.C) void;
-    const glVertexAttrib2sv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.C) void;
-    const glVertexAttrib3d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.C) void;
-    const glVertexAttrib3dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void;
-    const glVertexAttrib3f = fn (_index: GLuint, _x: GLfloat, _y: GLfloat, _z: GLfloat) callconv(.C) void;
-    const glVertexAttrib3fv = fn (_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void;
-    const glVertexAttrib3s = fn (_index: GLuint, _x: GLshort, _y: GLshort, _z: GLshort) callconv(.C) void;
-    const glVertexAttrib3sv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.C) void;
-    const glVertexAttrib4Nbv = fn (_index: GLuint, _v: [*c]const GLbyte) callconv(.C) void;
-    const glVertexAttrib4Niv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.C) void;
-    const glVertexAttrib4Nsv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.C) void;
-    const glVertexAttrib4Nub = fn (_index: GLuint, _x: GLubyte, _y: GLubyte, _z: GLubyte, _w: GLubyte) callconv(.C) void;
-    const glVertexAttrib4Nubv = fn (_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.C) void;
-    const glVertexAttrib4Nuiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.C) void;
-    const glVertexAttrib4Nusv = fn (_index: GLuint, _v: [*c]const GLushort) callconv(.C) void;
-    const glVertexAttrib4bv = fn (_index: GLuint, _v: [*c]const GLbyte) callconv(.C) void;
-    const glVertexAttrib4d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.C) void;
-    const glVertexAttrib4dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.C) void;
-    const glVertexAttrib4f = fn (_index: GLuint, _x: GLfloat, _y: GLfloat, _z: GLfloat, _w: GLfloat) callconv(.C) void;
-    const glVertexAttrib4fv = fn (_index: GLuint, _v: [*c]const GLfloat) callconv(.C) void;
-    const glVertexAttrib4iv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.C) void;
-    const glVertexAttrib4s = fn (_index: GLuint, _x: GLshort, _y: GLshort, _z: GLshort, _w: GLshort) callconv(.C) void;
-    const glVertexAttrib4sv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.C) void;
-    const glVertexAttrib4ubv = fn (_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.C) void;
-    const glVertexAttrib4uiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.C) void;
-    const glVertexAttrib4usv = fn (_index: GLuint, _v: [*c]const GLushort) callconv(.C) void;
-    const glVertexAttribPointer = fn (_index: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void;
-    const glUniformMatrix2x3fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniformMatrix3x2fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniformMatrix2x4fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniformMatrix4x2fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniformMatrix3x4fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glUniformMatrix4x3fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.C) void;
-    const glColorMaski = fn (_index: GLuint, _r: GLboolean, _g: GLboolean, _b: GLboolean, _a: GLboolean) callconv(.C) void;
-    const glGetBooleani_v = fn (_target: GLenum, _index: GLuint, _data: [*c]GLboolean) callconv(.C) void;
-    const glGetIntegeri_v = fn (_target: GLenum, _index: GLuint, _data: [*c]GLint) callconv(.C) void;
-    const glEnablei = fn (_target: GLenum, _index: GLuint) callconv(.C) void;
-    const glDisablei = fn (_target: GLenum, _index: GLuint) callconv(.C) void;
-    const glIsEnabledi = fn (_target: GLenum, _index: GLuint) callconv(.C) GLboolean;
-    const glBeginTransformFeedback = fn (_primitiveMode: GLenum) callconv(.C) void;
-    const glEndTransformFeedback = fn () callconv(.C) void;
-    const glBindBufferRange = fn (_target: GLenum, _index: GLuint, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void;
-    const glBindBufferBase = fn (_target: GLenum, _index: GLuint, _buffer: GLuint) callconv(.C) void;
-    const glTransformFeedbackVaryings = fn (_program: GLuint, _count: GLsizei, _varyings: [*c]const [*c]const GLchar, _bufferMode: GLenum) callconv(.C) void;
-    const glGetTransformFeedbackVarying = fn (_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLsizei, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.C) void;
-    const glClampColor = fn (_target: GLenum, _clamp: GLenum) callconv(.C) void;
-    const glBeginConditionalRender = fn (_id: GLuint, _mode: GLenum) callconv(.C) void;
-    const glEndConditionalRender = fn () callconv(.C) void;
-    const glVertexAttribIPointer = fn (_index: GLuint, _size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.C) void;
-    const glGetVertexAttribIiv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetVertexAttribIuiv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void;
-    const glVertexAttribI1i = fn (_index: GLuint, _x: GLint) callconv(.C) void;
-    const glVertexAttribI2i = fn (_index: GLuint, _x: GLint, _y: GLint) callconv(.C) void;
-    const glVertexAttribI3i = fn (_index: GLuint, _x: GLint, _y: GLint, _z: GLint) callconv(.C) void;
-    const glVertexAttribI4i = fn (_index: GLuint, _x: GLint, _y: GLint, _z: GLint, _w: GLint) callconv(.C) void;
-    const glVertexAttribI1ui = fn (_index: GLuint, _x: GLuint) callconv(.C) void;
-    const glVertexAttribI2ui = fn (_index: GLuint, _x: GLuint, _y: GLuint) callconv(.C) void;
-    const glVertexAttribI3ui = fn (_index: GLuint, _x: GLuint, _y: GLuint, _z: GLuint) callconv(.C) void;
-    const glVertexAttribI4ui = fn (_index: GLuint, _x: GLuint, _y: GLuint, _z: GLuint, _w: GLuint) callconv(.C) void;
-    const glVertexAttribI1iv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.C) void;
-    const glVertexAttribI2iv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.C) void;
-    const glVertexAttribI3iv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.C) void;
-    const glVertexAttribI4iv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.C) void;
-    const glVertexAttribI1uiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.C) void;
-    const glVertexAttribI2uiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.C) void;
-    const glVertexAttribI3uiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.C) void;
-    const glVertexAttribI4uiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.C) void;
-    const glVertexAttribI4bv = fn (_index: GLuint, _v: [*c]const GLbyte) callconv(.C) void;
-    const glVertexAttribI4sv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.C) void;
-    const glVertexAttribI4ubv = fn (_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.C) void;
-    const glVertexAttribI4usv = fn (_index: GLuint, _v: [*c]const GLushort) callconv(.C) void;
-    const glGetUniformuiv = fn (_program: GLuint, _location: GLint, _params: [*c]GLuint) callconv(.C) void;
-    const glBindFragDataLocation = fn (_program: GLuint, _color: GLuint, _name: [*c]const GLchar) callconv(.C) void;
-    const glGetFragDataLocation = fn (_program: GLuint, _name: [*c]const GLchar) callconv(.C) GLint;
-    const glUniform1ui = fn (_location: GLint, _v0: GLuint) callconv(.C) void;
-    const glUniform2ui = fn (_location: GLint, _v0: GLuint, _v1: GLuint) callconv(.C) void;
-    const glUniform3ui = fn (_location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint) callconv(.C) void;
-    const glUniform4ui = fn (_location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint, _v3: GLuint) callconv(.C) void;
-    const glUniform1uiv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void;
-    const glUniform2uiv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void;
-    const glUniform3uiv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void;
-    const glUniform4uiv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.C) void;
-    const glTexParameterIiv = fn (_target: GLenum, _pname: GLenum, _params: [*c]const GLint) callconv(.C) void;
-    const glTexParameterIuiv = fn (_target: GLenum, _pname: GLenum, _params: [*c]const GLuint) callconv(.C) void;
-    const glGetTexParameterIiv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetTexParameterIuiv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void;
-    const glClearBufferiv = fn (_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLint) callconv(.C) void;
-    const glClearBufferuiv = fn (_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLuint) callconv(.C) void;
-    const glClearBufferfv = fn (_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLfloat) callconv(.C) void;
-    const glClearBufferfi = fn (_buffer: GLenum, _drawbuffer: GLint, _depth: GLfloat, _stencil: GLint) callconv(.C) void;
-    const glGetStringi = fn (_name: GLenum, _index: GLuint) callconv(.C) ?[*:0]const GLubyte;
-    const glIsRenderbuffer = fn (_renderbuffer: GLuint) callconv(.C) GLboolean;
-    const glBindRenderbuffer = fn (_target: GLenum, _renderbuffer: GLuint) callconv(.C) void;
-    const glDeleteRenderbuffers = fn (_n: GLsizei, _renderbuffers: [*c]const GLuint) callconv(.C) void;
-    const glGenRenderbuffers = fn (_n: GLsizei, _renderbuffers: [*c]GLuint) callconv(.C) void;
-    const glRenderbufferStorage = fn (_target: GLenum, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glGetRenderbufferParameteriv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glIsFramebuffer = fn (_framebuffer: GLuint) callconv(.C) GLboolean;
-    const glBindFramebuffer = fn (_target: GLenum, _framebuffer: GLuint) callconv(.C) void;
-    const glDeleteFramebuffers = fn (_n: GLsizei, _framebuffers: [*c]const GLuint) callconv(.C) void;
-    const glGenFramebuffers = fn (_n: GLsizei, _framebuffers: [*c]GLuint) callconv(.C) void;
-    const glCheckFramebufferStatus = fn (_target: GLenum) callconv(.C) GLenum;
-    const glFramebufferTexture1D = fn (_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void;
-    const glFramebufferTexture2D = fn (_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void;
-    const glFramebufferTexture3D = fn (_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint, _zoffset: GLint) callconv(.C) void;
-    const glFramebufferRenderbuffer = fn (_target: GLenum, _attachment: GLenum, _renderbuffertarget: GLenum, _renderbuffer: GLuint) callconv(.C) void;
-    const glGetFramebufferAttachmentParameteriv = fn (_target: GLenum, _attachment: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGenerateMipmap = fn (_target: GLenum) callconv(.C) void;
-    const glBlitFramebuffer = fn (_srcX0: GLint, _srcY0: GLint, _srcX1: GLint, _srcY1: GLint, _dstX0: GLint, _dstY0: GLint, _dstX1: GLint, _dstY1: GLint, _mask: GLbitfield, _filter: GLenum) callconv(.C) void;
-    const glRenderbufferStorageMultisample = fn (_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glFramebufferTextureLayer = fn (_target: GLenum, _attachment: GLenum, _texture: GLuint, _level: GLint, _layer: GLint) callconv(.C) void;
-    const glMapBufferRange = fn (_target: GLenum, _offset: GLintptr, _length: GLsizeiptr, _access: GLbitfield) callconv(.C) ?*anyopaque;
-    const glFlushMappedBufferRange = fn (_target: GLenum, _offset: GLintptr, _length: GLsizeiptr) callconv(.C) void;
-    const glBindVertexArray = fn (_array: GLuint) callconv(.C) void;
-    const glDeleteVertexArrays = fn (_n: GLsizei, _arrays: [*c]const GLuint) callconv(.C) void;
-    const glGenVertexArrays = fn (_n: GLsizei, _arrays: [*c]GLuint) callconv(.C) void;
-    const glIsVertexArray = fn (_array: GLuint) callconv(.C) GLboolean;
-    const glDrawArraysInstanced = fn (_mode: GLenum, _first: GLint, _count: GLsizei, _instancecount: GLsizei) callconv(.C) void;
-    const glDrawElementsInstanced = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei) callconv(.C) void;
-    const glTexBuffer = fn (_target: GLenum, _internalformat: GLenum, _buffer: GLuint) callconv(.C) void;
-    const glPrimitiveRestartIndex = fn (_index: GLuint) callconv(.C) void;
-    const glCopyBufferSubData = fn (_readTarget: GLenum, _writeTarget: GLenum, _readOffset: GLintptr, _writeOffset: GLintptr, _size: GLsizeiptr) callconv(.C) void;
-    const glGetUniformIndices = fn (_program: GLuint, _uniformCount: GLsizei, _uniformNames: [*c]const [*c]const GLchar, _uniformIndices: [*c]GLuint) callconv(.C) void;
-    const glGetActiveUniformsiv = fn (_program: GLuint, _uniformCount: GLsizei, _uniformIndices: [*c]const GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetActiveUniformName = fn (_program: GLuint, _uniformIndex: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _uniformName: [*c]GLchar) callconv(.C) void;
-    const glGetUniformBlockIndex = fn (_program: GLuint, _uniformBlockName: [*c]const GLchar) callconv(.C) GLuint;
-    const glGetActiveUniformBlockiv = fn (_program: GLuint, _uniformBlockIndex: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetActiveUniformBlockName = fn (_program: GLuint, _uniformBlockIndex: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _uniformBlockName: [*c]GLchar) callconv(.C) void;
-    const glUniformBlockBinding = fn (_program: GLuint, _uniformBlockIndex: GLuint, _uniformBlockBinding: GLuint) callconv(.C) void;
-    const glTexStorage3DMultisample = fn (_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void;
-    const glTextureView = fn (_texture: GLuint, _target: GLenum, _origtexture: GLuint, _internalformat: GLenum, _minlevel: GLuint, _numlevels: GLuint, _minlayer: GLuint, _numlayers: GLuint) callconv(.C) void;
-    const glBindVertexBuffer = fn (_bindingindex: GLuint, _buffer: GLuint, _offset: GLintptr, _stride: GLsizei) callconv(.C) void;
-    const glVertexAttribFormat = fn (_attribindex: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _relativeoffset: GLuint) callconv(.C) void;
-    const glVertexAttribIFormat = fn (_attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void;
-    const glVertexAttribLFormat = fn (_attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void;
-    const glVertexAttribBinding = fn (_attribindex: GLuint, _bindingindex: GLuint) callconv(.C) void;
-    const glVertexBindingDivisor = fn (_bindingindex: GLuint, _divisor: GLuint) callconv(.C) void;
-    const glDebugMessageControl = fn (_source: GLenum, _type: GLenum, _severity: GLenum, _count: GLsizei, _ids: [*c]const GLuint, _enabled: GLboolean) callconv(.C) void;
-    const glDebugMessageInsert = fn (_source: GLenum, _type: GLenum, _id: GLuint, _severity: GLenum, _length: GLsizei, _buf: [*c]const GLchar) callconv(.C) void;
-    const glDebugMessageCallback = fn (_callback: GLDEBUGPROC, _userParam: ?*const anyopaque) callconv(.C) void;
-    const glGetDebugMessageLog = fn (_count: GLuint, _bufSize: GLsizei, _sources: [*c]GLenum, _types: [*c]GLenum, _ids: [*c]GLuint, _severities: [*c]GLenum, _lengths: [*c]GLsizei, _messageLog: [*c]GLchar) callconv(.C) GLuint;
-    const glPushDebugGroup = fn (_source: GLenum, _id: GLuint, _length: GLsizei, _message: [*c]const GLchar) callconv(.C) void;
-    const glPopDebugGroup = fn () callconv(.C) void;
-    const glObjectLabel = fn (_identifier: GLenum, _name: GLuint, _length: GLsizei, _label: [*c]const GLchar) callconv(.C) void;
-    const glGetObjectLabel = fn (_identifier: GLenum, _name: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _label: [*c]GLchar) callconv(.C) void;
-    const glObjectPtrLabel = fn (_ptr: ?*const anyopaque, _length: GLsizei, _label: [*c]const GLchar) callconv(.C) void;
-    const glGetObjectPtrLabel = fn (_ptr: ?*const anyopaque, _bufSize: GLsizei, _length: [*c]GLsizei, _label: [*c]GLchar) callconv(.C) void;
-    const glGetPointerv = fn (_pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void;
-    const glBufferStorage = fn (_target: GLenum, _size: GLsizeiptr, _data: ?*const anyopaque, _flags: GLbitfield) callconv(.C) void;
-    const glClearTexImage = fn (_texture: GLuint, _level: GLint, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void;
-    const glClearTexSubImage = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void;
-    const glBindBuffersBase = fn (_target: GLenum, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint) callconv(.C) void;
-    const glBindBuffersRange = fn (_target: GLenum, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _sizes: [*c]const GLsizeiptr) callconv(.C) void;
-    const glBindTextures = fn (_first: GLuint, _count: GLsizei, _textures: [*c]const GLuint) callconv(.C) void;
-    const glBindSamplers = fn (_first: GLuint, _count: GLsizei, _samplers: [*c]const GLuint) callconv(.C) void;
-    const glBindImageTextures = fn (_first: GLuint, _count: GLsizei, _textures: [*c]const GLuint) callconv(.C) void;
-    const glBindVertexBuffers = fn (_first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _strides: [*c]const GLsizei) callconv(.C) void;
-    const glClipControl = fn (_origin: GLenum, _depth: GLenum) callconv(.C) void;
-    const glCreateTransformFeedbacks = fn (_n: GLsizei, _ids: [*c]GLuint) callconv(.C) void;
-    const glTransformFeedbackBufferBase = fn (_xfb: GLuint, _index: GLuint, _buffer: GLuint) callconv(.C) void;
-    const glTransformFeedbackBufferRange = fn (_xfb: GLuint, _index: GLuint, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void;
-    const glGetTransformFeedbackiv = fn (_xfb: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void;
-    const glGetTransformFeedbacki_v = fn (_xfb: GLuint, _pname: GLenum, _index: GLuint, _param: [*c]GLint) callconv(.C) void;
-    const glGetTransformFeedbacki64_v = fn (_xfb: GLuint, _pname: GLenum, _index: GLuint, _param: [*c]GLint64) callconv(.C) void;
-    const glCreateBuffers = fn (_n: GLsizei, _buffers: [*c]GLuint) callconv(.C) void;
-    const glNamedBufferStorage = fn (_buffer: GLuint, _size: GLsizeiptr, _data: ?*const anyopaque, _flags: GLbitfield) callconv(.C) void;
-    const glNamedBufferData = fn (_buffer: GLuint, _size: GLsizeiptr, _data: ?*const anyopaque, _usage: GLenum) callconv(.C) void;
-    const glNamedBufferSubData = fn (_buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr, _data: ?*const anyopaque) callconv(.C) void;
-    const glCopyNamedBufferSubData = fn (_readBuffer: GLuint, _writeBuffer: GLuint, _readOffset: GLintptr, _writeOffset: GLintptr, _size: GLsizeiptr) callconv(.C) void;
-    const glClearNamedBufferData = fn (_buffer: GLuint, _internalformat: GLenum, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void;
-    const glClearNamedBufferSubData = fn (_buffer: GLuint, _internalformat: GLenum, _offset: GLintptr, _size: GLsizeiptr, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.C) void;
-    const glMapNamedBuffer = fn (_buffer: GLuint, _access: GLenum) callconv(.C) ?*anyopaque;
-    const glMapNamedBufferRange = fn (_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr, _access: GLbitfield) callconv(.C) ?*anyopaque;
-    const glUnmapNamedBuffer = fn (_buffer: GLuint) callconv(.C) GLboolean;
-    const glFlushMappedNamedBufferRange = fn (_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr) callconv(.C) void;
-    const glGetNamedBufferParameteriv = fn (_buffer: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetNamedBufferParameteri64v = fn (_buffer: GLuint, _pname: GLenum, _params: [*c]GLint64) callconv(.C) void;
-    const glGetNamedBufferPointerv = fn (_buffer: GLuint, _pname: GLenum, _params: ?*?*anyopaque) callconv(.C) void;
-    const glGetNamedBufferSubData = fn (_buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr, _data: ?*anyopaque) callconv(.C) void;
-    const glCreateFramebuffers = fn (_n: GLsizei, _framebuffers: [*c]GLuint) callconv(.C) void;
-    const glNamedFramebufferRenderbuffer = fn (_framebuffer: GLuint, _attachment: GLenum, _renderbuffertarget: GLenum, _renderbuffer: GLuint) callconv(.C) void;
-    const glNamedFramebufferParameteri = fn (_framebuffer: GLuint, _pname: GLenum, _param: GLint) callconv(.C) void;
-    const glNamedFramebufferTexture = fn (_framebuffer: GLuint, _attachment: GLenum, _texture: GLuint, _level: GLint) callconv(.C) void;
-    const glNamedFramebufferTextureLayer = fn (_framebuffer: GLuint, _attachment: GLenum, _texture: GLuint, _level: GLint, _layer: GLint) callconv(.C) void;
-    const glNamedFramebufferDrawBuffer = fn (_framebuffer: GLuint, _buf: GLenum) callconv(.C) void;
-    const glNamedFramebufferDrawBuffers = fn (_framebuffer: GLuint, _n: GLsizei, _bufs: [*c]const GLenum) callconv(.C) void;
-    const glNamedFramebufferReadBuffer = fn (_framebuffer: GLuint, _src: GLenum) callconv(.C) void;
-    const glInvalidateNamedFramebufferData = fn (_framebuffer: GLuint, _numAttachments: GLsizei, _attachments: [*c]const GLenum) callconv(.C) void;
-    const glInvalidateNamedFramebufferSubData = fn (_framebuffer: GLuint, _numAttachments: GLsizei, _attachments: [*c]const GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glClearNamedFramebufferiv = fn (_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLint) callconv(.C) void;
-    const glClearNamedFramebufferuiv = fn (_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLuint) callconv(.C) void;
-    const glClearNamedFramebufferfv = fn (_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLfloat) callconv(.C) void;
-    const glClearNamedFramebufferfi = fn (_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _depth: GLfloat, _stencil: GLint) callconv(.C) void;
-    const glBlitNamedFramebuffer = fn (_readFramebuffer: GLuint, _drawFramebuffer: GLuint, _srcX0: GLint, _srcY0: GLint, _srcX1: GLint, _srcY1: GLint, _dstX0: GLint, _dstY0: GLint, _dstX1: GLint, _dstY1: GLint, _mask: GLbitfield, _filter: GLenum) callconv(.C) void;
-    const glCheckNamedFramebufferStatus = fn (_framebuffer: GLuint, _target: GLenum) callconv(.C) GLenum;
-    const glGetNamedFramebufferParameteriv = fn (_framebuffer: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void;
-    const glGetNamedFramebufferAttachmentParameteriv = fn (_framebuffer: GLuint, _attachment: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glCreateRenderbuffers = fn (_n: GLsizei, _renderbuffers: [*c]GLuint) callconv(.C) void;
-    const glNamedRenderbufferStorage = fn (_renderbuffer: GLuint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glNamedRenderbufferStorageMultisample = fn (_renderbuffer: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glGetNamedRenderbufferParameteriv = fn (_renderbuffer: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glCreateTextures = fn (_target: GLenum, _n: GLsizei, _textures: [*c]GLuint) callconv(.C) void;
-    const glTextureBuffer = fn (_texture: GLuint, _internalformat: GLenum, _buffer: GLuint) callconv(.C) void;
-    const glTextureBufferRange = fn (_texture: GLuint, _internalformat: GLenum, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.C) void;
-    const glTextureStorage1D = fn (_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei) callconv(.C) void;
-    const glTextureStorage2D = fn (_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glTextureStorage3D = fn (_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.C) void;
-    const glTextureStorage2DMultisample = fn (_texture: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void;
-    const glTextureStorage3DMultisample = fn (_texture: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.C) void;
-    const glTextureSubImage1D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
-    const glTextureSubImage2D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
-    const glTextureSubImage3D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.C) void;
-    const glCompressedTextureSubImage1D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void;
-    const glCompressedTextureSubImage2D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void;
-    const glCompressedTextureSubImage3D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.C) void;
-    const glCopyTextureSubImage1D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.C) void;
-    const glCopyTextureSubImage2D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glCopyTextureSubImage3D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.C) void;
-    const glTextureParameterf = fn (_texture: GLuint, _pname: GLenum, _param: GLfloat) callconv(.C) void;
-    const glTextureParameterfv = fn (_texture: GLuint, _pname: GLenum, _param: [*c]const GLfloat) callconv(.C) void;
-    const glTextureParameteri = fn (_texture: GLuint, _pname: GLenum, _param: GLint) callconv(.C) void;
-    const glTextureParameterIiv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]const GLint) callconv(.C) void;
-    const glTextureParameterIuiv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]const GLuint) callconv(.C) void;
-    const glTextureParameteriv = fn (_texture: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.C) void;
-    const glGenerateTextureMipmap = fn (_texture: GLuint) callconv(.C) void;
-    const glBindTextureUnit = fn (_unit: GLuint, _texture: GLuint) callconv(.C) void;
-    const glGetTextureImage = fn (_texture: GLuint, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void;
-    const glGetCompressedTextureImage = fn (_texture: GLuint, _level: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void;
-    const glGetTextureLevelParameterfv = fn (_texture: GLuint, _level: GLint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void;
-    const glGetTextureLevelParameteriv = fn (_texture: GLuint, _level: GLint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetTextureParameterfv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.C) void;
-    const glGetTextureParameterIiv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glGetTextureParameterIuiv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.C) void;
-    const glGetTextureParameteriv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.C) void;
-    const glCreateVertexArrays = fn (_n: GLsizei, _arrays: [*c]GLuint) callconv(.C) void;
-    const glDisableVertexArrayAttrib = fn (_vaobj: GLuint, _index: GLuint) callconv(.C) void;
-    const glEnableVertexArrayAttrib = fn (_vaobj: GLuint, _index: GLuint) callconv(.C) void;
-    const glVertexArrayElementBuffer = fn (_vaobj: GLuint, _buffer: GLuint) callconv(.C) void;
-    const glVertexArrayVertexBuffer = fn (_vaobj: GLuint, _bindingindex: GLuint, _buffer: GLuint, _offset: GLintptr, _stride: GLsizei) callconv(.C) void;
-    const glVertexArrayVertexBuffers = fn (_vaobj: GLuint, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _strides: [*c]const GLsizei) callconv(.C) void;
-    const glVertexArrayAttribBinding = fn (_vaobj: GLuint, _attribindex: GLuint, _bindingindex: GLuint) callconv(.C) void;
-    const glVertexArrayAttribFormat = fn (_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _relativeoffset: GLuint) callconv(.C) void;
-    const glVertexArrayAttribIFormat = fn (_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void;
-    const glVertexArrayAttribLFormat = fn (_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.C) void;
-    const glVertexArrayBindingDivisor = fn (_vaobj: GLuint, _bindingindex: GLuint, _divisor: GLuint) callconv(.C) void;
-    const glGetVertexArrayiv = fn (_vaobj: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void;
-    const glGetVertexArrayIndexediv = fn (_vaobj: GLuint, _index: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.C) void;
-    const glGetVertexArrayIndexed64iv = fn (_vaobj: GLuint, _index: GLuint, _pname: GLenum, _param: [*c]GLint64) callconv(.C) void;
-    const glCreateSamplers = fn (_n: GLsizei, _samplers: [*c]GLuint) callconv(.C) void;
-    const glCreateProgramPipelines = fn (_n: GLsizei, _pipelines: [*c]GLuint) callconv(.C) void;
-    const glCreateQueries = fn (_target: GLenum, _n: GLsizei, _ids: [*c]GLuint) callconv(.C) void;
-    const glGetQueryBufferObjecti64v = fn (_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void;
-    const glGetQueryBufferObjectiv = fn (_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void;
-    const glGetQueryBufferObjectui64v = fn (_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void;
-    const glGetQueryBufferObjectuiv = fn (_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.C) void;
-    const glMemoryBarrierByRegion = fn (_barriers: GLbitfield) callconv(.C) void;
-    const glGetTextureSubImage = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void;
-    const glGetCompressedTextureSubImage = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void;
-    const glGetGraphicsResetStatus = fn () callconv(.C) GLenum;
-    const glGetnCompressedTexImage = fn (_target: GLenum, _lod: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void;
-    const glGetnTexImage = fn (_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.C) void;
-    const glGetnUniformdv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLdouble) callconv(.C) void;
-    const glGetnUniformfv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLfloat) callconv(.C) void;
-    const glGetnUniformiv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLint) callconv(.C) void;
-    const glGetnUniformuiv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLuint) callconv(.C) void;
-    const glReadnPixels = fn (_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _data: ?*anyopaque) callconv(.C) void;
-    const glTextureBarrier = fn () callconv(.C) void;
+    const glTexStorage2D = fn (_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glTexStorage1D = fn (_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei) callconv(.c) void;
+    const glDrawTransformFeedbackStreamInstanced = fn (_mode: GLenum, _id: GLuint, _stream: GLuint, _instancecount: GLsizei) callconv(.c) void;
+    const glDrawTransformFeedbackInstanced = fn (_mode: GLenum, _id: GLuint, _instancecount: GLsizei) callconv(.c) void;
+    const glTexStorage3D = fn (_target: GLenum, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.c) void;
+    const glMemoryBarrier = fn (_barriers: GLbitfield) callconv(.c) void;
+    const glBindImageTexture = fn (_unit: GLuint, _texture: GLuint, _level: GLint, _layered: GLboolean, _layer: GLint, _access: GLenum, _format: GLenum) callconv(.c) void;
+    const glGetActiveAtomicCounterBufferiv = fn (_program: GLuint, _bufferIndex: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetInternalformativ = fn (_target: GLenum, _internalformat: GLenum, _pname: GLenum, _count: GLsizei, _params: [*c]GLint) callconv(.c) void;
+    const glDrawElementsInstancedBaseVertexBaseInstance = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _basevertex: GLint, _baseinstance: GLuint) callconv(.c) void;
+    const glDrawElementsInstancedBaseInstance = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _baseinstance: GLuint) callconv(.c) void;
+    const glDrawArraysInstancedBaseInstance = fn (_mode: GLenum, _first: GLint, _count: GLsizei, _instancecount: GLsizei, _baseinstance: GLuint) callconv(.c) void;
+    const glGetDoublei_v = fn (_target: GLenum, _index: GLuint, _data: [*c]GLdouble) callconv(.c) void;
+    const glGetFloati_v = fn (_target: GLenum, _index: GLuint, _data: [*c]GLfloat) callconv(.c) void;
+    const glDepthRangeIndexed = fn (_index: GLuint, _n: GLdouble, _f: GLdouble) callconv(.c) void;
+    const glDepthRangeArrayv = fn (_first: GLuint, _count: GLsizei, _v: [*c]const GLdouble) callconv(.c) void;
+    const glScissorIndexedv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.c) void;
+    const glScissorIndexed = fn (_index: GLuint, _left: GLint, _bottom: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glScissorArrayv = fn (_first: GLuint, _count: GLsizei, _v: [*c]const GLint) callconv(.c) void;
+    const glViewportIndexedfv = fn (_index: GLuint, _v: [*c]const GLfloat) callconv(.c) void;
+    const glViewportIndexedf = fn (_index: GLuint, _x: GLfloat, _y: GLfloat, _w: GLfloat, _h: GLfloat) callconv(.c) void;
+    const glViewportArrayv = fn (_first: GLuint, _count: GLsizei, _v: [*c]const GLfloat) callconv(.c) void;
+    const glGetVertexAttribLdv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLdouble) callconv(.c) void;
+    const glVertexAttribLPointer = fn (_index: GLuint, _size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.c) void;
+    const glVertexAttribL4dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void;
+    const glVertexAttribL3dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void;
+    const glVertexAttribL2dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void;
+    const glVertexAttribL1dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void;
+    const glVertexAttribL4d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.c) void;
+    const glVertexAttribL3d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.c) void;
+    const glVertexAttribL2d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble) callconv(.c) void;
+    const glVertexAttribL1d = fn (_index: GLuint, _x: GLdouble) callconv(.c) void;
+    const glValidateProgramPipeline = fn (_pipeline: GLuint) callconv(.c) void;
+    const glProgramUniformMatrix4x3dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniformMatrix3x4dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniformMatrix4x2dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniformMatrix2x4dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniformMatrix3x2dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniformMatrix2x3dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniformMatrix4x3fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniformMatrix3x4fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniformMatrix4x2fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniformMatrix2x4fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniformMatrix3x2fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniformMatrix2x3fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniformMatrix4dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniformMatrix3dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniformMatrix2dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniformMatrix4fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniformMatrix3fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniformMatrix2fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniform4uiv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void;
+    const glProgramUniform4ui = fn (_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint, _v3: GLuint) callconv(.c) void;
+    const glProgramUniform4dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniform4d = fn (_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble, _v2: GLdouble, _v3: GLdouble) callconv(.c) void;
+    const glProgramUniform4fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniform4f = fn (_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat, _v3: GLfloat) callconv(.c) void;
+    const glProgramUniform4iv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void;
+    const glProgramUniform4i = fn (_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint, _v2: GLint, _v3: GLint) callconv(.c) void;
+    const glProgramUniform3uiv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void;
+    const glProgramUniform3ui = fn (_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint) callconv(.c) void;
+    const glProgramUniform3dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniform3d = fn (_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble, _v2: GLdouble) callconv(.c) void;
+    const glProgramUniform3fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniform3f = fn (_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat) callconv(.c) void;
+    const glProgramUniform3iv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void;
+    const glProgramUniform3i = fn (_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint, _v2: GLint) callconv(.c) void;
+    const glUseProgramStages = fn (_pipeline: GLuint, _stages: GLbitfield, _program: GLuint) callconv(.c) void;
+    const glProgramParameteri = fn (_program: GLuint, _pname: GLenum, _value: GLint) callconv(.c) void;
+    const glGetShaderPrecisionFormat = fn (_shadertype: GLenum, _precisiontype: GLenum, _range: [*c]GLint, _precision: [*c]GLint) callconv(.c) void;
+    const glShaderBinary = fn (_count: GLsizei, _shaders: [*c]const GLuint, _binaryFormat: GLenum, _binary: ?*const anyopaque, _length: GLsizei) callconv(.c) void;
+    const glReleaseShaderCompiler = fn () callconv(.c) void;
+    const glGetQueryIndexediv = fn (_target: GLenum, _index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glEndQueryIndexed = fn (_target: GLenum, _index: GLuint) callconv(.c) void;
+    const glBeginQueryIndexed = fn (_target: GLenum, _index: GLuint, _id: GLuint) callconv(.c) void;
+    const glDrawTransformFeedbackStream = fn (_mode: GLenum, _id: GLuint, _stream: GLuint) callconv(.c) void;
+    const glDrawTransformFeedback = fn (_mode: GLenum, _id: GLuint) callconv(.c) void;
+    const glResumeTransformFeedback = fn () callconv(.c) void;
+    const glPauseTransformFeedback = fn () callconv(.c) void;
+    const glGetProgramStageiv = fn (_program: GLuint, _shadertype: GLenum, _pname: GLenum, _values: [*c]GLint) callconv(.c) void;
+    const glGetUniformSubroutineuiv = fn (_shadertype: GLenum, _location: GLint, _params: [*c]GLuint) callconv(.c) void;
+    const glUniformSubroutinesuiv = fn (_shadertype: GLenum, _count: GLsizei, _indices: [*c]const GLuint) callconv(.c) void;
+    const glGetActiveSubroutineName = fn (_program: GLuint, _shadertype: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.c) void;
+    const glCullFace = fn (_mode: GLenum) callconv(.c) void;
+    const glFrontFace = fn (_mode: GLenum) callconv(.c) void;
+    const glHint = fn (_target: GLenum, _mode: GLenum) callconv(.c) void;
+    const glLineWidth = fn (_width: GLfloat) callconv(.c) void;
+    const glPointSize = fn (_size: GLfloat) callconv(.c) void;
+    const glPolygonMode = fn (_face: GLenum, _mode: GLenum) callconv(.c) void;
+    const glScissor = fn (_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glTexParameterf = fn (_target: GLenum, _pname: GLenum, _param: GLfloat) callconv(.c) void;
+    const glTexParameterfv = fn (_target: GLenum, _pname: GLenum, _params: [*c]const GLfloat) callconv(.c) void;
+    const glTexParameteri = fn (_target: GLenum, _pname: GLenum, _param: GLint) callconv(.c) void;
+    const glTexParameteriv = fn (_target: GLenum, _pname: GLenum, _params: [*c]const GLint) callconv(.c) void;
+    const glTexImage1D = fn (_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void;
+    const glTexImage2D = fn (_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _height: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void;
+    const glDrawBuffer = fn (_buf: GLenum) callconv(.c) void;
+    const glClear = fn (_mask: GLbitfield) callconv(.c) void;
+    const glClearColor = fn (_red: GLfloat, _green: GLfloat, _blue: GLfloat, _alpha: GLfloat) callconv(.c) void;
+    const glClearStencil = fn (_s: GLint) callconv(.c) void;
+    const glClearDepth = fn (_depth: GLdouble) callconv(.c) void;
+    const glStencilMask = fn (_mask: GLuint) callconv(.c) void;
+    const glColorMask = fn (_red: GLboolean, _green: GLboolean, _blue: GLboolean, _alpha: GLboolean) callconv(.c) void;
+    const glDepthMask = fn (_flag: GLboolean) callconv(.c) void;
+    const glDisable = fn (_cap: GLenum) callconv(.c) void;
+    const glEnable = fn (_cap: GLenum) callconv(.c) void;
+    const glFinish = fn () callconv(.c) void;
+    const glFlush = fn () callconv(.c) void;
+    const glBlendFunc = fn (_sfactor: GLenum, _dfactor: GLenum) callconv(.c) void;
+    const glLogicOp = fn (_opcode: GLenum) callconv(.c) void;
+    const glStencilFunc = fn (_func: GLenum, _ref: GLint, _mask: GLuint) callconv(.c) void;
+    const glStencilOp = fn (_fail: GLenum, _zfail: GLenum, _zpass: GLenum) callconv(.c) void;
+    const glDepthFunc = fn (_func: GLenum) callconv(.c) void;
+    const glPixelStoref = fn (_pname: GLenum, _param: GLfloat) callconv(.c) void;
+    const glPixelStorei = fn (_pname: GLenum, _param: GLint) callconv(.c) void;
+    const glReadBuffer = fn (_src: GLenum) callconv(.c) void;
+    const glReadPixels = fn (_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*anyopaque) callconv(.c) void;
+    const glGetBooleanv = fn (_pname: GLenum, _data: [*c]GLboolean) callconv(.c) void;
+    const glGetDoublev = fn (_pname: GLenum, _data: [*c]GLdouble) callconv(.c) void;
+    const glGetError = fn () callconv(.c) GLenum;
+    const glGetFloatv = fn (_pname: GLenum, _data: [*c]GLfloat) callconv(.c) void;
+    const glGetIntegerv = fn (_pname: GLenum, _data: [*c]GLint) callconv(.c) void;
+    const glGetString = fn (_name: GLenum) callconv(.c) ?[*:0]const GLubyte;
+    const glGetTexImage = fn (_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _pixels: ?*anyopaque) callconv(.c) void;
+    const glGetTexParameterfv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void;
+    const glGetTexParameteriv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetTexLevelParameterfv = fn (_target: GLenum, _level: GLint, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void;
+    const glGetTexLevelParameteriv = fn (_target: GLenum, _level: GLint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glIsEnabled = fn (_cap: GLenum) callconv(.c) GLboolean;
+    const glDepthRange = fn (_n: GLdouble, _f: GLdouble) callconv(.c) void;
+    const glViewport = fn (_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glTexStorage2DMultisample = fn (_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void;
+    const glTexBufferRange = fn (_target: GLenum, _internalformat: GLenum, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.c) void;
+    const glShaderStorageBlockBinding = fn (_program: GLuint, _storageBlockIndex: GLuint, _storageBlockBinding: GLuint) callconv(.c) void;
+    const glGetProgramResourceLocationIndex = fn (_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.c) GLint;
+    const glGetProgramResourceLocation = fn (_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.c) GLint;
+    const glGetProgramResourceiv = fn (_program: GLuint, _programInterface: GLenum, _index: GLuint, _propCount: GLsizei, _props: [*c]const GLenum, _count: GLsizei, _length: [*c]GLsizei, _params: [*c]GLint) callconv(.c) void;
+    const glGetProgramResourceName = fn (_program: GLuint, _programInterface: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.c) void;
+    const glGetProgramResourceIndex = fn (_program: GLuint, _programInterface: GLenum, _name: [*c]const GLchar) callconv(.c) GLuint;
+    const glGetProgramInterfaceiv = fn (_program: GLuint, _programInterface: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glMultiDrawElementsIndirect = fn (_mode: GLenum, _type: GLenum, _indirect: ?*const anyopaque, _drawcount: GLsizei, _stride: GLsizei) callconv(.c) void;
+    const glMultiDrawArraysIndirect = fn (_mode: GLenum, _indirect: ?*const anyopaque, _drawcount: GLsizei, _stride: GLsizei) callconv(.c) void;
+    const glInvalidateSubFramebuffer = fn (_target: GLenum, _numAttachments: GLsizei, _attachments: [*c]const GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glInvalidateFramebuffer = fn (_target: GLenum, _numAttachments: GLsizei, _attachments: [*c]const GLenum) callconv(.c) void;
+    const glInvalidateBufferData = fn (_buffer: GLuint) callconv(.c) void;
+    const glInvalidateBufferSubData = fn (_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr) callconv(.c) void;
+    const glInvalidateTexImage = fn (_texture: GLuint, _level: GLint) callconv(.c) void;
+    const glInvalidateTexSubImage = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.c) void;
+    const glGetInternalformati64v = fn (_target: GLenum, _internalformat: GLenum, _pname: GLenum, _count: GLsizei, _params: [*c]GLint64) callconv(.c) void;
+    const glGetFramebufferParameteriv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glFramebufferParameteri = fn (_target: GLenum, _pname: GLenum, _param: GLint) callconv(.c) void;
+    const glCopyImageSubData = fn (_srcName: GLuint, _srcTarget: GLenum, _srcLevel: GLint, _srcX: GLint, _srcY: GLint, _srcZ: GLint, _dstName: GLuint, _dstTarget: GLenum, _dstLevel: GLint, _dstX: GLint, _dstY: GLint, _dstZ: GLint, _srcWidth: GLsizei, _srcHeight: GLsizei, _srcDepth: GLsizei) callconv(.c) void;
+    const glDispatchComputeIndirect = fn (_indirect: GLintptr) callconv(.c) void;
+    const glDispatchCompute = fn (_num_groups_x: GLuint, _num_groups_y: GLuint, _num_groups_z: GLuint) callconv(.c) void;
+    const glClearBufferSubData = fn (_target: GLenum, _internalformat: GLenum, _offset: GLintptr, _size: GLsizeiptr, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void;
+    const glClearBufferData = fn (_target: GLenum, _internalformat: GLenum, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void;
+    const glGetProgramPipelineInfoLog = fn (_pipeline: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.c) void;
+    const glProgramUniform2uiv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void;
+    const glProgramUniform2ui = fn (_program: GLuint, _location: GLint, _v0: GLuint, _v1: GLuint) callconv(.c) void;
+    const glProgramUniform2dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniform2d = fn (_program: GLuint, _location: GLint, _v0: GLdouble, _v1: GLdouble) callconv(.c) void;
+    const glProgramUniform2fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniform2f = fn (_program: GLuint, _location: GLint, _v0: GLfloat, _v1: GLfloat) callconv(.c) void;
+    const glProgramUniform2iv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void;
+    const glProgramUniform2i = fn (_program: GLuint, _location: GLint, _v0: GLint, _v1: GLint) callconv(.c) void;
+    const glProgramUniform1uiv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void;
+    const glProgramUniform1ui = fn (_program: GLuint, _location: GLint, _v0: GLuint) callconv(.c) void;
+    const glProgramUniform1dv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void;
+    const glProgramUniform1d = fn (_program: GLuint, _location: GLint, _v0: GLdouble) callconv(.c) void;
+    const glProgramUniform1fv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void;
+    const glProgramUniform1f = fn (_program: GLuint, _location: GLint, _v0: GLfloat) callconv(.c) void;
+    const glProgramUniform1iv = fn (_program: GLuint, _location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void;
+    const glProgramUniform1i = fn (_program: GLuint, _location: GLint, _v0: GLint) callconv(.c) void;
+    const glGetProgramPipelineiv = fn (_pipeline: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glIsProgramPipeline = fn (_pipeline: GLuint) callconv(.c) GLboolean;
+    const glGenProgramPipelines = fn (_n: GLsizei, _pipelines: [*c]GLuint) callconv(.c) void;
+    const glDeleteProgramPipelines = fn (_n: GLsizei, _pipelines: [*c]const GLuint) callconv(.c) void;
+    const glBindProgramPipeline = fn (_pipeline: GLuint) callconv(.c) void;
+    const glCreateShaderProgramv = fn (_type: GLenum, _count: GLsizei, _strings: [*c]const [*c]const GLchar) callconv(.c) GLuint;
+    const glActiveShaderProgram = fn (_pipeline: GLuint, _program: GLuint) callconv(.c) void;
+    const glProgramBinary = fn (_program: GLuint, _binaryFormat: GLenum, _binary: ?*const anyopaque, _length: GLsizei) callconv(.c) void;
+    const glGetProgramBinary = fn (_program: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _binaryFormat: [*c]GLenum, _binary: ?*anyopaque) callconv(.c) void;
+    const glClearDepthf = fn (_d: GLfloat) callconv(.c) void;
+    const glDepthRangef = fn (_n: GLfloat, _f: GLfloat) callconv(.c) void;
+    const glIsTransformFeedback = fn (_id: GLuint) callconv(.c) GLboolean;
+    const glGenTransformFeedbacks = fn (_n: GLsizei, _ids: [*c]GLuint) callconv(.c) void;
+    const glDeleteTransformFeedbacks = fn (_n: GLsizei, _ids: [*c]const GLuint) callconv(.c) void;
+    const glBindTransformFeedback = fn (_target: GLenum, _id: GLuint) callconv(.c) void;
+    const glPatchParameterfv = fn (_pname: GLenum, _values: [*c]const GLfloat) callconv(.c) void;
+    const glPatchParameteri = fn (_pname: GLenum, _value: GLint) callconv(.c) void;
+    const glDrawArrays = fn (_mode: GLenum, _first: GLint, _count: GLsizei) callconv(.c) void;
+    const glDrawElements = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.c) void;
+    const glPolygonOffset = fn (_factor: GLfloat, _units: GLfloat) callconv(.c) void;
+    const glCopyTexImage1D = fn (_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _border: GLint) callconv(.c) void;
+    const glCopyTexImage2D = fn (_target: GLenum, _level: GLint, _internalformat: GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _border: GLint) callconv(.c) void;
+    const glCopyTexSubImage1D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.c) void;
+    const glCopyTexSubImage2D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glTexSubImage1D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void;
+    const glTexSubImage2D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void;
+    const glBindTexture = fn (_target: GLenum, _texture: GLuint) callconv(.c) void;
+    const glDeleteTextures = fn (_n: GLsizei, _textures: [*c]const GLuint) callconv(.c) void;
+    const glGenTextures = fn (_n: GLsizei, _textures: [*c]GLuint) callconv(.c) void;
+    const glIsTexture = fn (_texture: GLuint) callconv(.c) GLboolean;
+    const glGetActiveSubroutineUniformName = fn (_program: GLuint, _shadertype: GLenum, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _name: [*c]GLchar) callconv(.c) void;
+    const glGetActiveSubroutineUniformiv = fn (_program: GLuint, _shadertype: GLenum, _index: GLuint, _pname: GLenum, _values: [*c]GLint) callconv(.c) void;
+    const glGetSubroutineIndex = fn (_program: GLuint, _shadertype: GLenum, _name: [*c]const GLchar) callconv(.c) GLuint;
+    const glGetSubroutineUniformLocation = fn (_program: GLuint, _shadertype: GLenum, _name: [*c]const GLchar) callconv(.c) GLint;
+    const glGetUniformdv = fn (_program: GLuint, _location: GLint, _params: [*c]GLdouble) callconv(.c) void;
+    const glUniformMatrix4x3dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniformMatrix4x2dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniformMatrix3x4dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniformMatrix3x2dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniformMatrix2x4dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniformMatrix2x3dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniformMatrix4dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniformMatrix3dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glDrawRangeElements = fn (_mode: GLenum, _start: GLuint, _end: GLuint, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque) callconv(.c) void;
+    const glTexImage3D = fn (_target: GLenum, _level: GLint, _internalformat: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _border: GLint, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void;
+    const glTexSubImage3D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void;
+    const glCopyTexSubImage3D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glUniformMatrix2dv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniform4dv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniform3dv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniform2dv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniform1dv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLdouble) callconv(.c) void;
+    const glUniform4d = fn (_location: GLint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.c) void;
+    const glUniform3d = fn (_location: GLint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.c) void;
+    const glUniform2d = fn (_location: GLint, _x: GLdouble, _y: GLdouble) callconv(.c) void;
+    const glUniform1d = fn (_location: GLint, _x: GLdouble) callconv(.c) void;
+    const glDrawElementsIndirect = fn (_mode: GLenum, _type: GLenum, _indirect: ?*const anyopaque) callconv(.c) void;
+    const glDrawArraysIndirect = fn (_mode: GLenum, _indirect: ?*const anyopaque) callconv(.c) void;
+    const glBlendFuncSeparatei = fn (_buf: GLuint, _srcRGB: GLenum, _dstRGB: GLenum, _srcAlpha: GLenum, _dstAlpha: GLenum) callconv(.c) void;
+    const glBlendFunci = fn (_buf: GLuint, _src: GLenum, _dst: GLenum) callconv(.c) void;
+    const glBlendEquationSeparatei = fn (_buf: GLuint, _modeRGB: GLenum, _modeAlpha: GLenum) callconv(.c) void;
+    const glBlendEquationi = fn (_buf: GLuint, _mode: GLenum) callconv(.c) void;
+    const glMinSampleShading = fn (_value: GLfloat) callconv(.c) void;
+    const glActiveTexture = fn (_texture: GLenum) callconv(.c) void;
+    const glSampleCoverage = fn (_value: GLfloat, _invert: GLboolean) callconv(.c) void;
+    const glCompressedTexImage3D = fn (_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void;
+    const glCompressedTexImage2D = fn (_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void;
+    const glCompressedTexImage1D = fn (_target: GLenum, _level: GLint, _internalformat: GLenum, _width: GLsizei, _border: GLint, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void;
+    const glCompressedTexSubImage3D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void;
+    const glCompressedTexSubImage2D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void;
+    const glCompressedTexSubImage1D = fn (_target: GLenum, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void;
+    const glGetCompressedTexImage = fn (_target: GLenum, _level: GLint, _img: ?*anyopaque) callconv(.c) void;
+    const glVertexAttribP4uiv = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.c) void;
+    const glVertexAttribP4ui = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.c) void;
+    const glVertexAttribP3uiv = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.c) void;
+    const glVertexAttribP3ui = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.c) void;
+    const glVertexAttribP2uiv = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.c) void;
+    const glVertexAttribP2ui = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.c) void;
+    const glVertexAttribP1uiv = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: [*c]const GLuint) callconv(.c) void;
+    const glVertexAttribP1ui = fn (_index: GLuint, _type: GLenum, _normalized: GLboolean, _value: GLuint) callconv(.c) void;
+    const glVertexAttribDivisor = fn (_index: GLuint, _divisor: GLuint) callconv(.c) void;
+    const glGetQueryObjectui64v = fn (_id: GLuint, _pname: GLenum, _params: [*c]GLuint64) callconv(.c) void;
+    const glGetQueryObjecti64v = fn (_id: GLuint, _pname: GLenum, _params: [*c]GLint64) callconv(.c) void;
+    const glQueryCounter = fn (_id: GLuint, _target: GLenum) callconv(.c) void;
+    const glGetSamplerParameterIuiv = fn (_sampler: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.c) void;
+    const glGetSamplerParameterfv = fn (_sampler: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void;
+    const glGetSamplerParameterIiv = fn (_sampler: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetSamplerParameteriv = fn (_sampler: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glSamplerParameterIuiv = fn (_sampler: GLuint, _pname: GLenum, _param: [*c]const GLuint) callconv(.c) void;
+    const glSamplerParameterIiv = fn (_sampler: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.c) void;
+    const glSamplerParameterfv = fn (_sampler: GLuint, _pname: GLenum, _param: [*c]const GLfloat) callconv(.c) void;
+    const glSamplerParameterf = fn (_sampler: GLuint, _pname: GLenum, _param: GLfloat) callconv(.c) void;
+    const glSamplerParameteriv = fn (_sampler: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.c) void;
+    const glSamplerParameteri = fn (_sampler: GLuint, _pname: GLenum, _param: GLint) callconv(.c) void;
+    const glBindSampler = fn (_unit: GLuint, _sampler: GLuint) callconv(.c) void;
+    const glIsSampler = fn (_sampler: GLuint) callconv(.c) GLboolean;
+    const glDeleteSamplers = fn (_count: GLsizei, _samplers: [*c]const GLuint) callconv(.c) void;
+    const glGenSamplers = fn (_count: GLsizei, _samplers: [*c]GLuint) callconv(.c) void;
+    const glGetFragDataIndex = fn (_program: GLuint, _name: [*c]const GLchar) callconv(.c) GLint;
+    const glBindFragDataLocationIndexed = fn (_program: GLuint, _colorNumber: GLuint, _index: GLuint, _name: [*c]const GLchar) callconv(.c) void;
+    const glSampleMaski = fn (_maskNumber: GLuint, _mask: GLbitfield) callconv(.c) void;
+    const glGetMultisamplefv = fn (_pname: GLenum, _index: GLuint, _val: [*c]GLfloat) callconv(.c) void;
+    const glTexImage3DMultisample = fn (_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void;
+    const glTexImage2DMultisample = fn (_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void;
+    const glFramebufferTexture = fn (_target: GLenum, _attachment: GLenum, _texture: GLuint, _level: GLint) callconv(.c) void;
+    const glGetBufferParameteri64v = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint64) callconv(.c) void;
+    const glBlendFuncSeparate = fn (_sfactorRGB: GLenum, _dfactorRGB: GLenum, _sfactorAlpha: GLenum, _dfactorAlpha: GLenum) callconv(.c) void;
+    const glMultiDrawArrays = fn (_mode: GLenum, _first: [*c]const GLint, _count: [*c]const GLsizei, _drawcount: GLsizei) callconv(.c) void;
+    const glMultiDrawElements = fn (_mode: GLenum, _count: [*c]const GLsizei, _type: GLenum, _indices: [*c]const ?*const anyopaque, _drawcount: GLsizei) callconv(.c) void;
+    const glPointParameterf = fn (_pname: GLenum, _param: GLfloat) callconv(.c) void;
+    const glPointParameterfv = fn (_pname: GLenum, _params: [*c]const GLfloat) callconv(.c) void;
+    const glPointParameteri = fn (_pname: GLenum, _param: GLint) callconv(.c) void;
+    const glPointParameteriv = fn (_pname: GLenum, _params: [*c]const GLint) callconv(.c) void;
+    const glGetInteger64i_v = fn (_target: GLenum, _index: GLuint, _data: [*c]GLint64) callconv(.c) void;
+    const glGetSynciv = fn (_sync: GLsync, _pname: GLenum, _count: GLsizei, _length: [*c]GLsizei, _values: [*c]GLint) callconv(.c) void;
+    const glGetInteger64v = fn (_pname: GLenum, _data: [*c]GLint64) callconv(.c) void;
+    const glWaitSync = fn (_sync: GLsync, _flags: GLbitfield, _timeout: GLuint64) callconv(.c) void;
+    const glClientWaitSync = fn (_sync: GLsync, _flags: GLbitfield, _timeout: GLuint64) callconv(.c) GLenum;
+    const glDeleteSync = fn (_sync: GLsync) callconv(.c) void;
+    const glIsSync = fn (_sync: GLsync) callconv(.c) GLboolean;
+    const glFenceSync = fn (_condition: GLenum, _flags: GLbitfield) callconv(.c) GLsync;
+    const glBlendColor = fn (_red: GLfloat, _green: GLfloat, _blue: GLfloat, _alpha: GLfloat) callconv(.c) void;
+    const glBlendEquation = fn (_mode: GLenum) callconv(.c) void;
+    const glProvokingVertex = fn (_mode: GLenum) callconv(.c) void;
+    const glMultiDrawElementsBaseVertex = fn (_mode: GLenum, _count: [*c]const GLsizei, _type: GLenum, _indices: [*c]const ?*const anyopaque, _drawcount: GLsizei, _basevertex: [*c]const GLint) callconv(.c) void;
+    const glDrawElementsInstancedBaseVertex = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei, _basevertex: GLint) callconv(.c) void;
+    const glDrawRangeElementsBaseVertex = fn (_mode: GLenum, _start: GLuint, _end: GLuint, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _basevertex: GLint) callconv(.c) void;
+    const glDrawElementsBaseVertex = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _basevertex: GLint) callconv(.c) void;
+    const glGenQueries = fn (_n: GLsizei, _ids: [*c]GLuint) callconv(.c) void;
+    const glDeleteQueries = fn (_n: GLsizei, _ids: [*c]const GLuint) callconv(.c) void;
+    const glIsQuery = fn (_id: GLuint) callconv(.c) GLboolean;
+    const glBeginQuery = fn (_target: GLenum, _id: GLuint) callconv(.c) void;
+    const glEndQuery = fn (_target: GLenum) callconv(.c) void;
+    const glGetQueryiv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetQueryObjectiv = fn (_id: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetQueryObjectuiv = fn (_id: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.c) void;
+    const glBindBuffer = fn (_target: GLenum, _buffer: GLuint) callconv(.c) void;
+    const glDeleteBuffers = fn (_n: GLsizei, _buffers: [*c]const GLuint) callconv(.c) void;
+    const glGenBuffers = fn (_n: GLsizei, _buffers: [*c]GLuint) callconv(.c) void;
+    const glIsBuffer = fn (_buffer: GLuint) callconv(.c) GLboolean;
+    const glBufferData = fn (_target: GLenum, _size: GLsizeiptr, _data: ?*const anyopaque, _usage: GLenum) callconv(.c) void;
+    const glBufferSubData = fn (_target: GLenum, _offset: GLintptr, _size: GLsizeiptr, _data: ?*const anyopaque) callconv(.c) void;
+    const glGetBufferSubData = fn (_target: GLenum, _offset: GLintptr, _size: GLsizeiptr, _data: ?*anyopaque) callconv(.c) void;
+    const glMapBuffer = fn (_target: GLenum, _access: GLenum) callconv(.c) ?*anyopaque;
+    const glUnmapBuffer = fn (_target: GLenum) callconv(.c) GLboolean;
+    const glGetBufferParameteriv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetBufferPointerv = fn (_target: GLenum, _pname: GLenum, _params: ?*?*anyopaque) callconv(.c) void;
+    const glBlendEquationSeparate = fn (_modeRGB: GLenum, _modeAlpha: GLenum) callconv(.c) void;
+    const glDrawBuffers = fn (_n: GLsizei, _bufs: [*c]const GLenum) callconv(.c) void;
+    const glStencilOpSeparate = fn (_face: GLenum, _sfail: GLenum, _dpfail: GLenum, _dppass: GLenum) callconv(.c) void;
+    const glStencilFuncSeparate = fn (_face: GLenum, _func: GLenum, _ref: GLint, _mask: GLuint) callconv(.c) void;
+    const glStencilMaskSeparate = fn (_face: GLenum, _mask: GLuint) callconv(.c) void;
+    const glAttachShader = fn (_program: GLuint, _shader: GLuint) callconv(.c) void;
+    const glBindAttribLocation = fn (_program: GLuint, _index: GLuint, _name: [*c]const GLchar) callconv(.c) void;
+    const glCompileShader = fn (_shader: GLuint) callconv(.c) void;
+    const glCreateProgram = fn () callconv(.c) GLuint;
+    const glCreateShader = fn (_type: GLenum) callconv(.c) GLuint;
+    const glDeleteProgram = fn (_program: GLuint) callconv(.c) void;
+    const glDeleteShader = fn (_shader: GLuint) callconv(.c) void;
+    const glDetachShader = fn (_program: GLuint, _shader: GLuint) callconv(.c) void;
+    const glDisableVertexAttribArray = fn (_index: GLuint) callconv(.c) void;
+    const glEnableVertexAttribArray = fn (_index: GLuint) callconv(.c) void;
+    const glGetActiveAttrib = fn (_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLint, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.c) void;
+    const glGetActiveUniform = fn (_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLint, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.c) void;
+    const glGetAttachedShaders = fn (_program: GLuint, _maxCount: GLsizei, _count: [*c]GLsizei, _shaders: [*c]GLuint) callconv(.c) void;
+    const glGetAttribLocation = fn (_program: GLuint, _name: [*c]const GLchar) callconv(.c) GLint;
+    const glGetProgramiv = fn (_program: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetProgramInfoLog = fn (_program: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.c) void;
+    const glGetShaderiv = fn (_shader: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetShaderInfoLog = fn (_shader: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _infoLog: [*c]GLchar) callconv(.c) void;
+    const glGetShaderSource = fn (_shader: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _source: [*c]GLchar) callconv(.c) void;
+    const glGetUniformLocation = fn (_program: GLuint, _name: [*c]const GLchar) callconv(.c) GLint;
+    const glGetUniformfv = fn (_program: GLuint, _location: GLint, _params: [*c]GLfloat) callconv(.c) void;
+    const glGetUniformiv = fn (_program: GLuint, _location: GLint, _params: [*c]GLint) callconv(.c) void;
+    const glGetVertexAttribdv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLdouble) callconv(.c) void;
+    const glGetVertexAttribfv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void;
+    const glGetVertexAttribiv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetVertexAttribPointerv = fn (_index: GLuint, _pname: GLenum, _pointer: ?*?*anyopaque) callconv(.c) void;
+    const glIsProgram = fn (_program: GLuint) callconv(.c) GLboolean;
+    const glIsShader = fn (_shader: GLuint) callconv(.c) GLboolean;
+    const glLinkProgram = fn (_program: GLuint) callconv(.c) void;
+    const glShaderSource = fn (_shader: GLuint, _count: GLsizei, _string: [*c]const [*c]const GLchar, _length: [*c]const GLint) callconv(.c) void;
+    const glUseProgram = fn (_program: GLuint) callconv(.c) void;
+    const glUniform1f = fn (_location: GLint, _v0: GLfloat) callconv(.c) void;
+    const glUniform2f = fn (_location: GLint, _v0: GLfloat, _v1: GLfloat) callconv(.c) void;
+    const glUniform3f = fn (_location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat) callconv(.c) void;
+    const glUniform4f = fn (_location: GLint, _v0: GLfloat, _v1: GLfloat, _v2: GLfloat, _v3: GLfloat) callconv(.c) void;
+    const glUniform1i = fn (_location: GLint, _v0: GLint) callconv(.c) void;
+    const glUniform2i = fn (_location: GLint, _v0: GLint, _v1: GLint) callconv(.c) void;
+    const glUniform3i = fn (_location: GLint, _v0: GLint, _v1: GLint, _v2: GLint) callconv(.c) void;
+    const glUniform4i = fn (_location: GLint, _v0: GLint, _v1: GLint, _v2: GLint, _v3: GLint) callconv(.c) void;
+    const glUniform1fv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniform2fv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniform3fv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniform4fv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniform1iv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void;
+    const glUniform2iv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void;
+    const glUniform3iv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void;
+    const glUniform4iv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLint) callconv(.c) void;
+    const glUniformMatrix2fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniformMatrix3fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniformMatrix4fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glValidateProgram = fn (_program: GLuint) callconv(.c) void;
+    const glVertexAttrib1d = fn (_index: GLuint, _x: GLdouble) callconv(.c) void;
+    const glVertexAttrib1dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void;
+    const glVertexAttrib1f = fn (_index: GLuint, _x: GLfloat) callconv(.c) void;
+    const glVertexAttrib1fv = fn (_index: GLuint, _v: [*c]const GLfloat) callconv(.c) void;
+    const glVertexAttrib1s = fn (_index: GLuint, _x: GLshort) callconv(.c) void;
+    const glVertexAttrib1sv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.c) void;
+    const glVertexAttrib2d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble) callconv(.c) void;
+    const glVertexAttrib2dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void;
+    const glVertexAttrib2f = fn (_index: GLuint, _x: GLfloat, _y: GLfloat) callconv(.c) void;
+    const glVertexAttrib2fv = fn (_index: GLuint, _v: [*c]const GLfloat) callconv(.c) void;
+    const glVertexAttrib2s = fn (_index: GLuint, _x: GLshort, _y: GLshort) callconv(.c) void;
+    const glVertexAttrib2sv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.c) void;
+    const glVertexAttrib3d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble) callconv(.c) void;
+    const glVertexAttrib3dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void;
+    const glVertexAttrib3f = fn (_index: GLuint, _x: GLfloat, _y: GLfloat, _z: GLfloat) callconv(.c) void;
+    const glVertexAttrib3fv = fn (_index: GLuint, _v: [*c]const GLfloat) callconv(.c) void;
+    const glVertexAttrib3s = fn (_index: GLuint, _x: GLshort, _y: GLshort, _z: GLshort) callconv(.c) void;
+    const glVertexAttrib3sv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.c) void;
+    const glVertexAttrib4Nbv = fn (_index: GLuint, _v: [*c]const GLbyte) callconv(.c) void;
+    const glVertexAttrib4Niv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.c) void;
+    const glVertexAttrib4Nsv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.c) void;
+    const glVertexAttrib4Nub = fn (_index: GLuint, _x: GLubyte, _y: GLubyte, _z: GLubyte, _w: GLubyte) callconv(.c) void;
+    const glVertexAttrib4Nubv = fn (_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.c) void;
+    const glVertexAttrib4Nuiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.c) void;
+    const glVertexAttrib4Nusv = fn (_index: GLuint, _v: [*c]const GLushort) callconv(.c) void;
+    const glVertexAttrib4bv = fn (_index: GLuint, _v: [*c]const GLbyte) callconv(.c) void;
+    const glVertexAttrib4d = fn (_index: GLuint, _x: GLdouble, _y: GLdouble, _z: GLdouble, _w: GLdouble) callconv(.c) void;
+    const glVertexAttrib4dv = fn (_index: GLuint, _v: [*c]const GLdouble) callconv(.c) void;
+    const glVertexAttrib4f = fn (_index: GLuint, _x: GLfloat, _y: GLfloat, _z: GLfloat, _w: GLfloat) callconv(.c) void;
+    const glVertexAttrib4fv = fn (_index: GLuint, _v: [*c]const GLfloat) callconv(.c) void;
+    const glVertexAttrib4iv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.c) void;
+    const glVertexAttrib4s = fn (_index: GLuint, _x: GLshort, _y: GLshort, _z: GLshort, _w: GLshort) callconv(.c) void;
+    const glVertexAttrib4sv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.c) void;
+    const glVertexAttrib4ubv = fn (_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.c) void;
+    const glVertexAttrib4uiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.c) void;
+    const glVertexAttrib4usv = fn (_index: GLuint, _v: [*c]const GLushort) callconv(.c) void;
+    const glVertexAttribPointer = fn (_index: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.c) void;
+    const glUniformMatrix2x3fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniformMatrix3x2fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniformMatrix2x4fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniformMatrix4x2fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniformMatrix3x4fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glUniformMatrix4x3fv = fn (_location: GLint, _count: GLsizei, _transpose: GLboolean, _value: [*c]const GLfloat) callconv(.c) void;
+    const glColorMaski = fn (_index: GLuint, _r: GLboolean, _g: GLboolean, _b: GLboolean, _a: GLboolean) callconv(.c) void;
+    const glGetBooleani_v = fn (_target: GLenum, _index: GLuint, _data: [*c]GLboolean) callconv(.c) void;
+    const glGetIntegeri_v = fn (_target: GLenum, _index: GLuint, _data: [*c]GLint) callconv(.c) void;
+    const glEnablei = fn (_target: GLenum, _index: GLuint) callconv(.c) void;
+    const glDisablei = fn (_target: GLenum, _index: GLuint) callconv(.c) void;
+    const glIsEnabledi = fn (_target: GLenum, _index: GLuint) callconv(.c) GLboolean;
+    const glBeginTransformFeedback = fn (_primitiveMode: GLenum) callconv(.c) void;
+    const glEndTransformFeedback = fn () callconv(.c) void;
+    const glBindBufferRange = fn (_target: GLenum, _index: GLuint, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.c) void;
+    const glBindBufferBase = fn (_target: GLenum, _index: GLuint, _buffer: GLuint) callconv(.c) void;
+    const glTransformFeedbackVaryings = fn (_program: GLuint, _count: GLsizei, _varyings: [*c]const [*c]const GLchar, _bufferMode: GLenum) callconv(.c) void;
+    const glGetTransformFeedbackVarying = fn (_program: GLuint, _index: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _size: [*c]GLsizei, _type: [*c]GLenum, _name: [*c]GLchar) callconv(.c) void;
+    const glClampColor = fn (_target: GLenum, _clamp: GLenum) callconv(.c) void;
+    const glBeginConditionalRender = fn (_id: GLuint, _mode: GLenum) callconv(.c) void;
+    const glEndConditionalRender = fn () callconv(.c) void;
+    const glVertexAttribIPointer = fn (_index: GLuint, _size: GLint, _type: GLenum, _stride: GLsizei, _pointer: ?*const anyopaque) callconv(.c) void;
+    const glGetVertexAttribIiv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetVertexAttribIuiv = fn (_index: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.c) void;
+    const glVertexAttribI1i = fn (_index: GLuint, _x: GLint) callconv(.c) void;
+    const glVertexAttribI2i = fn (_index: GLuint, _x: GLint, _y: GLint) callconv(.c) void;
+    const glVertexAttribI3i = fn (_index: GLuint, _x: GLint, _y: GLint, _z: GLint) callconv(.c) void;
+    const glVertexAttribI4i = fn (_index: GLuint, _x: GLint, _y: GLint, _z: GLint, _w: GLint) callconv(.c) void;
+    const glVertexAttribI1ui = fn (_index: GLuint, _x: GLuint) callconv(.c) void;
+    const glVertexAttribI2ui = fn (_index: GLuint, _x: GLuint, _y: GLuint) callconv(.c) void;
+    const glVertexAttribI3ui = fn (_index: GLuint, _x: GLuint, _y: GLuint, _z: GLuint) callconv(.c) void;
+    const glVertexAttribI4ui = fn (_index: GLuint, _x: GLuint, _y: GLuint, _z: GLuint, _w: GLuint) callconv(.c) void;
+    const glVertexAttribI1iv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.c) void;
+    const glVertexAttribI2iv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.c) void;
+    const glVertexAttribI3iv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.c) void;
+    const glVertexAttribI4iv = fn (_index: GLuint, _v: [*c]const GLint) callconv(.c) void;
+    const glVertexAttribI1uiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.c) void;
+    const glVertexAttribI2uiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.c) void;
+    const glVertexAttribI3uiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.c) void;
+    const glVertexAttribI4uiv = fn (_index: GLuint, _v: [*c]const GLuint) callconv(.c) void;
+    const glVertexAttribI4bv = fn (_index: GLuint, _v: [*c]const GLbyte) callconv(.c) void;
+    const glVertexAttribI4sv = fn (_index: GLuint, _v: [*c]const GLshort) callconv(.c) void;
+    const glVertexAttribI4ubv = fn (_index: GLuint, _v: ?[*:0]const GLubyte) callconv(.c) void;
+    const glVertexAttribI4usv = fn (_index: GLuint, _v: [*c]const GLushort) callconv(.c) void;
+    const glGetUniformuiv = fn (_program: GLuint, _location: GLint, _params: [*c]GLuint) callconv(.c) void;
+    const glBindFragDataLocation = fn (_program: GLuint, _color: GLuint, _name: [*c]const GLchar) callconv(.c) void;
+    const glGetFragDataLocation = fn (_program: GLuint, _name: [*c]const GLchar) callconv(.c) GLint;
+    const glUniform1ui = fn (_location: GLint, _v0: GLuint) callconv(.c) void;
+    const glUniform2ui = fn (_location: GLint, _v0: GLuint, _v1: GLuint) callconv(.c) void;
+    const glUniform3ui = fn (_location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint) callconv(.c) void;
+    const glUniform4ui = fn (_location: GLint, _v0: GLuint, _v1: GLuint, _v2: GLuint, _v3: GLuint) callconv(.c) void;
+    const glUniform1uiv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void;
+    const glUniform2uiv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void;
+    const glUniform3uiv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void;
+    const glUniform4uiv = fn (_location: GLint, _count: GLsizei, _value: [*c]const GLuint) callconv(.c) void;
+    const glTexParameterIiv = fn (_target: GLenum, _pname: GLenum, _params: [*c]const GLint) callconv(.c) void;
+    const glTexParameterIuiv = fn (_target: GLenum, _pname: GLenum, _params: [*c]const GLuint) callconv(.c) void;
+    const glGetTexParameterIiv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetTexParameterIuiv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLuint) callconv(.c) void;
+    const glClearBufferiv = fn (_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLint) callconv(.c) void;
+    const glClearBufferuiv = fn (_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLuint) callconv(.c) void;
+    const glClearBufferfv = fn (_buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLfloat) callconv(.c) void;
+    const glClearBufferfi = fn (_buffer: GLenum, _drawbuffer: GLint, _depth: GLfloat, _stencil: GLint) callconv(.c) void;
+    const glGetStringi = fn (_name: GLenum, _index: GLuint) callconv(.c) ?[*:0]const GLubyte;
+    const glIsRenderbuffer = fn (_renderbuffer: GLuint) callconv(.c) GLboolean;
+    const glBindRenderbuffer = fn (_target: GLenum, _renderbuffer: GLuint) callconv(.c) void;
+    const glDeleteRenderbuffers = fn (_n: GLsizei, _renderbuffers: [*c]const GLuint) callconv(.c) void;
+    const glGenRenderbuffers = fn (_n: GLsizei, _renderbuffers: [*c]GLuint) callconv(.c) void;
+    const glRenderbufferStorage = fn (_target: GLenum, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glGetRenderbufferParameteriv = fn (_target: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glIsFramebuffer = fn (_framebuffer: GLuint) callconv(.c) GLboolean;
+    const glBindFramebuffer = fn (_target: GLenum, _framebuffer: GLuint) callconv(.c) void;
+    const glDeleteFramebuffers = fn (_n: GLsizei, _framebuffers: [*c]const GLuint) callconv(.c) void;
+    const glGenFramebuffers = fn (_n: GLsizei, _framebuffers: [*c]GLuint) callconv(.c) void;
+    const glCheckFramebufferStatus = fn (_target: GLenum) callconv(.c) GLenum;
+    const glFramebufferTexture1D = fn (_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint) callconv(.c) void;
+    const glFramebufferTexture2D = fn (_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint) callconv(.c) void;
+    const glFramebufferTexture3D = fn (_target: GLenum, _attachment: GLenum, _textarget: GLenum, _texture: GLuint, _level: GLint, _zoffset: GLint) callconv(.c) void;
+    const glFramebufferRenderbuffer = fn (_target: GLenum, _attachment: GLenum, _renderbuffertarget: GLenum, _renderbuffer: GLuint) callconv(.c) void;
+    const glGetFramebufferAttachmentParameteriv = fn (_target: GLenum, _attachment: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGenerateMipmap = fn (_target: GLenum) callconv(.c) void;
+    const glBlitFramebuffer = fn (_srcX0: GLint, _srcY0: GLint, _srcX1: GLint, _srcY1: GLint, _dstX0: GLint, _dstY0: GLint, _dstX1: GLint, _dstY1: GLint, _mask: GLbitfield, _filter: GLenum) callconv(.c) void;
+    const glRenderbufferStorageMultisample = fn (_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glFramebufferTextureLayer = fn (_target: GLenum, _attachment: GLenum, _texture: GLuint, _level: GLint, _layer: GLint) callconv(.c) void;
+    const glMapBufferRange = fn (_target: GLenum, _offset: GLintptr, _length: GLsizeiptr, _access: GLbitfield) callconv(.c) ?*anyopaque;
+    const glFlushMappedBufferRange = fn (_target: GLenum, _offset: GLintptr, _length: GLsizeiptr) callconv(.c) void;
+    const glBindVertexArray = fn (_array: GLuint) callconv(.c) void;
+    const glDeleteVertexArrays = fn (_n: GLsizei, _arrays: [*c]const GLuint) callconv(.c) void;
+    const glGenVertexArrays = fn (_n: GLsizei, _arrays: [*c]GLuint) callconv(.c) void;
+    const glIsVertexArray = fn (_array: GLuint) callconv(.c) GLboolean;
+    const glDrawArraysInstanced = fn (_mode: GLenum, _first: GLint, _count: GLsizei, _instancecount: GLsizei) callconv(.c) void;
+    const glDrawElementsInstanced = fn (_mode: GLenum, _count: GLsizei, _type: GLenum, _indices: ?*const anyopaque, _instancecount: GLsizei) callconv(.c) void;
+    const glTexBuffer = fn (_target: GLenum, _internalformat: GLenum, _buffer: GLuint) callconv(.c) void;
+    const glPrimitiveRestartIndex = fn (_index: GLuint) callconv(.c) void;
+    const glCopyBufferSubData = fn (_readTarget: GLenum, _writeTarget: GLenum, _readOffset: GLintptr, _writeOffset: GLintptr, _size: GLsizeiptr) callconv(.c) void;
+    const glGetUniformIndices = fn (_program: GLuint, _uniformCount: GLsizei, _uniformNames: [*c]const [*c]const GLchar, _uniformIndices: [*c]GLuint) callconv(.c) void;
+    const glGetActiveUniformsiv = fn (_program: GLuint, _uniformCount: GLsizei, _uniformIndices: [*c]const GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetActiveUniformName = fn (_program: GLuint, _uniformIndex: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _uniformName: [*c]GLchar) callconv(.c) void;
+    const glGetUniformBlockIndex = fn (_program: GLuint, _uniformBlockName: [*c]const GLchar) callconv(.c) GLuint;
+    const glGetActiveUniformBlockiv = fn (_program: GLuint, _uniformBlockIndex: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetActiveUniformBlockName = fn (_program: GLuint, _uniformBlockIndex: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _uniformBlockName: [*c]GLchar) callconv(.c) void;
+    const glUniformBlockBinding = fn (_program: GLuint, _uniformBlockIndex: GLuint, _uniformBlockBinding: GLuint) callconv(.c) void;
+    const glTexStorage3DMultisample = fn (_target: GLenum, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void;
+    const glTextureView = fn (_texture: GLuint, _target: GLenum, _origtexture: GLuint, _internalformat: GLenum, _minlevel: GLuint, _numlevels: GLuint, _minlayer: GLuint, _numlayers: GLuint) callconv(.c) void;
+    const glBindVertexBuffer = fn (_bindingindex: GLuint, _buffer: GLuint, _offset: GLintptr, _stride: GLsizei) callconv(.c) void;
+    const glVertexAttribFormat = fn (_attribindex: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _relativeoffset: GLuint) callconv(.c) void;
+    const glVertexAttribIFormat = fn (_attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.c) void;
+    const glVertexAttribLFormat = fn (_attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.c) void;
+    const glVertexAttribBinding = fn (_attribindex: GLuint, _bindingindex: GLuint) callconv(.c) void;
+    const glVertexBindingDivisor = fn (_bindingindex: GLuint, _divisor: GLuint) callconv(.c) void;
+    const glDebugMessageControl = fn (_source: GLenum, _type: GLenum, _severity: GLenum, _count: GLsizei, _ids: [*c]const GLuint, _enabled: GLboolean) callconv(.c) void;
+    const glDebugMessageInsert = fn (_source: GLenum, _type: GLenum, _id: GLuint, _severity: GLenum, _length: GLsizei, _buf: [*c]const GLchar) callconv(.c) void;
+    const glDebugMessageCallback = fn (_callback: GLDEBUGPROC, _userParam: ?*const anyopaque) callconv(.c) void;
+    const glGetDebugMessageLog = fn (_count: GLuint, _bufSize: GLsizei, _sources: [*c]GLenum, _types: [*c]GLenum, _ids: [*c]GLuint, _severities: [*c]GLenum, _lengths: [*c]GLsizei, _messageLog: [*c]GLchar) callconv(.c) GLuint;
+    const glPushDebugGroup = fn (_source: GLenum, _id: GLuint, _length: GLsizei, _message: [*c]const GLchar) callconv(.c) void;
+    const glPopDebugGroup = fn () callconv(.c) void;
+    const glObjectLabel = fn (_identifier: GLenum, _name: GLuint, _length: GLsizei, _label: [*c]const GLchar) callconv(.c) void;
+    const glGetObjectLabel = fn (_identifier: GLenum, _name: GLuint, _bufSize: GLsizei, _length: [*c]GLsizei, _label: [*c]GLchar) callconv(.c) void;
+    const glObjectPtrLabel = fn (_ptr: ?*const anyopaque, _length: GLsizei, _label: [*c]const GLchar) callconv(.c) void;
+    const glGetObjectPtrLabel = fn (_ptr: ?*const anyopaque, _bufSize: GLsizei, _length: [*c]GLsizei, _label: [*c]GLchar) callconv(.c) void;
+    const glGetPointerv = fn (_pname: GLenum, _params: ?*?*anyopaque) callconv(.c) void;
+    const glBufferStorage = fn (_target: GLenum, _size: GLsizeiptr, _data: ?*const anyopaque, _flags: GLbitfield) callconv(.c) void;
+    const glClearTexImage = fn (_texture: GLuint, _level: GLint, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void;
+    const glClearTexSubImage = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void;
+    const glBindBuffersBase = fn (_target: GLenum, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint) callconv(.c) void;
+    const glBindBuffersRange = fn (_target: GLenum, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _sizes: [*c]const GLsizeiptr) callconv(.c) void;
+    const glBindTextures = fn (_first: GLuint, _count: GLsizei, _textures: [*c]const GLuint) callconv(.c) void;
+    const glBindSamplers = fn (_first: GLuint, _count: GLsizei, _samplers: [*c]const GLuint) callconv(.c) void;
+    const glBindImageTextures = fn (_first: GLuint, _count: GLsizei, _textures: [*c]const GLuint) callconv(.c) void;
+    const glBindVertexBuffers = fn (_first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _strides: [*c]const GLsizei) callconv(.c) void;
+    const glClipControl = fn (_origin: GLenum, _depth: GLenum) callconv(.c) void;
+    const glCreateTransformFeedbacks = fn (_n: GLsizei, _ids: [*c]GLuint) callconv(.c) void;
+    const glTransformFeedbackBufferBase = fn (_xfb: GLuint, _index: GLuint, _buffer: GLuint) callconv(.c) void;
+    const glTransformFeedbackBufferRange = fn (_xfb: GLuint, _index: GLuint, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.c) void;
+    const glGetTransformFeedbackiv = fn (_xfb: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.c) void;
+    const glGetTransformFeedbacki_v = fn (_xfb: GLuint, _pname: GLenum, _index: GLuint, _param: [*c]GLint) callconv(.c) void;
+    const glGetTransformFeedbacki64_v = fn (_xfb: GLuint, _pname: GLenum, _index: GLuint, _param: [*c]GLint64) callconv(.c) void;
+    const glCreateBuffers = fn (_n: GLsizei, _buffers: [*c]GLuint) callconv(.c) void;
+    const glNamedBufferStorage = fn (_buffer: GLuint, _size: GLsizeiptr, _data: ?*const anyopaque, _flags: GLbitfield) callconv(.c) void;
+    const glNamedBufferData = fn (_buffer: GLuint, _size: GLsizeiptr, _data: ?*const anyopaque, _usage: GLenum) callconv(.c) void;
+    const glNamedBufferSubData = fn (_buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr, _data: ?*const anyopaque) callconv(.c) void;
+    const glCopyNamedBufferSubData = fn (_readBuffer: GLuint, _writeBuffer: GLuint, _readOffset: GLintptr, _writeOffset: GLintptr, _size: GLsizeiptr) callconv(.c) void;
+    const glClearNamedBufferData = fn (_buffer: GLuint, _internalformat: GLenum, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void;
+    const glClearNamedBufferSubData = fn (_buffer: GLuint, _internalformat: GLenum, _offset: GLintptr, _size: GLsizeiptr, _format: GLenum, _type: GLenum, _data: ?*const anyopaque) callconv(.c) void;
+    const glMapNamedBuffer = fn (_buffer: GLuint, _access: GLenum) callconv(.c) ?*anyopaque;
+    const glMapNamedBufferRange = fn (_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr, _access: GLbitfield) callconv(.c) ?*anyopaque;
+    const glUnmapNamedBuffer = fn (_buffer: GLuint) callconv(.c) GLboolean;
+    const glFlushMappedNamedBufferRange = fn (_buffer: GLuint, _offset: GLintptr, _length: GLsizeiptr) callconv(.c) void;
+    const glGetNamedBufferParameteriv = fn (_buffer: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetNamedBufferParameteri64v = fn (_buffer: GLuint, _pname: GLenum, _params: [*c]GLint64) callconv(.c) void;
+    const glGetNamedBufferPointerv = fn (_buffer: GLuint, _pname: GLenum, _params: ?*?*anyopaque) callconv(.c) void;
+    const glGetNamedBufferSubData = fn (_buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr, _data: ?*anyopaque) callconv(.c) void;
+    const glCreateFramebuffers = fn (_n: GLsizei, _framebuffers: [*c]GLuint) callconv(.c) void;
+    const glNamedFramebufferRenderbuffer = fn (_framebuffer: GLuint, _attachment: GLenum, _renderbuffertarget: GLenum, _renderbuffer: GLuint) callconv(.c) void;
+    const glNamedFramebufferParameteri = fn (_framebuffer: GLuint, _pname: GLenum, _param: GLint) callconv(.c) void;
+    const glNamedFramebufferTexture = fn (_framebuffer: GLuint, _attachment: GLenum, _texture: GLuint, _level: GLint) callconv(.c) void;
+    const glNamedFramebufferTextureLayer = fn (_framebuffer: GLuint, _attachment: GLenum, _texture: GLuint, _level: GLint, _layer: GLint) callconv(.c) void;
+    const glNamedFramebufferDrawBuffer = fn (_framebuffer: GLuint, _buf: GLenum) callconv(.c) void;
+    const glNamedFramebufferDrawBuffers = fn (_framebuffer: GLuint, _n: GLsizei, _bufs: [*c]const GLenum) callconv(.c) void;
+    const glNamedFramebufferReadBuffer = fn (_framebuffer: GLuint, _src: GLenum) callconv(.c) void;
+    const glInvalidateNamedFramebufferData = fn (_framebuffer: GLuint, _numAttachments: GLsizei, _attachments: [*c]const GLenum) callconv(.c) void;
+    const glInvalidateNamedFramebufferSubData = fn (_framebuffer: GLuint, _numAttachments: GLsizei, _attachments: [*c]const GLenum, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glClearNamedFramebufferiv = fn (_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLint) callconv(.c) void;
+    const glClearNamedFramebufferuiv = fn (_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLuint) callconv(.c) void;
+    const glClearNamedFramebufferfv = fn (_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _value: [*c]const GLfloat) callconv(.c) void;
+    const glClearNamedFramebufferfi = fn (_framebuffer: GLuint, _buffer: GLenum, _drawbuffer: GLint, _depth: GLfloat, _stencil: GLint) callconv(.c) void;
+    const glBlitNamedFramebuffer = fn (_readFramebuffer: GLuint, _drawFramebuffer: GLuint, _srcX0: GLint, _srcY0: GLint, _srcX1: GLint, _srcY1: GLint, _dstX0: GLint, _dstY0: GLint, _dstX1: GLint, _dstY1: GLint, _mask: GLbitfield, _filter: GLenum) callconv(.c) void;
+    const glCheckNamedFramebufferStatus = fn (_framebuffer: GLuint, _target: GLenum) callconv(.c) GLenum;
+    const glGetNamedFramebufferParameteriv = fn (_framebuffer: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.c) void;
+    const glGetNamedFramebufferAttachmentParameteriv = fn (_framebuffer: GLuint, _attachment: GLenum, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glCreateRenderbuffers = fn (_n: GLsizei, _renderbuffers: [*c]GLuint) callconv(.c) void;
+    const glNamedRenderbufferStorage = fn (_renderbuffer: GLuint, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glNamedRenderbufferStorageMultisample = fn (_renderbuffer: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glGetNamedRenderbufferParameteriv = fn (_renderbuffer: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glCreateTextures = fn (_target: GLenum, _n: GLsizei, _textures: [*c]GLuint) callconv(.c) void;
+    const glTextureBuffer = fn (_texture: GLuint, _internalformat: GLenum, _buffer: GLuint) callconv(.c) void;
+    const glTextureBufferRange = fn (_texture: GLuint, _internalformat: GLenum, _buffer: GLuint, _offset: GLintptr, _size: GLsizeiptr) callconv(.c) void;
+    const glTextureStorage1D = fn (_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei) callconv(.c) void;
+    const glTextureStorage2D = fn (_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glTextureStorage3D = fn (_texture: GLuint, _levels: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei) callconv(.c) void;
+    const glTextureStorage2DMultisample = fn (_texture: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void;
+    const glTextureStorage3DMultisample = fn (_texture: GLuint, _samples: GLsizei, _internalformat: GLenum, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _fixedsamplelocations: GLboolean) callconv(.c) void;
+    const glTextureSubImage1D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void;
+    const glTextureSubImage2D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void;
+    const glTextureSubImage3D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _pixels: ?*const anyopaque) callconv(.c) void;
+    const glCompressedTextureSubImage1D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _width: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void;
+    const glCompressedTextureSubImage2D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void;
+    const glCompressedTextureSubImage3D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _imageSize: GLsizei, _data: ?*const anyopaque) callconv(.c) void;
+    const glCopyTextureSubImage1D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei) callconv(.c) void;
+    const glCopyTextureSubImage2D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glCopyTextureSubImage3D = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei) callconv(.c) void;
+    const glTextureParameterf = fn (_texture: GLuint, _pname: GLenum, _param: GLfloat) callconv(.c) void;
+    const glTextureParameterfv = fn (_texture: GLuint, _pname: GLenum, _param: [*c]const GLfloat) callconv(.c) void;
+    const glTextureParameteri = fn (_texture: GLuint, _pname: GLenum, _param: GLint) callconv(.c) void;
+    const glTextureParameterIiv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]const GLint) callconv(.c) void;
+    const glTextureParameterIuiv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]const GLuint) callconv(.c) void;
+    const glTextureParameteriv = fn (_texture: GLuint, _pname: GLenum, _param: [*c]const GLint) callconv(.c) void;
+    const glGenerateTextureMipmap = fn (_texture: GLuint) callconv(.c) void;
+    const glBindTextureUnit = fn (_unit: GLuint, _texture: GLuint) callconv(.c) void;
+    const glGetTextureImage = fn (_texture: GLuint, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void;
+    const glGetCompressedTextureImage = fn (_texture: GLuint, _level: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void;
+    const glGetTextureLevelParameterfv = fn (_texture: GLuint, _level: GLint, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void;
+    const glGetTextureLevelParameteriv = fn (_texture: GLuint, _level: GLint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetTextureParameterfv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]GLfloat) callconv(.c) void;
+    const glGetTextureParameterIiv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glGetTextureParameterIuiv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]GLuint) callconv(.c) void;
+    const glGetTextureParameteriv = fn (_texture: GLuint, _pname: GLenum, _params: [*c]GLint) callconv(.c) void;
+    const glCreateVertexArrays = fn (_n: GLsizei, _arrays: [*c]GLuint) callconv(.c) void;
+    const glDisableVertexArrayAttrib = fn (_vaobj: GLuint, _index: GLuint) callconv(.c) void;
+    const glEnableVertexArrayAttrib = fn (_vaobj: GLuint, _index: GLuint) callconv(.c) void;
+    const glVertexArrayElementBuffer = fn (_vaobj: GLuint, _buffer: GLuint) callconv(.c) void;
+    const glVertexArrayVertexBuffer = fn (_vaobj: GLuint, _bindingindex: GLuint, _buffer: GLuint, _offset: GLintptr, _stride: GLsizei) callconv(.c) void;
+    const glVertexArrayVertexBuffers = fn (_vaobj: GLuint, _first: GLuint, _count: GLsizei, _buffers: [*c]const GLuint, _offsets: [*c]const GLintptr, _strides: [*c]const GLsizei) callconv(.c) void;
+    const glVertexArrayAttribBinding = fn (_vaobj: GLuint, _attribindex: GLuint, _bindingindex: GLuint) callconv(.c) void;
+    const glVertexArrayAttribFormat = fn (_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _normalized: GLboolean, _relativeoffset: GLuint) callconv(.c) void;
+    const glVertexArrayAttribIFormat = fn (_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.c) void;
+    const glVertexArrayAttribLFormat = fn (_vaobj: GLuint, _attribindex: GLuint, _size: GLint, _type: GLenum, _relativeoffset: GLuint) callconv(.c) void;
+    const glVertexArrayBindingDivisor = fn (_vaobj: GLuint, _bindingindex: GLuint, _divisor: GLuint) callconv(.c) void;
+    const glGetVertexArrayiv = fn (_vaobj: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.c) void;
+    const glGetVertexArrayIndexediv = fn (_vaobj: GLuint, _index: GLuint, _pname: GLenum, _param: [*c]GLint) callconv(.c) void;
+    const glGetVertexArrayIndexed64iv = fn (_vaobj: GLuint, _index: GLuint, _pname: GLenum, _param: [*c]GLint64) callconv(.c) void;
+    const glCreateSamplers = fn (_n: GLsizei, _samplers: [*c]GLuint) callconv(.c) void;
+    const glCreateProgramPipelines = fn (_n: GLsizei, _pipelines: [*c]GLuint) callconv(.c) void;
+    const glCreateQueries = fn (_target: GLenum, _n: GLsizei, _ids: [*c]GLuint) callconv(.c) void;
+    const glGetQueryBufferObjecti64v = fn (_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.c) void;
+    const glGetQueryBufferObjectiv = fn (_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.c) void;
+    const glGetQueryBufferObjectui64v = fn (_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.c) void;
+    const glGetQueryBufferObjectuiv = fn (_id: GLuint, _buffer: GLuint, _pname: GLenum, _offset: GLintptr) callconv(.c) void;
+    const glMemoryBarrierByRegion = fn (_barriers: GLbitfield) callconv(.c) void;
+    const glGetTextureSubImage = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void;
+    const glGetCompressedTextureSubImage = fn (_texture: GLuint, _level: GLint, _xoffset: GLint, _yoffset: GLint, _zoffset: GLint, _width: GLsizei, _height: GLsizei, _depth: GLsizei, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void;
+    const glGetGraphicsResetStatus = fn () callconv(.c) GLenum;
+    const glGetnCompressedTexImage = fn (_target: GLenum, _lod: GLint, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void;
+    const glGetnTexImage = fn (_target: GLenum, _level: GLint, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _pixels: ?*anyopaque) callconv(.c) void;
+    const glGetnUniformdv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLdouble) callconv(.c) void;
+    const glGetnUniformfv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLfloat) callconv(.c) void;
+    const glGetnUniformiv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLint) callconv(.c) void;
+    const glGetnUniformuiv = fn (_program: GLuint, _location: GLint, _bufSize: GLsizei, _params: [*c]GLuint) callconv(.c) void;
+    const glReadnPixels = fn (_x: GLint, _y: GLint, _width: GLsizei, _height: GLsizei, _format: GLenum, _type: GLenum, _bufSize: GLsizei, _data: ?*anyopaque) callconv(.c) void;
+    const glTextureBarrier = fn () callconv(.c) void;
 };
 
 const function_pointers = struct {
