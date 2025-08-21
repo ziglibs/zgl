@@ -382,6 +382,11 @@ pub fn vertexAttribDivisor(index: u32, divisor: u32) void {
     checkError();
 }
 
+pub fn vertexArrayBindingDivisor(vertexArray: types.VertexArray, index: u32, divisor: u32) void {
+    binding.vertexArrayBindingDivisor(@intFromEnum(vertexArray), index, divisor);
+    checkError();
+}
+
 pub fn disableVertexAttribArray(index: u32) void {
     binding.disableVertexAttribArray(index);
     checkError();
