@@ -35,6 +35,7 @@ pub const Shader = types.Shader;
 pub const Program = types.Program;
 pub const ProgramPipeline = types.ProgramPipeline;
 pub const Texture = types.Texture;
+pub const Sampler = types.Sampler;
 pub const Renderbuffer = types.Renderbuffer;
 pub const Framebuffer = types.Framebuffer;
 
@@ -2247,6 +2248,42 @@ pub fn bindImageTexture(
         @intFromEnum(access),
         @intFromEnum(format),
     );
+    checkError();
+}
+
+pub fn createSampler() types.Sampler {
+    var sampler_name: types.UInt = undefined;
+
+    binding.createSamplers(1, &sampler_name);
+    checkError();
+
+    const sampler = @as(types.Sampler, @enumFromInt(sampler_name));
+    if (sampler == .invalid) {
+        checkError();
+        unreachable;
+    }
+    return sampler;
+}
+
+pub fn deleteSampler(sampler: types.Sampler) void {
+    var id = @intFromEnum(sampler);
+    binding.deleteSamplers(1, &id);
+}
+
+pub fn samplerParameter(sampler: types.Sampler, comptime parameter: TextureParameter, value: TextureParameterType(parameter)) void {
+    const T = TextureParameterType(parameter);
+    const info = @typeInfo(T);
+
+    if (info == .@"enum") {
+        binding.samplerParameteri(@intFromEnum(sampler), @intFromEnum(parameter), @intFromEnum(value));
+    } else {
+        @compileError(@tagName(info) ++ " is not supported yet by samplerParameter");
+    }
+    checkError();
+}
+
+pub fn bindSampler(sampler: types.Sampler, unit: u32) void {
+    binding.bindSampler(unit, @intFromEnum(sampler));
     checkError();
 }
 
