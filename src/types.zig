@@ -132,6 +132,18 @@ pub const Texture = enum(UInt) {
     pub const generateMipmap = gl.generateTextureMipmap;
 };
 
+pub const Sampler = enum(UInt) {
+    invalid = 0,
+    _,
+
+    pub const create = gl.createSampler;
+    pub const delete = gl.deleteSampler;
+
+    pub const bind = gl.bindSampler;
+
+    pub const parameter = gl.samplerParameter;
+};
+
 pub const Renderbuffer = enum(UInt) {
     invalid = 0,
     _,
