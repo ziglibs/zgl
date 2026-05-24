@@ -961,6 +961,11 @@ pub fn useProgram(program: types.Program) void {
     checkError();
 }
 
+pub fn validateProgram(program: types.Program) void {
+    binding.validateProgram(@intFromEnum(program));
+    checkError();
+}
+
 pub const ProgramParameter = enum(types.Enum) {
     delete_status = binding.DELETE_STATUS,
     link_status = binding.LINK_STATUS,
