@@ -87,6 +87,7 @@ pub const Program = enum(UInt) {
     pub const link = gl.linkProgram;
 
     pub const use = gl.useProgram;
+    pub const validate = gl.validateProgram;
 
     pub const uniform1ui = gl.programUniform1ui;
     pub const uniform1i = gl.programUniform1i;
