@@ -5,6 +5,103 @@ This library provides a thin, type-safe binding for OpenGL.
 ## Example
 
 ```zig
+// [Hello Triangle]
+const std = @import("std");
+const gl = @import("zgl");
+// For covenience this example will use zglfw library (https://github.com/zig-gamedev/zglfw)
+const glfw = @import("zglfw");
+
+fn getProcAddr(load_ctx: @TypeOf({}), proc_name: [:0]const u8) gl.binding.FunctionPointer {
+    _ = load_ctx;
+    return @ptrCast(glfw.getProcAddress(proc_name.ptr));
+}
+
+const VERT_SHADER =
+    \\#version 330 core
+    \\layout(location = 0) in vec3 aPos;
+    \\
+    \\void main() {
+    \\  gl_Position = vec4(aPos, 1.0);
+    \\}
+;
+
+const FRAG_SHADER =
+    \\#version 330 core
+    \\out vec4 FragColor;
+    \\
+    \\void main() {
+    \\  FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+    \\}
+;
+
+pub fn main() !void {
+    try glfw.init();
+    defer glfw.terminate();
+
+    glfw.windowHint(.context_version_major, 3);
+    glfw.windowHint(.context_version_minor, 3);
+    glfw.windowHint(.opengl_profile, glfw.OpenGLProfile.opengl_core_profile);
+    glfw.windowHint(.resizable, false);
+
+    const window = try glfw.Window.create(600, 400, "opengl engine", null, null);
+    defer window.destroy();
+
+    glfw.makeContextCurrent(window);
+    try gl.loadExtensions({}, getProcAddr);
+
+    const size = window.getSize();
+    gl.viewport(0, 0, @intCast(size[0]), @intCast(size[1]));
+
+    const vertices = [_]f32{
+        0.5,  -0.5, 0,
+        -0.5, -0.5, 0,
+        0,    0.5,  0,
+    };
+
+    const vao = gl.VertexArray.gen();
+    defer vao.delete();
+
+    const vbo = gl.Buffer.gen();
+    defer vbo.delete();
+
+    vao.bind();
+    vbo.bind(gl.BufferTarget.array_buffer);
+    vbo.data(f32, &vertices, gl.BufferUsage.static_draw);
+    gl.vertexAttribPointer(0, 3, gl.Type.float, false, 3 * @sizeOf(f32), 0);
+    gl.enableVertexAttribArray(0);
+
+    const vert_shader = gl.Shader.create(.vertex);
+    defer vert_shader.delete();
+    vert_shader.source(1, &[_][]const u8{VERT_SHADER});
+    vert_shader.compile();
+
+    const frag_shader = gl.Shader.create(.fragment);
+    defer frag_shader.delete();
+    frag_shader.source(1, &[_][]const u8{FRAG_SHADER});
+    frag_shader.compile();
+
+    const program = gl.Program.create();
+    defer program.delete();
+    program.attach(vert_shader);
+    program.attach(frag_shader);
+    program.link();
+
+    while (!window.shouldClose()) {
+        gl.clear(.{ .color = true });
+
+        program.use();
+        vao.bind();
+        gl.drawArrays(gl.PrimitiveType.triangles, 0, 3);
+
+        window.swapBuffers();
+        glfw.pollEvents();
+    }
+}
+```
+
+## Code Style
+
+```zig
 // Use classic OpenGL flavour
 var vao = gl.createVertexArray();
 defer gl.deleteVertexArray(vao);
